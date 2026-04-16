@@ -40,7 +40,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             "theme-bar-color", "results-size", "large-result-list-margins", "themed-icons", "icons-hide",
             "pref-fav-tags-drawable", null);
     // Those settings require a restart of the settings
-    private static final List<String> SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY = Arrays.asList("theme", "force-portrait", null);
+    private static final List<String> SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY = Arrays.asList("theme", "force-portrait", "night-mode", null);
 
     private boolean requireFullRestart = false;
 

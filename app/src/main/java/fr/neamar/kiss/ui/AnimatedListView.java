@@ -102,12 +102,10 @@ public class AnimatedListView extends BlockableListView {
     protected static class ItemInfo {
         final int top;
         final int viewIndex;
-        final boolean validated;
 
-        ItemInfo(int index, int top) {
-            this.viewIndex = index;
+        ItemInfo(int viewIndex, int top) {
+            this.viewIndex = viewIndex;
             this.top = top;
-            this.validated = false;
         }
     }
 }

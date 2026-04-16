@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
-import java.util.OptionalLong;
+import java.util.OptionalInt;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,21 +23,21 @@ public class TimerProvider extends SimpleProvider<SearchPojo> {
         this.prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
     }
 
-    static OptionalLong getTimerDurationSeconds(String query) {
+    static OptionalInt getTimerDurationSeconds(String query) {
         if (query == null || query.trim().isEmpty()) {
-            return OptionalLong.empty();
+            return OptionalInt.empty();
         }
 
         Matcher matcher = TIMER_REGEXP.matcher(query);
         if (!matcher.matches()) {
-            return OptionalLong.empty();
+            return OptionalInt.empty();
         }
 
         String hoursStr = matcher.group(1);
         String minutesStr = matcher.group(2);
         String secondsStr = matcher.group(3);
         if (hoursStr == null && minutesStr == null && secondsStr == null) {
-            return OptionalLong.empty();
+            return OptionalInt.empty();
         }
 
         try {
@@ -47,12 +47,12 @@ public class TimerProvider extends SimpleProvider<SearchPojo> {
 
             long totalSeconds = (long) Math.ceil(hours * 3600 + minutes * 60 + seconds);
             if (totalSeconds <= 0 || totalSeconds > Integer.MAX_VALUE) {
-                return OptionalLong.empty();
+                return OptionalInt.empty();
             }
 
-            return OptionalLong.of(totalSeconds);
+            return OptionalInt.of((int) totalSeconds);
         } catch (NumberFormatException ignored) {
-            return OptionalLong.empty();
+            return OptionalInt.empty();
         }
     }
 
@@ -62,12 +62,12 @@ public class TimerProvider extends SimpleProvider<SearchPojo> {
             return;
         }
 
-        OptionalLong totalSeconds = getTimerDurationSeconds(query);
+        OptionalInt totalSeconds = getTimerDurationSeconds(query);
         if (!totalSeconds.isPresent()) {
             return;
         }
 
-        SearchPojo pojo = new SearchPojo(TIMER_SCHEME + totalSeconds.getAsLong(), query, String.valueOf(totalSeconds.getAsLong()), SearchPojoType.TIMER_QUERY);
+        SearchPojo pojo = new SearchPojo(TIMER_SCHEME + totalSeconds.getAsInt(), query, String.valueOf(totalSeconds.getAsInt()), SearchPojoType.TIMER_QUERY);
         pojo.relevance = 25;
         searcher.addResult(pojo);
     }

@@ -176,6 +176,7 @@ public class StringNormalizer {
             return Arrays.hashCode(codePoints);
         }
 
+        @NonNull
         @Override
         public String toString() {
             // Since we stripped all combining Unicode characters in the

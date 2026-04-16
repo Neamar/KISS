@@ -8,11 +8,7 @@ public final class SettingPojo extends Pojo {
     public final @DrawableRes int icon;
 
     public SettingPojo(String id, String settingName, @DrawableRes int icon) {
-    	super(id);
-
-        this.settingName = settingName;
-        this.packageName = "";
-        this.icon = icon;
+        this(id, settingName, "", icon);
     }
 
     public SettingPojo(String id, String settingName, String packageName, @DrawableRes int icon) {

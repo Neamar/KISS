@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.lang.ref.WeakReference;
+import java.util.Objects;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
@@ -32,7 +33,7 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
 
     @Override
     protected Boolean doInBackground(Void... voids) {
-        final LauncherApps.PinItemRequest pinItemRequest = intent.getParcelableExtra(LauncherApps.EXTRA_PIN_ITEM_REQUEST);
+        final LauncherApps.PinItemRequest pinItemRequest = Objects.requireNonNull(intent.getParcelableExtra(LauncherApps.EXTRA_PIN_ITEM_REQUEST));
         final ShortcutInfo shortcutInfo = pinItemRequest.getShortcutInfo();
 
         if (shortcutInfo == null) {

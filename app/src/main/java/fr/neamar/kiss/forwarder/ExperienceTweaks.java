@@ -10,13 +10,13 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ServiceInfo;
 import android.os.Build;
-import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
@@ -58,8 +58,6 @@ public class ExperienceTweaks extends Forwarder {
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     private static final String TAG = ExperienceTweaks.class.getSimpleName();
-
-    private final Runnable displayKeyboardRunnable = mainActivity::showKeyboard;
 
     private View mainEmptyView;
     private final GestureDetector gd;
@@ -129,9 +127,7 @@ public class ExperienceTweaks extends Forwarder {
                         mainActivity.startActivity(intent);
                     });
 
-                    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-                        dialog.dismiss();
-                    });
+                    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss());
 
                     AlertDialog alert = builder.create();
                     alert.show();
@@ -244,7 +240,7 @@ public class ExperienceTweaks extends Forwarder {
             }
         });
 
-        keyboardManager = new KeyboardManager(mainActivity);
+        keyboardManager = new KeyboardManager();
     }
 
     void onCreate() {
@@ -254,14 +250,15 @@ public class ExperienceTweaks extends Forwarder {
     void onResume() {
         keyboardManager.registerKeyboardListener(
                 mainActivity.findViewById(android.R.id.content),
+                shouldShowKeyboard(),
                 (keyboardIsVisible) -> {
+                    mainActivity.onKeyboardVisibilityChanged(keyboardIsVisible);
                     if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
                             mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
                         if (keyboardIsVisible) {
                             // If it's more than 200dp, it's most likely a keyboard.
                             if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
                                 mainActivity.showHistory();
-                                mainActivity.displayClearOnInput();
                             }
                         } else {
                             // we never want this triggered because the keyboard scroller did it
@@ -275,20 +272,16 @@ public class ExperienceTweaks extends Forwarder {
 
         adjustInputType();
 
-        // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
-        // so the keyboard will be hidden by default
-        // we may want to display it if the setting is set
+        // set matching softInputMode for main window of activity depending on settings
+        // see https://developer.android.com/develop/ui/views/touch-and-input/keyboard-input/visibility#ShowOnStart
         if (shouldShowKeyboard()) {
+            // Display keyboard by default for main window of activity
+            mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             // Display keyboard
             mainActivity.showKeyboard();
-
-            new Handler().postDelayed(displayKeyboardRunnable, 10);
-            // For some weird reasons, keyboard may be hidden by the system
-            // So we have to run this multiple time at different time
-            // See https://github.com/Neamar/KISS/issues/119
-            new Handler().postDelayed(displayKeyboardRunnable, 100);
-            new Handler().postDelayed(displayKeyboardRunnable, 500);
         } else {
+            // Hide keyboard by default for main window of activity
+            mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             mainActivity.hideKeyboard();
@@ -302,16 +295,13 @@ public class ExperienceTweaks extends Forwarder {
         }
         if (prefs.getBoolean("pref-hide-circle", false)) {
             ((ImageView) mainActivity.launcherButton).setImageBitmap(null);
-            ((ImageView) mainActivity.menuButton).setImageBitmap(null);
+            mainActivity.menuButton.setImageBitmap(null);
         }
     }
 
     void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
-    }
-
-    void onWindowFocusChanged(boolean hasFocus) {
     }
 
     void onDisplayKissBar(boolean display) {

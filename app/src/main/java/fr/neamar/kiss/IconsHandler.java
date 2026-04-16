@@ -94,8 +94,12 @@ public class IconsHandler {
             mContactPackMask = pref.getBoolean("contact-pack-mask", true);
             mContactsShape = getAdaptiveShape(pref, "contacts-shape");
             loadIconsPack(pref.getString("icons-pack", null));
-            KissApplication.getApplication(ctx).getDataHandler().refreshFavorites();
+            getDataHandler().refreshFavorites();
         }
+    }
+
+    private DataHandler getDataHandler() {
+        return KissApplication.getApplication(ctx).getDataHandler();
     }
 
     @NonNull
@@ -150,7 +154,7 @@ public class IconsHandler {
      * @param useCustomIcons use custom icons
      * @return drawable
      */
-    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
+    public Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         if (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx)) {
@@ -427,16 +431,18 @@ public class IconsHandler {
      * Clear cache
      */
     private void cacheClear() {
-        TagDummyResult.resetShape();
-        clearCustomIconIdCache();
+        synchronized (this) {
+            TagDummyResult.resetShape();
+            clearCustomIconIdCache();
 
-        File cacheDir = this.getIconsCacheDir();
+            File cacheDir = this.getIconsCacheDir();
 
-        File[] fileList = cacheDir.listFiles();
-        if (fileList != null) {
-            for (File item : fileList) {
-                if (!item.delete()) {
-                    Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
+            File[] fileList = cacheDir.listFiles();
+            if (fileList != null) {
+                for (File item : fileList) {
+                    if (!item.delete()) {
+                        Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
+                    }
                 }
             }
         }
@@ -488,17 +494,19 @@ public class IconsHandler {
     }
 
     public void changeAppIcon(AppResult appResult, Drawable drawable) {
-        long customIconId = KissApplication.getApplication(ctx).getDataHandler().setCustomAppIcon(appResult.getComponentName());
+        long customIconId = getDataHandler().setCustomAppIcon(appResult.getComponentName());
         storeDrawable(customIconFileName(appResult.getComponentName(), customIconId), drawable);
         appResult.setCustomIcon(customIconId, drawable);
         cacheClear();
+        getDataHandler().refreshFavorites();
     }
 
     public void restoreAppIcon(AppResult appResult) {
-        long customIconId = KissApplication.getApplication(ctx).getDataHandler().removeCustomAppIcon(appResult.getComponentName());
+        long customIconId = getDataHandler().removeCustomAppIcon(appResult.getComponentName());
         removeStoredDrawable(customIconFileName(appResult.getComponentName(), customIconId));
         appResult.clearCustomIcon();
         cacheClear();
+        getDataHandler().refreshFavorites();
     }
 
     /**

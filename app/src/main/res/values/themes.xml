@@ -3,7 +3,7 @@
 
     <style name="BaseTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/kiss_green</item>
-        <item name="colorPrimaryDark">@color/kiss_green</item>
+        <item name="colorPrimaryDark">@color/kiss_green_dark</item>
         <item name="colorAccent">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="appSelectableItemBackground">?android:attr/selectableItemBackgroundBorderless</item>
@@ -15,6 +15,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator</item>
         <item name="android:textColor">@color/theme_solid_text_color</item>
+        <item name="android:textColorPrimary">@color/theme_solid_text_color</item>
         <item name="android:textColorSecondary">@color/theme_solid_text_color_secondary</item>
         <item name="android:textColorTertiary">@color/theme_solid_text_color_tertiary</item>
         <item name="searchColor">@color/theme_solid_search_color</item>
@@ -30,6 +31,7 @@
         <item name="android:windowBackground">@android:color/black</item>
         <item name="dividerDrawable">@null</item>
         <item name="android:textColor">@color/kiss_text_on_dark</item>
+        <item name="android:textColorPrimary">@color/kiss_text_on_dark</item>
         <item name="android:textColorSecondary">@color/theme_solid_text_color_secondary</item>
         <item name="android:textColorTertiary">@color/theme_solid_text_color_tertiary</item>
         <item name="searchColor">@android:color/white</item>
@@ -51,7 +53,6 @@
 
     <style name="AppThemeSemiTransparent" parent="AppTheme">
         <item name="dividerDrawable">@null</item>
-        <item name="colorPrimaryDark">@color/kiss_green_semitransparent</item>
         <item name="textShadowRadius">3</item>
         <item name="android:textColorSecondary">@color/theme_semi_transparent_text_color_secondary</item>
         <item name="resultColor">@color/theme_semi_transparent_result_color</item>
@@ -60,7 +61,6 @@
     </style>
 
     <style name="SettingTheme" parent="AppTheme">
-        <item name="colorPrimaryDark">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/black</item>
         <item name="android:windowBackground">@color/setting_theme_window_background</item>
         <item name="android:textColorSecondary">@color/setting_theme_text_color_secondary</item>
@@ -70,6 +70,7 @@
         <item name="android:windowShowWallpaper">false</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:textColor">@color/kiss_text_on_dark</item>
+        <item name="android:textColorPrimary">@color/kiss_text_on_dark</item>
         <item name="android:textColorSecondary">#7f7f7f</item>
     </style>
 
@@ -214,116 +215,143 @@
     </style>
 
     <style name="OverlayAccentDefault">
-        <item name="colorAccent">@color/kiss_green</item>
         <item name="colorPrimary">@color/kiss_green</item>
+        <item name="colorPrimaryDark">@color/kiss_green_dark</item>
+        <item name="colorAccent">@color/kiss_green</item>
     </style>
 
     <style name="OverlayAccentD32F2F">
-        <item name="colorAccent">#D32F2F</item>
         <item name="colorPrimary">#D32F2F</item>
+        <item name="colorPrimaryDark">#B71C1C</item>
+        <item name="colorAccent">#D32F2F</item>
     </style>
 
     <style name="OverlayAccentC2185B">
-        <item name="colorAccent">#C2185B</item>
         <item name="colorPrimary">#C2185B</item>
+        <item name="colorPrimaryDark">#880E4F</item>
+        <item name="colorAccent">#C2185B</item>
     </style>
 
     <style name="OverlayAccent7B1FA2">
-        <item name="colorAccent">#7B1FA2</item>
         <item name="colorPrimary">#7B1FA2</item>
+        <item name="colorPrimaryDark">#4A148C</item>
+        <item name="colorAccent">#7B1FA2</item>
     </style>
 
     <style name="OverlayAccent512DA8">
-        <item name="colorAccent">#512DA8</item>
         <item name="colorPrimary">#512DA8</item>
+        <item name="colorPrimaryDark">#311B92</item>
+        <item name="colorAccent">#512DA8</item>
     </style>
 
     <style name="OverlayAccent303F9F">
-        <item name="colorAccent">#303F9F</item>
         <item name="colorPrimary">#303F9F</item>
+        <item name="colorPrimaryDark">#1A237E</item>
+        <item name="colorAccent">#303F9F</item>
     </style>
 
     <style name="OverlayAccent1976D2">
-        <item name="colorAccent">#1976D2</item>
         <item name="colorPrimary">#1976D2</item>
+        <item name="colorPrimaryDark">#0D47A1</item>
+        <item name="colorAccent">#1976D2</item>
     </style>
 
     <style name="OverlayAccent0288D1">
-        <item name="colorAccent">#0288D1</item>
         <item name="colorPrimary">#0288D1</item>
+        <item name="colorPrimaryDark">#01579B</item>
+        <item name="colorAccent">#0288D1</item>
     </style>
 
     <style name="OverlayAccent0097A7">
-        <item name="colorAccent">#0097A7</item>
         <item name="colorPrimary">#0097A7</item>
+        <item name="colorPrimaryDark">#006064</item>
+        <item name="colorAccent">#0097A7</item>
     </style>
 
     <style name="OverlayAccent00796B">
-        <item name="colorAccent">#00796B</item>
         <item name="colorPrimary">#00796B</item>
+        <item name="colorPrimaryDark">#004D40</item>
+        <item name="colorAccent">#00796B</item>
     </style>
 
     <style name="OverlayAccent388E3C">
-        <item name="colorAccent">#388E3C</item>
         <item name="colorPrimary">#388E3C</item>
+        <item name="colorPrimaryDark">#1B5E20</item>
+        <item name="colorAccent">#388E3C</item>
     </style>
 
     <style name="OverlayAccent689F38">
-        <item name="colorAccent">#689F38</item>
         <item name="colorPrimary">#689F38</item>
+        <item name="colorPrimaryDark">#33691E</item>
+        <item name="colorAccent">#689F38</item>
     </style>
 
     <style name="OverlayAccentAFB42B">
-        <item name="colorAccent">#AFB42B</item>
         <item name="colorPrimary">#AFB42B</item>
+        <item name="colorPrimaryDark">#827717</item>
+        <item name="colorAccent">#AFB42B</item>
     </style>
 
     <style name="OverlayAccentFBC02D">
-        <item name="colorAccent">#FBC02D</item>
         <item name="colorPrimary">#FBC02D</item>
+        <item name="colorPrimaryDark">#F57F17</item>
+        <item name="colorAccent">#FBC02D</item>
     </style>
 
     <style name="OverlayAccentFFA000">
-        <item name="colorAccent">#FFA000</item>
         <item name="colorPrimary">#FFA000</item>
+        <item name="colorPrimaryDark">#FF6F00</item>
+        <item name="colorAccent">#FFA000</item>
     </style>
 
     <style name="OverlayAccentF57C00">
-        <item name="colorAccent">#F57C00</item>
         <item name="colorPrimary">#F57C00</item>
+        <item name="colorPrimaryDark">#E65100</item>
+        <item name="colorAccent">#F57C00</item>
     </style>
 
     <style name="OverlayAccentE64A19">
-        <item name="colorAccent">#E64A19</item>
         <item name="colorPrimary">#E64A19</item>
+        <item name="colorPrimaryDark">#BF360C</item>
+        <item name="colorAccent">#E64A19</item>
     </style>
 
     <style name="OverlayAccent5D4037">
-        <item name="colorAccent">#5D4037</item>
         <item name="colorPrimary">#5D4037</item>
+        <item name="colorPrimaryDark">#3E2723</item>
+        <item name="colorAccent">#5D4037</item>
     </style>
 
     <style name="OverlayAccent616161">
-        <item name="colorAccent">#616161</item>
         <item name="colorPrimary">#616161</item>
+        <item name="colorPrimaryDark">#212121</item>
+        <item name="colorAccent">#616161</item>
     </style>
 
     <style name="OverlayAccent455A64">
-        <item name="colorAccent">#455A64</item>
         <item name="colorPrimary">#455A64</item>
+        <item name="colorPrimaryDark">#263238</item>
+        <item name="colorAccent">#455A64</item>
     </style>
+
     <style name="OverlayAccentTransparent" parent="OverlayAccentDefault">
         <item name="colorPrimary">#FFBDBDBD</item>
+        <item name="colorPrimaryDark">#FF757575</item>
         <item name="colorAccent">#FFBDBDBD</item>
     </style>
+
     <style name="OverlayAccentDarkTransparent" parent="OverlayAccentDefault">
         <item name="colorPrimary">#AA000000</item>
+        <item name="colorPrimaryDark">#AA000000</item>
         <item name="colorAccent">#AA000000</item>
     </style>
+
     <style name="OverlayAccentLightTransparent" parent="OverlayAccentDefault">
         <item name="colorPrimary">#FFBDBDBD</item>
+        <item name="colorPrimaryDark">#FF757575</item>
         <item name="colorAccent">#FFBDBDBD</item>
     </style>
+
     <style name="OverlayAccentSystem" parent="OverlayAccentDefault">
     </style>
 

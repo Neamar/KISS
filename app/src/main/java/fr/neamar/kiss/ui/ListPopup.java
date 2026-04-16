@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
 import fr.neamar.kiss.R;
@@ -207,12 +208,13 @@ public class ListPopup extends PopupWindow {
                     .getString(stringId);
         }
 
-        public Item(String string) {
+        public Item(@NonNull String string) {
             super();
             this.stringId = 0;
             this.string = string;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return this.string;

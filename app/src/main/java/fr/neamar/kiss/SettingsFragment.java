@@ -63,6 +63,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     private Permission permissionManager;
 
+    public SettingsFragment() {
+        super();
+    }
+
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
@@ -102,6 +106,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
         updateItemsToRun();
         fixSummaries();
+        updateNightMode();
 
         permissionManager = new Permission(getActivity());
     }
@@ -179,7 +184,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                     setPhoneHistoryEnabled(enabled);
                 }
             } else if (key.equalsIgnoreCase("primary-color")) {
-                UIColors.clearPrimaryColorCache();
+                UIColors.clearColorCache();
             } else if (key.equalsIgnoreCase("number-of-display-elements")) {
                 QuerySearcher.clearMaxResultCountCache();
             } else if (key.equalsIgnoreCase("default-search-provider")) {
@@ -206,7 +211,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             } else if ("selected-contact-mime-types".equals(key)) {
                 getDataHandler().reloadContactsProvider();
             } else if ("theme".equals(key)) {
-                InterfaceTweaks.setDefaultNightMode(requireContext());
+                updateNightMode();
+            } else if ("night-mode".equals(key)) {
+                InterfaceTweaks.setDefaultNightMode(KissApplication.getApplication(requireContext()));
             }
         }
     }
@@ -268,6 +275,21 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                     return true;
                 });
             }
+        }
+    }
+
+    private void updateNightMode() {
+        boolean isAmoledTheme = "amoled-dark".equals(prefs.getString("theme", "transparent"));
+
+        Preference darkMode = findPreference("night-mode");
+        if (darkMode != null) {
+            darkMode.setEnabled(!isAmoledTheme);
+            darkMode.setVisible(!isAmoledTheme);
+        }
+
+        if (isAmoledTheme) {
+            PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
+                    .putString("night-mode", "yes").apply();
         }
     }
 

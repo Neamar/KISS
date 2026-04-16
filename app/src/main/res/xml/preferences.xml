@@ -1,596 +1,620 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:title="@string/activity_setting">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:title="@string/activity_setting">
     <PreferenceScreen
-        android:key="history_category"
-        android:summary="@string/history_settings_summary"
-        android:title="@string/title_history">
+        app:key="history_category"
+        app:summary="@string/history_settings_summary"
+        app:title="@string/title_history">
         <fr.neamar.kiss.preference.DialogShowingPreference
-            android:dialogMessage="@string/reset_warn"
-            android:key="reset-history"
-            android:title="@string/reset_name" />
+            app:dialogMessage="@string/reset_warn"
+            app:key="reset-history"
+            app:title="@string/reset_name" />
         <EditTextPreference
-            android:defaultValue="20"
             android:inputType="number"
-            android:key="number-of-display-elements"
-            android:textColor="?attr/searchColor"
-            android:title="@string/number_of_display_items" />
+            app:defaultValue="20"
+            app:key="number-of-display-elements"
+            app:title="@string/number_of_display_items"
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
-            android:defaultValue="recency"
-            android:entries="@array/historyModeEntries"
-            android:entryValues="@array/historyModeValues"
-            android:key="history-mode"
-            android:summary="@string/history_mode_desc"
-            android:title="@string/history_mode_name" />
+            app:defaultValue="recency"
+            app:entries="@array/historyModeEntries"
+            app:entryValues="@array/historyModeValues"
+            app:key="history-mode"
+            app:summary="@string/history_mode_desc"
+            app:title="@string/history_mode_name" />
         <fr.neamar.kiss.preference.FreezeHistorySwitch
-            android:defaultValue="false"
-            android:key="freeze-history"
-            android:summary="@string/freeze_history_summary"
-            android:title="@string/freeze_history_name" />
+            app:defaultValue="false"
+            app:key="freeze-history"
+            app:summary="@string/freeze_history_summary"
+            app:title="@string/freeze_history_name" />
         <PreferenceCategory
-            android:title="@string/alternate_history_inputs"
-            android:key="alternate-history-inputs-section">
+            app:key="alternate-history-inputs-section"
+            app:title="@string/alternate_history_inputs">
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="enable-phone-history"
-                android:title="@string/enable_phone" />
+                app:defaultValue="false"
+                app:key="enable-phone-history"
+                app:title="@string/enable_phone" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-app-history"
-                android:title="@string/enable_app" />
+                app:defaultValue="true"
+                app:key="enable-app-history"
+                app:title="@string/enable_app" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="enable-notification-history"
-                android:title="@string/enable_notification_history" />
+                app:defaultValue="false"
+                app:key="enable-notification-history"
+                app:title="@string/enable_notification_history" />
         </PreferenceCategory>
-        <PreferenceCategory
-            android:key="exclude_apps_category"
-            android:title="@string/settings_excluded_apps">
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-apps"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_apps" />
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-from-history-apps"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_from_history_apps" />
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-app-shortcuts"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_from_shortcuts_apps" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_apps_warn"
-                android:key="reset-excluded-apps"
-                android:title="@string/reset_excluded_apps_name" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
-                android:key="reset-excluded-from-history-apps"
-                android:title="@string/reset_excluded_from_history_apps_name" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
-                android:key="reset-excluded-app-shortcuts"
-                android:title="@string/reset_excluded_app_shortcuts_name" />
-            />
-        </PreferenceCategory>
-
     </PreferenceScreen>
     <PreferenceScreen
-        android:key="history_favorites"
-        android:summary="@string/history_favorites_summary"
-        android:title="@string/title_favorites">
+        app:key="history_favorites"
+        app:summary="@string/history_favorites_summary"
+        app:title="@string/title_favorites">
         <fr.neamar.kiss.preference.DialogShowingPreference
-            android:dialogMessage="@string/reset_favorites_warn"
-            android:key="reset-favorites"
-            android:title="@string/reset_favorites_name" />
+            app:dialogMessage="@string/reset_favorites_warn"
+            app:key="reset-favorites"
+            app:title="@string/reset_favorites_name" />
         <SwitchPreference
-            android:defaultValue="true"
-            android:key="enable-favorites-bar"
-            android:summaryOff="@string/enable_favorites_bar_summary_off"
-            android:summaryOn="@string/enable_favorites_bar_summary_on"
-            android:title="@string/enable_favorites_bar" />
+            app:defaultValue="false"
+            app:key="exclude-favorites-apps"
+            app:title="@string/exclude_favorites_apps" />
         <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="enable-favorites-bar"
-            android:key="large-favorites-bar"
-            android:title="@string/large_favorites_bar" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="exclude-favorites-apps"
-            android:title="@string/exclude_favorites_apps" />
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="exclude-favorites-history"
-            android:title="@string/exclude_favorites_history" />
+            app:defaultValue="true"
+            app:key="exclude-favorites-history"
+            app:title="@string/exclude_favorites_history" />
         <fr.neamar.kiss.preference.TagsSelectPreference
-            android:defaultValue="@array/favTagsDefault"
-            android:key="pref-fav-tags-list"
-            android:title="@string/pref_fav_tags_select" />
+            app:defaultValue="@array/favTagsDefault"
+            app:key="pref-fav-tags-list"
+            app:title="@string/pref_fav_tags_select" />
+        <PreferenceCategory app:title="@string/misc">
+            <SwitchPreference
+                app:defaultValue="true"
+                app:key="enable-favorites-bar"
+                app:summaryOff="@string/enable_favorites_bar_summary_off"
+                app:summaryOn="@string/enable_favorites_bar_summary_on"
+                app:title="@string/enable_favorites_bar" />
+            <SwitchPreference
+                app:defaultValue="false"
+                app:dependency="enable-favorites-bar"
+                app:key="large-favorites-bar"
+                app:title="@string/large_favorites_bar" />
+            <SwitchPreference
+                app:defaultValue="true"
+                app:key="transparent-favorites"
+                app:title="@string/transparent_favorites_bar" />
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
-        android:key="ui-holder"
-        android:summary="@string/user_interface_summary"
-        android:title="@string/title_ui">
+        app:key="ui-holder"
+        app:summary="@string/user_interface_summary"
+        app:title="@string/title_ui">
         <ListPreference
-            android:defaultValue="transparent"
-            android:entries="@array/themesEntries"
-            android:entryValues="@array/themesValues"
-            android:key="theme"
-            android:title="@string/theme_name"
+            app:defaultValue="transparent"
+            app:entries="@array/themesEntries"
+            app:entryValues="@array/themesValues"
+            app:key="theme"
+            app:title="@string/theme_name"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="no"
+            app:entries="@array/nightModeEntries"
+            app:entryValues="@array/nightModeValues"
+            app:key="night-mode"
+            app:title="@string/theme_night_mode"
             app:useSimpleSummaryProvider="true" />
         <PreferenceScreen
-            android:key="theme-customisation"
-            android:title="@string/theme_customisation">
+            app:key="theme-customisation"
+            app:title="@string/theme_customisation">
             <ListPreference
-                android:defaultValue="default"
-                android:entries="@array/shadowEntries"
-                android:entryValues="@array/shadowValues"
-                android:key="theme-shadow"
-                android:title="@string/theme_shadow"
+                app:defaultValue="default"
+                app:entries="@array/shadowEntries"
+                app:entryValues="@array/shadowValues"
+                app:key="theme-shadow"
+                app:title="@string/theme_shadow"
                 app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="default"
-                android:entries="@array/separatorEntries"
-                android:entryValues="@array/separatorValues"
-                android:key="theme-separator"
-                android:title="@string/theme_separator"
+                app:defaultValue="default"
+                app:entries="@array/separatorEntries"
+                app:entryValues="@array/separatorValues"
+                app:key="theme-separator"
+                app:title="@string/theme_separator"
                 app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="default"
-                android:entries="@array/resultColorEntries"
-                android:entryValues="@array/resultColorValues"
-                android:key="theme-result-color"
-                android:title="@string/theme_result_color"
+                app:defaultValue="default"
+                app:entries="@array/resultColorEntries"
+                app:entryValues="@array/resultColorValues"
+                app:key="theme-result-color"
+                app:title="@string/theme_result_color"
                 app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="default"
-                android:entries="@array/wallpaperEntries"
-                android:entryValues="@array/wallpaperValues"
-                android:key="theme-wallpaper"
-                android:title="@string/theme_wallpaper"
+                app:defaultValue="default"
+                app:entries="@array/wallpaperEntries"
+                app:entryValues="@array/wallpaperValues"
+                app:key="theme-wallpaper"
+                app:title="@string/theme_wallpaper"
                 app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="default"
-                android:entries="@array/barColorEntries"
-                android:entryValues="@array/barColorValues"
-                android:key="theme-bar-color"
-                android:title="@string/theme_bar_color"
+                app:defaultValue="default"
+                app:entries="@array/barColorEntries"
+                app:entryValues="@array/barColorValues"
+                app:key="theme-bar-color"
+                app:title="@string/theme_bar_color"
                 app:useSimpleSummaryProvider="true" />
             <SwitchPreference
-                android:key="transparent-search"
-                android:title="@string/transparent_search_bar" />
+                app:key="transparent-search"
+                app:title="@string/transparent_search_bar" />
         </PreferenceScreen>
         <PreferenceCategory
-            android:key="results-section"
-            android:title="@string/search_results_options">
+            app:key="results-section"
+            app:title="@string/search_results_options">
             <ListPreference
-                android:defaultValue="default"
-                android:entries="@array/resultsSizeEntries"
-                android:entryValues="@array/resultsSizeValues"
-                android:key="results-size"
-                android:title="@string/results_size" />
+                app:defaultValue="default"
+                app:entries="@array/resultsSizeEntries"
+                app:entryValues="@array/resultsSizeValues"
+                app:key="results-size"
+                app:title="@string/results_size"
+                app:useSimpleSummaryProvider="true" />
             <MultiSelectListPreference
-                android:defaultValue="@array/resultHighlightingDefault"
-                android:entries="@array/resultHighlightingEntries"
-                android:entryValues="@array/resultHighlightingValues"
-                android:key="pref-result-highlighting"
-                android:title="@string/pref_result_highlighting"
-                android:summary="@string/pref_result_highlighting_summary"/>
+                app:defaultValue="@array/resultHighlightingDefault"
+                app:entries="@array/resultHighlightingEntries"
+                app:entryValues="@array/resultHighlightingValues"
+                app:key="pref-result-highlighting"
+                app:summary="@string/pref_result_highlighting_summary"
+                app:title="@string/pref_result_highlighting" />
         </PreferenceCategory>
         <PreferenceCategory
-            android:key="colors-section"
-            android:title="@string/colors">
+            app:key="colors-section"
+            app:title="@string/colors">
             <fr.neamar.kiss.preference.ColorPreference
-                android:dialogTitle="@string/color_picker_default_title"
-                android:key="primary-color"
-                android:title="@string/main_color" />
+                app:dialogTitle="@string/color_picker_default_title"
+                app:key="primary-color"
+                app:title="@string/main_color" />
             <fr.neamar.kiss.preference.ColorPreference
-                android:dialogTitle="@string/color_picker_default_title"
-                android:key="notification-bar-color"
-                android:title="@string/notification_bar_color" />
+                app:dialogTitle="@string/color_picker_default_title"
+                app:key="notification-bar-color"
+                app:title="@string/notification_bar_color" />
             <SwitchPreference
-                android:key="black-notification-icons"
-                android:title="@string/black_notification_icons" />
+                app:key="black-notification-icons"
+                app:title="@string/black_notification_icons" />
         </PreferenceCategory>
         <PreferenceCategory
-            android:key="icons-section"
-            android:title="@string/icons_category">
+            app:key="icons-section"
+            app:title="@string/icons_category">
             <fr.neamar.kiss.preference.IconPackSelectPreference
-                android:key="icons-pack"
-                android:title="@string/icons_pack_name" />
+                app:key="icons-pack"
+                app:title="@string/icons_pack_name"
+                app:useSimpleSummaryProvider="true" />
 
             <ListPreference
-                android:defaultValue="0"
-                android:entries="@array/adaptiveEntries"
-                android:entryValues="@array/adaptiveValues"
-                android:key="adaptive-shape"
-                android:summary="@string/adaptive_shape_summary"
-                android:title="@string/adaptive_shape_name" />
+                app:defaultValue="0"
+                app:entries="@array/adaptiveEntries"
+                app:entryValues="@array/adaptiveValues"
+                app:key="adaptive-shape"
+                app:summary="@string/adaptive_shape_summary"
+                app:title="@string/adaptive_shape_name" />
 
             <SwitchPreference
-                android:defaultValue="true"
-                android:disableDependentsState="true"
-                android:key="force-adaptive"
-                android:summary="@string/force_adaptive_summary"
-                android:title="@string/force_adaptive" />
+                app:defaultValue="true"
+                app:disableDependentsState="true"
+                app:key="force-adaptive"
+                app:summary="@string/force_adaptive_summary"
+                app:title="@string/force_adaptive" />
 
             <SwitchPreference
-                android:defaultValue="false"
-                android:dependency="force-adaptive"
-                android:key="force-shape"
-                android:summary="@string/force_shape_summary"
-                android:title="@string/force_shape" />
+                app:defaultValue="false"
+                app:dependency="force-adaptive"
+                app:key="force-shape"
+                app:summary="@string/force_shape_summary"
+                app:title="@string/force_shape" />
 
             <SwitchPreference
-                android:defaultValue="true"
-                android:disableDependentsState="true"
-                android:key="contact-pack-mask"
-                android:summary="@string/contact_pack_mask_summary"
-                android:title="@string/contact_pack_mask" />
+                app:defaultValue="true"
+                app:disableDependentsState="true"
+                app:key="contact-pack-mask"
+                app:summary="@string/contact_pack_mask_summary"
+                app:title="@string/contact_pack_mask" />
 
             <ListPreference
-                android:defaultValue="0"
-                android:dependency="contact-pack-mask"
-                android:entries="@array/adaptiveEntriesForContacts"
-                android:entryValues="@array/adaptiveValues"
-                android:key="contacts-shape"
-                android:summary="@string/contacts_shape_summary"
-                android:title="@string/contacts_shape" />
+                app:defaultValue="0"
+                app:dependency="contact-pack-mask"
+                app:entries="@array/adaptiveEntriesForContacts"
+                app:entryValues="@array/adaptiveValues"
+                app:key="contacts-shape"
+                app:summary="@string/contacts_shape_summary"
+                app:title="@string/contacts_shape" />
 
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="themed-icons"
-                android:summary="@string/icons_themed_summary"
-                android:title="@string/icons_themed_name" />
+                app:defaultValue="false"
+                app:key="themed-icons"
+                app:summary="@string/icons_themed_summary"
+                app:title="@string/icons_themed_name" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="subicon-visible"
-                android:title="@string/show_subicons" />
+                app:defaultValue="true"
+                app:key="subicon-visible"
+                app:title="@string/show_subicons" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="icons-hide"
-                android:summary="@string/icons_hide_desc"
-                android:title="@string/icons_hide_main" />
+                app:defaultValue="false"
+                app:key="icons-hide"
+                app:summary="@string/icons_hide_desc"
+                app:title="@string/icons_hide_main" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/misc">
+        <PreferenceCategory app:title="@string/misc">
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="transparent-favorites"
-                android:title="@string/transparent_favorites_bar" />
+                app:defaultValue="false"
+                app:key="pref-rounded-list"
+                app:title="@string/rounded_list" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="large-search-bar"
-                android:title="@string/large_search_bar" />
+                app:defaultValue="true"
+                app:key="pref-rounded-bars"
+                app:title="@string/rounded_bars" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-rounded-list"
-                android:title="@string/rounded_list" />
+                app:defaultValue="false"
+                app:key="pref-swap-kiss-button-with-menu"
+                app:title="@string/swap_kiss_button_with_menu" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="pref-rounded-bars"
-                android:title="@string/rounded_bars" />
+                app:defaultValue="false"
+                app:key="large-result-list-margins"
+                app:title="@string/large_result_list_margins" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-swap-kiss-button-with-menu"
-                android:title="@string/swap_kiss_button_with_menu" />
-            <SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-hide-search-bar-hint"
-                android:title="@string/hide_search_bar_hint" />
-            <SwitchPreference
-                android:defaultValue="false"
-                android:key="large-result-list-margins"
-                android:title="@string/large_result_list_margins" />
-            <SwitchPreference
-                android:defaultValue="true"
-                android:key="widget-stack-show-dot-indicator"
-                android:summary="@string/widget_stack_show_dot_indicator_summary"
-                android:title="@string/widget_stack_show_dot_indicator" />
+                app:defaultValue="true"
+                app:key="widget-stack-show-dot-indicator"
+                app:summary="@string/widget_stack_show_dot_indicator_summary"
+                app:title="@string/widget_stack_show_dot_indicator" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
-        android:key="ux-holder"
-        android:summary="@string/user_experience_summary"
-        android:title="@string/title_ux">
-        <PreferenceCategory android:title="@string/keyboard_options">
+        app:key="ux-holder"
+        app:summary="@string/user_experience_summary"
+        app:title="@string/title_ux">
+        <PreferenceCategory app:title="@string/keyboard_options">
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="display-keyboard"
-                android:title="@string/keyboard_name" />
+                app:defaultValue="false"
+                app:key="display-keyboard"
+                app:title="@string/keyboard_name" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="enable-suggestions-keyboard"
-                android:title="@string/keyboard_suggestions" />
+                app:defaultValue="false"
+                app:key="enable-suggestions-keyboard"
+                app:title="@string/keyboard_suggestions" />
+            <SwitchPreference
+                app:defaultValue="false"
+                app:key="hide-keyboard"
+                app:title="@string/keyboard_hide" />
         </PreferenceCategory>
         <PreferenceCategory
-            android:key="history-hide-section"
-            android:title="@string/history_hide_name">
+            app:key="history-hide-section"
+            app:title="@string/history_hide_name">
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="history-hide"
-                android:summary="@string/history_hide_desc"
-                android:title="@string/history_hide_name" />
+                app:defaultValue="false"
+                app:key="history-hide"
+                app:summary="@string/history_hide_desc"
+                app:title="@string/history_hide_name" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:dependency="history-hide"
-                android:key="history-onclick"
-                android:title="@string/history_onclick_name" />
+                app:defaultValue="false"
+                app:dependency="history-hide"
+                app:key="history-onclick"
+                app:title="@string/history_onclick_name" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:dependency="history-hide"
-                android:key="history-onkeyboard"
-                android:summary="@string/history_onkeyboard_desc"
-                android:title="@string/history_onkeyboard_name" />
+                app:defaultValue="false"
+                app:dependency="history-hide"
+                app:key="history-onkeyboard"
+                app:summary="@string/history_onkeyboard_desc"
+                app:title="@string/history_onkeyboard_name" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:dependency="history-hide"
-                android:key="favorites-hide"
-                android:title="@string/favorites_hide" />
+                app:defaultValue="false"
+                app:dependency="history-hide"
+                app:key="favorites-hide"
+                app:title="@string/favorites_hide" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-hide-navbar"
-                android:summary="@string/pref_hide_navbar_desc"
-                android:title="@string/pref_hide_navbar" />
+                app:defaultValue="false"
+                app:key="pref-hide-navbar"
+                app:summary="@string/pref_hide_navbar_desc"
+                app:title="@string/pref_hide_navbar" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-hide-statusbar"
-                android:summary="@string/pref_hide_statusbar_desc"
-                android:title="@string/pref_hide_statusbar" />
+                app:defaultValue="false"
+                app:key="pref-hide-statusbar"
+                app:summary="@string/pref_hide_statusbar_desc"
+                app:title="@string/pref_hide_statusbar" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-hide-circle"
-                android:summary="@string/pref_hide_circle_desc"
-                android:title="@string/pref_hide_circle" />
+                app:defaultValue="false"
+                app:key="pref-hide-circle"
+                app:summary="@string/pref_hide_circle_desc"
+                app:title="@string/pref_hide_circle" />
         </PreferenceCategory>
         <PreferenceCategory
-            android:key="gestures-holder"
-            android:title="@string/gestures">
+            app:key="gestures-holder"
+            app:title="@string/gestures">
             <ListPreference
-                android:defaultValue="display-keyboard"
-                android:entries="@array/gestureEntries"
-                android:entryValues="@array/gestureValues"
-                android:key="gesture-up"
-                android:title="@string/gesture_up_name" />
+                app:defaultValue="display-keyboard"
+                app:entries="@array/gestureEntries"
+                app:entryValues="@array/gestureValues"
+                app:key="gesture-up"
+                app:title="@string/gesture_up_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
-                android:dependency="gesture-up"
-                android:key="gesture-up-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                app:dependency="gesture-up"
+                app:key="gesture-up-launch-id"
+                app:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="display-notifications"
-                android:entries="@array/gestureEntries"
-                android:entryValues="@array/gestureValues"
-                android:key="gesture-down"
-                android:title="@string/gesture_down_name" />
+                app:defaultValue="display-notifications"
+                app:entries="@array/gestureEntries"
+                app:entryValues="@array/gestureValues"
+                app:key="gesture-down"
+                app:title="@string/gesture_down_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
-                android:dependency="gesture-down"
-                android:key="gesture-down-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                app:dependency="gesture-down"
+                app:key="gesture-down-launch-id"
+                app:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="display-apps"
-                android:entries="@array/gestureEntries"
-                android:entryValues="@array/gestureValues"
-                android:key="gesture-left"
-                android:title="@string/gesture_left_name" />
+                app:defaultValue="display-apps"
+                app:entries="@array/gestureEntries"
+                app:entryValues="@array/gestureValues"
+                app:key="gesture-left"
+                app:title="@string/gesture_left_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
-                android:dependency="gesture-left"
-                android:key="gesture-left-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                app:dependency="gesture-left"
+                app:key="gesture-left-launch-id"
+                app:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="display-apps"
-                android:entries="@array/gestureEntries"
-                android:entryValues="@array/gestureValues"
-                android:key="gesture-right"
-                android:title="@string/gesture_right_name" />
+                app:defaultValue="display-apps"
+                app:entries="@array/gestureEntries"
+                app:entryValues="@array/gestureValues"
+                app:key="gesture-right"
+                app:title="@string/gesture_right_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
-                android:dependency="gesture-right"
-                android:key="gesture-right-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                app:dependency="gesture-right"
+                app:key="gesture-right-launch-id"
+                app:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue="display-apps"
-                android:entries="@array/gestureEntries"
-                android:entryValues="@array/gestureValues"
-                android:key="gesture-long-press"
-                android:title="@string/gesture_long_press_name" />
+                app:defaultValue="display-apps"
+                app:entries="@array/gestureEntries"
+                app:entryValues="@array/gestureValues"
+                app:key="gesture-long-press"
+                app:title="@string/gesture_long_press_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
-                android:dependency="gesture-long-press"
-                android:key="gesture-long-press-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                app:dependency="gesture-long-press"
+                app:key="gesture-long-press-launch-id"
+                app:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="double-tap"
-                android:title="@string/double_tap_to_lock" />
+                app:defaultValue="false"
+                app:key="double-tap"
+                app:title="@string/double_tap_to_lock" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/tags_category">
+        <PreferenceCategory app:title="@string/tags_category">
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="tags-visible"
-                android:title="@string/tags_visible" />
+                app:defaultValue="true"
+                app:key="tags-visible"
+                app:title="@string/tags_visible" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-fav-tags-drawable"
-                android:summary="@string/pref_fav_tags_drawable_desc"
-                android:title="@string/pref_fav_tags_drawable" />
+                app:defaultValue="false"
+                app:key="pref-fav-tags-drawable"
+                app:summary="@string/pref_fav_tags_drawable_desc"
+                app:title="@string/pref_fav_tags_drawable" />
             <PreferenceScreen
-                android:key="customize-tags-menu"
-                android:title="@string/screen_toggle_tags">
+                app:key="customize-tags-menu"
+                app:title="@string/screen_toggle_tags">
                 <SwitchPreference
-                    android:defaultValue="false"
-                    android:key="pref-tags-menu"
-                    android:title="@string/pref_tags_menu" />
+                    app:defaultValue="false"
+                    app:key="pref-tags-menu"
+                    app:title="@string/pref_tags_menu" />
                 <SwitchPreference
-                    android:defaultValue="false"
-                    android:key="pref-show-untagged"
-                    android:title="@string/pref_show_untagged" />
+                    app:defaultValue="false"
+                    app:key="pref-show-untagged"
+                    app:title="@string/pref_show_untagged" />
                 <SwitchPreference
-                    android:defaultValue="false"
-                    android:key="pref-tags-menu-dismiss"
-                    android:title="@string/pref_tags_menu_dismiss" />
+                    app:defaultValue="false"
+                    app:key="pref-tags-menu-dismiss"
+                    app:title="@string/pref_tags_menu_dismiss" />
                 <fr.neamar.kiss.preference.TagsSelectPreference
-                    android:defaultValue="@array/toggleTagsDefault"
-                    android:key="pref-toggle-tags-list"
-                    android:title="@string/pref_toggle_tags_select" />
+                    app:defaultValue="@array/toggleTagsDefault"
+                    app:key="pref-toggle-tags-list"
+                    app:title="@string/pref_toggle_tags_select" />
             </PreferenceScreen>
             <ListPreference
-                android:entries="@array/taggedResultSortModeEntries"
-                android:entryValues="@array/taggedResultSortModeValues"
-                android:key="tagged-result-sort-mode"
-                android:summary="@string/tagged_result_sort_mode_desc"
-                android:title="@string/tagged_result_sort_mode_name" />
+                app:entries="@array/taggedResultSortModeEntries"
+                app:entryValues="@array/taggedResultSortModeValues"
+                app:key="tagged-result-sort-mode"
+                app:summary="@string/tagged_result_sort_mode_desc"
+                app:title="@string/tagged_result_sort_mode_name" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/misc">
+        <PreferenceCategory app:title="@string/misc">
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="force-portrait"
-                android:title="@string/portrait_title" />
+                app:defaultValue="false"
+                app:key="force-portrait"
+                app:title="@string/portrait_title" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="call-contact-on-click"
-                android:title="@string/contacts_call_on_click" />
+                app:defaultValue="false"
+                app:key="call-contact-on-click"
+                app:title="@string/contacts_call_on_click" />
         </PreferenceCategory>
         <PreferenceScreen
-            android:key="wallpaper-holder"
-            android:title="@string/title_wallpaper">
+            app:key="wallpaper-holder"
+            app:title="@string/title_wallpaper">
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="lwp-touch"
-                android:title="@string/lwp_touch" />
+                app:defaultValue="true"
+                app:key="lwp-touch"
+                app:title="@string/lwp_touch" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="lwp-drag"
-                android:summary="@string/lwp_drag_desc"
-                android:title="@string/lwp_drag" />
+                app:defaultValue="false"
+                app:key="lwp-drag"
+                app:summary="@string/lwp_drag_desc"
+                app:title="@string/lwp_drag" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="wp-drag-animate"
-                android:summary="@string/wp_drag_animate_desc"
-                android:title="@string/wp_drag_animate" />
+                app:defaultValue="false"
+                app:key="wp-drag-animate"
+                app:summary="@string/wp_drag_animate_desc"
+                app:title="@string/wp_drag_animate" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:dependency="wp-drag-animate"
-                android:key="wp-animate-center"
-                android:summary="@string/wp_animate_center_desc"
-                android:title="@string/wp_animate_center" />
+                app:defaultValue="true"
+                app:dependency="wp-drag-animate"
+                app:key="wp-animate-center"
+                app:summary="@string/wp_animate_center_desc"
+                app:title="@string/wp_animate_center" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:dependency="wp-drag-animate"
-                android:key="wp-animate-sides"
-                android:summary="@string/wp_animate_sides_desc"
-                android:title="@string/wp_animate_sides" />
+                app:defaultValue="false"
+                app:dependency="wp-drag-animate"
+                app:key="wp-animate-sides"
+                app:summary="@string/wp_animate_sides_desc"
+                app:title="@string/wp_animate_sides" />
         </PreferenceScreen>
     </PreferenceScreen>
     <PreferenceScreen
-        android:key="providers"
-        android:summary="@string/providers_summary"
-        android:title="@string/title_providers">
+        app:key="providers"
+        app:summary="@string/providers_summary"
+        app:title="@string/title_providers">
         <PreferenceCategory
-            android:key="search-providers"
-            android:title="@string/search_results_options">
+            app:key="search-providers"
+            app:title="@string/search_results_options">
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-contacts"
-                android:title="@string/contacts_name" />
+                app:defaultValue="true"
+                app:key="enable-contacts"
+                app:title="@string/contacts_name" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-settings"
-                android:title="@string/settings_name" />
+                app:defaultValue="true"
+                app:key="enable-settings"
+                app:title="@string/settings_name" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-timer"
-                android:summary="@string/timer_description"
-                android:title="@string/timer_name" />
+                app:defaultValue="true"
+                app:key="enable-timer"
+                app:summary="@string/timer_description"
+                app:title="@string/timer_name" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-shortcuts"
-                android:title="@string/shortcuts_name" />
+                app:defaultValue="true"
+                app:key="enable-shortcuts"
+                app:title="@string/shortcuts_name" />
             <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/regenerate_shortcuts_desc"
-                android:key="reset-shortcuts"
-                android:title="@string/regenerate_shortcuts" />
+                app:dialogMessage="@string/regenerate_shortcuts_desc"
+                app:key="reset-shortcuts"
+                app:title="@string/regenerate_shortcuts" />
             <SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-search"
-                android:title="@string/search_provider_toggle" />
+                app:defaultValue="true"
+                app:key="enable-search"
+                app:title="@string/search_provider_toggle" />
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="enable-excluded-apps"
-                android:title="@string/excluded_apps_toggle" />
+                app:defaultValue="false"
+                app:key="enable-excluded-apps"
+                app:title="@string/excluded_apps_toggle" />
         </PreferenceCategory>
         <PreferenceCategory
-            android:key="web-providers"
-            android:title="@string/search_name">
+            app:key="web-providers"
+            app:title="@string/search_name">
             <fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference
-                android:key="default-search-provider"
-                android:title="@string/search_provider_default" />
+                app:key="default-search-provider"
+                app:title="@string/search_provider_default"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference
-                android:key="selected-search-provider-names"
-                android:title="@string/search_providers_title" />
+                app:key="selected-search-provider-names"
+                app:title="@string/search_providers_title" />
             <fr.neamar.kiss.preference.DeleteCustomSearchProvidersPreference
-                android:key="deleting-search-providers-names"
-                android:title="@string/search_providers_delete" />
+                app:key="deleting-search-providers-names"
+                app:title="@string/search_providers_delete" />
             <fr.neamar.kiss.preference.AddSearchProviderPreference
-                android:key="custom-search-provider-add"
-                android:textColor="?attr/searchColor"
-                android:title="@string/custom_search_provider" />
+                app:key="custom-search-provider-add"
+                app:title="@string/custom_search_provider" />
             <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/search_provider_reset_desc"
-                android:key="reset-search-providers"
-                android:title="@string/search_provider_reset" />
+                app:dialogMessage="@string/search_provider_reset_desc"
+                app:key="reset-search-providers"
+                app:title="@string/search_provider_reset" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/misc">
+        <PreferenceCategory app:title="@string/misc">
             <SwitchPreference
-                android:defaultValue="false"
-                android:key="always-default-web-search-on-enter"
-                android:title="@string/always_default_web_search_on_enter" />
+                app:defaultValue="false"
+                app:key="always-default-web-search-on-enter"
+                app:title="@string/always_default_web_search_on_enter" />
+            <SwitchPreference
+                app:defaultValue="false"
+                app:key="large-search-bar"
+                app:title="@string/large_search_bar" />
+            <SwitchPreference
+                app:defaultValue="false"
+                app:key="pref-hide-search-bar-hint"
+                app:title="@string/hide_search_bar_hint" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
-        android:key="importexport"
-        android:title="@string/title_import_export">
+        app:key="exclude_apps_category"
+        app:summary="@string/ui_excluded_apps_dialog_title"
+        app:title="@string/settings_excluded_apps">
+        <Preference
+            app:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            app:key="edit-excluded-apps"
+            app:summary="@string/ui_excluded_apps_dialog_title"
+            app:title="@string/ui_excluded_apps" />
+        <Preference
+            app:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            app:key="edit-excluded-from-history-apps"
+            app:summary="@string/ui_excluded_apps_dialog_title"
+            app:title="@string/ui_excluded_from_history_apps" />
+        <Preference
+            app:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            app:key="edit-excluded-app-shortcuts"
+            app:summary="@string/ui_excluded_apps_dialog_title"
+            app:title="@string/ui_excluded_from_shortcuts_apps" />
         <fr.neamar.kiss.preference.DialogShowingPreference
-            android:dialogMessage="@string/clipboard_warning_dialog"
-            android:key="export-settings"
-            android:title="@string/export_settings" />
+            app:dialogMessage="@string/reset_excluded_apps_warn"
+            app:key="reset-excluded-apps"
+            app:title="@string/reset_excluded_apps_name" />
         <fr.neamar.kiss.preference.DialogShowingPreference
-            android:dialogMessage="@string/import_settings_dialog"
-            android:key="import-settings"
-            android:title="@string/import_settings" />
+            app:dialogMessage="@string/reset_excluded_from_history_apps_warn"
+            app:key="reset-excluded-from-history-apps"
+            app:title="@string/reset_excluded_from_history_apps_name" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            app:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
+            app:key="reset-excluded-app-shortcuts"
+            app:title="@string/reset_excluded_app_shortcuts_name" />
     </PreferenceScreen>
     <PreferenceScreen
-        android:key="advanced"
-        android:title="@string/title_advanced">
+        app:key="importexport"
+        app:title="@string/title_import_export">
         <fr.neamar.kiss.preference.DialogShowingPreference
-            android:defaultValue="true"
-            android:dialogMessage="@string/notification_dialog"
-            android:key="enable-notifications"
-            android:title="@string/notification_support" />
+            app:dialogMessage="@string/clipboard_warning_dialog"
+            app:key="export-settings"
+            app:title="@string/export_settings" />
         <fr.neamar.kiss.preference.DialogShowingPreference
-            android:dialogMessage="@string/default_launcher_warn"
-            android:key="default-launcher"
-            android:title="@string/default_launcher_title" />
+            app:dialogMessage="@string/import_settings_dialog"
+            app:key="import-settings"
+            app:title="@string/import_settings" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        app:key="advanced"
+        app:title="@string/title_advanced">
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            app:defaultValue="true"
+            app:dialogMessage="@string/notification_dialog"
+            app:key="enable-notifications"
+            app:title="@string/notification_support" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            app:dialogMessage="@string/default_launcher_warn"
+            app:key="default-launcher"
+            app:title="@string/default_launcher_title" />
         <fr.neamar.kiss.preference.MimeTypeSelectPreference
-            android:defaultValue="@array/contactMimeTypesDefault"
-            android:key="selected-contact-mime-types"
-            android:summary="@string/contact_mime_types_summary"
-            android:title="@string/contact_mime_types_title" />
+            app:defaultValue="@array/contactMimeTypesDefault"
+            app:key="selected-contact-mime-types"
+            app:summary="@string/contact_mime_types_summary"
+            app:title="@string/contact_mime_types_title" />
         <SwitchPreference
-            android:defaultValue="false"
-            android:key="use-fuzzy-score-v1"
-            android:title="Use legacy fuzzy search algorithm" />
+            app:defaultValue="false"
+            app:key="use-fuzzy-score-v1"
+            app:title="Use legacy fuzzy search algorithm" />
         <fr.neamar.kiss.preference.RootModeSwitch
-            android:defaultValue="false"
-            android:key="root-mode"
-            android:summary="@string/root_mode_desc"
-            android:title="@string/root_mode_name" />
+            app:defaultValue="false"
+            app:key="root-mode"
+            app:summary="@string/root_mode_desc"
+            app:title="@string/root_mode_name" />
         <fr.neamar.kiss.preference.DialogShowingPreference
-            android:dialogMessage="@string/restart_warn"
-            android:key="restart"
-            android:summary="@string/restart_desc"
-            android:title="@string/restart_name" />
+            app:dialogMessage="@string/restart_warn"
+            app:key="restart"
+            app:summary="@string/restart_desc"
+            app:title="@string/restart_name" />
     </PreferenceScreen>
     <Preference
-        android:key="rate-app"
-        android:title="@string/rate_the_app" />
+        app:key="rate-app"
+        app:title="@string/rate_the_app" />
 </PreferenceScreen>

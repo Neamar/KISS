@@ -38,6 +38,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import fr.neamar.kiss.icons.IconPackXML;
@@ -120,9 +121,10 @@ public class CustomIconDialog extends DialogFragment {
         mSearch.addTextChangedListener(new TrimmingTextChangedListener(false, changedText -> mSearch.post(this::refreshList)));
 
         Bundle args = getArguments() != null ? getArguments() : new Bundle();
-        @Nullable
-        ComponentName cn = ComponentName.unflattenFromString(args.getString("className", ""));
-        UserHandle userHandle = args.getParcelable("userHandle");
+        @NonNull
+        ComponentName cn = Objects.requireNonNull(ComponentName.unflattenFromString(args.getString("className", "")));
+        @NonNull
+        UserHandle userHandle = Objects.requireNonNull(args.getParcelable("userHandle"));
         String name = args.getString("componentName", "");
         long customIcon = args.getLong("customIcon", 0);
 

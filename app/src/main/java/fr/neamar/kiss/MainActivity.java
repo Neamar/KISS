@@ -42,6 +42,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * Launcher button, can be clicked to display all apps
      */
+    // TODO: Check what's wrong with launcherButton. It is an ImageView, but it's not visible anymore if declared as ImageView here.
     public View launcherButton;
 
     /**
@@ -154,6 +157,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * SystemUiVisibility helper
      */
     private SystemUiVisibilityHelper systemUiVisibilityHelper;
+
+    /**
+     * Should keyboard be shown on focus of window?
+     */
+    Boolean showKeyboardOnFocus = null;
 
     /**
      * Is the KISS bar currently displayed?
@@ -313,7 +321,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 displayKissBar(false, false);
             }
             updateSearchRecords(false, changedText);
-            displayClearOnInput();
         }));
 
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
@@ -324,12 +331,10 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // On validate, launch first record
         searchEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == android.R.id.closeButton) {
-                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                 if (mPopup != null) {
                     mPopup.dismiss();
                     return true;
                 }
-                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                 hider.fixScroll();
                 return false;
             }
@@ -432,7 +437,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
         updateSearchRecords(false, searchEditText.getText().toString());
-        displayClearOnInput();
 
         if (isViewingAllApps()) {
             displayKissBar(false);
@@ -474,7 +478,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    protected void onNewIntent(@NonNull Intent intent) {
         super.onNewIntent(intent);
 
         //Set the intent so KISS can tell when it was launched as an assistant
@@ -627,7 +631,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 Rect outR = new Rect();
                 edit.getGlobalVisibleRect(outR);
                 boolean isKeyboardOpen = !outR.contains((int) ev.getRawX(), (int) ev.getRawY());
-                edit.setCursorVisible(!isKeyboardOpen);
+                if (prefs.getBoolean("hide-keyboard", false) && isKeyboardOpen) {
+                    edit.postDelayed(this::hideKeyboard, 100);
+                } else {
+                    edit.setCursorVisible(!isKeyboardOpen);
+                }
             }
         }
         if (mPopup != null && ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
@@ -637,8 +645,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         return super.dispatchTouchEvent(ev);
     }
 
-    public void displayClearOnInput() {
-        if (!TextUtils.isEmpty(searchEditText.getText())) {
+    private void displayClearOnInput() {
+        Searcher.Type lastSearchType = SearchHandler.getInstance().getLastSearchType();
+        if (!TextUtils.isEmpty(searchEditText.getText()) ||
+                (isMinimalisticModeEnabled() && lastSearchType == Searcher.Type.HISTORY) ||
+                (lastSearchType == Searcher.Type.TAGGED) ||
+                (lastSearchType == Searcher.Type.UNTAGGED)) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
         } else {
@@ -814,6 +826,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         if (TextUtils.isEmpty(query)) {
             systemUiVisibilityHelper.resetScroll();
+            displayClearOnInput();
         } else {
             search(Searcher.Type.QUERY, query, false);
         }
@@ -821,6 +834,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     public void search(@NonNull Searcher.Type type, String query, boolean isRefresh) {
         SearchHandler.getInstance().search(type, this, query, isRefresh);
+        displayClearOnInput();
     }
 
     private void cancelSearch() {
@@ -914,29 +928,45 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         systemUiVisibilityHelper.onWindowFocusChanged(hasFocus);
-        forwarderManager.onWindowFocusChanged(hasFocus);
+        if (showKeyboardOnFocus != null) {
+            if (showKeyboardOnFocus) {
+                showKeyboard();
+            } else {
+                hideKeyboard();
+            }
+        }
     }
 
 
+    /**
+     * Focus {@link #searchEditText} and show keyboard
+     * <p>
+     * Uses {@link WindowCompat} instead of {@link InputMethodManager} here
+     * For details see <a href="https://developer.android.com/develop/ui/views/touch-and-input/keyboard-input/visibility#ShowReliably">online docu</a>.
+     */
     public void showKeyboard() {
+        if (!hasWindowFocus()) {
+            showKeyboardOnFocus = true;
+            return;
+        }
+        showKeyboardOnFocus = null;
+
         if (searchEditText.requestFocus()) {
             searchEditText.setCursorVisible(true);
-            InputMethodManager mgr = ContextCompat.getSystemService(this, InputMethodManager.class);
-            mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-            systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
+            WindowCompat.getInsetsController(getWindow(), searchEditText).show(WindowInsetsCompat.Type.ime());
         }
     }
 
     @Override
     public void hideKeyboard() {
+        showKeyboardOnFocus = null;
+
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager inputManager = ContextCompat.getSystemService(this, InputMethodManager.class);
             //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
-            systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         }
 
         dismissPopup();
@@ -976,29 +1006,19 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public void dismissPopup() {
         if (mPopup != null) {
             mPopup.dismiss();
-            mPopup = null;
         }
     }
 
     public void showMatchingTags(String tag) {
         search(Searcher.Type.TAGGED, tag, false);
-
-        clearButton.setVisibility(View.VISIBLE);
-        menuButton.setVisibility(View.INVISIBLE);
     }
 
     public void showUntagged() {
         search(Searcher.Type.UNTAGGED, null, false);
-
-        clearButton.setVisibility(View.VISIBLE);
-        menuButton.setVisibility(View.INVISIBLE);
     }
 
     public void showHistory() {
         search(Searcher.Type.HISTORY, null, false);
-
-        clearButton.setVisibility(View.VISIBLE);
-        menuButton.setVisibility(View.INVISIBLE);
     }
 
     public boolean isKissDefaultLauncher() {
@@ -1030,5 +1050,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         } else {
             favoritesBar.setVisibility(View.GONE);
         }
+    }
+
+    public void onKeyboardVisibilityChanged(boolean keyboardIsVisible) {
+        systemUiVisibilityHelper.onKeyboardVisibilityChanged(keyboardIsVisible);
+    }
+
+    private boolean isMinimalisticModeEnabled() {
+        return prefs.getBoolean("history-hide", false);
     }
 }

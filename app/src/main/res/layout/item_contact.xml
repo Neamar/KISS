@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/ResultItem"
     tools:layout_height="@dimen/result_height"
     android:orientation="horizontal">
@@ -104,7 +105,9 @@
         android:layout_toStartOf="@+id/item_contact_action_phone"
         android:background="?attr/appSelectableItemBackground"
         android:contentDescription="@string/ui_item_contact_hint_message"
-        android:src="@drawable/ic_message" />
+        android:src="@drawable/ic_message"
+        app:tint="?attr/colorPrimary"
+        tools:layout_height="48dp" />
 
     <ImageButton
         android:id="@+id/item_contact_action_phone"
@@ -114,6 +117,8 @@
         android:layout_centerVertical="true"
         android:background="?attr/appSelectableItemBackground"
         android:contentDescription="@string/ui_item_contact_hint_call"
-        android:src="@drawable/ic_phone" />
+        android:src="@drawable/ic_phone"
+        app:tint="?attr/colorPrimary"
+        tools:layout_height="48dp" />
 
 </RelativeLayout>

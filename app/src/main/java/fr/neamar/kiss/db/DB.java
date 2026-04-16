@@ -2,6 +2,7 @@ package fr.neamar.kiss.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -22,7 +23,7 @@ import fr.neamar.kiss.utils.UserHandle;
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 9;
+    private final static int DB_VERSION = 10;
     private static final String TAG = DB.class.getSimpleName();
 
     private final Context mContext;
@@ -83,6 +84,9 @@ class DB extends SQLiteOpenHelper {
                 case 8:
                     convertShortcutIds(database);
                     // fall through
+                case 9:
+                    convertTheme();
+                    // fall through
                 default:
                     break;
             }
@@ -95,6 +99,7 @@ class DB extends SQLiteOpenHelper {
 
         if (newVersion < oldVersion) {
             switch (newVersion) {
+                case 9:
                 case 8:
                     throw new UnsupportedOperationException("Can't downgrade app below DB level " + (newVersion + 1));
                 case 7:
@@ -154,8 +159,54 @@ class DB extends SQLiteOpenHelper {
                     Log.v(TAG, "Updated favorite: " + shortcut.oldId + " > " + shortcut.newId);
                 }
             });
-            PreferenceManager.getDefaultSharedPreferences(mContext).edit()
-                    .putString("favorite-apps-list", TextUtils.join(";", favorites)).commit();
+
+            SharedPreferences.Editor prefsEditor = PreferenceManager.getDefaultSharedPreferences(mContext).edit()
+                    .putString("favorite-apps-list", TextUtils.join(";", favorites));
+            commit(prefsEditor, "favorite-apps-list");
+        }
+    }
+
+    private void convertTheme() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String oldTheme = prefs.getString("theme", "transparent");
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        switch (oldTheme) {
+            case "dark":
+                prefsEditor.putString("theme", "opaque");
+                prefsEditor.putString("night-mode", "yes");
+                break;
+            case "semi-transparent-dark":
+                prefsEditor.putString("theme", "semi-transparent");
+                prefsEditor.putString("night-mode", "yes");
+                break;
+            case "transparent-dark":
+                prefsEditor.putString("theme", "transparent");
+                prefsEditor.putString("night-mode", "yes");
+                break;
+            case "amoled-dark":
+                prefsEditor.putString("theme", "amoled-dark");
+                prefsEditor.putString("night-mode", "yes");
+                break;
+            case "light":
+                prefsEditor.putString("theme", "opaque");
+                prefsEditor.putString("night-mode", "no");
+                break;
+            case "semi-transparent":
+                prefsEditor.putString("theme", "semi-transparent");
+                prefsEditor.putString("night-mode", "no");
+                break;
+            case "transparent":
+                prefsEditor.putString("theme", "transparent");
+                prefsEditor.putString("night-mode", "no");
+                break;
+        }
+        commit(prefsEditor, "theme");
+    }
+
+    private void commit(SharedPreferences.Editor prefsEditor, String key) {
+        boolean commited = prefsEditor.commit();
+        if (!commited) {
+            throw new UnsupportedOperationException("Can't upgrade preference: " + key);
         }
     }
 

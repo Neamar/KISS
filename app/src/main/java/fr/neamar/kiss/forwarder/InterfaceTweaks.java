@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 
@@ -11,17 +12,18 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.Insets;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowInsets;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.List;
@@ -45,18 +47,15 @@ public class InterfaceTweaks extends Forwarder {
         String theme = getTheme(prefs);
         switch (theme) {
             case "transparent":
-            case "transparent-dark":
                 act.setTheme(R.style.AppThemeTransparent);
                 break;
             case "semi-transparent":
-            case "semi-transparent-dark":
                 act.setTheme(R.style.AppThemeSemiTransparent);
                 break;
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
                 break;
-            case "light":
-            case "dark":
+            case "opaque":
             default:
                 act.setTheme(R.style.AppTheme);
         }
@@ -98,12 +97,9 @@ public class InterfaceTweaks extends Forwarder {
             case "amoled-dark":
                 act.setTheme(R.style.SettingThemeAmoledDark);
                 break;
-            case "light":
+            case "opaque":
             case "semi-transparent":
             case "transparent":
-            case "dark":
-            case "semi-transparent-dark":
-            case "transparent-dark":
             default:
                 act.setTheme(R.style.SettingTheme);
                 break;
@@ -115,17 +111,21 @@ public class InterfaceTweaks extends Forwarder {
 
     public static void setDefaultNightMode(@NonNull Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        // special handling of amoled dark theme, there is no light version for this
         String theme = getTheme(prefs);
-        switch (theme) {
-            case "dark":
-            case "semi-transparent-dark":
-            case "transparent-dark":
-            case "amoled-dark":
+        if ("amoled-dark".equals(theme)) {
+            AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+        }
+
+        String darkMode = prefs.getString("night-mode", "follow-system");
+        switch (darkMode) {
+            case "follow-system":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
+            case "yes":
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
                 break;
-            case "light":
-            case "semi-transparent":
-            case "transparent":
+            case "no":
             default:
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
                 break;
@@ -138,16 +138,16 @@ public class InterfaceTweaks extends Forwarder {
 
     private static void applySystemBarInsets(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            view.setOnApplyWindowInsetsListener((v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime());
+            ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return WindowInsets.CONSUMED;
+                return WindowInsetsCompat.CONSUMED;
             });
         }
     }
 
     void onCreate() {
-        UIColors.clearPrimaryColorCache();
+        UIColors.clearColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
         applyRoundedCorners(mainActivity);
         swapKissButtonWithMenu(mainActivity);
@@ -272,7 +272,7 @@ public class InterfaceTweaks extends Forwarder {
 
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         TagDummyResult.resetShape();
-        UIColors.clearPrimaryColorCache();
+        UIColors.clearColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
     }
 }
