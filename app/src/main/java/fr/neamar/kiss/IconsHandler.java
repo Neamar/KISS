@@ -58,6 +58,7 @@ public class IconsHandler {
     private IconShape mContactsShape = IconShape.SHAPE_SYSTEM;
     private boolean mForceShape = false;
     private volatile Map<String, Long> customIconIds = null;
+    private volatile Map<String, ComponentName> customComponents = null;
 
     public IconsHandler(Context ctx) {
         super();
@@ -141,8 +142,24 @@ public class IconsHandler {
      * @param userHandle    user handle
      * @return drawable
      */
-    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
+    public Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
+        if (mIconPack != null) {
+            // custom icon only when using icon pack
+            componentName = getCustomComponentName(componentName.flattenToString(), componentName);
+        }
         return getDrawableIconForPackage(componentName, userHandle, true, mIconPack != null);
+    }
+
+    /**
+     * Get or generate icon for an app.
+     * Uses no cache and no custom icons.
+     *
+     * @param componentName component name
+     * @param userHandle    user handle
+     * @return drawable
+     */
+    public Drawable getOriginalDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
+        return getDrawableIconForPackage(componentName, userHandle, false, false);
     }
 
     /**
@@ -154,7 +171,7 @@ public class IconsHandler {
      * @param useCustomIcons use custom icons
      * @return drawable
      */
-    public Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
+    private Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         if (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx)) {
@@ -416,6 +433,7 @@ public class IconsHandler {
         return dir;
     }
 
+    @Deprecated
     private File customIconFileName(String componentName, long customIcon) {
         return new File(getCustomIconsDir(), customIcon + "_" + componentName.hashCode() + ".png");
     }
@@ -433,7 +451,8 @@ public class IconsHandler {
     private void cacheClear() {
         synchronized (this) {
             TagDummyResult.resetShape();
-            clearCustomIconIdCache();
+            customIconIds = null;
+            customComponents = null;
 
             File cacheDir = this.getIconsCacheDir();
 
@@ -466,6 +485,7 @@ public class IconsHandler {
         }
     }
 
+    @Deprecated
     public Drawable getCustomIcon(String componentName, long customIcon) {
         if (customIcon == 0)
             return null;
@@ -493,29 +513,16 @@ public class IconsHandler {
         }
     }
 
-    public void changeAppIcon(AppResult appResult, Drawable drawable) {
-        long customIconId = getDataHandler().setCustomAppIcon(appResult.getComponentName());
-        storeDrawable(customIconFileName(appResult.getComponentName(), customIconId), drawable);
-        appResult.setCustomIcon(customIconId, drawable);
+    public void setCustomComponent(AppResult result, ComponentName componentName) {
+        // cleanup deprecated custom icons
+        long customIconId = getDataHandler().removeCustomAppIcon(result.getComponentName());
+        removeStoredDrawable(customIconFileName(result.getComponentName(), customIconId));
+
+        // set component for custom icon
+        DBHelper.setCustomComponent(ctx, result.getClassName().flattenToString(), componentName);
+        result.clearIcon();
         cacheClear();
         getDataHandler().refreshFavorites();
-    }
-
-    public void restoreAppIcon(AppResult appResult) {
-        long customIconId = getDataHandler().removeCustomAppIcon(appResult.getComponentName());
-        removeStoredDrawable(customIconFileName(appResult.getComponentName(), customIconId));
-        appResult.clearCustomIcon();
-        cacheClear();
-        getDataHandler().refreshFavorites();
-    }
-
-    /**
-     * clears cache for custom icon ids
-     */
-    private void clearCustomIconIdCache() {
-        synchronized (this) {
-            customIconIds = null;
-        }
     }
 
     /**
@@ -524,6 +531,7 @@ public class IconsHandler {
      *
      * @return cache for custom icon ids
      */
+    @Deprecated
     private Map<String, Long> getCustomIconIds() {
         if (customIconIds == null) {
             synchronized (this) {
@@ -539,6 +547,27 @@ public class IconsHandler {
             }
         }
         return customIconIds;
+    }
+
+    /**
+     * Thread-safe cache for custom component.
+     * Cache is built only if null.
+     *
+     * @return cache for custom component name
+     */
+    private Map<String, ComponentName> getCustomComponents() {
+        if (customComponents == null) {
+            synchronized (this) {
+                if (customComponents == null) {
+                    customComponents = DBHelper.getCustomComponents(ctx);
+                }
+            }
+        }
+        return customComponents;
+    }
+
+    private ComponentName getCustomComponentName(String id, ComponentName defaultComponent) {
+        return getCustomComponents().getOrDefault(id, defaultComponent);
     }
 
 }

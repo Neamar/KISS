@@ -19,6 +19,7 @@ public final class AppPojo extends PojoWithTags {
      * Whether shortcuts are excluded for this app
      */
     private boolean excludedShortcuts;
+    @Deprecated
     private long customIconId = 0;
     private final boolean disabled;
 
@@ -64,6 +65,7 @@ public final class AppPojo extends PojoWithTags {
         this.excludedShortcuts = excludedShortcuts;
     }
 
+    @Deprecated
     public void setCustomIconId(long iconId) {
         customIconId = iconId;
     }

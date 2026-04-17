@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -46,7 +45,7 @@ import fr.neamar.kiss.utils.Utilities;
 
 public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     protected static final String TAG = IconPackXML.class.getSimpleName();
-    private final Map<String, Set<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
+    private final Map<ComponentName, Set<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
     private final Map<String, DrawableInfo> drawableList = new HashMap<>(0);
     // instance of a resource object of an icon pack
     private Resources packResources;
@@ -116,12 +115,12 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     }
 
     @Override
-    public Collection<DrawableInfo> getDrawableList() {
-        return Collections.unmodifiableCollection(drawableList.values());
+    public Map<ComponentName, Set<DrawableInfo>> getDrawablesByComponent() {
+        return Collections.unmodifiableMap(drawablesByComponent);
     }
 
     @Nullable
-    private CalendarDrawable getCalendarDrawable(@Nullable String componentName) {
+    private CalendarDrawable getCalendarDrawable(@NonNull ComponentName componentName) {
         Set<DrawableInfo> drawables = drawablesByComponent.get(componentName);
         if (drawables != null)
             for (DrawableInfo info : drawables)
@@ -133,13 +132,12 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @Nullable
     @Override
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
-        String componentNameStr = componentName.toString();
-        CalendarDrawable calendar = getCalendarDrawable(componentNameStr);
+        CalendarDrawable calendar = getCalendarDrawable(componentName);
         if (calendar != null) {
             return getDrawable(calendar);
         }
 
-        Set<DrawableInfo> drawables = drawablesByComponent.get(componentNameStr);
+        Set<DrawableInfo> drawables = drawablesByComponent.get(componentName);
         if (drawables != null) {
             for (DrawableInfo info : drawables) {
                 Drawable drawable = getDrawable(info);
@@ -381,12 +379,13 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                         }
                         //parse <item> xml tags for custom icons
                         else if (xpp.getName().equals("item")) {
-                            String componentName = null;
+                            String componentNameStr = null;
+                            ComponentName componentName = null;
                             String drawableName = null;
 
                             for (int i = 0; i < xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).equals("component")) {
-                                    componentName = xpp.getAttributeValue(i);
+                                    componentNameStr = xpp.getAttributeValue(i);
                                 } else if (xpp.getAttributeName(i).equals("drawable")) {
                                     drawableName = xpp.getAttributeValue(i);
                                 }
@@ -401,6 +400,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 drawableList.put(drawableName, drawableInfo);
                             }
 
+                            componentName = parseComponentName(componentNameStr);
                             if (componentName != null) {
                                 Set<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
                                 if (infoSet == null)
@@ -412,17 +412,19 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                         }
                         //parse <calendar>
                         else if (xpp.getName().equals("calendar")) {
-                            String componentName = null;
+                            String componentNameStr = null;
+                            ComponentName componentName = null;
                             String prefix = null;
 
                             for (int i = 0; i < xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).equals("component")) {
-                                    componentName = xpp.getAttributeValue(i);
+                                    componentNameStr = xpp.getAttributeValue(i);
                                 } else if (xpp.getAttributeName(i).equals("prefix")) {
                                     prefix = xpp.getAttributeValue(i);
                                 }
                             }
 
+                            componentName = parseComponentName(componentNameStr);
                             if (componentName != null && prefix != null) {
                                 if (!calendarDrawablesByPrefix.containsKey(prefix)) {
                                     CalendarDrawable calendarDrawable = new CalendarDrawable(prefix);
@@ -446,6 +448,16 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
         long end = System.currentTimeMillis();
         Log.i(TAG, (end - start) + " milliseconds to parse appfilter.xml");
+    }
+
+    private ComponentName parseComponentName(String str) {
+        if (str == null) {
+            return null;
+        }
+        if (str.startsWith("ComponentInfo{") && str.endsWith("}")) {
+            return ComponentName.unflattenFromString(str.substring(14, str.length() - 1));
+        }
+        return null;
     }
 
     private XmlPullParser findAppFilterXml() throws XmlPullParserException {

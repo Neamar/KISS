@@ -275,12 +275,8 @@ public class AppResult extends ResultWithTags<AppPojo> {
             dialog.setArguments(args);
         }
 
-        dialog.setOnConfirmListener(drawable -> {
-            if (drawable == null)
-                KissApplication.getApplication(context).getIconsHandler().restoreAppIcon(this);
-            else
-                KissApplication.getApplication(context).getIconsHandler().changeAppIcon(this, drawable);
-            //TODO: force update the icon in the view
+        dialog.setOnConfirmListener(componentName -> {
+            KissApplication.getApplication(context).getIconsHandler().setCustomComponent(this, componentName);
         });
 
         parent.showDialog(dialog);
@@ -394,17 +390,11 @@ public class AppResult extends ResultWithTags<AppPojo> {
         return new Rect(location[0], location[1], location[0] + view.getWidth(), location[1] + view.getHeight());
     }
 
-    public void setCustomIcon(long dbId, Drawable drawable) {
-        pojo.setCustomIconId(dbId);
-        setDrawableCache(drawable);
-    }
-
-    public void clearCustomIcon() {
-        pojo.setCustomIconId(0);
-        setDrawableCache(null);
-    }
-
     public String getComponentName() {
         return pojo.getComponentName();
+    }
+
+    public ComponentName getClassName() {
+        return className;
     }
 }

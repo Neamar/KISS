@@ -1,5 +1,6 @@
 package fr.neamar.kiss.preference;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.Log;
 
@@ -84,6 +86,18 @@ public class ExportSettingsPreference {
                     jsonTags.put(entry.getKey(), entry.getValue());
                 }
                 out.put("__tags", jsonTags);
+
+                // Export custom components
+                Map<String, ComponentName> components = DBHelper.getCustomComponents(context);
+                JSONArray jsonComponents = new JSONArray();
+                for (Map.Entry<String, ComponentName> entry : components.entrySet()) {
+                    JSONObject jsonComponent = new JSONObject();
+                    jsonComponent.put("id", entry.getKey());
+                    jsonComponent.put("package", entry.getValue().getPackageName());
+                    jsonComponent.put("class", entry.getValue().getClassName());
+                    jsonComponents.put(jsonComponent);
+                }
+                out.put("__custom_components", jsonComponents);
 
                 ClipboardUtils.setClipboard(context, "kiss", out.toString());
                 Toast.makeText(context, R.string.export_settings_done, Toast.LENGTH_SHORT).show();

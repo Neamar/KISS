@@ -8,7 +8,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -24,7 +25,7 @@ public interface IconPack<DrawableInfo> {
     Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor);
 
     @Nullable
-    Collection<DrawableInfo> getDrawableList();
+    Map<ComponentName, Set<DrawableInfo>> getDrawablesByComponent();
 
     @Nullable
     Drawable getDrawable(@NonNull DrawableInfo drawableInfo);

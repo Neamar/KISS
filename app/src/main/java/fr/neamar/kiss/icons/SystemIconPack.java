@@ -8,7 +8,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -64,7 +65,7 @@ public class SystemIconPack implements IconPack<Void> {
 
     @Nullable
     @Override
-    public Collection<Void> getDrawableList() {
+    public Map<ComponentName, Set<Void>> getDrawablesByComponent() {
         return null;
     }
 
