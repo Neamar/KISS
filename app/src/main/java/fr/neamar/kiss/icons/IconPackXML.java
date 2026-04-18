@@ -104,7 +104,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     public void loadDrawables(PackageManager packageManager) {
         load(packageManager);
-        parseDrawableXML();
+//        parseDrawableXML();
     }
 
     /**

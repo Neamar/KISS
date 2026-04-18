@@ -192,14 +192,13 @@ public class CustomIconDialog extends DialogFragment {
                     ComponentName componentName = entry.getKey();
                     entry.getValue().forEach(info -> {
                         if (TextUtils.isEmpty(searchText) ||
-                                fuzzyScore.match(componentName.flattenToString()).match ||
                                 fuzzyScore.match(info.getDrawableName()).match)
                             mIconData.add(new IconData(iconPack, componentName, info));
                     });
                 });
             }
         }
-        mIconData.sort(Comparator.comparing(iconData -> iconData.drawableInfo.getDrawableName()));
+        mIconData.sort(Comparator.comparing(iconData -> iconData.componentName));
         mIconView.getAdapter().notifyDataSetChanged();
         mSearch.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
         mIconView.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
@@ -260,7 +259,7 @@ public class CustomIconDialog extends DialogFragment {
                 }
             });
             holder.icon.setOnLongClickListener(v -> {
-                displayToast(v, content.drawableInfo.getDrawableName());
+                displayToast(v, content.componentName.flattenToString());
                 return true;
             });
         }

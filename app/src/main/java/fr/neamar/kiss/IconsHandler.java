@@ -506,10 +506,12 @@ public class IconsHandler {
 
     private void removeStoredDrawable(@NonNull File drawableFile) {
         try {
-            //noinspection ResultOfMethodCallIgnored
-            drawableFile.delete();
+            if (drawableFile.exists()) {
+                //noinspection ResultOfMethodCallIgnored
+                drawableFile.delete();
+            }
         } catch (Exception e) {
-            Log.e(TAG, "stored drawable " + drawableFile + " can't be deleted!", e);
+            Log.d(TAG, "stored drawable " + drawableFile + " can't be deleted!", e);
         }
     }
 
