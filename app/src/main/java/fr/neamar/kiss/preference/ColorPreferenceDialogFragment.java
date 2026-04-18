@@ -192,16 +192,19 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            Context context = holder.itemView.getContext();
             int color = UIColors.getColorList()[position];
             ImageView mSwatchImage = holder.itemView.findViewById(R.id.color_picker_swatch);
             Drawable[] colorDrawable = new Drawable[]
-                    {ResourcesCompat.getDrawable(holder.itemView.getContext().getResources(), R.drawable.color_picker_swatch, holder.itemView.getContext().getTheme())};
+                    {ResourcesCompat.getDrawable(context.getResources(), R.drawable.color_picker_swatch, context.getTheme())};
             mSwatchImage.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
 
             ImageView mCheckmarkImage = holder.itemView.findViewById(R.id.color_picker_checkmark);
             if (color == selectedColor) {
+                mSwatchImage.setContentDescription(context.getString(R.string.color_swatch_description_selected, position + 1));
                 mCheckmarkImage.setVisibility(View.VISIBLE);
             } else {
+                mSwatchImage.setContentDescription(context.getString(R.string.color_swatch_description, position + 1));
                 mCheckmarkImage.setVisibility(View.GONE);
             }
 
