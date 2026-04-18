@@ -4,18 +4,23 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import java.io.File;
@@ -31,6 +36,7 @@ import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -51,7 +57,9 @@ public class IconsHandler {
 
     private final PackageManager pm;
     private final Context ctx;
+    @Nullable
     private IconPackXML mIconPack = null;
+    @NonNull
     private final SystemIconPack mSystemPack = new SystemIconPack();
     private boolean mForceAdaptive = false;
     private boolean mContactPackMask = false;
@@ -148,6 +156,38 @@ public class IconsHandler {
             componentName = getCustomComponentName(componentName.flattenToString(), componentName);
         }
         return getDrawableIconForPackage(componentName, userHandle, true, mIconPack != null);
+    }
+
+    /**
+     * Get or generate icon for a shortcut.
+     *
+     * @param pojo     shortcut pojo
+     * @param shortcutInfo related shortcut info
+     * @return drawable
+     */
+    public Drawable getDrawableIconForShortcut(Pojo pojo, ShortcutInfo shortcutInfo) {
+        Drawable icon = null;
+        if (shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
+            assert launcherApps != null;
+            try {
+                icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+            } catch (IllegalStateException e) {
+                // do nothing if user is locked or not running
+                Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
+            } catch (NullPointerException e) {
+                // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
+                Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
+            }
+        }
+        if (icon == null) {
+            icon = ResourcesCompat.getDrawable(ctx.getResources(), android.R.drawable.ic_menu_send, ctx.getTheme());
+        }
+        if (icon != null) {
+            icon = DrawableUtils.getThemedDrawable(ctx, icon);
+            icon = applyIconMask(ctx, icon);
+        }
+        return icon;
     }
 
     /**
@@ -370,11 +410,6 @@ public class IconsHandler {
     }
 
     @NonNull
-    public SystemIconPack getSystemIconPack() {
-        return mSystemPack;
-    }
-
-    @NonNull
     public IconPack<?> getIconPack() {
         return mIconPack != null ? mIconPack : mSystemPack;
     }
@@ -571,5 +606,4 @@ public class IconsHandler {
     private ComponentName getCustomComponentName(String id, ComponentName defaultComponent) {
         return getCustomComponents().getOrDefault(id, defaultComponent);
     }
-
 }

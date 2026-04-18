@@ -63,6 +63,10 @@ public class SystemIconPack implements IconPack<Void> {
         return DrawableUtils.applyIconMaskShape(ctx, icon, mAdaptiveShape, fitInside, backgroundColor);
     }
 
+    @Override
+    public void loadDrawables(@NonNull Context ctx) {
+    }
+
     @Nullable
     @Override
     public Map<ComponentName, Set<Void>> getDrawablesByComponent() {

@@ -24,6 +24,8 @@ public interface IconPack<DrawableInfo> {
     @NonNull
     Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor);
 
+    void loadDrawables(@NonNull Context ctx);
+
     @Nullable
     Map<ComponentName, Set<DrawableInfo>> getDrawablesByComponent();
 

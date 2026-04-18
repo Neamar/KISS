@@ -46,7 +46,6 @@ import fr.neamar.kiss.utils.Utilities;
 public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     protected static final String TAG = IconPackXML.class.getSimpleName();
     private final Map<ComponentName, Set<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
-    private final Map<String, DrawableInfo> drawableList = new HashMap<>(0);
     // instance of a resource object of an icon pack
     private Resources packResources;
     // package name of the icons pack
@@ -102,9 +101,9 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         }
     }
 
-    public void loadDrawables(PackageManager packageManager) {
-        load(packageManager);
-//        parseDrawableXML();
+    @Override
+    public void loadDrawables(@NonNull Context ctx) {
+        load(ctx.getPackageManager());
     }
 
     /**
@@ -262,56 +261,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         return matrix;
     }
 
-    private void parseDrawableXML() {
-        synchronized (this) {
-            if (packResources == null)
-                return;
-
-            XmlPullParser xpp = null;
-            // search drawable.xml into icons pack apk resource folder
-            int drawableXmlId = getIdentifier("drawable", "xml");
-            if (drawableXmlId != 0) {
-                xpp = packResources.getXml(drawableXmlId);
-            }
-            if (xpp == null)
-                return;
-
-            long start = System.currentTimeMillis();
-            try {
-                int eventType = xpp.getEventType();
-                while (eventType != XmlPullParser.END_DOCUMENT) {
-                    if (eventType == XmlPullParser.START_TAG) {
-                        int attrCount = xpp.getAttributeCount();
-                        switch (xpp.getName()) {
-                            case "item":
-                                for (int attrIdx = 0; attrIdx < attrCount; attrIdx += 1) {
-                                    String attrName = xpp.getAttributeName(attrIdx);
-                                    if (attrName.equals("drawable")) {
-                                        String drawableName = xpp.getAttributeValue(attrIdx);
-                                        if (!drawableList.containsKey(drawableName)) {
-                                            DrawableInfo drawableInfo = new SimpleDrawable(drawableName);
-                                            drawableList.put(drawableName, drawableInfo);
-                                        }
-                                    }
-                                }
-                                break;
-                            case "category":
-                                break;
-                            default:
-                                Log.d(TAG, "ignored " + xpp.getName());
-                        }
-                    }
-                    eventType = xpp.next();
-                }
-            } catch (XmlPullParserException | IOException e) {
-                Log.e(TAG, "parsing drawable.xml", e);
-            }
-
-            long end = System.currentTimeMillis();
-            Log.i(TAG, (end - start) + " milliseconds to parse drawable.xml");
-        }
-    }
-
     /**
      * See {@link Resources#getIdentifier(String, String, String)}
      */
@@ -326,6 +275,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         long start = System.currentTimeMillis();
 
         Map<String, CalendarDrawable> calendarDrawablesByPrefix = new HashMap<>(0);
+        Map<String, DrawableInfo> drawables = new HashMap<>(0);
         try {
             XmlPullParser xpp = findAppFilterXml();
             if (xpp != null) {
@@ -395,9 +345,9 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 eventType = xpp.next();
                                 continue;
                             }
-                            if (!drawableList.containsKey(drawableName)) {
+                            if (!drawables.containsKey(drawableName)) {
                                 DrawableInfo drawableInfo = new SimpleDrawable(drawableName);
-                                drawableList.put(drawableName, drawableInfo);
+                                drawables.put(drawableName, drawableInfo);
                             }
 
                             componentName = parseComponentName(componentNameStr);
@@ -405,7 +355,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 Set<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
                                 if (infoSet == null)
                                     drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
-                                infoSet.add(drawableList.get(drawableName));
+                                infoSet.add(drawables.get(drawableName));
                             } else {
                                 Log.w(TAG, "Drawable `" + drawableName + "` for component `null` not found");
                             }

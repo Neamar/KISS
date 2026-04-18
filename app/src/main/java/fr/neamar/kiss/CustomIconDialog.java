@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.TrimmingTextChangedListener;
@@ -160,22 +161,20 @@ public class CustomIconDialog extends DialogFragment {
             ((TextView) quickList.findViewById(android.R.id.text1)).setText(R.string.default_icon);
         }
 
-        IconPackXML iconPack = iconsHandler.getCustomIconPack();
-        if (iconPack != null) {
-            cancelLoadIconsPackTask();
-            mLoadIconsPackTask = Utilities.runAsync((task) -> {
-                if (!task.isCancelled() && task == mLoadIconsPackTask) {
-                    iconPack.loadDrawables(context.getPackageManager());
-                }
-                return null;
-            }, (task, result) -> {
-                if (!task.isCancelled() && task == mLoadIconsPackTask) {
-                    Activity activity = Utilities.getActivity(context);
-                    if (activity != null)
-                        refreshList();
-                }
-            });
-        }
+        IconPack<?> iconPack = iconsHandler.getIconPack();
+        cancelLoadIconsPackTask();
+        mLoadIconsPackTask = Utilities.runAsync((task) -> {
+            if (!task.isCancelled() && task == mLoadIconsPackTask) {
+                iconPack.loadDrawables(context);
+            }
+            return null;
+        }, (task, result) -> {
+            if (!task.isCancelled() && task == mLoadIconsPackTask) {
+                Activity activity = Utilities.getActivity(context);
+                if (activity != null)
+                    refreshList();
+            }
+        });
     }
 
     protected void refreshList() {
