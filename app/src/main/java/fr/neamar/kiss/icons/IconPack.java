@@ -13,7 +13,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.utils.UserHandle;
 
-public interface IconPack<DrawableInfo> {
+public interface IconPack {
 
     @NonNull
     String getPackPackageName();
@@ -31,4 +31,12 @@ public interface IconPack<DrawableInfo> {
 
     @Nullable
     Drawable getDrawable(@NonNull DrawableInfo drawableInfo);
+
+    boolean allowForCustomIcons();
+
+    boolean isSystemIconPack();
+
+    boolean isLoaded();
+
+    boolean hasMask();
 }

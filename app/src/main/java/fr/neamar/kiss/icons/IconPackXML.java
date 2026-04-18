@@ -43,7 +43,7 @@ import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
-public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
+public class IconPackXML implements IconPack {
     protected static final String TAG = IconPackXML.class.getSimpleName();
     private final Map<ComponentName, Set<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
     // instance of a resource object of an icon pack
@@ -150,7 +150,17 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     @Override
     public Drawable getDrawable(@NonNull DrawableInfo drawableInfo) {
-        return drawableInfo.getDrawable(packResources, iconPackPackageName);
+        return drawableInfo.getDrawable(null, packResources, getPackPackageName());
+    }
+
+    @Override
+    public boolean allowForCustomIcons() {
+        return true;
+    }
+
+    @Override
+    public boolean isSystemIconPack() {
+        return false;
     }
 
     /**
@@ -275,7 +285,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         long start = System.currentTimeMillis();
 
         Map<String, CalendarDrawable> calendarDrawablesByPrefix = new HashMap<>(0);
-        Map<String, DrawableInfo> drawables = new HashMap<>(0);
+        Map<String, XmlDrawableInfo> drawables = new HashMap<>(0);
         try {
             XmlPullParser xpp = findAppFilterXml();
             if (xpp != null) {
@@ -346,7 +356,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 continue;
                             }
                             if (!drawables.containsKey(drawableName)) {
-                                DrawableInfo drawableInfo = new SimpleDrawable(drawableName);
+                                XmlDrawableInfo drawableInfo = new SimpleDrawable(drawableName);
                                 drawables.put(drawableName, drawableInfo);
                             }
 
@@ -436,18 +446,18 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     }
 
 
-    public static abstract class DrawableInfo {
+    public static abstract class XmlDrawableInfo implements DrawableInfo {
         private final String drawableName;
 
-        protected DrawableInfo(@NonNull String drawableName) {
+        protected XmlDrawableInfo(@NonNull String drawableName) {
             this.drawableName = drawableName;
         }
 
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (!(o instanceof DrawableInfo)) return false;
-            DrawableInfo that = (DrawableInfo) o;
+            if (!(o instanceof XmlDrawableInfo)) return false;
+            XmlDrawableInfo that = (XmlDrawableInfo) o;
             return drawableName.equals(that.drawableName);
         }
 
@@ -456,7 +466,13 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
             return drawableName.hashCode();
         }
 
-        public String getDrawableName() {
+        protected String getDrawableName() {
+            return drawableName;
+        }
+
+        @Override
+        @Nullable
+        public String getTextForSearch() {
             return drawableName;
         }
 
@@ -490,7 +506,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         protected abstract Integer getCachedDrawableId();
 
         @Nullable
-        public Drawable getDrawable(@NonNull Resources resources, @NonNull String iconPackPackageName) {
+        public Drawable getDrawable(Context context, @NonNull Resources resources, @NonNull String iconPackPackageName) {
             try {
                 int drawableId = getDrawableId(resources, iconPackPackageName);
                 if (drawableId != 0) {
@@ -503,7 +519,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         }
     }
 
-    public static class SimpleDrawable extends DrawableInfo {
+    public static class SimpleDrawable extends XmlDrawableInfo {
 
         @DrawableRes
         private Integer drawableId;
@@ -523,7 +539,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         }
     }
 
-    public static class CalendarDrawable extends DrawableInfo {
+    public static class CalendarDrawable extends XmlDrawableInfo {
 
         private final Map<String, Integer> drawableIds = new HashMap<>(31);
 
@@ -537,7 +553,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
          * @return drawable name
          */
         @Override
-        public String getDrawableName() {
+        protected String getDrawableName() {
             int dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
             return super.getDrawableName() + dayOfMonth;
         }

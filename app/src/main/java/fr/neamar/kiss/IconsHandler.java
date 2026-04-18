@@ -33,7 +33,6 @@ import java.util.Map;
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.icons.IconPack;
-import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
@@ -58,9 +57,9 @@ public class IconsHandler {
     private final PackageManager pm;
     private final Context ctx;
     @Nullable
-    private IconPackXML mIconPack = null;
+    private IconPack mIconPack = null;
     @NonNull
-    private final SystemIconPack mSystemPack = new SystemIconPack();
+    private final SystemIconPack mSystemPack;
     private boolean mForceAdaptive = false;
     private boolean mContactPackMask = false;
     private IconShape mContactsShape = IconShape.SHAPE_SYSTEM;
@@ -72,6 +71,7 @@ public class IconsHandler {
         super();
         this.ctx = ctx;
         this.pm = ctx.getPackageManager();
+        this.mSystemPack = new SystemIconPack(ctx);
         clearOldCache();
         loadAvailableIconsPacks();
         loadIconsPack();
@@ -151,8 +151,7 @@ public class IconsHandler {
      * @return drawable
      */
     public Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
-        if (mIconPack != null) {
-            // custom icon only when using icon pack
+        if (getIconPack().allowForCustomIcons()) {
             componentName = getCustomComponentName(componentName.flattenToString(), componentName);
         }
         return getDrawableIconForPackage(componentName, userHandle, true, mIconPack != null);
@@ -404,13 +403,8 @@ public class IconsHandler {
         return iconsPacks;
     }
 
-    @Nullable
-    public IconPackXML getCustomIconPack() {
-        return mIconPack;
-    }
-
     @NonNull
-    public IconPack<?> getIconPack() {
+    public IconPack getIconPack() {
         return mIconPack != null ? mIconPack : mSystemPack;
     }
 

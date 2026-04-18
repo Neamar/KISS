@@ -31,8 +31,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import fr.neamar.kiss.icons.DrawableInfo;
 import fr.neamar.kiss.icons.IconPack;
-import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.TrimmingTextChangedListener;
 import fr.neamar.kiss.utils.UserHandle;
@@ -161,7 +161,7 @@ public class CustomIconDialog extends DialogFragment {
             ((TextView) quickList.findViewById(android.R.id.text1)).setText(R.string.default_icon);
         }
 
-        IconPack<?> iconPack = iconsHandler.getIconPack();
+        IconPack iconPack = iconsHandler.getIconPack();
         cancelLoadIconsPackTask();
         mLoadIconsPackTask = Utilities.runAsync((task) -> {
             if (!task.isCancelled() && task == mLoadIconsPackTask) {
@@ -180,22 +180,20 @@ public class CustomIconDialog extends DialogFragment {
     protected void refreshList() {
         mIconData.clear();
         IconsHandler iconsHandler = KissApplication.getApplication(requireContext()).getIconsHandler();
-        IconPackXML iconPack = iconsHandler.getCustomIconPack();
-        if (iconPack != null) {
-            Map<ComponentName, Set<IconPackXML.DrawableInfo>> drawables = iconPack.getDrawablesByComponent();
-            if (drawables != null) {
-                CharSequence searchText = mSearch.getText();
-                StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(searchText, true);
-                FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(requireContext(), normalized.codePoints);
-                drawables.entrySet().forEach(entry -> {
-                    ComponentName componentName = entry.getKey();
-                    entry.getValue().forEach(info -> {
-                        if (TextUtils.isEmpty(searchText) ||
-                                fuzzyScore.match(info.getDrawableName()).match)
-                            mIconData.add(new IconData(iconPack, componentName, info));
-                    });
+        IconPack iconPack = iconsHandler.getIconPack();
+        Map<ComponentName, Set<DrawableInfo>> drawables = iconPack.getDrawablesByComponent();
+        if (drawables != null) {
+            CharSequence searchText = mSearch.getText();
+            StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(searchText, true);
+            FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(requireContext(), normalized.codePoints);
+            drawables.entrySet().forEach(entry -> {
+                ComponentName componentName = entry.getKey();
+                entry.getValue().forEach(info -> {
+                    if (TextUtils.isEmpty(searchText) ||
+                            fuzzyScore.match(info.getTextForSearch()).match)
+                        mIconData.add(new IconData(iconPack, componentName, info));
                 });
-            }
+            });
         }
         mIconData.sort(Comparator.comparing(iconData -> iconData.componentName));
         mIconView.getAdapter().notifyDataSetChanged();
@@ -204,11 +202,11 @@ public class CustomIconDialog extends DialogFragment {
     }
 
     private static class IconData {
-        final IconPackXML.DrawableInfo drawableInfo;
-        final IconPackXML iconPack;
+        final DrawableInfo drawableInfo;
+        final IconPack iconPack;
         final ComponentName componentName;
 
-        IconData(IconPackXML iconPack, ComponentName componentName, IconPackXML.DrawableInfo drawableInfo) {
+        IconData(IconPack iconPack, ComponentName componentName, DrawableInfo drawableInfo) {
             this.iconPack = iconPack;
             this.componentName = componentName;
             this.drawableInfo = drawableInfo;

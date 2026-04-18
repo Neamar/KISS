@@ -112,7 +112,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
         // only display this option if we're using a custom icon pack, as it is not useful otherwise
-        if (KissApplication.getApplication(context).getIconsHandler().getCustomIconPack() != null) {
+        if (KissApplication.getApplication(context).getIconsHandler().getIconPack().allowForCustomIcons()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
