@@ -265,16 +265,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
         //TODO: launch a DialogFragment or Activity
         CustomIconDialog dialog = new CustomIconDialog();
 
-        // set args
-        {
-            Bundle args = new Bundle();
-            args.putString("className", className.flattenToString()); // will be converted back with ComponentName.unflattenFromString()
-            args.putParcelable("userHandle", pojo.userHandle);
-            args.putString("componentName", pojo.getComponentName());
-            args.putLong("customIcon", pojo.getCustomIconId());
-            dialog.setArguments(args);
-        }
-
         dialog.setOnConfirmListener(componentName -> {
             KissApplication.getApplication(context).getIconsHandler().setCustomComponent(this, componentName);
         });

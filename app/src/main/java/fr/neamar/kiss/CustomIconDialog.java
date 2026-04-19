@@ -28,14 +28,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 import fr.neamar.kiss.icons.DrawableInfo;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.TrimmingTextChangedListener;
-import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
@@ -46,6 +44,7 @@ public class CustomIconDialog extends DialogFragment {
     private RecyclerView mIconView;
     private TextView mSearch;
     private ImageView mPreview;
+    private TextView mPreviewText;
     private OnDismissListener mOnDismissListener = null;
     private OnConfirmListener mOnConfirmListener = null;
     private Utilities.AsyncRun<Void> mLoadIconsPackTask = null;
@@ -80,8 +79,6 @@ public class CustomIconDialog extends DialogFragment {
         View root = inflater.inflate(R.layout.custom_icon_dialog, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
-        lp.dimAmount = 0.7f;
         getDialog().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getDialog().setCanceledOnTouchOutside(true);
 
@@ -104,28 +101,27 @@ public class CustomIconDialog extends DialogFragment {
         iconAdapter.setOnItemClickListener((iconData) -> {
             mSelectedDrawable = iconData.componentName;
             mPreview.setImageDrawable(iconData.getIcon());
+            mPreviewText.setText(mSelectedDrawable.flattenToString());
         });
 
         mSearch = view.findViewById(R.id.search);
         mSearch.addTextChangedListener(new TrimmingTextChangedListener(false, changedText -> mSearch.post(this::refreshList)));
 
-        Bundle args = getArguments() != null ? getArguments() : new Bundle();
-        @NonNull
-        ComponentName cn = Objects.requireNonNull(ComponentName.unflattenFromString(args.getString("className", "")));
-        @NonNull
-        UserHandle userHandle = Objects.requireNonNull(args.getParcelable("userHandle"));
-        String name = args.getString("componentName", "");
-        long customIcon = args.getLong("customIcon", 0);
-
         IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
 
-        // Preview
+        mPreview = view.findViewById(R.id.preview);
+        mPreviewText = view.findViewById(android.R.id.text1);
+
+        // Default button
         {
-            mPreview = view.findViewById(R.id.preview);
-            Drawable drawable = customIcon != 0 ? iconsHandler.getCustomIcon(name, customIcon) : null;
-            if (drawable == null)
-                drawable = iconsHandler.getOriginalDrawableIconForPackage(cn, userHandle);
-            mPreview.setImageDrawable(drawable);
+            View button = view.findViewById(android.R.id.button3);
+            button.setOnClickListener(v -> {
+                cancelLoadIconsPackTask();
+                if (mOnConfirmListener != null) {
+                    mOnConfirmListener.onConfirm(null);
+                }
+                dismiss();
+            });
         }
 
         // OK button
@@ -146,19 +142,11 @@ public class CustomIconDialog extends DialogFragment {
             button.setOnClickListener(v -> dismiss());
         }
 
-        ViewGroup quickList = view.findViewById(R.id.quickList);
-
-        // add default icon
+        // set selected to default icon
         {
-            Drawable drawable = iconsHandler.getOriginalDrawableIconForPackage(cn, userHandle);
-
-            ImageView icon = quickList.findViewById(android.R.id.icon);
-            icon.setImageDrawable(drawable);
-            icon.setOnClickListener(v -> {
-                mSelectedDrawable = null;
-                mPreview.setImageDrawable(((ImageView) v).getDrawable());
-            });
-            ((TextView) quickList.findViewById(android.R.id.text1)).setText(R.string.default_icon);
+            mSelectedDrawable = null;
+            mPreview.setImageDrawable(null);
+            mPreviewText.setText(null);
         }
 
         IconPack iconPack = iconsHandler.getIconPack();

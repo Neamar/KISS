@@ -70,10 +70,6 @@ public final class AppPojo extends PojoWithTags {
         customIconId = iconId;
     }
 
-    public long getCustomIconId() {
-        return customIconId;
-    }
-
     public String getPackageKey() {
         return userHandle.getRealHandle().hashCode() + "|" + packageName;
     }
