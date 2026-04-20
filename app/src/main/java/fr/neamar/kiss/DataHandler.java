@@ -1030,10 +1030,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         DBHelper.removeCustomAppName(context, componentName);
     }
 
-    public long setCustomAppIcon(String componentName) {
-        return DBHelper.addCustomAppIcon(context, componentName);
-    }
-
+    @Deprecated
     public long removeCustomAppIcon(String componentName) {
         return DBHelper.removeCustomAppIcon(context, componentName);
     }

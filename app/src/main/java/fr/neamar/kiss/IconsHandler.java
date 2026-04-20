@@ -4,18 +4,23 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import java.io.File;
@@ -28,9 +33,9 @@ import java.util.Map;
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.icons.IconPack;
-import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -51,18 +56,22 @@ public class IconsHandler {
 
     private final PackageManager pm;
     private final Context ctx;
-    private IconPackXML mIconPack = null;
-    private final SystemIconPack mSystemPack = new SystemIconPack();
+    @Nullable
+    private IconPack mIconPack = null;
+    @NonNull
+    private final SystemIconPack mSystemPack;
     private boolean mForceAdaptive = false;
     private boolean mContactPackMask = false;
     private IconShape mContactsShape = IconShape.SHAPE_SYSTEM;
     private boolean mForceShape = false;
     private volatile Map<String, Long> customIconIds = null;
+    private volatile Map<String, ComponentName> customComponents = null;
 
     public IconsHandler(Context ctx) {
         super();
         this.ctx = ctx;
         this.pm = ctx.getPackageManager();
+        this.mSystemPack = new SystemIconPack(ctx);
         clearOldCache();
         loadAvailableIconsPacks();
         loadIconsPack();
@@ -141,8 +150,55 @@ public class IconsHandler {
      * @param userHandle    user handle
      * @return drawable
      */
-    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
+    public Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
+        if (getIconPack().allowForCustomIcons()) {
+            componentName = getCustomComponentName(componentName.flattenToString(), componentName);
+        }
         return getDrawableIconForPackage(componentName, userHandle, true, mIconPack != null);
+    }
+
+    /**
+     * Get or generate icon for a shortcut.
+     *
+     * @param pojo     shortcut pojo
+     * @param shortcutInfo related shortcut info
+     * @return drawable
+     */
+    public Drawable getDrawableIconForShortcut(Pojo pojo, ShortcutInfo shortcutInfo) {
+        Drawable icon = null;
+        if (shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
+            assert launcherApps != null;
+            try {
+                icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+            } catch (IllegalStateException e) {
+                // do nothing if user is locked or not running
+                Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
+            } catch (NullPointerException e) {
+                // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
+                Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
+            }
+        }
+        if (icon == null) {
+            icon = ResourcesCompat.getDrawable(ctx.getResources(), android.R.drawable.ic_menu_send, ctx.getTheme());
+        }
+        if (icon != null) {
+            icon = DrawableUtils.getThemedDrawable(ctx, icon);
+            icon = applyIconMask(ctx, icon);
+        }
+        return icon;
+    }
+
+    /**
+     * Get or generate icon for an app.
+     * Uses no cache and no custom icons.
+     *
+     * @param componentName component name
+     * @param userHandle    user handle
+     * @return drawable
+     */
+    public Drawable getOriginalDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
+        return getDrawableIconForPackage(componentName, userHandle, false, false);
     }
 
     /**
@@ -154,7 +210,7 @@ public class IconsHandler {
      * @param useCustomIcons use custom icons
      * @return drawable
      */
-    public Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
+    private Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         if (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx)) {
@@ -347,18 +403,8 @@ public class IconsHandler {
         return iconsPacks;
     }
 
-    @Nullable
-    public IconPackXML getCustomIconPack() {
-        return mIconPack;
-    }
-
     @NonNull
-    public SystemIconPack getSystemIconPack() {
-        return mSystemPack;
-    }
-
-    @NonNull
-    public IconPack<?> getIconPack() {
+    public IconPack getIconPack() {
         return mIconPack != null ? mIconPack : mSystemPack;
     }
 
@@ -416,6 +462,7 @@ public class IconsHandler {
         return dir;
     }
 
+    @Deprecated
     private File customIconFileName(String componentName, long customIcon) {
         return new File(getCustomIconsDir(), customIcon + "_" + componentName.hashCode() + ".png");
     }
@@ -433,7 +480,8 @@ public class IconsHandler {
     private void cacheClear() {
         synchronized (this) {
             TagDummyResult.resetShape();
-            clearCustomIconIdCache();
+            customIconIds = null;
+            customComponents = null;
 
             File cacheDir = this.getIconsCacheDir();
 
@@ -466,6 +514,7 @@ public class IconsHandler {
         }
     }
 
+    @Deprecated
     public Drawable getCustomIcon(String componentName, long customIcon) {
         if (customIcon == 0)
             return null;
@@ -486,36 +535,25 @@ public class IconsHandler {
 
     private void removeStoredDrawable(@NonNull File drawableFile) {
         try {
-            //noinspection ResultOfMethodCallIgnored
-            drawableFile.delete();
+            if (drawableFile.exists()) {
+                //noinspection ResultOfMethodCallIgnored
+                drawableFile.delete();
+            }
         } catch (Exception e) {
-            Log.e(TAG, "stored drawable " + drawableFile + " can't be deleted!", e);
+            Log.d(TAG, "stored drawable " + drawableFile + " can't be deleted!", e);
         }
     }
 
-    public void changeAppIcon(AppResult appResult, Drawable drawable) {
-        long customIconId = getDataHandler().setCustomAppIcon(appResult.getComponentName());
-        storeDrawable(customIconFileName(appResult.getComponentName(), customIconId), drawable);
-        appResult.setCustomIcon(customIconId, drawable);
+    public void setCustomComponent(AppResult result, ComponentName componentName) {
+        // cleanup deprecated custom icons
+        long customIconId = getDataHandler().removeCustomAppIcon(result.getComponentName());
+        removeStoredDrawable(customIconFileName(result.getComponentName(), customIconId));
+
+        // set component for custom icon
+        DBHelper.setCustomComponent(ctx, result.getClassName().flattenToString(), componentName);
+        result.clearIcon();
         cacheClear();
         getDataHandler().refreshFavorites();
-    }
-
-    public void restoreAppIcon(AppResult appResult) {
-        long customIconId = getDataHandler().removeCustomAppIcon(appResult.getComponentName());
-        removeStoredDrawable(customIconFileName(appResult.getComponentName(), customIconId));
-        appResult.clearCustomIcon();
-        cacheClear();
-        getDataHandler().refreshFavorites();
-    }
-
-    /**
-     * clears cache for custom icon ids
-     */
-    private void clearCustomIconIdCache() {
-        synchronized (this) {
-            customIconIds = null;
-        }
     }
 
     /**
@@ -524,6 +562,7 @@ public class IconsHandler {
      *
      * @return cache for custom icon ids
      */
+    @Deprecated
     private Map<String, Long> getCustomIconIds() {
         if (customIconIds == null) {
             synchronized (this) {
@@ -541,4 +580,24 @@ public class IconsHandler {
         return customIconIds;
     }
 
+    /**
+     * Thread-safe cache for custom component.
+     * Cache is built only if null.
+     *
+     * @return cache for custom component name
+     */
+    private Map<String, ComponentName> getCustomComponents() {
+        if (customComponents == null) {
+            synchronized (this) {
+                if (customComponents == null) {
+                    customComponents = DBHelper.getCustomComponents(ctx);
+                }
+            }
+        }
+        return customComponents;
+    }
+
+    private ComponentName getCustomComponentName(String id, ComponentName defaultComponent) {
+        return getCustomComponents().getOrDefault(id, defaultComponent);
+    }
 }

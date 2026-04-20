@@ -9,14 +9,15 @@ import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 
 public class IconPackCache {
-    private final SoftReferenceCache<String, IconPackXML> mCache = new SoftReferenceCache<>();
+    private final SoftReferenceCache<String, IconPack> mCache = new SoftReferenceCache<>();
 
     @NonNull
-    public IconPackXML getIconPack(Context context, String packageName) {
-        IconPackXML pack = mCache.get(packageName);
+    public IconPack getIconPack(Context context, String packageName) {
+        IconPack pack = mCache.get(packageName);
         if (pack == null) {
             pack = new IconPackXML(context, packageName);
             mCache.put(packageName, pack);
@@ -26,8 +27,8 @@ public class IconPackCache {
 
     public void clearCache(KissApplication app) {
         mCache.evictAll();
-        IconPackXML customIconPack = app.getIconsHandler().getCustomIconPack();
-        if (customIconPack != null)
+        IconPack customIconPack = app.getIconsHandler().getIconPack();
+        if (customIconPack.isSystemIconPack())
             mCache.put(customIconPack.getPackPackageName(), customIconPack);
     }
 

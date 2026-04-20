@@ -19,7 +19,6 @@ public final class AppPojo extends PojoWithTags {
      * Whether shortcuts are excluded for this app
      */
     private boolean excludedShortcuts;
-    private long customIconId = 0;
     private final boolean disabled;
 
     public AppPojo(String id, String packageName, String activityName, UserHandle userHandle,
@@ -62,14 +61,6 @@ public final class AppPojo extends PojoWithTags {
 
     public void setExcludedShortcuts(boolean excludedShortcuts) {
         this.excludedShortcuts = excludedShortcuts;
-    }
-
-    public void setCustomIconId(long iconId) {
-        customIconId = iconId;
-    }
-
-    public long getCustomIconId() {
-        return customIconId;
     }
 
     public String getPackageKey() {

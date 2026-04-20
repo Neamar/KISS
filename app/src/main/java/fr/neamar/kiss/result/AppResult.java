@@ -112,7 +112,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
         // only display this option if we're using a custom icon pack, as it is not useful otherwise
-        if (KissApplication.getApplication(context).getIconsHandler().getCustomIconPack() != null) {
+        if (KissApplication.getApplication(context).getIconsHandler().getIconPack().allowForCustomIcons()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
@@ -265,22 +265,8 @@ public class AppResult extends ResultWithTags<AppPojo> {
         //TODO: launch a DialogFragment or Activity
         CustomIconDialog dialog = new CustomIconDialog();
 
-        // set args
-        {
-            Bundle args = new Bundle();
-            args.putString("className", className.flattenToString()); // will be converted back with ComponentName.unflattenFromString()
-            args.putParcelable("userHandle", pojo.userHandle);
-            args.putString("componentName", pojo.getComponentName());
-            args.putLong("customIcon", pojo.getCustomIconId());
-            dialog.setArguments(args);
-        }
-
-        dialog.setOnConfirmListener(drawable -> {
-            if (drawable == null)
-                KissApplication.getApplication(context).getIconsHandler().restoreAppIcon(this);
-            else
-                KissApplication.getApplication(context).getIconsHandler().changeAppIcon(this, drawable);
-            //TODO: force update the icon in the view
+        dialog.setOnConfirmListener(componentName -> {
+            KissApplication.getApplication(context).getIconsHandler().setCustomComponent(this, componentName);
         });
 
         parent.showDialog(dialog);
@@ -394,17 +380,11 @@ public class AppResult extends ResultWithTags<AppPojo> {
         return new Rect(location[0], location[1], location[0] + view.getWidth(), location[1] + view.getHeight());
     }
 
-    public void setCustomIcon(long dbId, Drawable drawable) {
-        pojo.setCustomIconId(dbId);
-        setDrawableCache(drawable);
-    }
-
-    public void clearCustomIcon() {
-        pojo.setCustomIconId(0);
-        setDrawableCache(null);
-    }
-
     public String getComponentName() {
         return pojo.getComponentName();
+    }
+
+    public ComponentName getClassName() {
+        return className;
     }
 }

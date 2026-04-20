@@ -1,8 +1,10 @@
 package fr.neamar.kiss.preference;
 
 import android.content.ClipboardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -21,6 +23,7 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.utils.Log;
 
 public class ImportSettingsPreference {
@@ -102,6 +105,21 @@ public class ImportSettingsPreference {
                     while (tagKeys.hasNext()) {
                         String id = (String) tagKeys.next();
                         tagHandler.setTags(id, tags.getString(id));
+                    }
+                }
+
+                // Import custom components
+                if (jsonObject.has("__custom_components")) {
+                    DBHelper.removeAllCustomComponents(context);
+                    JSONArray components = jsonObject.getJSONArray("__custom_components");
+                    for (int i = 0; i < components.length(); i++) {
+                        JSONObject component = components.getJSONObject(i);
+                        String id = component.getString("id");
+                        String pkg = component.getString("package");
+                        String cls = component.getString("class");
+                        if (!TextUtils.isEmpty(id) && !TextUtils.isEmpty(pkg) && !TextUtils.isEmpty(cls)) {
+                            DBHelper.setCustomComponent(context, id, new ComponentName(pkg, cls));
+                        }
                     }
                 }
 

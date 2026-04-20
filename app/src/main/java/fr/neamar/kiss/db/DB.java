@@ -23,7 +23,7 @@ import fr.neamar.kiss.utils.UserHandle;
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 10;
+    private final static int DB_VERSION = 11;
     private static final String TAG = DB.class.getSimpleName();
 
     private final Context mContext;
@@ -42,6 +42,7 @@ class DB extends SQLiteOpenHelper {
         createTags(database);
         addTimeStamps(database);
         addAppsTable(database);
+        addCustomComponentsTable(database);
     }
 
     private void createTags(SQLiteDatabase database) {
@@ -56,6 +57,11 @@ class DB extends SQLiteOpenHelper {
     private void addAppsTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS custom_apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, custom_flags INTEGER DEFAULT 0, component_name TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '' )");
         db.execSQL("CREATE INDEX IF NOT EXISTS index_component ON custom_apps(component_name);");
+    }
+
+    private void addCustomComponentsTable(SQLiteDatabase database) {
+        database.execSQL("CREATE TABLE custom_components ( _id INTEGER PRIMARY KEY AUTOINCREMENT, id TEXT NOT NULL UNIQUE, package TEXT NOT NULL, class TEXT NOT NULL)");
+        database.execSQL("CREATE INDEX idx_custom_components_id ON custom_components(id);");
     }
 
     @Override
@@ -87,6 +93,9 @@ class DB extends SQLiteOpenHelper {
                 case 9:
                     convertTheme();
                     // fall through
+                case 10:
+                    addCustomComponentsTable(database);
+                    // fall through
                 default:
                     break;
             }
@@ -99,6 +108,10 @@ class DB extends SQLiteOpenHelper {
 
         if (newVersion < oldVersion) {
             switch (newVersion) {
+                case 10:
+                    database.execSQL("DROP INDEX idx_custom_components_id");
+                    database.execSQL("DROP TABLE custom_components");
+                    break;
                 case 9:
                 case 8:
                     throw new UnsupportedOperationException("Can't downgrade app below DB level " + (newVersion + 1));
