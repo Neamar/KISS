@@ -75,8 +75,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 continue;
             if (customApp.hasCustomName())
                 app.setName(customApp.name);
-            if (customApp.hasCustomIcon())
-                app.setCustomIconId(customApp.dbId);
         }
 
         long end = System.currentTimeMillis();
