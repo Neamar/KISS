@@ -16,9 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import java.net.URISyntaxException;
 
@@ -137,29 +136,8 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
         if (icon == null) {
             synchronized (this) {
                 if (icon == null) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        ShortcutInfo shortcutInfo = getShortCut(context);
-                        if (shortcutInfo != null) {
-                            final LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
-                            assert launcherApps != null;
-                            try {
-                                icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-                            } catch (IllegalStateException e) {
-                                // do nothing if user is locked or not running
-                                Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
-                            } catch (NullPointerException e) {
-                                // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
-                                Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
-                            }
-                        }
-                    }
-                    if (icon == null) {
-                        icon = ResourcesCompat.getDrawable(context.getResources(), android.R.drawable.ic_menu_send, context.getTheme());
-                    }
-                    if (icon != null) {
-                        icon = DrawableUtils.getThemedDrawable(context, icon);
-                        icon = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, icon);
-                    }
+                    IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                    icon = iconsHandler.getDrawableIconForShortcut(this.pojo, getShortCut(context));
                 }
             }
         }
@@ -211,9 +189,13 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
         Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @Nullable
     private ShortcutInfo getShortCut(Context context) {
-        return ShortcutUtil.getShortCut(context, pojo.getUserHandle().getRealHandle(), pojo.packageName, pojo.getOreoId());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return ShortcutUtil.getShortCut(context, pojo.getUserHandle().getRealHandle(), pojo.packageName, pojo.getOreoId());
+        } else {
+            return null;
+        }
     }
 
     private Drawable getDrawableFromOreoShortcut(Context context) {

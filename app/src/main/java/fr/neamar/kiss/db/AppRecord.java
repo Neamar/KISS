@@ -2,6 +2,8 @@ package fr.neamar.kiss.db;
 
 public class AppRecord {
     public static final int FLAG_CUSTOM_NAME = 2;
+
+    @Deprecated
     public static final int FLAG_CUSTOM_ICON = 4;
 
     public long dbId;
@@ -16,6 +18,7 @@ public class AppRecord {
         return (flags & FLAG_CUSTOM_NAME) == FLAG_CUSTOM_NAME;
     }
 
+    @Deprecated
     public boolean hasCustomIcon() {
         return (flags & FLAG_CUSTOM_ICON) == FLAG_CUSTOM_ICON;
     }

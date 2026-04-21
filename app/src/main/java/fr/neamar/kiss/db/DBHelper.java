@@ -1,11 +1,13 @@
 package fr.neamar.kiss.db;
 
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -349,40 +351,7 @@ public class DBHelper {
         return null;
     }
 
-    public static long addCustomAppIcon(Context context, String componentName) {
-        SQLiteDatabase db = getDatabase(context);
-
-        long id;
-        String sql = "INSERT OR ABORT INTO custom_apps(\"component_name\", \"custom_flags\") VALUES (?,?)";
-        try {
-            SQLiteStatement statement = db.compileStatement(sql);
-            statement.bindString(1, componentName);
-            statement.bindLong(2, AppRecord.FLAG_CUSTOM_ICON);
-            id = statement.executeInsert();
-            statement.close();
-        } catch (Exception e) {
-            id = -1;
-        }
-        if (id == -1) {
-            sql = "UPDATE custom_apps SET custom_flags=custom_flags|? WHERE component_name=?";
-            try {
-                SQLiteStatement statement = db.compileStatement(sql);
-                statement.bindLong(1, AppRecord.FLAG_CUSTOM_ICON);
-                statement.bindString(2, componentName);
-                int count = statement.executeUpdateDelete();
-                if (count != 1) {
-                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
-                }
-                statement.close();
-            } catch (Exception e) {
-                Log.e(TAG, "Update custom app icon", e);
-            }
-            AppRecord appRecord = getAppRecord(db, componentName);
-            id = appRecord != null ? appRecord.dbId : 0;
-        }
-        return id;
-    }
-
+    @Deprecated
     public static long removeCustomAppIcon(Context context, String componentName) {
         SQLiteDatabase db = getDatabase(context);
         AppRecord app = getAppRecord(db, componentName);
@@ -594,5 +563,48 @@ public class DBHelper {
 
     public static void initDatabase(Context context) {
         getDatabase(context);
+    }
+
+    public static Map<String, ComponentName> getCustomComponents(@NonNull Context context) {
+        Map<String, ComponentName> components = new HashMap<>();
+        SQLiteDatabase db = getDatabase(context);
+        try (Cursor cursor = db.query("custom_components", new String[]{"id", "package", "class"},
+                null, null, null, null, null)) {
+            while (cursor.moveToNext()) {
+                String id = cursor.getString(0);
+                String pck = cursor.getString(1);
+                String cls = cursor.getString(2);
+                ComponentName componentName = new ComponentName(pck, cls);
+                components.put(id, componentName);
+            }
+        }
+
+        return components;
+    }
+
+    public static void setCustomComponent(@NonNull Context context, @NonNull String id, @Nullable ComponentName componentName) {
+        SQLiteDatabase db = getDatabase(context);
+
+        if (componentName == null) {
+            db.delete("custom_components", "id = ?", new String[]{id});
+        } else {
+            ContentValues values = new ContentValues();
+            values.put("id", id);
+            values.put("package", componentName.getPackageName());
+            values.put("class", componentName.getClassName());
+
+            // do not add duplicate shortcuts
+            int rowsAffected = db.update("custom_components", values, "id = ?", new String[]{id});
+            if (rowsAffected == 0) {
+                db.insert("custom_components", null, values);
+            }
+        }
+    }
+
+    public static void removeAllCustomComponents(Context context) {
+        SQLiteDatabase db = getDatabase(context);
+        // delete whole table
+        db.delete("custom_components", null, null);
+
     }
 }

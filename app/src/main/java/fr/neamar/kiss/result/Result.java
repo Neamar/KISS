@@ -407,6 +407,10 @@ public abstract class Result<T extends Pojo> {
     void setDrawableCache(Drawable drawable) {
     }
 
+    public void clearIcon() {
+        setDrawableCache(null);
+    }
+
     protected void setAsyncDrawable(ImageView view) {
         setAsyncDrawable(view, android.R.color.transparent);
     }
