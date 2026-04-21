@@ -48,23 +48,41 @@
         android:layout_height="2dp"
         android:background="?android:attr/listDivider" />
 
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/quickList"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/icon_margin_right"
+            android:text="@string/custom_icon_preview" />
 
-            <!-- code expects the parent of @+id/defaultIcon to be a ViewGroup -->
-            <include layout="@layout/custom_icon_quick" />
+        <ImageView
+            android:id="@+id/preview"
+            android:layout_width="@dimen/result_icon_size"
+            android:layout_height="@dimen/result_icon_size"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/icon_margin_left"
+            android:layout_marginEnd="@dimen/icon_margin_right"
+            android:contentDescription="@null"
+            tools:src="@drawable/ic_launcher_white" />
 
-            <!-- more `custom_icon_quick` will be added from code -->
-        </LinearLayout>
+        <TextView
+            android:id="@android:id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:breakStrategy="simple"
+            android:ellipsize="end"
+            android:hyphenationFrequency="none"
+            android:maxLines="2"
+            tools:text="@string/app_name"
+            tools:ignore="UnusedAttribute" />
 
-    </HorizontalScrollView>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -75,33 +93,25 @@
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="end"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
+            android:id="@android:id/button3"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/icon_margin_right"
-            android:layout_marginTop="@dimen/icon_margin_top"
-            android:layout_marginBottom="@dimen/icon_margin_bottom"
-            android:text="@string/custom_icon_preview" />
-
-        <ImageView
-            android:id="@+id/preview"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/icon_margin_left"
-            android:layout_marginTop="@dimen/icon_margin_top"
             android:layout_marginEnd="@dimen/icon_margin_right"
-            android:layout_marginBottom="@dimen/icon_margin_bottom"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_launcher_white" />
+            android:layout_weight="1"
+            android:text="@string/default_icon"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@android:id/button2"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/icon_margin_left"
             android:layout_marginEnd="@dimen/icon_margin_right"
             android:layout_weight="1"
@@ -111,8 +121,8 @@
         <Button
             android:id="@android:id/button1"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/icon_margin_left"
             android:layout_marginEnd="@dimen/icon_margin_right"
             android:layout_weight="1"

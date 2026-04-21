@@ -23,10 +23,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
-      - name: Unit tests
-        run: bash ./gradlew testDebugUnitTest --stacktrace
       - name: Lint code
         run: bash ./gradlew lint --stacktrace
+      - name: Unit tests
+        run: bash ./gradlew testDebugUnitTest --stacktrace
   apk:
     name: Generate APK
     runs-on: ubuntu-24.04
