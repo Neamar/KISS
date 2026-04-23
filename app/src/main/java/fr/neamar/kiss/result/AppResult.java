@@ -372,7 +372,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
     }
 
     @Override
-    protected boolean canHaveCustomIcon(IconPack iconPack) {
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
         return true;
     }
 }

@@ -272,7 +272,7 @@ public abstract class Result<T extends Pojo> {
             }
         }
         IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
-        if (canHaveCustomIcon(iconPack)) {
+        if (canHaveCustomIcon(context, iconPack)) {
             // only display this option if we're using a custom icon pack, as it is not useful otherwise
             if (iconPack.allowForCustomIcons()) {
                 adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
@@ -599,7 +599,7 @@ public abstract class Result<T extends Pojo> {
 
     protected abstract boolean canRemoveFromHistory(Context context);
 
-    protected abstract boolean canHaveCustomIcon(IconPack iconPack);
+    protected abstract boolean canHaveCustomIcon(Context context, IconPack iconPack);
 
     public String getCustomIconId() {
         return pojo.getCustomIconId();

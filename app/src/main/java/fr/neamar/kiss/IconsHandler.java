@@ -265,6 +265,13 @@ public class IconsHandler {
     }
 
     public Drawable getDrawableIconForCodepoint(@NonNull Pojo pojo, @ColorInt int textColor, @ColorInt int backgroundColor) {
+        if (getIconPack().allowForCustomIcons()) {
+            ComponentName componentName = getCustomComponentName(pojo.getCustomIconId(), null);
+            if (componentName != null) {
+                return getDrawableIconForPackage(componentName, UserHandle.OWNER);
+            }
+        }
+
         int codePoint = pojo.getName().codePointAt(0);
         final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);

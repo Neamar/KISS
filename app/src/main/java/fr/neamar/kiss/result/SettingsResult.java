@@ -81,7 +81,7 @@ public class SettingsResult extends Result<SettingPojo> {
     }
 
     @Override
-    protected boolean canHaveCustomIcon(IconPack iconPack) {
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
         return false;
     }
 }

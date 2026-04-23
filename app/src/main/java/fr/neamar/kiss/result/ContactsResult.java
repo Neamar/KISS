@@ -291,7 +291,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     }
 
     @Override
-    protected boolean canHaveCustomIcon(IconPack iconPack) {
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
         return false;
     }
 }

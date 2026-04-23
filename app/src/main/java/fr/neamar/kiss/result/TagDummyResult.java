@@ -135,7 +135,8 @@ public class TagDummyResult extends Result<TagDummyPojo> {
     }
 
     @Override
-    protected boolean canHaveCustomIcon(IconPack iconPack) {
-        return false;
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("pref-fav-tags-drawable", false);
     }
 }

@@ -262,7 +262,7 @@ public class SearchResult extends Result<SearchPojo> {
     }
 
     @Override
-    protected boolean canHaveCustomIcon(IconPack iconPack) {
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
         return false;
     }
 }
