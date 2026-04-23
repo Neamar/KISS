@@ -28,7 +28,7 @@ public class IconPackCache {
     public void clearCache(KissApplication app) {
         mCache.evictAll();
         IconPack customIconPack = app.getIconsHandler().getIconPack();
-        if (customIconPack.isSystemIconPack())
+        if (!customIconPack.isSystemIconPack())
             mCache.put(customIconPack.getPackPackageName(), customIconPack);
     }
 
