@@ -47,8 +47,9 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
      */
     private PhonePojo getResult(String phoneNumber, boolean fromSearch) {
         String historyId = PHONE_SCHEME + phoneNumber;
-        String id = fromSearch ? PHONE_SCHEME + "search" : historyId;
-        PhonePojo pojo = new PhonePojo(id, historyId, phoneNumber);
+        String searchId = PHONE_SCHEME + "search";
+        String id = fromSearch ? searchId : historyId;
+        PhonePojo pojo = new PhonePojo(id, historyId, phoneNumber, searchId);
 
         String phoneNumberAfterFirstCharacter = phoneNumber.substring(1);
         if (!phoneNumberAfterFirstCharacter.contains("*") && !phoneNumberAfterFirstCharacter.contains("+")) {

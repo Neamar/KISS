@@ -47,7 +47,7 @@ public class SettingsResult extends Result<SettingPojo> {
     @Override
     public Drawable getDrawable(Context context) {
         if (pojo.icon != -1) {
-            return getThemedDrawable(context, pojo.icon);
+            return getThemedDrawable(context, pojo, pojo.icon);
         }
 
         return null;
@@ -82,6 +82,6 @@ public class SettingsResult extends Result<SettingPojo> {
 
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
-        return false;
+        return true;
     }
 }

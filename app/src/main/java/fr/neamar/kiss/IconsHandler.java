@@ -14,9 +14,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -166,22 +168,18 @@ public class IconsHandler {
      * @return drawable
      */
     public Drawable getDrawableIconForShortcut(Pojo pojo, ShortcutInfo shortcutInfo) {
-        Drawable icon = null;
-        if (shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            icon = getCustomIcon(pojo, new UserHandle(ctx, shortcutInfo.getUserHandle()));
-
-            if (icon == null) {
-                final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
-                assert launcherApps != null;
-                try {
-                    icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-                } catch (IllegalStateException e) {
-                    // do nothing if user is locked or not running
-                    Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
-                } catch (NullPointerException e) {
-                    // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
-                    Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
-                }
+        Drawable icon = getCustomIcon(pojo);
+        if (icon == null && shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
+            assert launcherApps != null;
+            try {
+                icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+            } catch (IllegalStateException e) {
+                // do nothing if user is locked or not running
+                Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
+            } catch (NullPointerException e) {
+                // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
+                Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
             }
         }
         if (icon == null) {
@@ -269,7 +267,7 @@ public class IconsHandler {
     }
 
     public Drawable getDrawableIconForCodepoint(@NonNull Pojo pojo, @ColorInt int textColor, @ColorInt int backgroundColor) {
-        Drawable icon = getCustomIcon(pojo, UserHandle.OWNER);
+        Drawable icon = getCustomIcon(pojo);
         if (icon != null) {
             return icon;
         }
@@ -603,13 +601,40 @@ public class IconsHandler {
         return getCustomComponents().getOrDefault(id, defaultComponent);
     }
 
-    private Drawable getCustomIcon(@NonNull Pojo pojo, @NonNull UserHandle userHandle) {
+    private Drawable getCustomIcon(@NonNull Pojo pojo) {
         if (getIconPack().allowForCustomIcons()) {
             ComponentName componentName = getCustomComponentName(pojo.getCustomIconId(), null);
             if (componentName != null) {
-                return getDrawableIconForPackage(componentName, userHandle);
+                return getDrawableIconForPackage(componentName, pojo.getUserHandle());
             }
         }
         return null;
+    }
+
+    public Drawable getThemedDrawable(@NonNull Pojo pojo, @DrawableRes int resId, @ColorInt int backgroundColor, @ColorInt int textColor, @ColorInt int themeFillColor) {
+        Drawable icon = getCustomIcon(pojo);
+        if (icon != null) {
+            return icon;
+        }
+
+        icon = ResourcesCompat.getDrawable(ctx.getResources(), resId, ctx.getTheme());
+        if (DrawableUtils.isAdaptiveIconDrawable(icon)) {
+            return icon;
+        } else if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(ctx)) {
+            Drawable background = getBackgroundDrawable(backgroundColor);
+            int insetX = (int) (background.getIntrinsicWidth() * 0.15);
+            int insetY = (int) (background.getIntrinsicHeight() * 0.15);
+
+            icon.setTint(textColor);
+
+            LayerDrawable combined = new LayerDrawable(new Drawable[]{background, icon});
+            combined.setLayerInset(1, insetX, insetY, insetX, insetY);
+
+            return combined;
+        } else {
+            icon.setTint(themeFillColor);
+            return icon;
+        }
     }
 }

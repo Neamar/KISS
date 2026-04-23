@@ -135,7 +135,7 @@ public class SearchResult extends Result<SearchPojo> {
     }
 
     private void setImage(Context context, ImageView image, int resId) {
-        image.setImageDrawable(getThemedDrawable(context, resId));
+        image.setImageDrawable(getThemedDrawable(context, pojo, resId));
     }
 
     /**

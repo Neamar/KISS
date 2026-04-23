@@ -75,7 +75,7 @@ public class PhoneResult extends CallResult<PhonePojo> {
 
     @Override
     public Drawable getDrawable(Context context) {
-        return getThemedDrawable(context, R.drawable.ic_phone);
+        return getThemedDrawable(context, pojo, R.drawable.ic_phone);
     }
 
     @Override
@@ -95,6 +95,6 @@ public class PhoneResult extends CallResult<PhonePojo> {
 
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
-        return false;
+        return true;
     }
 }

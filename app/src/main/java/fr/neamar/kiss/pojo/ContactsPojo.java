@@ -101,4 +101,16 @@ public final class ContactsPojo extends Pojo {
             this.normalizedPhoneticName = null;
         }
     }
+
+    /**
+     * @return id if icon is set and some default string if no icon is set
+     */
+    @Override
+    public String getCustomIconId() {
+        if (icon != null) {
+            return id;
+        } else {
+            return "contact://default";
+        }
+    }
 }

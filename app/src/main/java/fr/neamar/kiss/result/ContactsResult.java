@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import java.io.IOException;
@@ -219,7 +218,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
                     // Default icon
                     if (icon == null) {
-                        icon = ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_contact, context.getTheme());
+                        icon = getThemedDrawable(context, pojo, R.drawable.ic_contact);
                     }
                 }
             }
@@ -290,8 +289,14 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         return true;
     }
 
+    /**
+     *
+     * @param context
+     * @param iconPack
+     * @return true, if contact has no icon set
+     */
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
-        return false;
+        return pojo.icon == null;
     }
 }

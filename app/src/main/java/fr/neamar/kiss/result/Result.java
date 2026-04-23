@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -31,7 +30,6 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
@@ -45,7 +43,6 @@ import java.util.function.Supplier;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.CustomIconDialog;
-import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
@@ -509,26 +506,8 @@ public abstract class Result<T extends Pojo> {
         }
     }
 
-    protected Drawable getThemedDrawable(Context context, int resId) {
-        if (DrawableUtils.hasThemedIcons() &&
-                DrawableUtils.isThemedIconEnabled(context)) {
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            Drawable background = iconsHandler.getBackgroundDrawable(getBackgroundColor(context));
-            int insetX = (int) (background.getIntrinsicWidth() * 0.15);
-            int insetY = (int) (background.getIntrinsicHeight() * 0.15);
-
-            Drawable foregroud = ContextCompat.getDrawable(context, resId);
-            foregroud.setTint(getTextColor(context));
-
-            LayerDrawable combined = new LayerDrawable(new Drawable[]{background, foregroud});
-            combined.setLayerInset(1, insetX, insetY, insetX, insetY);
-
-            return combined;
-        } else {
-            Drawable drawable = ContextCompat.getDrawable(context, resId);
-            drawable.setTint(getThemeFillColor(context));
-            return drawable;
-        }
+    protected Drawable getThemedDrawable(@NonNull Context context, @NonNull Pojo pojo, @DrawableRes int resId) {
+        return KissApplication.getApplication(context).getIconsHandler().getThemedDrawable(pojo, resId, getBackgroundColor(context), getTextColor(context), getThemeFillColor(context));
     }
 
     @ColorInt
@@ -601,7 +580,7 @@ public abstract class Result<T extends Pojo> {
 
     protected abstract boolean canHaveCustomIcon(Context context, IconPack iconPack);
 
-    public String getCustomIconId() {
+    public final String getCustomIconId() {
         return pojo.getCustomIconId();
     }
 }
