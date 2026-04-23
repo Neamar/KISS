@@ -169,7 +169,11 @@ public class IconsHandler {
      */
     public Drawable getDrawableIconForShortcut(Pojo pojo, ShortcutInfo shortcutInfo) {
         Drawable icon = getCustomIcon(pojo);
-        if (icon == null && shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+        if (icon != null) {
+            return icon;
+        }
+
+        if (shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
             assert launcherApps != null;
             try {
@@ -597,8 +601,8 @@ public class IconsHandler {
         return customComponents;
     }
 
-    private ComponentName getCustomComponentName(String id, ComponentName defaultComponent) {
-        return getCustomComponents().getOrDefault(id, defaultComponent);
+    private ComponentName getCustomComponentName(String id, ComponentName defaultComponentName) {
+        return getCustomComponents().getOrDefault(id, defaultComponentName);
     }
 
     private Drawable getCustomIcon(@NonNull Pojo pojo) {
