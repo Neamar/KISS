@@ -37,6 +37,7 @@ import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.AppResult;
+import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.IconShape;
@@ -187,18 +188,6 @@ public class IconsHandler {
             icon = applyIconMask(ctx, icon);
         }
         return icon;
-    }
-
-    /**
-     * Get or generate icon for an app.
-     * Uses no cache and no custom icons.
-     *
-     * @param componentName component name
-     * @param userHandle    user handle
-     * @return drawable
-     */
-    public Drawable getOriginalDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
-        return getDrawableIconForPackage(componentName, userHandle, false, false);
     }
 
     /**
@@ -545,13 +534,16 @@ public class IconsHandler {
         }
     }
 
-    public void setCustomComponent(AppResult result, ComponentName componentName) {
-        // cleanup deprecated custom icons
-        long customIconId = getDataHandler().removeCustomAppIcon(result.getComponentName());
-        removeStoredDrawable(customIconFileName(result.getComponentName(), customIconId));
+    public void setCustomComponent(Result<?> result, ComponentName componentName) {
+        if (result instanceof AppResult) {
+            // cleanup deprecated custom icons
+            AppResult appResult = (AppResult) result;
+            long customIconId = getDataHandler().removeCustomAppIcon(appResult.getComponentName());
+            removeStoredDrawable(customIconFileName(appResult.getComponentName(), customIconId));
+        }
 
         // set component for custom icon
-        DBHelper.setCustomComponent(ctx, result.getClassName().flattenToString(), componentName);
+        DBHelper.setCustomComponent(ctx, result.getCustomIconId(), componentName);
         result.clearIcon();
         cacheClear();
         getDataHandler().refreshFavorites();

@@ -26,6 +26,7 @@ import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -211,21 +212,15 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
     }
 
     @Override
-    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
-        if (!this.pojo.isDynamic() || this.pojo.isPinned()) {
-            adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
-        }
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
-        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
+    protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
+        super.buildPopupMenu(context, adapter);
+
         if (!this.pojo.isPinned() && this.pojo.isOreoShortcut() && !PackageManagerUtils.isPrivateProfile(context, this.pojo.getUserHandle())) {
             adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_pin));
         }
         if (this.pojo.isPinned() && !PackageManagerUtils.isPrivateProfile(context, this.pojo.getUserHandle())) {
             adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
         }
-
-        return inflatePopupMenu(adapter, context);
     }
 
     @Override
@@ -252,4 +247,18 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
         dataHandler.pinShortcut(pojo);
     }
 
+    @Override
+    protected boolean isAllowedAsFavorite() {
+        return !this.pojo.isDynamic() || this.pojo.isPinned();
+    }
+
+    @Override
+    protected boolean canRemoveFromHistory(Context context) {
+        return true;
+    }
+
+    @Override
+    protected boolean canHaveCustomIcon(IconPack iconPack) {
+        return false;
+    }
 }

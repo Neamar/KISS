@@ -17,6 +17,7 @@ import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
@@ -72,7 +73,8 @@ public class TagDummyResult extends Result<TagDummyPojo> {
 
         ImageView favoriteBackground = favoriteView.findViewById(android.R.id.background);
         if (favoriteBackground != null) {
-            setAsyncDrawable(favoriteBackground, R.drawable.ic_launcher_white, true, this::isShapeCached, this::getShape, drawable -> {});
+            setAsyncDrawable(favoriteBackground, R.drawable.ic_launcher_white, true, this::isShapeCached, this::getShape, drawable -> {
+            });
         }
 
         TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
@@ -120,5 +122,20 @@ public class TagDummyResult extends Result<TagDummyPojo> {
         if (context instanceof MainActivity) {
             ((MainActivity) context).showMatchingTags(pojo.getName());
         }
+    }
+
+    @Override
+    protected boolean isAllowedAsFavorite() {
+        return true;
+    }
+
+    @Override
+    protected boolean canRemoveFromHistory(Context context) {
+        return true;
+    }
+
+    @Override
+    protected boolean canHaveCustomIcon(IconPack iconPack) {
+        return false;
     }
 }

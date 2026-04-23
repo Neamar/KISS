@@ -94,4 +94,11 @@ public abstract class Pojo {
     public UserHandle getUserHandle() {
         return UserHandle.OWNER;
     }
+
+    /**
+     * ID to use for custom icons
+     */
+    public String getCustomIconId() {
+        return id;
+    }
 }

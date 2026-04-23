@@ -26,8 +26,8 @@ import java.io.InputStream;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -173,13 +173,10 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     }
 
     @Override
-    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
-        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_contact_copy_phone));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+    protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
+        super.buildPopupMenu(context, adapter);
 
-        return inflatePopupMenu(adapter, context);
+        adapter.add(new ListPopup.Item(context, R.string.menu_contact_copy_phone));
     }
 
     @Override
@@ -283,4 +280,18 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         }
     }
 
+    @Override
+    protected boolean isAllowedAsFavorite() {
+        return true;
+    }
+
+    @Override
+    protected boolean canRemoveFromHistory(Context context) {
+        return true;
+    }
+
+    @Override
+    protected boolean canHaveCustomIcon(IconPack iconPack) {
+        return false;
+    }
 }

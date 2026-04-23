@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,12 +44,14 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import fr.neamar.kiss.BuildConfig;
+import fr.neamar.kiss.CustomIconDialog;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
@@ -163,7 +166,7 @@ public abstract class Result<T extends Pojo> {
     }
 
     protected boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
-                               TextView view, Context context) {
+                                         TextView view, Context context) {
         MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
         if (!matchInfo.match) {
@@ -234,7 +237,8 @@ public abstract class Result<T extends Pojo> {
      */
     public ListPopup getPopupMenu(final Context context, final RecordAdapter parent, final View parentView) {
         ArrayAdapter<ListPopup.Item> popupMenuAdapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
-        ListPopup menu = buildPopupMenu(context, popupMenuAdapter);
+        buildPopupMenu(context, popupMenuAdapter);
+        ListPopup menu = inflatePopupMenu(popupMenuAdapter, context);
 
         menu.setOnItemClickListener((adapter, view, position) -> {
             ListPopup.Item item = (ListPopup.Item) adapter.getItem(position);
@@ -251,47 +255,39 @@ public abstract class Result<T extends Pojo> {
 
     /**
      * Default popup menu implementation, can be overridden by children class to display a more specific menu
-     *
-     * @return an inflated, listener-free PopupMenu
      */
-    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
-        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
-        return inflatePopupMenu(adapter, context);
-    }
-
-    ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
-        ListPopup menu = new ListPopup(context);
-        menu.setAdapter(adapter);
-
-        // If app already pinned, do not display the "add to favorite" option
-        // otherwise don't show the "remove favorite button"
-        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
-        if (favApps.contains(this.pojo.id + ";")) {
-            for (int i = 0; i < adapter.getCount(); i += 1) {
-                ListPopup.Item item = adapter.getItem(i);
-                assert item != null;
-                if (item.stringId == R.string.menu_favorites_add) {
-                    adapter.remove(item);
-                }
-            }
-        } else {
-            for (int i = 0; i < adapter.getCount(); i += 1) {
-                ListPopup.Item item = adapter.getItem(i);
-                assert item != null;
-                if (item.stringId == R.string.menu_favorites_remove) {
-                    adapter.remove(item);
-                }
+    protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
+        if (canRemoveFromHistory(context)) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_remove));
+        }
+        if (isAllowedAsFavorite()) {
+            // If app already pinned, do not display the "add to favorite" option
+            // otherwise don't show the "remove favorite button"
+            String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                    getString("favorite-apps-list", "");
+            if (!favApps.contains(this.pojo.id + ";")) {
+                adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+            } else {
+                adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
             }
         }
+        IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
+        if (canHaveCustomIcon(iconPack)) {
+            // only display this option if we're using a custom icon pack, as it is not useful otherwise
+            if (iconPack.allowForCustomIcons()) {
+                adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
+            }
+        }
+    }
 
+    private ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
         if (BuildConfig.DEBUG) {
             adapter.add(new ListPopup.Item("Relevance: " + pojo.relevance));
             adapter.add(new ListPopup.Item("ID: " + pojo.id));
         }
 
+        ListPopup menu = new ListPopup(context);
+        menu.setAdapter(adapter);
         return menu;
     }
 
@@ -311,6 +307,9 @@ public abstract class Result<T extends Pojo> {
         } else if (stringId == R.string.menu_favorites_remove) {
             launchRemoveFromFavorites(context, pojo);
             return true;
+        } else if (stringId == R.string.menu_custom_icon) {
+            launchCustomIcon(context, parent);
+            return true;
         }
 
         return false;
@@ -326,6 +325,17 @@ public abstract class Result<T extends Pojo> {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
         KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
+    }
+
+    private void launchCustomIcon(Context context, RecordAdapter parent) {
+        //TODO: launch a DialogFragment or Activity
+        CustomIconDialog dialog = new CustomIconDialog();
+        dialog.setOnConfirmListener(componentName -> this.setCustomIcon(context, componentName));
+        parent.showDialog(dialog);
+    }
+
+    private void setCustomIcon(Context context, ComponentName componentName) {
+        KissApplication.getApplication(context).getIconsHandler().setCustomComponent(this, componentName);
     }
 
     /**
@@ -368,6 +378,7 @@ public abstract class Result<T extends Pojo> {
 
     /**
      * to check if launch can be added to history
+     *
      * @return true, if launch can be added to history
      */
     protected boolean canAddToHistory() {
@@ -582,5 +593,15 @@ public abstract class Result<T extends Pojo> {
 
     protected void setTranscriptModeDisabled(RecordAdapter adapter) {
         adapter.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+    }
+
+    protected abstract boolean isAllowedAsFavorite();
+
+    protected abstract boolean canRemoveFromHistory(Context context);
+
+    protected abstract boolean canHaveCustomIcon(IconPack iconPack);
+
+    public String getCustomIconId() {
+        return pojo.getCustomIconId();
     }
 }
