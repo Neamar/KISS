@@ -168,16 +168,20 @@ public class IconsHandler {
     public Drawable getDrawableIconForShortcut(Pojo pojo, ShortcutInfo shortcutInfo) {
         Drawable icon = null;
         if (shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
-            assert launcherApps != null;
-            try {
-                icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-            } catch (IllegalStateException e) {
-                // do nothing if user is locked or not running
-                Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
-            } catch (NullPointerException e) {
-                // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
-                Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
+            icon = getCustomIcon(pojo, new UserHandle(ctx, shortcutInfo.getUserHandle()));
+
+            if (icon == null) {
+                final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
+                assert launcherApps != null;
+                try {
+                    icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+                } catch (IllegalStateException e) {
+                    // do nothing if user is locked or not running
+                    Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
+                } catch (NullPointerException e) {
+                    // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
+                    Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
+                }
             }
         }
         if (icon == null) {
@@ -265,11 +269,9 @@ public class IconsHandler {
     }
 
     public Drawable getDrawableIconForCodepoint(@NonNull Pojo pojo, @ColorInt int textColor, @ColorInt int backgroundColor) {
-        if (getIconPack().allowForCustomIcons()) {
-            ComponentName componentName = getCustomComponentName(pojo.getCustomIconId(), null);
-            if (componentName != null) {
-                return getDrawableIconForPackage(componentName, UserHandle.OWNER);
-            }
+        Drawable icon = getCustomIcon(pojo, UserHandle.OWNER);
+        if (icon != null) {
+            return icon;
         }
 
         int codePoint = pojo.getName().codePointAt(0);
@@ -599,5 +601,15 @@ public class IconsHandler {
 
     private ComponentName getCustomComponentName(String id, ComponentName defaultComponent) {
         return getCustomComponents().getOrDefault(id, defaultComponent);
+    }
+
+    private Drawable getCustomIcon(@NonNull Pojo pojo, @NonNull UserHandle userHandle) {
+        if (getIconPack().allowForCustomIcons()) {
+            ComponentName componentName = getCustomComponentName(pojo.getCustomIconId(), null);
+            if (componentName != null) {
+                return getDrawableIconForPackage(componentName, userHandle);
+            }
+        }
+        return null;
     }
 }

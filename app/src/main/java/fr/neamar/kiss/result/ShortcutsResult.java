@@ -247,6 +247,9 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
         dataHandler.pinShortcut(pojo);
     }
 
+    /**
+     * @return true, if shortcut will not be changed by providing app anymore
+     */
     @Override
     protected boolean isAllowedAsFavorite() {
         return !this.pojo.isDynamic() || this.pojo.isPinned();
@@ -257,8 +260,11 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
         return true;
     }
 
+    /**
+     * @return true, if shortcut will not be changed by providing app anymore
+     */
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
-        return false;
+        return isAllowedAsFavorite();
     }
 }
