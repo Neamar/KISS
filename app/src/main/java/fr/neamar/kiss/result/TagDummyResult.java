@@ -98,7 +98,7 @@ public class TagDummyResult extends Result<TagDummyPojo> {
             synchronized (this) {
                 if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    icon = iconsHandler.getDrawableIconForCodepoint(pojo.getName().codePointAt(0), getTextColor(context), getBackgroundColor(context));
+                    icon = iconsHandler.getDrawableIconForCodepoint(pojo, getTextColor(context), getBackgroundColor(context));
                 }
             }
         }

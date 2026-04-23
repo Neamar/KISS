@@ -160,7 +160,7 @@ public class IconsHandler {
     /**
      * Get or generate icon for a shortcut.
      *
-     * @param pojo     shortcut pojo
+     * @param pojo         shortcut pojo
      * @param shortcutInfo related shortcut info
      * @return drawable
      */
@@ -275,7 +275,8 @@ public class IconsHandler {
         return forceIconMask(drawable, shape);
     }
 
-    public Drawable getDrawableIconForCodepoint(int codePoint, @ColorInt int textColor, @ColorInt int backgroundColor) {
+    public Drawable getDrawableIconForCodepoint(@NonNull Pojo pojo, @ColorInt int textColor, @ColorInt int backgroundColor) {
+        int codePoint = pojo.getName().codePointAt(0);
         final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
         return forceIconMask(drawable, shape);
