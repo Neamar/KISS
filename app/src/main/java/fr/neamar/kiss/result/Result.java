@@ -419,11 +419,11 @@ public abstract class Result<T extends Pojo> {
         setDrawableCache(null);
     }
 
-    protected void setAsyncDrawable(ImageView view) {
+    protected void setAsyncDrawable(@NonNull ImageView view) {
         setAsyncDrawable(view, android.R.color.transparent);
     }
 
-    protected void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
+    protected void setAsyncDrawable(@NonNull ImageView view, @DrawableRes int resId) {
         setAsyncDrawable(view, resId, false, this::isDrawableCached, this::getDrawable, this::setDrawableCache);
     }
 

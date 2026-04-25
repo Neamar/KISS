@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -30,6 +31,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.pojo.SearchPojoType;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.Log;
@@ -39,6 +41,8 @@ import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 public class SearchResult extends Result<SearchPojo> {
 
     private static final String TAG = SearchResult.class.getSimpleName();
+
+    private volatile Drawable icon = null;
 
     SearchResult(@NonNull SearchPojo pojo) {
         super(pojo);
@@ -52,78 +56,43 @@ public class SearchResult extends Result<SearchPojo> {
 
         TextView searchText = view.findViewById(R.id.item_search_text);
         ImageView image = view.findViewById(R.id.item_search_icon);
-        String text;
-        int pos;
-        int len;
 
         boolean hideIcons = isHideIcons(context);
         if (hideIcons) {
             image.setImageDrawable(null);
+        } else {
+            this.setAsyncDrawable(image);
         }
 
+        String text;
+        int pos;
+        int len;
         switch (pojo.type) {
             case URL_QUERY:
                 text = context.getString(R.string.ui_item_visit, this.pojo.getName());
                 pos = text.indexOf(this.pojo.getName());
                 len = this.pojo.getName().length();
-                if (!hideIcons) {
-                    setImage(context, image, R.drawable.ic_public);
-                    Intent intent = createSearchQueryIntent();
-                    Drawable icon = getIconByIntent(context, intent);
-                    if (icon != null) {
-                        image.setImageDrawable(icon);
-                    }
-                }
                 break;
             case SEARCH_QUERY:
                 text = context.getString(R.string.ui_item_search, this.pojo.getName(), pojo.query);
                 pos = text.indexOf(pojo.query);
                 len = pojo.query.length();
-                if (!hideIcons) {
-                    setImage(context, image, R.drawable.ic_search);
-                    Intent intent = createSearchQueryIntent();
-                    Drawable icon = getIconByIntent(context, intent);
-                    if (icon != null) {
-                        image.setImageDrawable(icon);
-                    }
-                }
                 break;
             case CALCULATOR_QUERY:
                 text = pojo.query;
                 pos = text.indexOf("=");
                 len = text.length() - pos;
-                if (!hideIcons) {
-                    setImage(context, image, R.drawable.ic_functions);
-                }
                 break;
             case TIMER_QUERY:
-                try {
-                    String elapsedTime = DateUtils.formatElapsedTime(Long.parseLong(pojo.url));
-                    text = context.getString(R.string.ui_item_timer, elapsedTime);
-                    pos = text.indexOf(elapsedTime);
-                    len = elapsedTime.length();
-                } catch (NumberFormatException e) {
-                    Log.w(TAG, "Invalid timer duration: " + pojo.url, e);
-                    text = pojo.query;
-                    pos = 0;
-                    len = text.length();
-                }
-                if (!hideIcons) {
-                    setImage(context, image, R.drawable.ic_timer);
-                }
+                String elapsedTime = DateUtils.formatElapsedTime(parseSeconds(pojo.url));
+                text = context.getString(R.string.ui_item_timer, elapsedTime);
+                pos = text.indexOf(elapsedTime);
+                len = elapsedTime.length();
                 break;
             case URI_QUERY:
                 text = context.getString(R.string.ui_item_open, this.pojo.query);
                 pos = text.indexOf(pojo.query);
                 len = pojo.query.length();
-                if (!hideIcons) {
-                    setImage(context, image, R.drawable.ic_public);
-                    Intent intent = createUriQueryIntent();
-                    Drawable icon = getIconByIntent(context, intent);
-                    if (icon != null) {
-                        image.setImageDrawable(icon);
-                    }
-                }
                 break;
             default:
                 throw new IllegalArgumentException("Following type isn't supported: " + pojo.type);
@@ -134,8 +103,30 @@ public class SearchResult extends Result<SearchPojo> {
         return view;
     }
 
-    private void setImage(Context context, ImageView image, int resId) {
-        image.setImageDrawable(getThemedDrawable(context, pojo, resId));
+    @Override
+    boolean isDrawableCached() {
+        return icon != null;
+    }
+
+    @Override
+    void setDrawableCache(Drawable drawable) {
+        icon = drawable;
+    }
+
+    @Override
+    public Drawable getDrawable(Context context) {
+        if (icon == null) {
+            synchronized (this) {
+                if (icon == null) {
+                    Intent intent = getLaunchIntent();
+                    icon = getIconByIntent(context, intent);
+                    if (icon == null) {
+                        icon = getThemedDrawable(context, pojo, pojo.type.getIconId());
+                    }
+                }
+            }
+        }
+        return icon;
     }
 
     /**
@@ -177,7 +168,8 @@ public class SearchResult extends Result<SearchPojo> {
      * @param intent
      * @return icon, of best matching app for given intent
      */
-    private Drawable getIconByIntent(Context context, Intent intent) {
+    @Nullable
+    private Drawable getIconByIntent(@NonNull Context context, @Nullable Intent intent) {
         ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
         if (componentName != null) {
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
@@ -191,41 +183,52 @@ public class SearchResult extends Result<SearchPojo> {
         switch (pojo.type) {
             case URL_QUERY:
             case SEARCH_QUERY:
-                Intent search = createSearchQueryIntent();
-                setSourceBounds(search, v);
-                try {
-                    context.startActivity(search);
-                } catch (ActivityNotFoundException e) {
-                    Log.w(TAG, "Unable to run search for url: " + pojo.url);
+            case TIMER_QUERY:
+            case URI_QUERY:
+                Intent intent = getLaunchIntent();
+                if (intent != null) {
+                    setSourceBounds(intent, v);
+                    try {
+                        context.startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Log.w(TAG, "Unable to launch activity for " + pojo.type + "(query=" + pojo.query + ", url=" + pojo.url + ")");
+                    }
                 }
                 break;
             case CALCULATOR_QUERY:
                 ClipboardUtils.setClipboard(context, pojo.query.substring(pojo.query.indexOf("=") + 2));
                 Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+
+    private Intent getLaunchIntent() {
+        switch (pojo.type) {
+            case URL_QUERY:
+            case SEARCH_QUERY:
+                return createSearchQueryIntent();
             case TIMER_QUERY:
-                try {
-                    int seconds = Integer.parseInt(pojo.url);
-                    Intent timerIntent = new Intent(AlarmClock.ACTION_SET_TIMER);
-                    timerIntent.putExtra(AlarmClock.EXTRA_LENGTH, seconds);
-                    timerIntent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
-                    String elapsedTime = DateUtils.formatElapsedTime(seconds);
-                    timerIntent.putExtra(AlarmClock.EXTRA_MESSAGE, elapsedTime);
-                    timerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(timerIntent);
-                } catch (ActivityNotFoundException | NumberFormatException e) {
-                    Log.w(TAG, "Unable to start timer for query: " + pojo.query, e);
-                }
-                break;
+                int seconds = parseSeconds(pojo.url);
+                Intent timerIntent = new Intent(AlarmClock.ACTION_SET_TIMER);
+                timerIntent.putExtra(AlarmClock.EXTRA_LENGTH, seconds);
+                timerIntent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+                String elapsedTime = DateUtils.formatElapsedTime(seconds);
+                timerIntent.putExtra(AlarmClock.EXTRA_MESSAGE, elapsedTime);
+                timerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                return timerIntent;
             case URI_QUERY:
-                Intent intent = createUriQueryIntent();
-                setSourceBounds(intent, v);
-                try {
-                    context.startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    Log.w(TAG, "Unable to run search for uri: " + pojo.url);
-                }
-                break;
+                return createUriQueryIntent();
+            case CALCULATOR_QUERY:
+            default:
+                return null;
+        }
+    }
+
+    private int parseSeconds(@NonNull String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException ignored) {
+            return 0;
         }
     }
 
@@ -263,6 +266,6 @@ public class SearchResult extends Result<SearchPojo> {
 
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
-        return false;
+        return pojo.type == SearchPojoType.CALCULATOR_QUERY;
     }
 }
