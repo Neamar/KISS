@@ -269,9 +269,9 @@ public abstract class Result<T extends Pojo> {
             }
         }
         IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
-        if (canHaveCustomIcon(context, iconPack)) {
-            // only display this option if we're using a custom icon pack, as it is not useful otherwise
-            if (iconPack.allowForCustomIcons()) {
+        // only display this option if we're using a custom icon pack, as it is not useful otherwise
+        if (iconPack.allowForCustomIcons()) {
+            if (canHaveCustomIcon(context, iconPack)) {
                 adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
             }
         }
