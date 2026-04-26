@@ -7,13 +7,12 @@ import android.os.AsyncTask;
 import androidx.annotation.CallSuper;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -141,10 +140,13 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
             while (queue.size() > maxResults) {
                 queue.poll();
             }
-            List<Result<?>> results = queue.stream()
-                    .filter(Objects::nonNull)
-                    .map(pojo -> Result.fromPojo(activity, pojo))
-                    .collect(Collectors.toList());
+            List<Result<?>> results = new ArrayList<>(queue.size());
+            while (queue.peek() != null) {
+                Pojo pojo = queue.poll();
+                if (pojo != null) {
+                    results.add(Result.fromPojo(activity, pojo));
+                }
+            }
 
             activity.beforeListChange();
 
