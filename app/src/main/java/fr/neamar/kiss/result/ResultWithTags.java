@@ -16,6 +16,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.PojoWithTags;
+import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
@@ -24,6 +25,14 @@ public abstract class ResultWithTags<T extends PojoWithTags> extends Result<T> {
     protected ResultWithTags(@NonNull T pojo) {
         super(pojo);
     }
+
+    @Override
+    protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
+        super.buildPopupMenu(context, adapter);
+
+        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
+    }
+
 
     @Override
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId, View parentView) {

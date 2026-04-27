@@ -47,7 +47,8 @@ public class PackageManagerUtils {
      * @param intent  intent
      * @return ResolveInfo for best matching app by intent
      */
-    public static ResolveInfo getBestResolve(Context context, Intent intent) {
+    @Nullable
+    public static ResolveInfo getBestResolve(@NonNull Context context, @Nullable Intent intent) {
         if (intent == null) {
             return null;
         }
@@ -93,7 +94,7 @@ public class PackageManagerUtils {
      * @return component name of best matching app for given intent
      */
     @Nullable
-    public static ComponentName getComponentName(Context context, Intent intent) {
+    public static ComponentName getComponentName(@NonNull Context context, @Nullable Intent intent) {
         ResolveInfo resolveInfo = getBestResolve(context, intent);
         if (resolveInfo != null && resolveInfo.activityInfo != null) {
             return new ComponentName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);

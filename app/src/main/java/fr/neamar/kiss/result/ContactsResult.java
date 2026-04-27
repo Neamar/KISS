@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import java.io.IOException;
@@ -26,8 +25,8 @@ import java.io.InputStream;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -173,13 +172,10 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     }
 
     @Override
-    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
-        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_contact_copy_phone));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+    protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
+        super.buildPopupMenu(context, adapter);
 
-        return inflatePopupMenu(adapter, context);
+        adapter.add(new ListPopup.Item(context, R.string.menu_contact_copy_phone));
     }
 
     @Override
@@ -222,7 +218,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
                     // Default icon
                     if (icon == null) {
-                        icon = ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_contact, context.getTheme());
+                        icon = getThemedDrawable(context, pojo, R.drawable.ic_contact);
                     }
                 }
             }
@@ -283,4 +279,24 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         }
     }
 
+    @Override
+    protected boolean isAllowedAsFavorite() {
+        return true;
+    }
+
+    @Override
+    protected boolean canRemoveFromHistory(Context context) {
+        return true;
+    }
+
+    /**
+     *
+     * @param context
+     * @param iconPack
+     * @return true, if contact has no icon set
+     */
+    @Override
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
+        return pojo.icon == null;
+    }
 }

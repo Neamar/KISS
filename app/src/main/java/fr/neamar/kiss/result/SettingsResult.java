@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
@@ -46,7 +47,7 @@ public class SettingsResult extends Result<SettingPojo> {
     @Override
     public Drawable getDrawable(Context context) {
         if (pojo.icon != -1) {
-            return getThemedDrawable(context, pojo.icon);
+            return getThemedDrawable(context, pojo, pojo.icon);
         }
 
         return null;
@@ -67,5 +68,20 @@ public class SettingsResult extends Result<SettingPojo> {
             Log.w(TAG, "Unable to launch activity", e);
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected boolean isAllowedAsFavorite() {
+        return true;
+    }
+
+    @Override
+    protected boolean canRemoveFromHistory(Context context) {
+        return true;
+    }
+
+    @Override
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
+        return true;
     }
 }

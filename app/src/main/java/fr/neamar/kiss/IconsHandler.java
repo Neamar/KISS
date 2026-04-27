@@ -14,9 +14,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -37,6 +39,7 @@ import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.AppResult;
+import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.IconShape;
@@ -160,12 +163,16 @@ public class IconsHandler {
     /**
      * Get or generate icon for a shortcut.
      *
-     * @param pojo     shortcut pojo
+     * @param pojo         shortcut pojo
      * @param shortcutInfo related shortcut info
      * @return drawable
      */
     public Drawable getDrawableIconForShortcut(Pojo pojo, ShortcutInfo shortcutInfo) {
-        Drawable icon = null;
+        Drawable icon = getCustomIcon(pojo);
+        if (icon != null) {
+            return icon;
+        }
+
         if (shortcutInfo != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             final LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
             assert launcherApps != null;
@@ -187,18 +194,6 @@ public class IconsHandler {
             icon = applyIconMask(ctx, icon);
         }
         return icon;
-    }
-
-    /**
-     * Get or generate icon for an app.
-     * Uses no cache and no custom icons.
-     *
-     * @param componentName component name
-     * @param userHandle    user handle
-     * @return drawable
-     */
-    public Drawable getOriginalDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
-        return getDrawableIconForPackage(componentName, userHandle, false, false);
     }
 
     /**
@@ -275,7 +270,13 @@ public class IconsHandler {
         return forceIconMask(drawable, shape);
     }
 
-    public Drawable getDrawableIconForCodepoint(int codePoint, @ColorInt int textColor, @ColorInt int backgroundColor) {
+    public Drawable getDrawableIconForCodepoint(@NonNull Pojo pojo, @ColorInt int textColor, @ColorInt int backgroundColor) {
+        Drawable icon = getCustomIcon(pojo);
+        if (icon != null) {
+            return icon;
+        }
+
+        int codePoint = pojo.getName().codePointAt(0);
         final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
         return forceIconMask(drawable, shape);
@@ -544,13 +545,16 @@ public class IconsHandler {
         }
     }
 
-    public void setCustomComponent(AppResult result, ComponentName componentName) {
-        // cleanup deprecated custom icons
-        long customIconId = getDataHandler().removeCustomAppIcon(result.getComponentName());
-        removeStoredDrawable(customIconFileName(result.getComponentName(), customIconId));
+    public void setCustomComponent(Result<?> result, ComponentName componentName) {
+        if (result instanceof AppResult) {
+            // cleanup deprecated custom icons
+            AppResult appResult = (AppResult) result;
+            long customIconId = getDataHandler().removeCustomAppIcon(appResult.getComponentName());
+            removeStoredDrawable(customIconFileName(appResult.getComponentName(), customIconId));
+        }
 
         // set component for custom icon
-        DBHelper.setCustomComponent(ctx, result.getClassName().flattenToString(), componentName);
+        DBHelper.setCustomComponent(ctx, result.getCustomIconId(), componentName);
         result.clearIcon();
         cacheClear();
         getDataHandler().refreshFavorites();
@@ -597,7 +601,44 @@ public class IconsHandler {
         return customComponents;
     }
 
-    private ComponentName getCustomComponentName(String id, ComponentName defaultComponent) {
-        return getCustomComponents().getOrDefault(id, defaultComponent);
+    private ComponentName getCustomComponentName(String id, ComponentName defaultComponentName) {
+        return getCustomComponents().getOrDefault(id, defaultComponentName);
+    }
+
+    private Drawable getCustomIcon(@NonNull Pojo pojo) {
+        if (getIconPack().allowForCustomIcons()) {
+            ComponentName componentName = getCustomComponentName(pojo.getCustomIconId(), null);
+            if (componentName != null) {
+                return getDrawableIconForPackage(componentName, pojo.getUserHandle());
+            }
+        }
+        return null;
+    }
+
+    public Drawable getThemedDrawable(@NonNull Pojo pojo, @DrawableRes int resId, @ColorInt int backgroundColor, @ColorInt int textColor, @ColorInt int themeFillColor) {
+        Drawable icon = getCustomIcon(pojo);
+        if (icon != null) {
+            return icon;
+        }
+
+        icon = ResourcesCompat.getDrawable(ctx.getResources(), resId, ctx.getTheme());
+        if (DrawableUtils.isAdaptiveIconDrawable(icon)) {
+            return icon;
+        } else if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(ctx)) {
+            Drawable background = getBackgroundDrawable(backgroundColor);
+            int insetX = (int) (background.getIntrinsicWidth() * 0.15);
+            int insetY = (int) (background.getIntrinsicHeight() * 0.15);
+
+            icon.setTint(textColor);
+
+            LayerDrawable combined = new LayerDrawable(new Drawable[]{background, icon});
+            combined.setLayerInset(1, insetX, insetY, insetX, insetY);
+
+            return combined;
+        } else {
+            icon.setTint(themeFillColor);
+            return icon;
+        }
     }
 }

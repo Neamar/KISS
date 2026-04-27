@@ -1,5 +1,9 @@
 package fr.neamar.kiss.pojo;
 
+import android.content.ComponentName;
+
+import androidx.annotation.NonNull;
+
 import fr.neamar.kiss.utils.UserHandle;
 
 public final class AppPojo extends PojoWithTags {
@@ -11,6 +15,7 @@ public final class AppPojo extends PojoWithTags {
 
     public final String packageName;
     public final String activityName;
+    private final ComponentName componentName;
     public final UserHandle userHandle;
 
     private boolean excluded;
@@ -21,7 +26,7 @@ public final class AppPojo extends PojoWithTags {
     private boolean excludedShortcuts;
     private final boolean disabled;
 
-    public AppPojo(String id, String packageName, String activityName, UserHandle userHandle,
+    public AppPojo(String id, @NonNull String packageName, @NonNull String activityName, @NonNull UserHandle userHandle,
                    boolean isExcluded, boolean isExcludedFromHistory, boolean isExcludedShortcuts, boolean disabled) {
         super(id);
 
@@ -33,6 +38,7 @@ public final class AppPojo extends PojoWithTags {
         this.excludedFromHistory = isExcludedFromHistory;
         this.excludedShortcuts = isExcludedShortcuts;
         this.disabled = disabled;
+        this.componentName = new ComponentName(packageName, activityName);
     }
 
     public String getComponentName() {
@@ -75,5 +81,14 @@ public final class AppPojo extends PojoWithTags {
     @Override
     public UserHandle getUserHandle() {
         return userHandle;
+    }
+
+    public ComponentName getComponent() {
+        return componentName;
+    }
+
+    @Override
+    public String getCustomIconId() {
+        return getComponent().flattenToString();
     }
 }

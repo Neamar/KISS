@@ -29,13 +29,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import fr.neamar.kiss.CustomIconDialog;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.ListPopup;
@@ -47,13 +47,10 @@ import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 public class AppResult extends ResultWithTags<AppPojo> {
 
     private static final String TAG = AppResult.class.getSimpleName();
-    private final ComponentName className;
     private volatile Drawable icon = null;
 
     AppResult(@NonNull AppPojo pojo) {
         super(pojo);
-
-        className = new ComponentName(pojo.packageName, pojo.activityName);
     }
 
     @NonNull
@@ -104,19 +101,11 @@ public class AppResult extends ResultWithTags<AppPojo> {
     }
 
     @Override
-    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
-        if (!(context instanceof MainActivity) || ((MainActivity) context).isViewingSearchResults()) {
-            adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        }
+    protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
+        super.buildPopupMenu(context, adapter);
+
         adapter.add(new ListPopup.Item(context, R.string.menu_exclude));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
-        // only display this option if we're using a custom icon pack, as it is not useful otherwise
-        if (KissApplication.getApplication(context).getIconsHandler().getIconPack().allowForCustomIcons()) {
-            adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
-        }
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         if (!pojo.isDisabled()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
         }
@@ -145,8 +134,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
         if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
-
-        return inflatePopupMenu(adapter, context);
     }
 
     @Override
@@ -188,9 +175,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
             return true;
         } else if (stringId == R.string.menu_app_rename) {
             launchRenameDialog(context, parent, pojo);
-            return true;
-        } else if (stringId == R.string.menu_custom_icon) {
-            launchCustomIcon(context, parent);
             return true;
         }
 
@@ -261,24 +245,13 @@ public class AppResult extends ResultWithTags<AppPojo> {
         ((TextView) dialog.findViewById(R.id.rename)).setText(app.getName());
     }
 
-    private void launchCustomIcon(Context context, RecordAdapter parent) {
-        //TODO: launch a DialogFragment or Activity
-        CustomIconDialog dialog = new CustomIconDialog();
-
-        dialog.setOnConfirmListener(componentName -> {
-            KissApplication.getApplication(context).getIconsHandler().setCustomComponent(this, componentName);
-        });
-
-        parent.showDialog(dialog);
-    }
-
     /**
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context) {
         LauncherApps launcher = ContextCompat.getSystemService(context, LauncherApps.class);
         assert launcher != null;
-        launcher.startAppDetailsActivity(className, pojo.userHandle.getRealHandle(), null, null);
+        launcher.startAppDetailsActivity(getClassName(), pojo.userHandle.getRealHandle(), null, null);
     }
 
     private void launchAppStore(Context context) {
@@ -326,7 +299,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
             synchronized (this) {
                 if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    icon = iconsHandler.getDrawableIconForPackage(className, this.pojo.userHandle);
+                    icon = iconsHandler.getDrawableIconForPackage(getClassName(), this.pojo.userHandle);
                 }
             }
         }
@@ -359,7 +332,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
                 }
             }
 
-            launcher.startMainActivity(className, pojo.userHandle.getRealHandle(), sourceBounds, opts);
+            launcher.startMainActivity(getClassName(), pojo.userHandle.getRealHandle(), sourceBounds, opts);
         } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
             Log.w(TAG, "Unable to launch activity", e);
             // Application was just removed?
@@ -385,6 +358,21 @@ public class AppResult extends ResultWithTags<AppPojo> {
     }
 
     public ComponentName getClassName() {
-        return className;
+        return pojo.getComponent();
+    }
+
+    @Override
+    protected boolean isAllowedAsFavorite() {
+        return true;
+    }
+
+    @Override
+    protected boolean canRemoveFromHistory(Context context) {
+        return !(context instanceof MainActivity) || ((MainActivity) context).isViewingSearchResults();
+    }
+
+    @Override
+    protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
+        return true;
     }
 }
