@@ -68,9 +68,14 @@ public class CalculatorProviderTest {
 				Arguments.of("100-100%", "0"),
 				Arguments.of("100+0%", "100"),
 
+				// Negative base: percentage is applied with the base's sign
+				Arguments.of("-5+10%", "-5.5"),
+
 				// Pattern doesn't match: % keeps its modulo meaning
 				Arguments.of("17%5", "2"),
-				Arguments.of("100%5", "0")
+				Arguments.of("100%5", "0"),
+				// Trailing char after % blocks the percent path; falls through to modulo
+				Arguments.of("5+2%2", "5")
 		);
 	}
 
