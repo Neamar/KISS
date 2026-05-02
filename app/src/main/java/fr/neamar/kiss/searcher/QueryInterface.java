@@ -6,7 +6,12 @@ import fr.neamar.kiss.ui.ListPopup;
 
 public interface QueryInterface {
     void temporarilyDisableTranscriptMode();
+
     void updateTranscriptMode(int transcriptMode);
+
+    void beforeListChange();
+
+    void afterListChange();
 
     void launchOccurred();
 

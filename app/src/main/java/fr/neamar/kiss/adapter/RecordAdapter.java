@@ -14,8 +14,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.PhoneResult;
@@ -125,15 +129,30 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     public void removeResult(Result<?> result) {
+        parent.beforeListChange();
         results.remove(result);
         notifyDataSetChanged();
         // Do not reset scroll, we want the remaining items to still be in view
         parent.temporarilyDisableTranscriptMode();
+        parent.afterListChange();
     }
 
-    public void updateResults(@NonNull Context context, List<Result<?>> results, boolean isRefresh, String query) {
+    public void updateWithPojos(@NonNull Context context, @NonNull List<Pojo> pojos, boolean isRefresh, String query) {
+        Map<Pojo, Result<?>> existingResults = this.results.stream()
+                .collect(Collectors.toMap(Result::getPojo, Function.identity()));
+        List<Result<?>> updatedResults = pojos.stream()
+                .filter(Objects::nonNull)
+                .map(pojo -> existingResults.getOrDefault(pojo, Result.fromPojo(parent, pojo)))
+                .collect(Collectors.toList());
+
+        updateResults(context, updatedResults, isRefresh, query);
+    }
+
+    public void updateResults(@NonNull Context context, List<Result<?>> updatedResults, boolean isRefresh, String query) {
+        parent.beforeListChange();
+
         this.results.clear();
-        this.results.addAll(results);
+        this.results.addAll(updatedResults);
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
         fuzzyScore = FuzzyFactory.createFuzzyScore(context, queryNormalized.codePoints, true);
@@ -143,6 +162,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
             // We're refreshing an existing dataset, do not reset scroll!
             parent.temporarilyDisableTranscriptMode();
         }
+
+        parent.afterListChange();
     }
 
     /**
@@ -155,8 +176,10 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
 
     public void clear() {
+        parent.beforeListChange();
         this.results.clear();
         notifyDataSetChanged();
+        parent.afterListChange();
     }
 
     /**

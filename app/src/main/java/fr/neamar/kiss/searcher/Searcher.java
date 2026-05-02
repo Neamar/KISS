@@ -140,19 +140,15 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
             while (queue.size() > maxResults) {
                 queue.poll();
             }
-            List<Result<?>> results = new ArrayList<>(queue.size());
+            List<Pojo> pojos = new ArrayList<>(queue.size());
             while (queue.peek() != null) {
                 Pojo pojo = queue.poll();
                 if (pojo != null) {
-                    results.add(Result.fromPojo(activity, pojo));
+                    pojos.add(pojo);
                 }
             }
 
-            activity.beforeListChange();
-
-            activity.adapter.updateResults(activity, results, isRefresh, query);
-
-            activity.afterListChange();
+            activity.adapter.updateWithPojos(activity, pojos, isRefresh, query);
         }
 
         searchDone(false);
