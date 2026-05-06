@@ -982,7 +982,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
     }
 
-    private Pojo getPojo(String id) {
+    public Pojo getPojo(String id) {
         // Ask all providers if they know this id
         for (ProviderEntry entry : this.providers.values()) {
             if (entry.provider != null && entry.provider.mayFindById(id)) {
