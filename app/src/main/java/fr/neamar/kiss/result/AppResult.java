@@ -31,7 +31,6 @@ import androidx.core.content.ContextCompat;
 
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -368,7 +367,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
 
     @Override
     protected boolean canRemoveFromHistory(Context context) {
-        return !(context instanceof MainActivity) || ((MainActivity) context).isViewingSearchResults();
+        return true;
     }
 
     @Override
