@@ -20,14 +20,7 @@ import java.util.stream.Collectors;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.result.AppResult;
-import fr.neamar.kiss.result.ContactsResult;
-import fr.neamar.kiss.result.PhoneResult;
 import fr.neamar.kiss.result.Result;
-import fr.neamar.kiss.result.SearchResult;
-import fr.neamar.kiss.result.SettingsResult;
-import fr.neamar.kiss.result.ShortcutsResult;
-import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.Log;
@@ -62,23 +55,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     @Override
     public int getItemViewType(int position) {
-        Result<?> result = getItem(position);
-        if (result instanceof AppResult)
-            return 0;
-        else if (result instanceof SearchResult)
-            return 1;
-        else if (result instanceof ContactsResult)
-            return 2;
-        else if (result instanceof SettingsResult)
-            return 3;
-        else if (result instanceof PhoneResult)
-            return 4;
-        else if (result instanceof ShortcutsResult)
-            return 5;
-        else if (result instanceof TagDummyResult)
-            return 6;
-        else
-            return -1;
+        return Result.getItemViewType(getItem(position));
     }
 
     @Override

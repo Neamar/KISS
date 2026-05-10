@@ -101,6 +101,25 @@ public abstract class Result<T extends Pojo> {
         throw new UnsupportedOperationException("Unable to create a result from POJO");
     }
 
+    public static int getItemViewType(Result<?> result) {
+        if (result instanceof AppResult)
+            return 0;
+        else if (result instanceof SearchResult)
+            return 1;
+        else if (result instanceof ContactsResult)
+            return 2;
+        else if (result instanceof SettingsResult)
+            return 3;
+        else if (result instanceof PhoneResult)
+            return 4;
+        else if (result instanceof ShortcutsResult)
+            return 5;
+        else if (result instanceof TagDummyResult)
+            return 6;
+        else
+            return -1;
+    }
+
     public String getPojoId() {
         return pojo.id;
     }
