@@ -105,6 +105,11 @@ public abstract class Result<T extends Pojo> {
         return pojo.id;
     }
 
+    @NonNull
+    public T getPojo() {
+        return this.pojo;
+    }
+
     public String getFavoriteId() {
         return pojo.getFavoriteId();
     }
