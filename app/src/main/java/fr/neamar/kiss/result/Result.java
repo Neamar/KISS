@@ -59,6 +59,8 @@ import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
+import fr.neamar.kiss.searcher.SearchHandler;
+import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -259,7 +261,7 @@ public abstract class Result<T extends Pojo> {
      * Default popup menu implementation, can be overridden by children class to display a more specific menu
      */
     protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
-        if (canRemoveFromHistory(context)) {
+        if (canRemoveFromHistory(context) && isShowingHistory()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_remove));
         }
         if (isAllowedAsFavorite()) {
@@ -280,6 +282,10 @@ public abstract class Result<T extends Pojo> {
                 adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
             }
         }
+    }
+
+    private boolean isShowingHistory() {
+        return SearchHandler.getInstance().getLastSearchType() == Searcher.Type.HISTORY;
     }
 
     private ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
