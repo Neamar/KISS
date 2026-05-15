@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.UserHandle;
 import android.text.TextUtils;
 import android.view.ContextMenu;
@@ -437,7 +438,7 @@ class Widgets extends Forwarder {
         final ComponentName provider = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER);
         final UserHandle profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
 
-        new Handler().postDelayed(() -> {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Log.d(TAG, "asking for permission");
 
             Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_BIND);

@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -365,7 +366,7 @@ public abstract class Result<T extends Pojo> {
         // * to ensure the animation runs smoothly
         // * to avoid a flickering -- launchOccurred will refresh the list
         // Thus TOUCH_DELAY * 3
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() -> {
             if (queryInterface != null) {
                 queryInterface.launchOccurred();
@@ -566,7 +567,7 @@ public abstract class Result<T extends Pojo> {
         // We'll need to reset the list view to its previous transcript mode,
         // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
         // Let's wait for half a second, that's ugly but we don't have any other option :(
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() -> adapter.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
     }
 
