@@ -77,21 +77,14 @@ public class IconsHandler {
         this.mSystemPack = new SystemIconPack(ctx);
         clearOldCache();
         loadAvailableIconsPacks();
-        loadIconsPack();
-    }
-
-    /**
-     * Load configured icons pack
-     */
-    private void loadIconsPack() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        onPrefChanged(prefs, "icons-pack");
+        loadIconsPack(prefs);
     }
 
     /**
      * Set values from preferences
      */
-    public void onPrefChanged(SharedPreferences pref, String key) {
+    public void onPrefChanged(SharedPreferences prefs, String key) {
         if (key.equalsIgnoreCase("icons-pack") ||
                 key.equalsIgnoreCase("adaptive-shape") ||
                 key.equalsIgnoreCase("force-adaptive") ||
@@ -99,13 +92,7 @@ public class IconsHandler {
                 key.equalsIgnoreCase("contact-pack-mask") ||
                 key.equalsIgnoreCase("contacts-shape") ||
                 key.equalsIgnoreCase(DrawableUtils.KEY_THEMED_ICONS)) {
-            cacheClear();
-            mSystemPack.setAdaptiveShape(getAdaptiveShape(pref, "adaptive-shape"));
-            mForceAdaptive = pref.getBoolean("force-adaptive", true);
-            mForceShape = pref.getBoolean("force-shape", true);
-            mContactPackMask = pref.getBoolean("contact-pack-mask", true);
-            mContactsShape = getAdaptiveShape(pref, "contacts-shape");
-            loadIconsPack(pref.getString("icons-pack", null));
+            loadIconsPack(prefs);
             getDataHandler().refreshFavorites();
         }
     }
@@ -126,10 +113,16 @@ public class IconsHandler {
 
     /**
      * Parse icons pack metadata
-     *
-     * @param packageName Android package ID of the package to parse
      */
-    private void loadIconsPack(String packageName) {
+    private void loadIconsPack(SharedPreferences prefs) {
+        cacheClear();
+        mSystemPack.setAdaptiveShape(getAdaptiveShape(prefs, "adaptive-shape"));
+        mForceAdaptive = prefs.getBoolean("force-adaptive", true);
+        mForceShape = prefs.getBoolean("force-shape", true);
+        mContactPackMask = prefs.getBoolean("contact-pack-mask", true);
+        mContactsShape = getAdaptiveShape(prefs, "contacts-shape");
+        String packageName = prefs.getString("icons-pack", null);
+
         // system icons, nothing to do
         if (packageName == null || packageName.equalsIgnoreCase("default")) {
             cacheClear();
