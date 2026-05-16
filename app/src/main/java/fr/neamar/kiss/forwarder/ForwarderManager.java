@@ -79,16 +79,15 @@ public class ForwarderManager extends Forwarder {
 
     public void onDataSetChanged() {
         widgetsForwarder.onDataSetChanged();
-        favoritesForwarder.onDataSetChanged();
     }
 
     public void updateSearchRecords(String query) {
-        favoritesForwarder.updateSearchRecords(query);
         experienceTweaks.updateSearchRecords(query);
     }
 
     public void onFavoriteChange() {
         favoritesForwarder.onFavoriteChange();
+        experienceTweaks.onFavoriteChange();
     }
 
     public void onDisplayKissBar(boolean display) {

@@ -305,9 +305,11 @@ public class ExperienceTweaks extends Forwarder {
     }
 
     void onDisplayKissBar(boolean display) {
-        if (isMinimalisticModeEnabledForFavorites() && !display) {
-            mainActivity.setFavoritesBarVisible(false);
-        }
+        setFavoritesBarVisible(mainActivity.searchEditText.getText());
+    }
+
+    private boolean isExternalFavoriteBarEnabled() {
+        return prefs.getBoolean("enable-favorites-bar", true);
     }
 
     void updateSearchRecords(String query) {
@@ -318,13 +320,19 @@ public class ExperienceTweaks extends Forwarder {
                 mainActivity.search(Searcher.Type.NULL, query, false);
                 // By default, help text is displayed -- not in minimalistic mode.
                 mainEmptyView.setVisibility(View.GONE);
-
-                if (isMinimalisticModeEnabledForFavorites()) {
-                    mainActivity.setFavoritesBarVisible(false);
-                }
             } else {
                 mainActivity.showHistory();
             }
+        }
+
+        setFavoritesBarVisible(query);
+    }
+
+    private void setFavoritesBarVisible(CharSequence query) {
+        if (isExternalFavoriteBarEnabled()) {
+            mainActivity.setFavoritesBarVisible(!mainActivity.isViewingAllApps() && TextUtils.isEmpty(query) && !isMinimalisticModeEnabledForFavorites());
+        } else {
+            mainActivity.setFavoritesBarVisible(mainActivity.isViewingAllApps());
         }
     }
 
@@ -424,5 +432,9 @@ public class ExperienceTweaks extends Forwarder {
 
     public void onPause() {
         keyboardManager.unregisterKeyboardListener();
+    }
+
+    public void onFavoriteChange() {
+        setFavoritesBarVisible(mainActivity.searchEditText.getText());
     }
 }
