@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Pair;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -260,18 +259,6 @@ public class Favorites extends Forwarder {
             ((GridLayoutManager) favoritesBar.getLayoutManager()).setSpanCount(Math.max(favSize, 1));
         }
         favoriteAdapter.setFavorites(favoritesPojo.stream().map(pojo -> Result.fromPojo(mainActivity, pojo)).collect(Collectors.toList()));
-        mainActivity.setFavoritesBarVisible(favSize != 0);
-    }
-
-    void updateSearchRecords(String query) {
-        mainActivity.setFavoritesBarVisible(TextUtils.isEmpty(query));
-    }
-
-    void onDataSetChanged() {
-        // Do not display the external bar when viewing all apps
-        if (mainActivity.isViewingAllApps() && isExternalFavoriteBarEnabled()) {
-            mainActivity.setFavoritesBarVisible(false);
-        }
     }
 
     private void onClick(View v, Result<?> result) {
