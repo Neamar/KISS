@@ -254,6 +254,11 @@
                 app:defaultValue="false"
                 app:key="large-result-list-margins"
                 app:title="@string/large_result_list_margins" />
+            <SwitchPreference
+                app:defaultValue="true"
+                app:key="widget-stack-show-dot-indicator"
+                app:summary="@string/widget_stack_show_dot_indicator_summary"
+                app:title="@string/widget_stack_show_dot_indicator" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
@@ -564,7 +569,6 @@
             app:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
             app:key="reset-excluded-app-shortcuts"
             app:title="@string/reset_excluded_app_shortcuts_name" />
-        />
     </PreferenceScreen>
     <PreferenceScreen
         app:key="importexport"
