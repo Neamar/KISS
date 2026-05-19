@@ -39,10 +39,10 @@ public class TagsSelectPreference extends MultiSelectListPreference {
     }
 
     private void setEntries() {
-        // get all possible tags
+        // get all possible tags, hiding tags only attached to records that no longer exist
         Set<String> tagsSet = getDataHandler()
                 .getTagsHandler()
-                .getAllTagsAsSet();
+                .getValidTagsAsSet();
 
         // make sure we can toggle off the tags that are in the favs now
         Set<String> selectedTags = getSelectedTags();

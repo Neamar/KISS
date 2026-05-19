@@ -74,6 +74,31 @@ public class TagsHandler {
         return tags;
     }
 
+    /**
+     * Tags whose record id still resolves to a known pojo. Drops orphans
+     * (e.g. tags from uninstalled apps) so settings pickers don't list them.
+     * Falls back to {@link #getAllTagsAsSet()} until every provider is loaded,
+     * because we can't tell live ids from orphans before then.
+     */
+    public Set<String> getValidTagsAsSet() {
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        if (!dataHandler.isAllProvidersLoaded()) {
+            return getAllTagsAsSet();
+        }
+        Set<String> tags = new HashSet<>();
+        for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
+            String value = entry.getValue();
+            if (TextUtils.isEmpty(value)) {
+                continue;
+            }
+            if (dataHandler.getPojo(entry.getKey()) == null) {
+                continue;
+            }
+            tags.addAll(Arrays.asList(value.split("\\s+")));
+        }
+        return tags;
+    }
+
     public Map<String, String> getTags() {
         return tagsCache;
     }
