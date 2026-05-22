@@ -83,7 +83,7 @@ public abstract class ResultWithTags<T extends PojoWithTags> extends Result<T> {
         if (TextUtils.isEmpty(pojo.getTags())) {
             tagsView.setVisibility(View.GONE);
         } else if (displayHighlighted(pojo.getNormalizedTags(), pojo.getTags(),
-                fuzzyScore, tagsView, context) || isTagsVisible(context)) {
+                fuzzyScore, tagsView, context) && isTagsVisible(context)) {
             tagsView.setVisibility(View.VISIBLE);
         } else {
             tagsView.setVisibility(View.GONE);
