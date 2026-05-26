@@ -185,8 +185,6 @@ public class CustomIconDialog extends DialogFragment {
         }
         mIconData.sort(Comparator.comparing(iconData -> iconData.componentName));
         mIconView.getAdapter().notifyDataSetChanged();
-        mSearch.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
-        mIconView.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     private static class IconData {
