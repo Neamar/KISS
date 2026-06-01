@@ -24,7 +24,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Create Release Directory
         run: mkdir -p release
@@ -36,8 +36,7 @@ jobs:
 
       - name: Build APKs
         run: |
-          bash ./gradlew assembleDebug --stacktrace
-          bash ./gradlew assembleRelease --stacktrace
+          bash ./gradlew assembleDebug assembleRelease --stacktrace
           cp "app/build/outputs/apk/debug/app-debug.apk" "release/"
           cp "app/build/outputs/apk/release/app-release-unsigned.apk" "release/"
 
