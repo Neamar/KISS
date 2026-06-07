@@ -251,24 +251,7 @@ public class ExperienceTweaks extends Forwarder {
         keyboardManager.registerKeyboardListener(
                 mainActivity.findViewById(android.R.id.content),
                 shouldShowKeyboard(),
-                (keyboardIsVisible) -> {
-                    mainActivity.onKeyboardVisibilityChanged(keyboardIsVisible);
-                    if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
-                            mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
-                        if (keyboardIsVisible) {
-                            // If it's more than 200dp, it's most likely a keyboard.
-                            if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
-                                mainActivity.showHistory();
-                            }
-                        } else {
-                            // we never want this triggered because the keyboard scroller did it
-                            if (mainActivity.adapter != null && !mainActivity.adapter.isEmpty() && !mainActivity.hider.isScrolled()) {
-                                // reset edittext (hide history)
-                                mainActivity.clearSearchText();
-                            }
-                        }
-                    }
-                });
+                mainActivity::onKeyboardVisibilityChanged);
 
         adjustInputType();
 
