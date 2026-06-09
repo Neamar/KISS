@@ -954,6 +954,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         if (searchEditText.requestFocus()) {
             searchEditText.setCursorVisible(true);
             WindowCompat.getInsetsController(getWindow(), searchEditText).show(WindowInsetsCompat.Type.ime());
+            showHistoryWithKeyboard(true);
         }
     }
 
@@ -1054,6 +1055,24 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     public void onKeyboardVisibilityChanged(boolean keyboardIsVisible) {
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(keyboardIsVisible);
+        showHistoryWithKeyboard(keyboardIsVisible);
+    }
+
+    private void showHistoryWithKeyboard(boolean keyboardIsVisible) {
+        if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
+                isViewingSearchResults() && TextUtils.isEmpty(searchEditText.getText())) {
+            if (keyboardIsVisible) {
+                if (adapter == null || adapter.isEmpty()) {
+                    showHistory();
+                }
+            } else {
+                // we never want this triggered because the keyboard scroller did it
+                if (adapter != null && !adapter.isEmpty() && !hider.isScrolled()) {
+                    // reset edittext (hide history)
+                    clearSearchText();
+                }
+            }
+        }
     }
 
     private boolean isMinimalisticModeEnabled() {
