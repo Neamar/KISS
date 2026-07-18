@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -389,7 +390,9 @@ public abstract class Result<T extends Pojo> {
 
     protected final void recordLaunch(Context context, @Nullable QueryInterface queryInterface) {
         // Save in history
-        if (canAddToHistory()) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean demoteDisabled = prefs.getBoolean("demote-disabled-apps", true);
+        if (canAddToHistory() || (!demoteDisabled && pojo.isDisabled())) {
             KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
         }
         // Record the launch after some period,

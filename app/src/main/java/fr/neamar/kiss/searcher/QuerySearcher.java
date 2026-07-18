@@ -49,10 +49,13 @@ public class QuerySearcher extends Searcher {
 
     @Override
     public boolean addResults(List<? extends Pojo> pojos) {
+        boolean demoteDisabled = prefs.getBoolean("demote-disabled-apps", true);
         for (Pojo pojo : pojos) {
             if (pojo.isDisabled()) {
-                // Give penalty for disabled items, these should not be preferred
-                pojo.relevance -= 200;
+                if (demoteDisabled) {
+                    // Give penalty for disabled items, these should not be preferred
+                    pojo.relevance -= 200;
+                }
             } else {
                 // Give a boost if item was previously selected for this query
                 Integer value = knownIds.get(pojo.id);
