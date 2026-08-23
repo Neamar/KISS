@@ -513,7 +513,7 @@ class Widgets extends Forwarder {
         int initialLineSize = WidgetUtils.getInitialLineSize(getMinHeight(appWidgetInfo), getLineHeight(), upsizeAllowed, INITIAL_WIDGET_LINE_SIZE);
 
         if (!isScrollingEnabled()) {
-            // legacy behavior: widgets cannot be scrolled into view, so they must fit the visible viewport
+            // existing behavior: widgets cannot be scrolled into view, so they must fit the visible viewport
             int usedLines = 0;
             for (int i = 0; i < widgetArea.getChildCount(); i++) {
                 usedLines += getLineSize(widgetArea.getChildAt(i));
