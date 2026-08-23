@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.ContextMenu;
@@ -33,6 +34,18 @@ public class ForwarderManager extends Forwarder {
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
+
+        // empty areas of the widget scroll area behave as a non-widget area
+        widgetsForwarder.setEmptyAreaTouchListener(new View.OnTouchListener() {
+            // click semantics are owned by the gesture pipeline the events are forwarded to
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                experienceTweaks.onTouch(event);
+                liveWallpaperForwarder.onTouch(v, event);
+                return true;
+            }
+        });
     }
 
     public void onCreate() {
@@ -49,6 +62,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onResume() {
+        widgetsForwarder.onResume();
         interfaceTweaks.onResume();
         experienceTweaks.onResume();
         notificationForwarder.onResume();

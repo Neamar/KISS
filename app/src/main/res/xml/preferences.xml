@@ -599,6 +599,17 @@
             app:defaultValue="false"
             app:key="use-fuzzy-score-v1"
             app:title="Use legacy fuzzy search algorithm" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-widget-scrolling"
+            app:title="@string/widget_scrolling_name" />
+        <EditTextPreference
+            android:inputType="number"
+            app:defaultValue="10"
+            app:dependency="enable-widget-scrolling"
+            app:key="widget-spacing"
+            app:title="@string/widget_spacing_name"
+            app:useSimpleSummaryProvider="true" />
         <fr.neamar.kiss.preference.RootModeSwitch
             app:defaultValue="false"
             app:key="root-mode"
