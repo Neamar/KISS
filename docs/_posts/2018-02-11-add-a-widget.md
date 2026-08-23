@@ -28,9 +28,3 @@ From there, pick a widget, and the widget will appear on top of an empty search 
 To remove the widget, long-press on the widget and select "Remove widget".
 
 By long-pressing, you can also resize the widget and change the order between the widgets.
-
-## Multiple widgets
-
-You can add as many widgets as you like: when they no longer fit on screen, the widget area scrolls vertically. Newly added widgets keep their requested size even if taller than the screen — scroll to reach them.
-
-Note: the widget area scrolls with a **two-finger drag** — start it anywhere over your widgets. A single finger always belongs to the widgets themselves: tap, long-press, and scrollable widget content (e.g. agendas) work everywhere. Gestures on empty areas (tap, double tap, swipes) behave exactly like elsewhere in KISS. Both scrolling and the spacing between widgets can be configured under `⋮, KISS Settings, Advanced`.
