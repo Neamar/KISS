@@ -1,5 +1,6 @@
 package fr.neamar.kiss.searcher;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
@@ -10,6 +11,7 @@ import java.util.List;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.db.HistoryMode;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -75,16 +77,24 @@ public class QuerySearcher extends Searcher {
         if (activity == null)
             return null;
 
-        // Have we ever made the same query and selected something ?
-        List<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(activity, query);
+        // Have we ever made the same query and selected something?
+        HistoryMode historyMode = getHistoryMode(activity);
+        List<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getHistory(activity, getMaxResultCount(), historyMode, query);
+
         knownIds = new HashMap<>();
-        for (ValuedHistoryRecord id : lastIdsForQuery) {
-            knownIds.put(id.record, id.value);
+        int size = lastIdsForQuery.size();
+        for (int i = 0; i < size; i++) {
+            knownIds.put(lastIdsForQuery.get(i).record, historyMode == HistoryMode.ALPHABETICALLY ? 0 : size - i);
         }
 
         // Request results via "addResult"
         KissApplication.getApplication(activity).getDataHandler().requestResults(query, this);
         return null;
+    }
+
+    public HistoryMode getHistoryMode(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return HistoryMode.valueById(prefs.getString("history-mode", "recency"));
     }
 
     public static void clearMaxResultCountCache() {

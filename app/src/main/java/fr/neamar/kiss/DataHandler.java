@@ -35,6 +35,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
@@ -52,7 +53,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     private TagsHandler tagsHandler;
     final private Context context;
-    private String currentQuery;
     private final Map<ProviderName, ProviderEntry> providers = new HashMap<>();
 
     /**
@@ -302,7 +302,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * @param searcher the searcher currently running
      */
     public void requestResults(String query, Searcher searcher) {
-        currentQuery = query;
         for (ProviderEntry entry : this.providers.values()) {
             if (searcher.isCancelled())
                 break;
@@ -946,7 +945,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excludedFromHistory = getExcludedFromHistory();
 
         if (!frozen && !excludedFromHistory.contains(id)) {
-            DBHelper.insertHistory(this.context, currentQuery, id);
+            DBHelper.insertHistory(this.context, SearchHandler.getInstance().getLastSearchQuery(), id);
         }
     }
 

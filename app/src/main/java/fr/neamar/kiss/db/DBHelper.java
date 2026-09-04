@@ -87,57 +87,103 @@ public class DBHelper {
         db.delete("history", "", null);
     }
 
-    private static Cursor getHistoryByFrecency(SQLiteDatabase db, int limit) {
+    private static Cursor getHistoryByFrecency(SQLiteDatabase db, int limit, @Nullable String query) {
         // Since smart history sql uses a group by we don't use the whole history but a limit of recent apps
         int historyWindowSize = limit * 30;
 
-        // order history based on frequency * recency
-        // frequency = #launches_for_app / #all_launches
-        // recency = 1 / position_of_app_in_normal_history
-        String sql = "SELECT record, count(*) FROM " +
-                " (" +
-                "   SELECT * FROM history ORDER BY _id DESC " +
-                "   LIMIT " + historyWindowSize +
-                " ) small_history " +
-                " GROUP BY record " +
-                " ORDER BY " +
-                "   count(*) * 1.0 / (select count(*) from history LIMIT " + historyWindowSize + ") / ((SELECT _id FROM history ORDER BY _id DESC LIMIT 1) - max(_id) + 0.001) " +
-                " DESC " +
-                " LIMIT " + limit;
-        return db.rawQuery(sql, null);
+        if (query == null) {
+            // order history based on frequency * recency
+            // frequency = #launches_for_app / #all_launches
+            // recency = 1 / position_of_app_in_normal_history
+            String sql = "SELECT record, count(*) FROM " +
+                    " (" +
+                    "   SELECT * FROM history ORDER BY _id DESC " +
+                    "   LIMIT " + historyWindowSize +
+                    " ) small_history " +
+                    " GROUP BY record " +
+                    " ORDER BY " +
+                    "   count(*) * 1.0 / (select count(*) from history LIMIT " + historyWindowSize + ") / ((SELECT _id FROM history ORDER BY _id DESC LIMIT 1) - max(_id) + 0.001) " +
+                    " DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, null);
+        } else {
+            // order history based on frequency * recency
+            // frequency = #launches_for_app / #all_launches
+            // recency = 1 / position_of_app_in_normal_history
+            String sql = "SELECT record, count(*) FROM " +
+                    " (" +
+                    "   SELECT * FROM history ORDER BY _id DESC " +
+                    "   LIMIT " + historyWindowSize +
+                    " ) small_history " +
+                    " WHERE query LIKE ? " +
+                    " GROUP BY record " +
+                    " ORDER BY " +
+                    "   count(*) * 1.0 / (select count(*) from history LIMIT " + historyWindowSize + ") / ((SELECT _id FROM history ORDER BY _id DESC LIMIT 1) - max(_id) + 0.001) " +
+                    " DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, new String[]{query + "%"});
+        }
     }
 
-    private static Cursor getHistoryByFrequency(SQLiteDatabase db, int limit) {
-        // order history based on frequency
-        String sql = "SELECT record, count(*) FROM history" +
-                " GROUP BY record " +
-                " ORDER BY count(*) DESC " +
-                " LIMIT " + limit;
-        return db.rawQuery(sql, null);
+    private static Cursor getHistoryByFrequency(SQLiteDatabase db, int limit, @Nullable String query) {
+        if (query == null) {
+            // order history based on frequency
+            String sql = "SELECT record, count(*) FROM history" +
+                    " GROUP BY record " +
+                    " ORDER BY count(*) DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, null);
+        } else {
+            // order history based on frequency
+            String sql = "SELECT record, count(*) FROM history" +
+                    " WHERE query LIKE ? " +
+                    " GROUP BY record " +
+                    " ORDER BY count(*) DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, new String[]{query + "%"});
+        }
     }
 
-    private static Cursor getHistoryByRecency(SQLiteDatabase db, int limit) {
-        return db.query(true, "history", new String[]{"record", "1"}, null, null,
-                null, null, "_id DESC", Integer.toString(limit));
+    private static Cursor getHistoryByRecency(SQLiteDatabase db, int limit, @Nullable String query) {
+        if (query == null) {
+            return db.query(true, "history", new String[]{"record", "1"}, null, null,
+                    null, null, "_id DESC", Integer.toString(limit));
+        } else {
+            return db.query(true, "history", new String[]{"record", "1"}, "query LIKE ?", new String[]{query + "%"},
+                    null, null, "_id DESC", Integer.toString(limit));
+        }
     }
 
     /**
      * Get the most used history items adaptively based on a set period of time
      *
      * @param db    The SQL db
-     * @param hours How many hours back we want to test frequency against
      * @param limit Maximum result size
      * @return Cursor
      */
-    private static Cursor getHistoryByAdaptive(SQLiteDatabase db, int hours, int limit) {
-        // order history based on frequency
-        String sql = "SELECT record, count(*) FROM history " +
-                "WHERE timeStamp >= 0 " +
-                "AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000L)) +
-                " GROUP BY record " +
-                " ORDER BY count(*) DESC " +
-                " LIMIT " + limit;
-        return db.rawQuery(sql, null);
+    private static Cursor getHistoryByAdaptive(SQLiteDatabase db, int limit, @Nullable String query) {
+        // how many hours back we want to test frequency against
+        int hours = 36;
+        if (query == null) {
+            // order history based on frequency
+            String sql = "SELECT record, count(*) FROM history " +
+                    " WHERE timeStamp >= 0 " +
+                    " AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000L)) +
+                    " GROUP BY record " +
+                    " ORDER BY count(*) DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, null);
+        } else {
+            // order history based on frequency
+            String sql = "SELECT record, count(*) FROM history " +
+                    " WHERE timeStamp >= 0 " +
+                    " AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000L)) +
+                    " AND query LIKE ? " +
+                    " GROUP BY record " +
+                    " ORDER BY count(*) DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, new String[]{query + "%"});
+        }
     }
 
     /**
@@ -154,18 +200,28 @@ public class DBHelper {
      * @param limit Maximum result size
      * @return Cursor
      */
-    private static Cursor getHistoryByTime(SQLiteDatabase db, int limit) {
+    private static Cursor getHistoryByTime(SQLiteDatabase db, int limit, @Nullable String query) {
         final long now = System.currentTimeMillis();
         final long MS_24_DAYS_AGO = now - 2073600000L;
-        String sql = "SELECT record, MAX(ABS((" + now + " - timestamp) % 86400000 - 43200000) - (" + now + " - timestamp) / 48 ) AS value" +
-                " FROM history" +
-                " WHERE timestamp > " + MS_24_DAYS_AGO +
-                " GROUP BY record " +
-                " ORDER BY value DESC " +
-                " LIMIT " + limit;
-        return db.rawQuery(sql, null);
+        if (query == null) {
+            String sql = "SELECT record, MAX(ABS((" + now + " - timestamp) % 86400000 - 43200000) - (" + now + " - timestamp) / 48 ) AS value" +
+                    " FROM history" +
+                    " WHERE timestamp > " + MS_24_DAYS_AGO +
+                    " GROUP BY record " +
+                    " ORDER BY value DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, null);
+        } else {
+            String sql = "SELECT record, MAX(ABS((" + now + " - timestamp) % 86400000 - 43200000) - (" + now + " - timestamp) / 48 ) AS value" +
+                    " FROM history" +
+                    " WHERE timestamp > " + MS_24_DAYS_AGO +
+                    " AND query LIKE ? " +
+                    " GROUP BY record " +
+                    " ORDER BY value DESC " +
+                    " LIMIT " + limit;
+            return db.rawQuery(sql, new String[]{query + "%"});
+        }
     }
-
 
     /**
      * Retrieve previous query history
@@ -175,6 +231,18 @@ public class DBHelper {
      * @return records with number of use
      */
     public static List<ValuedHistoryRecord> getHistory(Context context, int limit, HistoryMode historyMode) {
+        return getHistory(context, limit, historyMode, null);
+    }
+
+    /**
+     * Retrieve previous query history
+     *
+     * @param context android context
+     * @param limit   max number of items to retrieve
+     * @param query   search query
+     * @return records with number of use
+     */
+    public static List<ValuedHistoryRecord> getHistory(Context context, int limit, HistoryMode historyMode, @Nullable String query) {
         List<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
@@ -182,23 +250,23 @@ public class DBHelper {
         Cursor cursor;
         switch (historyMode) {
             case FRECENCY:
-                cursor = getHistoryByFrecency(db, limit);
+                cursor = getHistoryByFrecency(db, limit, query);
                 break;
             case FREQUENCY:
-                cursor = getHistoryByFrequency(db, limit);
+                cursor = getHistoryByFrequency(db, limit, query);
                 break;
             case ADAPTIVE:
-                cursor = getHistoryByAdaptive(db, 36, limit);
+                cursor = getHistoryByAdaptive(db, limit, query);
                 break;
             case TIME:
-                cursor = getHistoryByTime(db, limit);
+                cursor = getHistoryByTime(db, limit, query);
                 break;
             case ALPHABETICALLY:
             case RECENCY:
-                cursor = getHistoryByRecency(db, limit);
+                cursor = getHistoryByRecency(db, limit, query);
                 break;
             default:
-                cursor = getHistoryByRecency(db, limit);
+                cursor = getHistoryByRecency(db, limit, query);
                 Log.e(TAG, "Fallback to 'recency' for unknown history mode " + historyMode);
                 break;
         }
