@@ -35,7 +35,7 @@ public class DBHelper {
         return database;
     }
 
-    private static List<ValuedHistoryRecord> readCursor(Cursor cursor) {
+    private static List<ValuedHistoryRecord> readCursor(@NonNull Cursor cursor) {
         cursor.moveToFirst();
 
         List<ValuedHistoryRecord> records = new ArrayList<>(cursor.getCount());
@@ -60,7 +60,7 @@ public class DBHelper {
      * @param query   query to insert
      * @param record  record to insert
      */
-    public static void insertHistory(Context context, String query, String record) {
+    public static void insertHistory(@NonNull Context context, @Nullable String query, @NonNull String record) {
         SQLiteDatabase db = getDatabase(context);
         ContentValues values = new ContentValues();
         values.put("query", query);
@@ -77,17 +77,17 @@ public class DBHelper {
         }
     }
 
-    public static void removeFromHistory(Context context, String record) {
+    public static void removeFromHistory(@NonNull Context context, @NonNull String record) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("history", "record = ?", new String[]{record});
     }
 
-    public static void clearHistory(Context context) {
+    public static void clearHistory(@NonNull Context context) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("history", "", null);
     }
 
-    private static Cursor getHistoryByFrecency(SQLiteDatabase db, int limit, @Nullable String query) {
+    private static Cursor getHistoryByFrecency(@NonNull SQLiteDatabase db, int limit, @Nullable String query) {
         // Since smart history sql uses a group by we don't use the whole history but a limit of recent apps
         int historyWindowSize = limit * 30;
 
@@ -125,7 +125,7 @@ public class DBHelper {
         }
     }
 
-    private static Cursor getHistoryByFrequency(SQLiteDatabase db, int limit, @Nullable String query) {
+    private static Cursor getHistoryByFrequency(@NonNull SQLiteDatabase db, int limit, @Nullable String query) {
         if (query == null) {
             // order history based on frequency
             String sql = "SELECT record, count(*) FROM history" +
@@ -144,7 +144,7 @@ public class DBHelper {
         }
     }
 
-    private static Cursor getHistoryByRecency(SQLiteDatabase db, int limit, @Nullable String query) {
+    private static Cursor getHistoryByRecency(@NonNull SQLiteDatabase db, int limit, @Nullable String query) {
         if (query == null) {
             return db.query(true, "history", new String[]{"record", "1"}, null, null,
                     null, null, "_id DESC", Integer.toString(limit));
@@ -161,7 +161,7 @@ public class DBHelper {
      * @param limit Maximum result size
      * @return Cursor
      */
-    private static Cursor getHistoryByAdaptive(SQLiteDatabase db, int limit, @Nullable String query) {
+    private static Cursor getHistoryByAdaptive(@NonNull SQLiteDatabase db, int limit, @Nullable String query) {
         // how many hours back we want to test frequency against
         int hours = 36;
         if (query == null) {
@@ -200,7 +200,7 @@ public class DBHelper {
      * @param limit Maximum result size
      * @return Cursor
      */
-    private static Cursor getHistoryByTime(SQLiteDatabase db, int limit, @Nullable String query) {
+    private static Cursor getHistoryByTime(@NonNull SQLiteDatabase db, int limit, @Nullable String query) {
         final long now = System.currentTimeMillis();
         final long MS_24_DAYS_AGO = now - 2073600000L;
         if (query == null) {
@@ -230,7 +230,7 @@ public class DBHelper {
      * @param limit   max number of items to retrieve
      * @return records with number of use
      */
-    public static List<ValuedHistoryRecord> getHistory(Context context, int limit, HistoryMode historyMode) {
+    public static List<ValuedHistoryRecord> getHistory(@NonNull Context context, int limit, HistoryMode historyMode) {
         return getHistory(context, limit, historyMode, null);
     }
 
@@ -242,7 +242,7 @@ public class DBHelper {
      * @param query   search query
      * @return records with number of use
      */
-    public static List<ValuedHistoryRecord> getHistory(Context context, int limit, HistoryMode historyMode, @Nullable String query) {
+    public static List<ValuedHistoryRecord> getHistory(@NonNull Context context, int limit, HistoryMode historyMode, @Nullable String query) {
         List<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
@@ -295,28 +295,6 @@ public class DBHelper {
             cursor.moveToFirst();
             return cursor.getInt(0);
         }
-    }
-
-    /**
-     * Retrieve previously selected items for the query
-     *
-     * @param context android context
-     * @param query   query to run
-     * @return records with number of use
-     */
-    public static List<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
-                                                                       String query) {
-        List<ValuedHistoryRecord> records;
-        SQLiteDatabase db = getDatabase(context);
-
-        // Cursor query (String table, String[] columns, String selection,
-        // String[] selectionArgs, String groupBy, String having, String
-        // orderBy)
-        Cursor cursor = db.query("history", new String[]{"record", "COUNT(*) AS count"},
-                "query LIKE ?", new String[]{query + "%"}, "record", null, "COUNT(*) DESC", "10");
-        records = readCursor(cursor);
-        cursor.close();
-        return records;
     }
 
     /**
