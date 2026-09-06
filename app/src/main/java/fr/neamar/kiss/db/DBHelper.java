@@ -35,15 +35,17 @@ public class DBHelper {
         return database;
     }
 
-    private static List<ValuedHistoryRecord> readCursor(@NonNull Cursor cursor) {
+    private static List<ValuedHistoryRecord> readCursor(@NonNull Cursor cursor, boolean withRelevance) {
         cursor.moveToFirst();
 
-        List<ValuedHistoryRecord> records = new ArrayList<>(cursor.getCount());
+        int count = cursor.getCount();
+        List<ValuedHistoryRecord> records = new ArrayList<>(count);
         while (!cursor.isAfterLast()) {
             ValuedHistoryRecord entry = new ValuedHistoryRecord();
 
             entry.record = cursor.getString(0);
             entry.value = cursor.getInt(1);
+            entry.relevance = withRelevance ? count - cursor.getPosition() : 0;
 
             records.add(entry);
             cursor.moveToNext();
@@ -128,17 +130,17 @@ public class DBHelper {
     private static Cursor getHistoryByFrequency(@NonNull SQLiteDatabase db, int limit, @Nullable String query) {
         if (query == null) {
             // order history based on frequency
-            String sql = "SELECT record, count(*) FROM history" +
+            String sql = "SELECT record, count(*) AS value FROM history" +
                     " GROUP BY record " +
-                    " ORDER BY count(*) DESC " +
+                    " ORDER BY value DESC " +
                     " LIMIT " + limit;
             return db.rawQuery(sql, null);
         } else {
             // order history based on frequency
-            String sql = "SELECT record, count(*) FROM history" +
+            String sql = "SELECT record, count(*) AS value FROM history" +
                     " WHERE query LIKE ? " +
                     " GROUP BY record " +
-                    " ORDER BY count(*) DESC " +
+                    " ORDER BY value DESC " +
                     " LIMIT " + limit;
             return db.rawQuery(sql, new String[]{query + "%"});
         }
@@ -146,11 +148,11 @@ public class DBHelper {
 
     private static Cursor getHistoryByRecency(@NonNull SQLiteDatabase db, int limit, @Nullable String query) {
         if (query == null) {
-            return db.query(true, "history", new String[]{"record", "1"}, null, null,
-                    null, null, "_id DESC", Integer.toString(limit));
+            return db.query(true, "history", new String[]{"record", "MAX(_id) AS value"}, null, null,
+                    "record", null, "value DESC", Integer.toString(limit));
         } else {
-            return db.query(true, "history", new String[]{"record", "1"}, "query LIKE ?", new String[]{query + "%"},
-                    null, null, "_id DESC", Integer.toString(limit));
+            return db.query(true, "history", new String[]{"record", "MAX(_id) AS value"}, "query LIKE ?", new String[]{query + "%"},
+                    "record", null, "value DESC", Integer.toString(limit));
         }
     }
 
@@ -166,21 +168,21 @@ public class DBHelper {
         int hours = 36;
         if (query == null) {
             // order history based on frequency
-            String sql = "SELECT record, count(*) FROM history " +
+            String sql = "SELECT record, count(*) AS value FROM history " +
                     " WHERE timeStamp >= 0 " +
                     " AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000L)) +
                     " GROUP BY record " +
-                    " ORDER BY count(*) DESC " +
+                    " ORDER BY value DESC " +
                     " LIMIT " + limit;
             return db.rawQuery(sql, null);
         } else {
             // order history based on frequency
-            String sql = "SELECT record, count(*) FROM history " +
+            String sql = "SELECT record, count(*) AS value FROM history " +
                     " WHERE timeStamp >= 0 " +
                     " AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000L)) +
                     " AND query LIKE ? " +
                     " GROUP BY record " +
-                    " ORDER BY count(*) DESC " +
+                    " ORDER BY value DESC " +
                     " LIMIT " + limit;
             return db.rawQuery(sql, new String[]{query + "%"});
         }
@@ -271,7 +273,7 @@ public class DBHelper {
                 break;
         }
 
-        records = readCursor(cursor);
+        records = readCursor(cursor, historyMode != HistoryMode.ALPHABETICALLY);
         cursor.close();
 
         return records;

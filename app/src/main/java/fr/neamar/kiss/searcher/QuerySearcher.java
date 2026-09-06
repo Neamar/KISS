@@ -1,18 +1,17 @@
 package fr.neamar.kiss.searcher;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.HistoryMode;
-import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 
 /**
@@ -22,7 +21,8 @@ import fr.neamar.kiss.pojo.Pojo;
  */
 public class QuerySearcher extends Searcher {
     private static int MAX_RESULT_COUNT = -1;
-    private HashMap<String, Integer> knownIds;
+    private final HistoryMode historyMode;
+    private Map<String, Integer> knownIds;
     /**
      * Store user preferences
      */
@@ -31,6 +31,7 @@ public class QuerySearcher extends Searcher {
     public QuerySearcher(MainActivity activity, String query, boolean isRefresh) {
         super(activity, query, isRefresh);
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        historyMode = HistoryMode.valueById(prefs.getString("history-mode", "recency"));
     }
 
     @Override
@@ -57,9 +58,14 @@ public class QuerySearcher extends Searcher {
                 pojo.relevance -= 200;
             } else {
                 // Give a boost if item was previously selected for this query
+                // Always 200 for item with highest relevance and decreasing for others.
                 Integer value = knownIds.get(pojo.id);
                 if (value != null) {
-                    pojo.relevance += 25 * value;
+                    if (historyMode != HistoryMode.ALPHABETICALLY) {
+                        pojo.relevance += Math.max(0, 200 - Math.max(knownIds.size() - value, 0) * 10);
+                    } else {
+                        pojo.relevance += 200;
+                    }
                 }
             }
         }
@@ -78,23 +84,14 @@ public class QuerySearcher extends Searcher {
             return null;
 
         // Have we ever made the same query and selected something?
-        HistoryMode historyMode = getHistoryMode(activity);
-        List<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getHistory(activity, getMaxResultCount(), historyMode, query);
-
-        knownIds = new HashMap<>();
-        int size = lastIdsForQuery.size();
-        for (int i = 0; i < size; i++) {
-            knownIds.put(lastIdsForQuery.get(i).record, historyMode == HistoryMode.ALPHABETICALLY ? 0 : size - i);
-        }
+        knownIds = DBHelper.getHistory(activity, getMaxResultCount(), historyMode, query)
+                .stream()
+                .collect(Collectors.toMap(historyRecord -> historyRecord.record,
+                        historyRecord -> historyRecord.relevance));
 
         // Request results via "addResult"
         KissApplication.getApplication(activity).getDataHandler().requestResults(query, this);
         return null;
-    }
-
-    public HistoryMode getHistoryMode(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return HistoryMode.valueById(prefs.getString("history-mode", "recency"));
     }
 
     public static void clearMaxResultCountCache() {
