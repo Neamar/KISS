@@ -57,14 +57,14 @@ public class QuerySearcher extends Searcher {
                 // Give penalty for disabled items, these should not be preferred
                 pojo.relevance -= 200;
             } else {
-                // Give a boost if item was previously selected for this query
-                // Always 200 for item with highest relevance and decreasing for others.
+                // Give a boost if item was previously selected for this query.
+                // Always 100 for item with highest relevance and decreasing for others.
                 Integer value = knownIds.get(pojo.id);
                 if (value != null) {
                     if (historyMode != HistoryMode.ALPHABETICALLY) {
-                        pojo.relevance += Math.max(0, 200 - Math.max(knownIds.size() - value, 0) * 10);
+                        pojo.relevance += Math.max(0, 100 - Math.max(knownIds.size() - value, 0) * 5);
                     } else {
-                        pojo.relevance += 200;
+                        pojo.relevance += 100;
                     }
                 }
             }
