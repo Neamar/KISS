@@ -35,6 +35,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
@@ -52,7 +53,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     private TagsHandler tagsHandler;
     final private Context context;
-    private String currentQuery;
     private final Map<ProviderName, ProviderEntry> providers = new HashMap<>();
 
     /**
@@ -302,7 +302,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * @param searcher the searcher currently running
      */
     public void requestResults(String query, Searcher searcher) {
-        currentQuery = query;
         for (ProviderEntry entry : this.providers.values()) {
             if (searcher.isCancelled())
                 break;
@@ -355,15 +354,14 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
         // Read history
         HistoryMode historyMode = getHistoryMode();
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode);
+        List<ValuedHistoryRecord> historyRecords = DBHelper.getHistory(context, extendedItemCount, historyMode);
 
         // Find associated items
-        int size = ids.size();
-        for (int i = 0; i < ids.size(); i++) {
+        for (ValuedHistoryRecord historyRecord : historyRecords) {
             // Ask all providers if they know this id
-            Pojo pojo = getPojo(ids.get(i).record);
+            Pojo pojo = getPojo(historyRecord.record);
 
-            if (pojo == null) {
+            if (pojo == null || history.contains(pojo)) {
                 continue;
             }
 
@@ -371,11 +369,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
                 continue;
             }
 
-            if (historyMode == HistoryMode.ALPHABETICALLY) {
-                pojo.relevance = 0;
-            } else {
-                pojo.relevance = size - i;
-            }
+            pojo.relevance = historyRecord.relevance;
             history.add(pojo);
         }
 
@@ -405,12 +399,10 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             // If only number of displayed elements is used, this will result in more entries to be sorted by name.
             int historyLength = getHistoryLength();
 
-            Map<String, Integer> relevance = new HashMap<>();
-            List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, historyLength, historyMode);
-            int size = ids.size();
-            for (int i = 0; i < size; i++) {
-                relevance.put(ids.get(i).record, size - i);
-            }
+            Map<String, Integer> relevance = DBHelper.getHistory(context, historyLength, historyMode)
+                    .stream()
+                    .collect(Collectors.toMap(historyRecord -> historyRecord.record,
+                            historyRecord -> historyRecord.relevance));
 
             for (Pojo pojo : pojos) {
                 Integer calculated = relevance.get(pojo.id);
@@ -946,7 +938,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excludedFromHistory = getExcludedFromHistory();
 
         if (!frozen && !excludedFromHistory.contains(id)) {
-            DBHelper.insertHistory(this.context, currentQuery, id);
+            DBHelper.insertHistory(this.context, SearchHandler.getInstance().getLastSearchQuery(), id);
         }
     }
 
