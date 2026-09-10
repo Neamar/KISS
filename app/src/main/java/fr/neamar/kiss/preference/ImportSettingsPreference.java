@@ -23,6 +23,7 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.dataprovider.ProviderName;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.utils.Log;
 
@@ -123,11 +124,7 @@ public class ImportSettingsPreference {
                     }
                 }
 
-                dataHandler.reloadApps();
-                dataHandler.reloadShortcuts();
-                dataHandler.reloadSearchProvider();
-                dataHandler.reloadSettingsProvider();
-                dataHandler.reloadContactsProvider();
+                dataHandler.reload(ProviderName.values());
 
                 Toast.makeText(context, R.string.import_settings_done, Toast.LENGTH_SHORT).show();
             } catch (JSONException | NullPointerException e) {

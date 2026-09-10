@@ -1,13 +1,11 @@
 package fr.neamar.kiss;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
+import static fr.neamar.kiss.dataprovider.ProviderName.CONTACTS;
+import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
+
 import android.app.KeyguardManager;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
@@ -23,30 +21,12 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import fr.neamar.kiss.broadcast.ProfileChangedHandler;
-import fr.neamar.kiss.dataprovider.AppProvider;
-import fr.neamar.kiss.dataprovider.ContactsProvider;
-import fr.neamar.kiss.dataprovider.IProvider;
-import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.ShortcutsProvider;
-import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
-import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
-import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
-import fr.neamar.kiss.dataprovider.simpleprovider.SettingsProvider;
-import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
-import fr.neamar.kiss.dataprovider.simpleprovider.TimerProvider;
+import fr.neamar.kiss.dataprovider.*;
+import fr.neamar.kiss.dataprovider.simpleprovider.*;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.HistoryMode;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -55,6 +35,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
@@ -65,17 +46,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     protected static final String TAG = DataHandler.class.getSimpleName();
 
     /**
-     * Package the providers reside in
-     */
-    private static final String PROVIDER_PREFIX = IProvider.class.getPackage().getName() + ".";
-    /**
-     * List all known providers
-     */
-    private static final List<String> PROVIDER_NAMES = Arrays.asList(
-            "app", "contacts", "shortcuts"
-    );
-
-    /**
      * Key for a preference that holds a String set of apps which are excluded from showing shortcuts.
      * Each string in the set is the packageName of an app which may not show shortcuts.
      */
@@ -83,8 +53,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     private TagsHandler tagsHandler;
     final private Context context;
-    private String currentQuery;
-    private final Map<String, ProviderEntry> providers = new HashMap<>();
+    private final Map<ProviderName, ProviderEntry> providers = new HashMap<>();
 
     /**
      * Initialize all providers
@@ -106,55 +75,77 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.registerOnSharedPreferenceChangeListener(this);
 
-        // Connect to initial providers
-        // Those are the complex providers, that are defined as Android services
-        // to survive even if the app's UI is killed
-        // (this way, we don't need to reload the app list everytime for instance)
-        for (String providerName : PROVIDER_NAMES) {
-            if (prefs.getBoolean("enable-" + providerName, true)) {
-                this.connectToProvider(providerName, 0);
+        for (ProviderName providerName : ProviderName.values()) {
+            if (providerName.isService()) {
+                // Connect to initial providers
+                // Those are the complex providers, that are defined as Android services
+                // to survive even if the app's UI is killed
+                // (this way, we don't need to reload the app list everytime for instance)
+                if (prefs.getBoolean("enable-" + providerName.getSettingName(), true)) {
+                    this.connectToProvider(providerName, 0);
+                }
+            } else {
+                // Some basic providers are defined directly,
+                // as we don't need the overhead of a service for them
+                // Those providers don't expose a service connection,
+                // and you can't bind / unbind to them dynamically.
+                try {
+                    ProviderEntry providerEntry = new ProviderEntry();
+                    providerEntry.provider = getProviderInstance(context, providerName);
+                    this.providers.put(providerName, providerEntry);
+                } catch (Exception e) {
+                    Log.e(TAG, "Unable to create provider for " + providerName, e);
+                }
             }
         }
-
-        // Some basic providers are defined directly,
-        // as we don't need the overhead of a service for them
-        // Those providers don't expose a service connection,
-        // and you can't bind / unbind to them dynamically.
-        ProviderEntry calculatorEntry = new ProviderEntry();
-        calculatorEntry.provider = new CalculatorProvider();
-        this.providers.put("calculator", calculatorEntry);
-
-        ProviderEntry timerEntry = new ProviderEntry();
-        timerEntry.provider = new TimerProvider(context);
-        this.providers.put("timer", timerEntry);
-
-        ProviderEntry phoneEntry = new ProviderEntry();
-        phoneEntry.provider = new PhoneProvider(context);
-        this.providers.put("phone", phoneEntry);
-        ProviderEntry searchEntry = new ProviderEntry();
-        searchEntry.provider = new SearchProvider(context);
-        this.providers.put("search", searchEntry);
-        ProviderEntry settingsEntry = new ProviderEntry();
-        settingsEntry.provider = new SettingsProvider(context);
-        this.providers.put("settings", settingsEntry);
-        ProviderEntry tagsEntry = new ProviderEntry();
-        tagsEntry.provider = new TagsProvider();
-        this.providers.put("tags", tagsEntry);
 
         // Some basic providers already loaded! We need to fire the LOAD_OVER event.
         Intent loadOver = new Intent(MainActivity.LOAD_OVER);
         this.context.sendBroadcast(loadOver);
     }
 
+    private Class<? extends IProvider<?>> getProviderClass(ProviderName providerName) {
+        switch (providerName) {
+            case APPS:
+                return AppProvider.class;
+            case CONTACTS:
+                return ContactsProvider.class;
+            case SHORTCUTS:
+                return ShortcutsProvider.class;
+            default:
+                throw new UnsupportedOperationException("Class for " + providerName + " is not provided.");
+        }
+    }
+
+    private IProvider<?> getProviderInstance(Context context, ProviderName providerName) {
+        switch (providerName) {
+            case CALCULATOR:
+                return new CalculatorProvider();
+            case TIMER:
+                return new TimerProvider(context);
+            case PHONE:
+                return new PhoneProvider(context);
+            case SEARCH:
+                return new SearchProvider(context);
+            case SETTINGS:
+                return new SettingsProvider(context);
+            case TAGS:
+                return new TagsProvider();
+            default:
+                throw new UnsupportedOperationException("Provider for " + providerName + " is not implemented.");
+        }
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key != null && key.startsWith("enable-")) {
-            String providerName = key.substring(7);
-            if (PROVIDER_NAMES.contains(providerName)) {
-                if (sharedPreferences.getBoolean(key, true)) {
-                    this.connectToProvider(providerName, 0);
-                } else {
-                    this.disconnectFromProvider(providerName);
+            for (ProviderName providerName : ProviderName.values()) {
+                if (providerName.isService() && key.equals("enable-" + providerName.getSettingName())) {
+                    if (sharedPreferences.getBoolean(key, true)) {
+                        this.connectToProvider(providerName, 0);
+                    } else {
+                        this.disconnectFromProvider(providerName);
+                    }
                 }
             }
         }
@@ -166,18 +157,10 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * @param name The name of the provider
      * @return Android intent for this provider
      */
-    private Intent providerName2Intent(String name) {
-        // Build expected fully-qualified provider class name
-        StringBuilder className = new StringBuilder(50);
-        className.append(PROVIDER_PREFIX);
-        className.append(Character.toUpperCase(name.charAt(0)));
-        className.append(name.substring(1).toLowerCase(Locale.ROOT));
-        className.append("Provider");
-
-        // Try to create reflection class instance for class name
+    private Intent providerName2Intent(ProviderName name) {
         try {
-            return new Intent(this.context, Class.forName(className.toString()));
-        } catch (ClassNotFoundException e) {
+            return new Intent(this.context, getProviderClass(name));
+        } catch (Exception e) {
             Log.e(TAG, "Unable to get intent for provider name: " + name, e);
             return null;
         }
@@ -188,7 +171,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      *
      * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
-    protected void connectToProvider(final String name, final int counter) {
+    protected void connectToProvider(final ProviderName name, final int counter) {
         // Do not continue if this provider has already been connected to
         if (this.providers.containsKey(name)) {
             return;
@@ -279,7 +262,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      *
      * @param name Data provider name (i.e.: `AppProvider` → `"app"`)
      */
-    private void disconnectFromProvider(String name) {
+    private void disconnectFromProvider(ProviderName name) {
         // Remove provider from list
         ProviderEntry entry = this.providers.remove(name);
 
@@ -319,7 +302,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * @param searcher the searcher currently running
      */
     public void requestResults(String query, Searcher searcher) {
-        currentQuery = query;
         for (ProviderEntry entry : this.providers.values()) {
             if (searcher.isCancelled())
                 break;
@@ -372,15 +354,14 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
         // Read history
         HistoryMode historyMode = getHistoryMode();
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode);
+        List<ValuedHistoryRecord> historyRecords = DBHelper.getHistory(context, extendedItemCount, historyMode);
 
         // Find associated items
-        int size = ids.size();
-        for (int i = 0; i < ids.size(); i++) {
+        for (ValuedHistoryRecord historyRecord : historyRecords) {
             // Ask all providers if they know this id
-            Pojo pojo = getPojo(ids.get(i).record);
+            Pojo pojo = getPojo(historyRecord.record);
 
-            if (pojo == null) {
+            if (pojo == null || history.contains(pojo)) {
                 continue;
             }
 
@@ -388,11 +369,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
                 continue;
             }
 
-            if (historyMode == HistoryMode.ALPHABETICALLY) {
-                pojo.relevance = 0;
-            } else {
-                pojo.relevance = size - i;
-            }
+            pojo.relevance = historyRecord.relevance;
             history.add(pojo);
         }
 
@@ -422,12 +399,10 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             // If only number of displayed elements is used, this will result in more entries to be sorted by name.
             int historyLength = getHistoryLength();
 
-            Map<String, Integer> relevance = new HashMap<>();
-            List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, historyLength, historyMode);
-            int size = ids.size();
-            for (int i = 0; i < size; i++) {
-                relevance.put(ids.get(i).record, size - i);
-            }
+            Map<String, Integer> relevance = DBHelper.getHistory(context, historyLength, historyMode)
+                    .stream()
+                    .collect(Collectors.toMap(historyRecord -> historyRecord.record,
+                            historyRecord -> historyRecord.relevance));
 
             for (Pojo pojo : pojos) {
                 Integer calculated = relevance.get(pojo.id);
@@ -466,7 +441,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     private void removeShortcut(ShortcutPojo shortcut) {
         boolean shortcutUpdated = removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
         if (shortcutUpdated) {
-            reloadShortcuts();
+            reload(SHORTCUTS);
         }
     }
 
@@ -604,7 +579,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
         DBHelper.removeShortcuts(this.context, packageName);
 
-        reloadShortcuts();
+        reload(SHORTCUTS);
     }
 
     @NonNull
@@ -691,7 +666,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         excluded.add(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
         app.setExcludedShortcuts(true);
-        reloadShortcuts();
+        reload(SHORTCUTS);
     }
 
     public void removeFromExcluded(AppPojo app) {
@@ -701,7 +676,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         app.setExcluded(false);
 
         // Add shortcuts for this app
-        reloadShortcuts();
+        reload(SHORTCUTS);
     }
 
     public void removeFromExcluded(String packageName) {
@@ -742,7 +717,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         excluded.remove(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
         app.setExcludedShortcuts(false);
-        reloadShortcuts();
+        reload(SHORTCUTS);
     }
 
     /**
@@ -778,72 +753,34 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         return shortcutsProvider != null ? shortcutsProvider.getPinnedShortcuts() : null;
     }
 
+    @Nullable
+    public IProvider<?> getProvider(ProviderName providerName) {
+        ProviderEntry entry = this.providers.get(providerName);
+        return (entry != null) ? (entry.provider) : null;
+    }
+
+    public void reload(@NonNull ProviderName... providerNames) {
+        Arrays.stream(providerNames)
+                .map(this::getProvider)
+                .filter(Objects::nonNull)
+                .forEach(IProvider::reload);
+    }
 
     @Nullable
     public ContactsProvider getContactsProvider() {
-        ProviderEntry entry = this.providers.get("contacts");
-        return (entry != null) ? ((ContactsProvider) entry.provider) : null;
-    }
-
-    public void reloadContactsProvider() {
-        ContactsProvider contactsProvider = getContactsProvider();
-        if (contactsProvider != null) {
-            contactsProvider.reload();
-        }
+        return (ContactsProvider) getProvider(CONTACTS);
     }
 
     @Nullable
     public ShortcutsProvider getShortcutsProvider() {
-        ProviderEntry entry = this.providers.get("shortcuts");
-        return (entry != null) ? ((ShortcutsProvider) entry.provider) : null;
-    }
-
-    public void reloadShortcuts() {
-        ShortcutsProvider shortcutsProvider = getShortcutsProvider();
-        if (shortcutsProvider != null) {
-            shortcutsProvider.reload();
-        }
+        return (ShortcutsProvider) getProvider(SHORTCUTS);
     }
 
     @Nullable
     public AppProvider getAppProvider() {
-        ProviderEntry entry = this.providers.get("app");
-        return (entry != null) ? ((AppProvider) entry.provider) : null;
+        return (AppProvider) getProvider(APPS);
     }
 
-    public void reloadApps() {
-        AppProvider appProvider = getAppProvider();
-        if (appProvider != null) {
-            appProvider.reload();
-        }
-    }
-
-    @Nullable
-    public SearchProvider getSearchProvider() {
-        ProviderEntry entry = this.providers.get("search");
-        return (entry != null) ? ((SearchProvider) entry.provider) : null;
-    }
-
-    public void reloadSearchProvider() {
-        SearchProvider searchProvider = getSearchProvider();
-        if (searchProvider != null) {
-            searchProvider.reload();
-        }
-    }
-
-    @Nullable
-    public SettingsProvider getSettingsProvider() {
-        ProviderEntry entry = this.providers.get("settings");
-        return (entry != null) ? ((SettingsProvider) entry.provider) : null;
-    }
-
-    public void reloadSettingsProvider() {
-        SettingsProvider settingsProvider = getSettingsProvider();
-        if (settingsProvider != null) {
-            settingsProvider.reload();
-        }
-    }
-    
     /**
      * @return list with favorite ids
      */
@@ -864,7 +801,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         boolean excludedApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getBoolean("exclude-favorites-apps", false);
         if (excludedApps) {
-            reloadApps();
+            reload(APPS);
         }
         refreshFavorites();
     }
@@ -1001,7 +938,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excludedFromHistory = getExcludedFromHistory();
 
         if (!frozen && !excludedFromHistory.contains(id)) {
-            DBHelper.insertHistory(this.context, currentQuery, id);
+            DBHelper.insertHistory(this.context, SearchHandler.getInstance().getLastSearchQuery(), id);
         }
     }
 
@@ -1021,19 +958,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             tagsHandler = new TagsHandler(context);
         }
         return tagsHandler;
-    }
-
-    @Nullable
-    private TagsProvider getTagsProvider() {
-        ProviderEntry entry = this.providers.get("tags");
-        return (entry != null) ? ((TagsProvider) entry.provider) : null;
-    }
-
-    public void reloadTags() {
-        TagsProvider tagsProvider = getTagsProvider();
-        if (tagsProvider != null) {
-            tagsProvider.reload();
-        }
     }
 
     public void refreshFavorites() {

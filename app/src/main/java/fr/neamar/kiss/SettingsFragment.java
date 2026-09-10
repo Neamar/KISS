@@ -1,5 +1,7 @@
 package fr.neamar.kiss;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.*;
+
 import android.app.role.RoleManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,18 +32,7 @@ import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
-import fr.neamar.kiss.preference.AddSearchProviderPreference;
-import fr.neamar.kiss.preference.AddSearchProviderPreferenceDialogFragment;
-import fr.neamar.kiss.preference.ColorPreference;
-import fr.neamar.kiss.preference.ColorPreferenceDialogFragment;
-import fr.neamar.kiss.preference.DefaultLauncherPreference;
-import fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference;
-import fr.neamar.kiss.preference.DialogShowingPreference;
-import fr.neamar.kiss.preference.DialogShowingPreferenceDialogFragment;
-import fr.neamar.kiss.preference.ExportSettingsPreference;
-import fr.neamar.kiss.preference.ImportSettingsPreference;
-import fr.neamar.kiss.preference.LaunchPojoSelectPreference;
-import fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference;
+import fr.neamar.kiss.preference.*;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Log;
@@ -157,10 +148,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             if (key.equalsIgnoreCase("available-search-providers")) {
                 refreshSelectSearchProvider();
                 refreshDefaultSearchProvider();
-                getDataHandler().reloadSearchProvider();
+                getDataHandler().reload(SEARCH);
             } else if (key.equalsIgnoreCase("selected-search-provider-names")) {
                 refreshDefaultSearchProvider();
-                getDataHandler().reloadSearchProvider();
+                getDataHandler().reload(SEARCH);
             } else if (key.equalsIgnoreCase("enable-phone-history")) {
                 boolean enabled = sharedPreferences.getBoolean(key, false);
                 if (enabled && !Permission.checkPermission(getContext(), Permission.PERMISSION_READ_PHONE_STATE)) {
@@ -188,9 +179,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             } else if (key.equalsIgnoreCase("number-of-display-elements")) {
                 QuerySearcher.clearMaxResultCountCache();
             } else if (key.equalsIgnoreCase("default-search-provider")) {
-                getDataHandler().reloadSearchProvider();
+                getDataHandler().reload(SEARCH);
             } else if ("pref-fav-tags-list".equals(key)) {
-                getDataHandler().reloadTags();
+                getDataHandler().reload(TAGS);
 
                 // after we edit the fav tags list update DataHandler
                 Set<String> favTags = sharedPreferences.getStringSet(key, Collections.emptySet());
@@ -202,20 +193,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 for (String tagName : favTags)
                     dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
             } else if ("exclude-favorites-apps".equals(key)) {
-                getDataHandler().reloadApps();
+                getDataHandler().reload(APPS);
             } else if ("enable-notification-history".equals(key)) {
                 boolean enabled = sharedPreferences.getBoolean(key, false);
                 if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 }
             } else if ("selected-contact-mime-types".equals(key)) {
-                getDataHandler().reloadContactsProvider();
+                getDataHandler().reload(CONTACTS);
             } else if ("theme".equals(key)) {
                 updateNightMode();
             } else if ("night-mode".equals(key)) {
                 InterfaceTweaks.setDefaultNightMode(KissApplication.getApplication(requireContext()));
             } else if ("enable-settings".equals(key)) {
-                getDataHandler().reloadSettingsProvider();
+                getDataHandler().reload(SETTINGS);
             }
         }
     }
@@ -346,7 +337,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         switch (pref.getKey()) {
             case "reset-history":
                 if (positiveResult) {
-                    KissApplication.getApplication(requireContext()).getDataHandler().clearHistory();
+                    getDataHandler().clearHistory();
                     pref.setSummary(requireContext().getString(R.string.history_erased));
                     Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
                 }
@@ -355,7 +346,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 if (positiveResult) {
                     PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
                             .remove("available-search-providers").apply();
-                    KissApplication.getApplication(requireContext()).getDataHandler().reloadSearchProvider();
+                    getDataHandler().reload(SEARCH);
                     Toast.makeText(getContext(), R.string.search_provider_reset_done_desc, Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -363,7 +354,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 if (positiveResult) {
                     PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
                             .putStringSet("excluded-apps", null).apply();
-                    KissApplication.getApplication(requireContext()).getDataHandler().reloadApps();
+                    getDataHandler().reload(APPS);
                     Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -371,7 +362,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 if (positiveResult) {
                     PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
                             .putStringSet("excluded-apps-from-history", null).apply();
-                    KissApplication.getApplication(requireContext()).getDataHandler().reloadApps(); // reload because it's cached in AppPojo#excludedFromHistory
+                    getDataHandler().reload(APPS); // reload because it's cached in AppPojo#excludedFromHistory
                     Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -379,11 +370,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 if (positiveResult) {
                     PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
                             .putStringSet(DataHandler.PREF_KEY_EXCLUDED_SHORTCUT_APPS, null).apply();
-                    DataHandler dataHandler = KissApplication.getApplication(requireContext()).getDataHandler();
-                    // Reload shortcuts to refresh the shortcuts shown in KISS
-                    dataHandler.reloadShortcuts();
-                    // Reload apps since the `AppPojo.isExcludedShortcuts` value also needs to be refreshed
-                    dataHandler.reloadApps();
+                    getDataHandler().reload(APPS, SHORTCUTS);  // reload because it's cached in AppPojo#isExcludedShortcuts
                     Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
                 }
                 break;

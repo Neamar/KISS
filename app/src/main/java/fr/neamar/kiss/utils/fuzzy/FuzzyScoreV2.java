@@ -56,9 +56,9 @@ public class FuzzyScoreV2 implements FuzzyScore {
         adjacency_bonus = 15;
         separator_bonus = 30;
         camel_bonus = 30;
-        first_letter_bonus = 15;
+        first_letter_bonus = 30;
         leading_letter_penalty = -5;
-        max_leading_letter_penalty = -30;
+        max_leading_letter_penalty = -45;
         unmatched_letter_penalty = -2;
         if (detailedMatchIndices) {
             matchInfo = new MatchInfo(patternLength);

@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
+
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
@@ -40,7 +42,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                 public void onShortcutsChanged(@NonNull String packageName, @NonNull List<ShortcutInfo> shortcuts, @NonNull android.os.UserHandle user) {
                     if (isAnyShortcutVisible(shortcuts)) {
                         Log.d(TAG, "Shortcuts changed for " + packageName);
-                        KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reloadShortcuts();
+                        KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reload(SHORTCUTS);
                     }
                 }
 
