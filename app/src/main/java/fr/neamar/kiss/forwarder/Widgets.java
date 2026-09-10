@@ -65,7 +65,7 @@ class Widgets extends Forwarder {
      */
     private static final String PREF_WIDGET_SPACING = "widget-spacing";
 
-    private static final String DEFAULT_WIDGET_SPACING = "10";
+    private static final String DEFAULT_WIDGET_SPACING = "0";
     private static final int MIN_WIDGET_SPACING_DP = 0;
     private static final int MAX_WIDGET_SPACING_DP = 50;
 
