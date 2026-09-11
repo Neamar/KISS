@@ -8,10 +8,10 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
 
 /**
  * Vertical scroller hosting the widget area.
@@ -23,7 +23,7 @@ import androidx.core.widget.NestedScrollView;
  * Scrolling can be disabled entirely through settings ("Enable widget
  * scrolling"): this reverts to the legacy static widget area.
  */
-public class WidgetScrollView extends NestedScrollView {
+public class WidgetScrollView extends ScrollView {
     private static final int INVALID_POINTER_ID = -1;
 
     /**
@@ -259,7 +259,7 @@ public class WidgetScrollView extends NestedScrollView {
     }
 
     @Override
-    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes, int type) {
+    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
         // all scrolling of this area goes through the two-finger gesture:
         // never accept nested scroll handoffs from widgets' internal lists
         return false;
