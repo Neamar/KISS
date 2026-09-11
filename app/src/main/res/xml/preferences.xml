@@ -599,13 +599,8 @@
             app:defaultValue="false"
             app:key="use-fuzzy-score-v1"
             app:title="Use legacy fuzzy search algorithm" />
-        <SwitchPreference
-            app:defaultValue="true"
-            app:key="enable-widget-scrolling"
-            app:title="@string/widget_scrolling_name" />
         <fr.neamar.kiss.preference.RangeEditTextPreference
             app:defaultValue="0"
-            app:dependency="enable-widget-scrolling"
             app:key="widget-spacing"
             app:minValue="0"
             app:maxValue="300"

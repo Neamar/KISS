@@ -56,11 +56,6 @@ class Widgets extends Forwarder {
     private static final int INITIAL_WIDGET_LINE_SIZE = 2;
 
     /**
-     * Preference key: whether the widget area can be scrolled vertically
-     */
-    private static final String PREF_ENABLE_SCROLLING = "enable-widget-scrolling";
-
-    /**
      * Preference key: vertical spacing between widgets, in dp
      */
     private static final String PREF_WIDGET_SPACING = "widget-spacing";
@@ -108,26 +103,42 @@ class Widgets extends Forwarder {
         requestAppWidgetPicked = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> appWidgetPicked(activityResult.getResultCode(), activityResult.getData()));
         requestAppWidgetBound = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> appWidgetBound(activityResult.getResultCode(), activityResult.getData()));
 
-        applyScrollingConfig();
+        // Automatically enable scrolling when widgets overflow the viewport,
+        // disable when they fit.  The listener fires after every layout pass
+        // (add, remove, resize, rotation) and keeps the touch contract in sync.
+        widgetArea.getViewTreeObserver().addOnGlobalLayoutListener(() ->
+                widgetScroll.setScrollingEnabled(shouldScroll()));
 
         restoreWidgets();
     }
 
-    /**
-     * Push the scrolling-related settings into the widget area.
-     * Called on create and on resume so settings changes apply immediately.
-     */
     void onResume() {
-        applyScrollingConfig();
-    }
-
-    private void applyScrollingConfig() {
-        widgetScroll.setScrollingEnabled(isScrollingEnabled());
         applyWidgetSpacing();
     }
 
-    private boolean isScrollingEnabled() {
-        return prefs.getBoolean(PREF_ENABLE_SCROLLING, true);
+    /**
+     * Whether the total widget height exceeds the visible viewport.
+     * Drives {@link WidgetScrollView#setScrollingEnabled(boolean)} so the
+     * two-finger scroll gesture is only active when needed.
+     */
+    private boolean shouldScroll() {
+        if (widgetArea.getChildCount() == 0) return false;
+        return getTotalWidgetHeight() > widgetScroll.getHeight();
+    }
+
+    /**
+     * Sum of all widget heights including bottom margins.
+     */
+    private int getTotalWidgetHeight() {
+        int total = 0;
+        for (int i = 0; i < widgetArea.getChildCount(); i++) {
+            View child = widgetArea.getChildAt(i);
+            total += child.getLayoutParams().height;
+            if (child.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                total += ((LinearLayout.LayoutParams) child.getLayoutParams()).bottomMargin;
+            }
+        }
+        return total;
     }
 
     /**
@@ -156,12 +167,9 @@ class Widgets extends Forwarder {
 
     /**
      * Effective spacing between widgets in pixels.
-     *
-     * Adjustable spacing is part of the scrolling feature: with scrolling
-     * disabled, stock KISS behavior applies (widgets stacked edge-to-edge).
      */
     private int getWidgetSpacingPx() {
-        return isScrollingEnabled() ? DrawableUtils.dpToPx(mainActivity, getWidgetSpacing()) : 0;
+        return DrawableUtils.dpToPx(mainActivity, getWidgetSpacing());
     }
 
     private void applyWidgetSpacing() {
@@ -512,23 +520,13 @@ class Widgets extends Forwarder {
         // calculate initial size for new widget
         int initialLineSize = WidgetUtils.getInitialLineSize(getMinHeight(appWidgetInfo), getLineHeight(), upsizeAllowed, INITIAL_WIDGET_LINE_SIZE);
 
-        if (!isScrollingEnabled()) {
-            // existing behavior: widgets cannot be scrolled into view, so they must fit the visible viewport
-            int usedLines = 0;
-            for (int i = 0; i < widgetArea.getChildCount(); i++) {
-                usedLines += getLineSize(widgetArea.getChildAt(i));
-            }
-            int maxVisibleLines = (int) Math.ceil(widgetArea.getHeight() / getLineHeight());
-            initialLineSize = Math.max(1, Math.min(maxVisibleLines - usedLines, initialLineSize));
-        }
-
         addWidget(appWidgetId, initialLineSize);
 
         serializeState();
 
-        if (isScrollingEnabled()) {
-            scrollIntoView(widgetArea.getChildAt(widgetArea.getChildCount() - 1));
-        }
+        // Scroll the new widget into view.  When content fits the viewport
+        // this is a no-op; when it overflows the scroll view shows the widget.
+        scrollIntoView(widgetArea.getChildAt(widgetArea.getChildCount() - 1));
     }
 
     /**
