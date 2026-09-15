@@ -70,6 +70,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onPause() {
+        widgetsForwarder.onPause();
         experienceTweaks.onPause();
         notificationForwarder.onPause();
     }

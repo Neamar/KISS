@@ -11,6 +11,7 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -90,6 +91,16 @@ class Widgets extends Forwarder {
      */
     @Nullable
     private ViewTreeObserver.OnGlobalLayoutListener widgetScrollListener;
+    /**
+     * Listener that reloads all widgets when the spacing preference changes.
+     * Registered in {@link #onResume()} and unregistered in {@link #onPause()}.
+     */
+    private final SharedPreferences.OnSharedPreferenceChangeListener onWidgetSpacingChanged =
+            (sharedPreferences, key) -> {
+                if (PREF_WIDGET_SPACING.equals(key)) {
+                    restoreWidgets();
+                }
+            };
     private ActivityResultLauncher<Intent> requestAppWidgetPicked;
     private ActivityResultLauncher<Intent> requestAppWidgetBound;
 
@@ -120,7 +131,11 @@ class Widgets extends Forwarder {
     }
 
     void onResume() {
-        applyWidgetSpacing();
+        prefs.registerOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
+    }
+
+    void onPause() {
+        prefs.unregisterOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
     }
 
     /**
@@ -177,18 +192,6 @@ class Widgets extends Forwarder {
      */
     private int getWidgetSpacingPx() {
         return DrawableUtils.dpToPx(mainActivity, getWidgetSpacing());
-    }
-
-    private void applyWidgetSpacing() {
-        int margin = getWidgetSpacingPx();
-        for (int i = 0; i < widgetArea.getChildCount(); i++) {
-            View child = widgetArea.getChildAt(i);
-            ViewGroup.LayoutParams params = child.getLayoutParams();
-            if (params instanceof LinearLayout.LayoutParams) {
-                ((LinearLayout.LayoutParams) params).bottomMargin = margin;
-                child.setLayoutParams(params);
-            }
-        }
     }
 
     private void onAppWidgetRemoved() {
