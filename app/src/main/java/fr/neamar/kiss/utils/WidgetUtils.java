@@ -49,13 +49,12 @@ public final class WidgetUtils {
      *
      * @param minHeightPx       effective minimum height of the widget in pixels ({@link #getMinHeight})
      * @param lineHeightPx      height of a single line in pixels
-     * @param upsizeAllowed     true if the widget may grow to the preferred default size
      * @param preferredLineSize default size used for small widgets
      * @return initial size in lines
      */
-    public static int getInitialLineSize(int minHeightPx, float lineHeightPx, boolean upsizeAllowed, int preferredLineSize) {
+    public static int getInitialLineSize(int minHeightPx, float lineHeightPx, int preferredLineSize) {
         int initialLineSize = getLineSize(minHeightPx, lineHeightPx);
-        if (upsizeAllowed && initialLineSize < preferredLineSize) {
+        if (initialLineSize < preferredLineSize) {
             initialLineSize = preferredLineSize;
         }
         return Math.max(1, initialLineSize);

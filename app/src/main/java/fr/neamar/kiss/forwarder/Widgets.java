@@ -20,6 +20,7 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
@@ -83,6 +84,12 @@ class Widgets extends Forwarder {
      */
     @Nullable
     private View.OnTouchListener emptyAreaTouchListener;
+    /**
+     * Listener that enables/disables scrolling based on widget overflow.
+     * Stored for removal in {@link #onDestroy()} to prevent memory leaks.
+     */
+    @Nullable
+    private ViewTreeObserver.OnGlobalLayoutListener widgetScrollListener;
     private ActivityResultLauncher<Intent> requestAppWidgetPicked;
     private ActivityResultLauncher<Intent> requestAppWidgetBound;
 
@@ -106,8 +113,8 @@ class Widgets extends Forwarder {
         // Automatically enable scrolling when widgets overflow the viewport,
         // disable when they fit.  The listener fires after every layout pass
         // (add, remove, resize, rotation) and keeps the touch contract in sync.
-        widgetArea.getViewTreeObserver().addOnGlobalLayoutListener(() ->
-                widgetScroll.setScrollingEnabled(shouldScroll()));
+        widgetScrollListener = () -> widgetScroll.setScrollingEnabled(shouldScroll());
+        widgetArea.getViewTreeObserver().addOnGlobalLayoutListener(widgetScrollListener);
 
         restoreWidgets();
     }
@@ -515,10 +522,8 @@ class Widgets extends Forwarder {
      * @param appWidgetInfo
      */
     private void addAppWidget(int appWidgetId, AppWidgetProviderInfo appWidgetInfo) {
-        boolean upsizeAllowed = !preventIncreaseLineHeight((int) ((INITIAL_WIDGET_LINE_SIZE - 1) * getLineHeight()), appWidgetInfo);
-
         // calculate initial size for new widget
-        int initialLineSize = WidgetUtils.getInitialLineSize(getMinHeight(appWidgetInfo), getLineHeight(), upsizeAllowed, INITIAL_WIDGET_LINE_SIZE);
+        int initialLineSize = WidgetUtils.getInitialLineSize(getMinHeight(appWidgetInfo), getLineHeight(), INITIAL_WIDGET_LINE_SIZE);
 
         addWidget(appWidgetId, initialLineSize);
 
@@ -665,6 +670,10 @@ class Widgets extends Forwarder {
     }
 
     public void onDestroy() {
+        if (widgetScrollListener != null) {
+            widgetArea.getViewTreeObserver().removeOnGlobalLayoutListener(widgetScrollListener);
+            widgetScrollListener = null;
+        }
         mAppWidgetHost.stopListening();
     }
 }
