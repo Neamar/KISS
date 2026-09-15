@@ -63,8 +63,6 @@ class Widgets extends Forwarder {
     private static final String PREF_WIDGET_SPACING = "widget-spacing";
 
     private static final String DEFAULT_WIDGET_SPACING = "0";
-    private static final int MIN_WIDGET_SPACING_DP = 0;
-    private static final int MAX_WIDGET_SPACING_DP = 300;
 
     /**
      * Widgets fields
@@ -178,13 +176,11 @@ class Widgets extends Forwarder {
     }
 
     private int getWidgetSpacing() {
-        int spacing;
         try {
-            spacing = Integer.parseInt(prefs.getString(PREF_WIDGET_SPACING, DEFAULT_WIDGET_SPACING));
+            return Integer.parseInt(prefs.getString(PREF_WIDGET_SPACING, DEFAULT_WIDGET_SPACING));
         } catch (NumberFormatException e) {
-            spacing = Integer.parseInt(DEFAULT_WIDGET_SPACING);
+            return Integer.parseInt(DEFAULT_WIDGET_SPACING);
         }
-        return Math.max(MIN_WIDGET_SPACING_DP, Math.min(MAX_WIDGET_SPACING_DP, spacing));
     }
 
     /**
