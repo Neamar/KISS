@@ -8,6 +8,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.widget.OverScroller;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -20,8 +21,14 @@ import androidx.annotation.Nullable;
  * belongs to the widget underneath or is forwarded verbatim to the launcher's
  * gesture pipeline through {@link #setEmptyAreaTouchListener(View.OnTouchListener)}.
  *
- * Scrolling can be disabled entirely through settings ("Enable widget
- * scrolling"): this reverts to the legacy static widget area.
+ * Scrolling is enabled automatically by the launcher when the widgets overflow
+ * the viewport and disabled when they fit (see {@link #setScrollingEnabled(boolean)}).
+ *
+ * Momentum scrolling is owned by this view: a private {@link OverScroller} is
+ * driven through {@link #computeScroll()} and aborted on any new input, so a
+ * fling can always be stopped or taken over immediately (the inherited
+ * {@link ScrollView#fling(int)} runs on an internal scroller with no public
+ * abort API).
  */
 public class WidgetScrollView extends ScrollView {
     private static final int INVALID_POINTER_ID = -1;
@@ -54,6 +61,11 @@ public class WidgetScrollView extends ScrollView {
     private float lastScrollY;
     private int maximumFlingVelocity;
 
+    /**
+     * Momentum scrolling (fling) state, driven through {@link #computeScroll()}
+     */
+    private final OverScroller flingScroller;
+
     public WidgetScrollView(Context context) {
         this(context, null);
     }
@@ -65,6 +77,7 @@ public class WidgetScrollView extends ScrollView {
     public WidgetScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         maximumFlingVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
+        flingScroller = new OverScroller(context);
     }
 
     /**
@@ -77,6 +90,10 @@ public class WidgetScrollView extends ScrollView {
             return;
         }
         scrollingEnabled = enabled;
+        if (!enabled) {
+            // a static area must not keep drifting if it was disabled mid-fling
+            stopFling();
+        }
         // a disabled view ignores touches itself, but still dispatches them to children
         setEnabled(enabled);
     }
@@ -94,6 +111,12 @@ public class WidgetScrollView extends ScrollView {
         if (!scrollingEnabled) {
             // never intercept: widgets (including internal lists) keep full gestures
             return false;
+        }
+
+        if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            // any touch stops in-flight momentum, so a new gesture can take
+            // over immediately (standard Android fling behavior)
+            stopFling();
         }
 
         if (ev.getActionMasked() == MotionEvent.ACTION_POINTER_DOWN && ev.getPointerCount() >= 2) {
@@ -165,6 +188,11 @@ public class WidgetScrollView extends ScrollView {
         boolean wasForwarding = forwardingGesture;
         forwardingGesture = false;
 
+        // the new gesture takes over: stop any in-flight momentum (also covers
+        // the requestDisallowInterceptTouchEvent path, where the parent's
+        // onInterceptTouchEvent is skipped and events arrive here directly)
+        stopFling();
+
         recycleVelocityTracker();
         velocityTracker = VelocityTracker.obtain();
         scrollPointerId = ev.getPointerId(ev.getActionIndex());
@@ -230,12 +258,43 @@ public class WidgetScrollView extends ScrollView {
             }
             if (ev.getActionMasked() == MotionEvent.ACTION_UP && velocityTracker != null) {
                 float velocityY = velocityTracker.getYVelocity(scrollPointerId);
-                fling(-Math.round(velocityY));
+                startFling(-Math.round(velocityY));
             }
         } finally {
             twoFingerScrolling = false;
             scrollPointerId = INVALID_POINTER_ID;
             recycleVelocityTracker();
+        }
+    }
+
+    /**
+     * Start momentum scrolling, clamped to the scrollable content range.
+     *
+     * @param velocityY fling velocity; positive scrolls toward the bottom
+     *                  (same convention as {@link ScrollView#fling(int)})
+     */
+    private void startFling(int velocityY) {
+        View content = getChildAt(0);
+        int viewportHeight = getHeight() - getPaddingTop() - getPaddingBottom();
+        int maxY = content == null ? 0 : Math.max(0, content.getHeight() - viewportHeight);
+        flingScroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, maxY);
+        postInvalidateOnAnimation();
+    }
+
+    /**
+     * Abort in-flight momentum; no-op when idle.
+     */
+    private void stopFling() {
+        flingScroller.forceFinished(true);
+    }
+
+    @Override
+    public void computeScroll() {
+        // keep ScrollView-internal smooth scrolling (keyboard/accessibility) working
+        super.computeScroll();
+        if (flingScroller.computeScrollOffset()) {
+            scrollTo(0, flingScroller.getCurrY());
+            postInvalidateOnAnimation();
         }
     }
 
@@ -268,9 +327,13 @@ public class WidgetScrollView extends ScrollView {
     @Override
     public boolean onGenericMotionEvent(@NonNull MotionEvent event) {
         // mouse wheels and trackpads scroll via the generic-motion path, which
-        // bypasses the touch pipeline: respect "Enable widget scrolling" here too
+        // bypasses the touch pipeline: respect the scrolling state here too
         if (!scrollingEnabled && event.getAction() == MotionEvent.ACTION_SCROLL) {
             return false;
+        }
+        if (scrollingEnabled && event.getAction() == MotionEvent.ACTION_SCROLL) {
+            // discrete wheel input takes over from in-flight momentum
+            stopFling();
         }
         return super.onGenericMotionEvent(event);
     }
