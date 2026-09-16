@@ -62,7 +62,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onResume() {
-        widgetsForwarder.onResume();
         interfaceTweaks.onResume();
         experienceTweaks.onResume();
         notificationForwarder.onResume();
@@ -70,7 +69,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onPause() {
-        widgetsForwarder.onPause();
         experienceTweaks.onPause();
         notificationForwarder.onPause();
     }

@@ -91,7 +91,10 @@ class Widgets extends Forwarder {
     private ViewTreeObserver.OnGlobalLayoutListener widgetScrollListener;
     /**
      * Listener that reloads all widgets when the spacing preference changes.
-     * Registered in {@link #onResume()} and unregistered in {@link #onPause()}.
+     * Registered in {@link #onCreate()} and unregistered in {@link #onDestroy()}
+     * so changes made while the launcher is paused (e.g., from the Settings
+     * activity) are still applied: the preference changes exactly while the
+     * launcher is backgrounded, and missed events are not replayed on re-register.
      */
     private final SharedPreferences.OnSharedPreferenceChangeListener onWidgetSpacingChanged =
             (sharedPreferences, key) -> {
@@ -125,15 +128,9 @@ class Widgets extends Forwarder {
         widgetScrollListener = () -> widgetScroll.setScrollingEnabled(shouldScroll());
         widgetArea.getViewTreeObserver().addOnGlobalLayoutListener(widgetScrollListener);
 
-        restoreWidgets();
-    }
-
-    void onResume() {
         prefs.registerOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
-    }
 
-    void onPause() {
-        prefs.unregisterOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
+        restoreWidgets();
     }
 
     /**
@@ -669,6 +666,7 @@ class Widgets extends Forwarder {
     }
 
     public void onDestroy() {
+        prefs.unregisterOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
         if (widgetScrollListener != null) {
             widgetArea.getViewTreeObserver().removeOnGlobalLayoutListener(widgetScrollListener);
             widgetScrollListener = null;
