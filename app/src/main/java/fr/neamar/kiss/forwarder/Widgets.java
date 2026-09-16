@@ -11,6 +11,7 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,6 +21,7 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
@@ -39,8 +41,10 @@ import fr.neamar.kiss.PickAppWidgetActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.WidgetHost;
+import fr.neamar.kiss.ui.WidgetScrollView;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Log;
+import fr.neamar.kiss.utils.WidgetUtils;
 
 class Widgets extends Forwarder {
     private static final String TAG = Widgets.class.getSimpleName();
@@ -54,6 +58,13 @@ class Widgets extends Forwarder {
     private static final int INITIAL_WIDGET_LINE_SIZE = 2;
 
     /**
+     * Preference key: vertical spacing between widgets, in dp
+     */
+    private static final String PREF_WIDGET_SPACING = "widget-spacing";
+
+    private static final String DEFAULT_WIDGET_SPACING = "0";
+
+    /**
      * Widgets fields
      */
     private AppWidgetManager mAppWidgetManager;
@@ -63,6 +74,34 @@ class Widgets extends Forwarder {
      * View widgets are added to
      */
     private ViewGroup widgetArea;
+    /**
+     * Scrollable container around {@link #widgetArea}
+     */
+    private WidgetScrollView widgetScroll;
+    /**
+     * Touch listener for gestures on empty areas, buffered until {@code widgetScroll} is available
+     */
+    @Nullable
+    private View.OnTouchListener emptyAreaTouchListener;
+    /**
+     * Listener that enables/disables scrolling based on widget overflow.
+     * Stored for removal in {@link #onDestroy()} to prevent memory leaks.
+     */
+    @Nullable
+    private ViewTreeObserver.OnGlobalLayoutListener widgetScrollListener;
+    /**
+     * Listener that reloads all widgets when the spacing preference changes.
+     * Registered in {@link #onCreate()} and unregistered in {@link #onDestroy()}
+     * so changes made while the launcher is paused (e.g., from the Settings
+     * activity) are still applied: the preference changes exactly while the
+     * launcher is backgrounded, and missed events are not replayed on re-register.
+     */
+    private final SharedPreferences.OnSharedPreferenceChangeListener onWidgetSpacingChanged =
+            (sharedPreferences, key) -> {
+                if (PREF_WIDGET_SPACING.equals(key)) {
+                    restoreWidgets();
+                }
+            };
     private ActivityResultLauncher<Intent> requestAppWidgetPicked;
     private ActivityResultLauncher<Intent> requestAppWidgetBound;
 
@@ -75,11 +114,77 @@ class Widgets extends Forwarder {
         mAppWidgetManager = AppWidgetManager.getInstance(mainActivity);
         mAppWidgetHost = new WidgetHost(mainActivity, APPWIDGET_HOST_ID, this::onAppWidgetRemoved);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
+        widgetScroll = mainActivity.findViewById(R.id.widgetScroll);
+        if (emptyAreaTouchListener != null) {
+            widgetScroll.setEmptyAreaTouchListener(emptyAreaTouchListener);
+        }
 
         requestAppWidgetPicked = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> appWidgetPicked(activityResult.getResultCode(), activityResult.getData()));
         requestAppWidgetBound = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> appWidgetBound(activityResult.getResultCode(), activityResult.getData()));
 
+        // Automatically enable scrolling when widgets overflow the viewport,
+        // disable when they fit.  The listener fires after every layout pass
+        // (add, remove, resize, rotation) and keeps the touch contract in sync.
+        widgetScrollListener = () -> widgetScroll.setScrollingEnabled(shouldScroll());
+        widgetArea.getViewTreeObserver().addOnGlobalLayoutListener(widgetScrollListener);
+
+        prefs.registerOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
+
         restoreWidgets();
+    }
+
+    /**
+     * Whether the total widget height exceeds the visible viewport.
+     * Drives {@link WidgetScrollView#setScrollingEnabled(boolean)} so the
+     * two-finger scroll gesture is only active when needed.
+     */
+    private boolean shouldScroll() {
+        if (widgetArea.getChildCount() == 0) return false;
+        return getTotalWidgetHeight() > widgetScroll.getHeight();
+    }
+
+    /**
+     * Sum of all widget heights including bottom margins.
+     */
+    private int getTotalWidgetHeight() {
+        int total = 0;
+        for (int i = 0; i < widgetArea.getChildCount(); i++) {
+            View child = widgetArea.getChildAt(i);
+            total += child.getLayoutParams().height;
+            if (child.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                total += ((LinearLayout.LayoutParams) child.getLayoutParams()).bottomMargin;
+            }
+        }
+        return total;
+    }
+
+    /**
+     * Forward gestures performed on empty areas of the widget scroll area to
+     * the given listener, so they behave exactly as on a non-widget area.
+     *
+     * May be called before the view exists; it is attached in
+     * {@link #onCreate()} once the view is available.
+     */
+    void setEmptyAreaTouchListener(View.OnTouchListener listener) {
+        emptyAreaTouchListener = listener;
+        if (widgetScroll != null) {
+            widgetScroll.setEmptyAreaTouchListener(listener);
+        }
+    }
+
+    private int getWidgetSpacing() {
+        try {
+            return Integer.parseInt(prefs.getString(PREF_WIDGET_SPACING, DEFAULT_WIDGET_SPACING));
+        } catch (NumberFormatException e) {
+            return Integer.parseInt(DEFAULT_WIDGET_SPACING);
+        }
+    }
+
+    /**
+     * Effective spacing between widgets in pixels.
+     */
+    private int getWidgetSpacingPx() {
+        return DrawableUtils.dpToPx(mainActivity, getWidgetSpacing());
     }
 
     private void onAppWidgetRemoved() {
@@ -304,6 +409,10 @@ class Widgets extends Forwarder {
 
     private void popupMenuClickHandler(@StringRes int stringId, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
         final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+        if (parent == null) {
+            // widget was detached between long-press and menu-item click
+            return;
+        }
         if (stringId == R.string.menu_widget_settings) {
             reConfigureAppWidget(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
         } else if (stringId == R.string.menu_widget_remove) {
@@ -360,7 +469,8 @@ class Widgets extends Forwarder {
     private void setWidgetSize(AppWidgetHostView hostView, int height, @NonNull AppWidgetProviderInfo appWidgetInfo) {
         hostView.setMinimumHeight(height);
         hostView.setMinimumWidth(Math.min(appWidgetInfo.minWidth, appWidgetInfo.minResizeWidth));
-        ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        params.bottomMargin = getWidgetSpacingPx();
         hostView.setLayoutParams(params);
     }
 
@@ -412,25 +522,35 @@ class Widgets extends Forwarder {
      * @param appWidgetInfo
      */
     private void addAppWidget(int appWidgetId, AppWidgetProviderInfo appWidgetInfo) {
-        // calculate already used lines
-        int usedLines = 0;
-        for (int i = 0; i < widgetArea.getChildCount(); i++) {
-            View view = widgetArea.getChildAt(i);
-            usedLines += getLineSize(view);
-        }
-        // calculate max available lines
-        int maxVisibleLines = (int) Math.ceil(widgetArea.getHeight() / getLineHeight());
-
         // calculate initial size for new widget
-        int initialLineSize = getLineSize(getMinHeight(appWidgetInfo));
-        if (initialLineSize < INITIAL_WIDGET_LINE_SIZE && !preventIncreaseLineHeight((int) ((INITIAL_WIDGET_LINE_SIZE - 1) * getLineHeight()), appWidgetInfo)) {
-            initialLineSize = INITIAL_WIDGET_LINE_SIZE;
-        }
-        initialLineSize = Math.max(1, Math.min(maxVisibleLines - usedLines, initialLineSize));
+        int initialLineSize = WidgetUtils.getInitialLineSize(getMinHeight(appWidgetInfo), getLineHeight(), INITIAL_WIDGET_LINE_SIZE);
 
         addWidget(appWidgetId, initialLineSize);
 
         serializeState();
+
+        // Scroll the new widget into view.  When content fits the viewport
+        // this is a no-op; when it overflows the scroll view shows the widget.
+        scrollIntoView(widgetArea.getChildAt(widgetArea.getChildCount() - 1));
+    }
+
+    /**
+     * Scroll the given widget into view, centered vertically.
+     *
+     * Uses a one-shot layout listener instead of {@link View#post(Runnable)} to
+     * guarantee the child has been measured and positioned before computing the
+     * scroll target ({@code view.getBottom()} is stale before layout).
+     */
+    private void scrollIntoView(View view) {
+        view.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                    int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                v.removeOnLayoutChangeListener(this);
+                widgetScroll.smoothScrollTo(0,
+                        v.getBottom() - (widgetScroll.getHeight() - v.getHeight()) / 2);
+            }
+        });
     }
 
     private void requestBindWidget(@NonNull Intent data) {
@@ -526,7 +646,7 @@ class Widgets extends Forwarder {
      * @return calculated line size of given height
      */
     private int getLineSize(int height) {
-        return Math.max(1, (int) Math.ceil(height / getLineHeight()));
+        return WidgetUtils.getLineSize(height, getLineHeight());
     }
 
     /**
@@ -537,14 +657,11 @@ class Widgets extends Forwarder {
     }
 
     private int getMinHeight(AppWidgetProviderInfo appWidgetInfo) {
-        float lineHeight = getLineHeight();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && appWidgetInfo.targetCellHeight > 0) {
-            return (int) (appWidgetInfo.targetCellHeight * lineHeight);
-        } else if (appWidgetInfo.minHeight == 0) {
-            return 0;
-        } else {
-            return (int) (getLineSize(appWidgetInfo.minHeight) * lineHeight);
+        int targetCellHeight = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            targetCellHeight = appWidgetInfo.targetCellHeight;
         }
+        return WidgetUtils.getMinHeight(appWidgetInfo.minHeight, targetCellHeight, getLineHeight());
     }
 
     public void onStart() {
@@ -553,6 +670,11 @@ class Widgets extends Forwarder {
     }
 
     public void onDestroy() {
+        prefs.unregisterOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
+        if (widgetScrollListener != null) {
+            widgetArea.getViewTreeObserver().removeOnGlobalLayoutListener(widgetScrollListener);
+            widgetScrollListener = null;
+        }
         mAppWidgetHost.stopListening();
     }
 }

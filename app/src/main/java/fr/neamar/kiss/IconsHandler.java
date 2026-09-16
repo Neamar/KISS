@@ -449,10 +449,14 @@ public class IconsHandler {
         return new File(getIconsCacheDir(), iconsPackPackageName + "_" + key.hashCode() + ".png");
     }
 
+    /**
+     * Best-effort directory creation; never throws. Cache I/O failures are
+     * handled (caught and logged) by all callers, and these helpers are invoked
+     * from background tasks where an uncaught exception would kill the process.
+     */
     private File getIconsCacheDir() {
         File dir = new File(this.ctx.getCacheDir(), "icons");
-        if (!dir.exists() && !dir.mkdir())
-            throw new IllegalStateException("failed to create path " + dir.getPath());
+        dir.mkdirs(); // no-op when the directory already exists
         return dir;
     }
 
@@ -463,8 +467,7 @@ public class IconsHandler {
 
     private File getCustomIconsDir() {
         File dir = new File(this.ctx.getCacheDir(), "custom_icons");
-        if (!dir.exists() && !dir.mkdir())
-            throw new IllegalStateException("failed to create path " + dir.getPath());
+        dir.mkdirs(); // no-op when the directory already exists
         return dir;
     }
 

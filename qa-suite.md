@@ -173,6 +173,20 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When opening a search result and pressing home, Widget is displayed
 * [ ] Clicking on the widget opens the widget app
 * [ ] Clicking outside of the widget with history-touch replace the widget with history
+* [ ] A newly added widget taller than the remaining space keeps its requested size and is scrolled into view
+* [ ] Vertical swipe down/up starting outside the widget area still triggers the configured gesture
+* [ ] A two-finger drag starting anywhere over the widget area (widget or empty space) scrolls the widget area
+* [ ] The widget context menu never opens during or after a two-finger scroll
+* [ ] Normal single-finger long-press menus still open for widgets everywhere
+* [ ] A single-finger drag never scrolls the widget area, even at the end of a widget's internal list
+* [ ] A single tap anywhere on a widget reaches the widget (including the center of the screen; config-taps work)
+* [ ] A widget containing its own vertical list (e.g. agenda/calendar) scrolls its inner list normally with one finger
+* [ ] Gestures on empty areas behave exactly as in non-minimalistic KISS: tap reveals history/favorites as configured, double tap locks (or shows the accessibility prompt), long press and swipes trigger their configured actions (e.g. swipe down opens notifications)
+* [ ] Visible spacing is present between stacked widgets
+* [ ] Advanced setting "Enable widget scrolling" off: widget area no longer scrolls, new widgets shrink to fit the screen, widgets stay clickable, widgets are stacked edge-to-edge, and "Space between widgets" is disabled (not clickable)
+* [ ] Advanced setting "Space between widgets": changing it updates existing widget spacing immediately after leaving settings; the row is disabled (not clickable) while "Enable widget scrolling" is off
+* [ ] After scrolling, long-press menu actions (resize, move up/down, reconfigure, remove) apply to the correct widget
+* [ ] Widget order is preserved after rotation and after process death
 
 #### Portrait / landscape
 * [ ] When portrait-locked, app can't pivot

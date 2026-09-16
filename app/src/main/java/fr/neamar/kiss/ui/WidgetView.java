@@ -1,5 +1,6 @@
 package fr.neamar.kiss.ui;
 
+import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetHostView;
 import android.content.Context;
 import android.os.Build;
@@ -43,9 +44,7 @@ public class WidgetView extends AppWidgetHostView {
             case MotionEvent.ACTION_MOVE: {
                 if (Math.abs(ev.getX() - xPos) > 5 || Math.abs(ev.getY() - yPos) > 5) {
                     mHasPerformedLongPress = false;
-                    if (mPendingCheckForLongPress != null) {
-                        removeCallbacks(mPendingCheckForLongPress);
-                    }
+                    cancelPendingLongPress();
                 }
                 break;
             }
@@ -53,14 +52,31 @@ public class WidgetView extends AppWidgetHostView {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 mHasPerformedLongPress = false;
-                if (mPendingCheckForLongPress != null) {
-                    removeCallbacks(mPendingCheckForLongPress);
-                }
+                cancelPendingLongPress();
                 break;
         }
 
         // Otherwise continue letting touch events fall through to children
         return false;
+    }
+
+    /**
+     * Cancel the pending long-press check here too: once a parent has
+     * intercepted a gesture, the resulting ACTION_CANCEL bypasses
+     * {@link #onInterceptTouchEvent} entirely.
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_POINTER_DOWN:
+                mHasPerformedLongPress = false;
+                cancelPendingLongPress();
+                break;
+        }
+        return super.onTouchEvent(ev);
     }
 
     protected class CheckForLongPress implements Runnable {
@@ -91,14 +107,18 @@ public class WidgetView extends AppWidgetHostView {
         postDelayed(mPendingCheckForLongPress, ViewConfiguration.getLongPressTimeout());
     }
 
+    private void cancelPendingLongPress() {
+        if (mPendingCheckForLongPress != null) {
+            removeCallbacks(mPendingCheckForLongPress);
+        }
+    }
+
     @Override
     public void cancelLongPress() {
         super.cancelLongPress();
 
         mHasPerformedLongPress = false;
-        if (mPendingCheckForLongPress != null) {
-            removeCallbacks(mPendingCheckForLongPress);
-        }
+        cancelPendingLongPress();
     }
 
     @Override
