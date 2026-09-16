@@ -409,6 +409,10 @@ class Widgets extends Forwarder {
 
     private void popupMenuClickHandler(@StringRes int stringId, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
         final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+        if (parent == null) {
+            // widget was detached between long-press and menu-item click
+            return;
+        }
         if (stringId == R.string.menu_widget_settings) {
             reConfigureAppWidget(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
         } else if (stringId == R.string.menu_widget_remove) {
