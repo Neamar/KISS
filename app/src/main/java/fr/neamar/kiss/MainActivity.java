@@ -22,15 +22,7 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.view.ContextMenu;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.ImageView;
@@ -467,6 +459,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     protected void onPause() {
         super.onPause();
         forwarderManager.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        forwarderManager.onStop();
     }
 
     @Override

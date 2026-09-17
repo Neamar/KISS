@@ -12,6 +12,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -309,6 +310,8 @@ class Widgets extends Forwarder {
         if (!prefs.getBoolean("history-hide", false)) {
             return;
         }
+
+        mAppWidgetHost.stopListening();
 
         // remove empty list view when using widgets, this would block touches on the widget
         mainActivity.emptyListView.setVisibility(View.GONE);
@@ -669,6 +672,11 @@ class Widgets extends Forwarder {
         mAppWidgetHost.startListening();
     }
 
+    public void onStop() {
+        // Stop listening for widget update
+        mAppWidgetHost.stopListening();
+    }
+
     public void onDestroy() {
         prefs.unregisterOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
         if (widgetScrollListener != null) {
@@ -676,5 +684,11 @@ class Widgets extends Forwarder {
             widgetScrollListener = null;
         }
         mAppWidgetHost.stopListening();
+    }
+
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            restoreWidgets();
+        }
     }
 }
