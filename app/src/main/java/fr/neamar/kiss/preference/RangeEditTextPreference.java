@@ -2,6 +2,7 @@ package fr.neamar.kiss.preference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
@@ -59,6 +60,8 @@ public class RangeEditTextPreference extends EditTextPreference {
                 a.recycle();
             }
         }
+
+        setOnBindEditTextListener((editText) -> editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED));
 
         // Validate before persisting
         setOnPreferenceChangeListener((preference, newValue) -> {
