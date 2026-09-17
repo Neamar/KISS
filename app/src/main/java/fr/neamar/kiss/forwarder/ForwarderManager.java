@@ -73,6 +73,14 @@ public class ForwarderManager extends Forwarder {
         notificationForwarder.onPause();
     }
 
+    public void onStop() {
+        widgetsForwarder.onStop();
+    }
+
+    public void onDestroy() {
+        widgetsForwarder.onDestroy();
+    }
+
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }
@@ -111,12 +119,9 @@ public class ForwarderManager extends Forwarder {
         return tagsMenu.onMenuButtonClicked(menuButton);
     }
 
-    public void onDestroy() {
-        widgetsForwarder.onDestroy();
-    }
-
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         interfaceTweaks.onConfigurationChanged(newConfig);
         favoritesForwarder.onConfigurationChanged(newConfig);
+        widgetsForwarder.onConfigurationChanged(newConfig);
     }
 }
