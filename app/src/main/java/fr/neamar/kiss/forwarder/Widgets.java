@@ -383,8 +383,6 @@ class Widgets extends Forwarder {
         });
 
         widgetArea.addView(hostView);
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
     }
 
     private void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, AppWidgetProviderInfo currentAppWidgetInfo, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
@@ -535,6 +533,9 @@ class Widgets extends Forwarder {
         // Scroll the new widget into view.  When content fits the viewport
         // this is a no-op; when it overflows the scroll view shows the widget.
         scrollIntoView(widgetArea.getChildAt(widgetArea.getChildCount() - 1));
+
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     /**
@@ -665,16 +666,6 @@ class Widgets extends Forwarder {
             targetCellHeight = appWidgetInfo.targetCellHeight;
         }
         return WidgetUtils.getMinHeight(appWidgetInfo.minHeight, targetCellHeight, getLineHeight());
-    }
-
-    public void onStart() {
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
-    }
-
-    public void onStop() {
-        // Stop listening for widget update
-        mAppWidgetHost.stopListening();
     }
 
     public void onDestroy() {
