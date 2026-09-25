@@ -12,6 +12,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -310,6 +311,8 @@ class Widgets extends Forwarder {
             return;
         }
 
+        mAppWidgetHost.stopListening();
+
         // remove empty list view when using widgets, this would block touches on the widget
         mainActivity.emptyListView.setVisibility(View.GONE);
         widgetArea.removeAllViews();
@@ -380,8 +383,6 @@ class Widgets extends Forwarder {
         });
 
         widgetArea.addView(hostView);
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
     }
 
     private void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, AppWidgetProviderInfo currentAppWidgetInfo, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
@@ -532,6 +533,9 @@ class Widgets extends Forwarder {
         // Scroll the new widget into view.  When content fits the viewport
         // this is a no-op; when it overflows the scroll view shows the widget.
         scrollIntoView(widgetArea.getChildAt(widgetArea.getChildCount() - 1));
+
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     /**
@@ -664,11 +668,6 @@ class Widgets extends Forwarder {
         return WidgetUtils.getMinHeight(appWidgetInfo.minHeight, targetCellHeight, getLineHeight());
     }
 
-    public void onStart() {
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
-    }
-
     public void onDestroy() {
         prefs.unregisterOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
         if (widgetScrollListener != null) {
@@ -676,5 +675,11 @@ class Widgets extends Forwarder {
             widgetScrollListener = null;
         }
         mAppWidgetHost.stopListening();
+    }
+
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            restoreWidgets();
+        }
     }
 }
