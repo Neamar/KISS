@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
@@ -60,7 +61,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         super.onCreate();
         // register content observer if we have permission
         if (Permission.checkPermission(this, Permission.PERMISSION_READ_CONTACTS)) {
-            getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                getContentResolver().registerContentObserver(ContactsContract.Contacts.ENTERPRISE_CONTENT_URI, false, cObserver);
+            } else {
+                getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+            }
         } else {
             Permission.askPermission(Permission.PERMISSION_READ_CONTACTS, new Permission.PermissionResultListener() {
                 @Override

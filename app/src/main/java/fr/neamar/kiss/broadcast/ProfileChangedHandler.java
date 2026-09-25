@@ -1,6 +1,7 @@
 package fr.neamar.kiss.broadcast;
 
 import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
+import static fr.neamar.kiss.dataprovider.ProviderName.CONTACTS;
 import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
 
 import android.content.BroadcastReceiver;
@@ -38,7 +39,7 @@ public class ProfileChangedHandler extends BroadcastReceiver {
                 Intent.ACTION_PROFILE_INACCESSIBLE.equals(intent.getAction()) ||
                 Intent.ACTION_MANAGED_PROFILE_AVAILABLE.equals(intent.getAction()) ||
                 Intent.ACTION_MANAGED_PROFILE_UNAVAILABLE.equals(intent.getAction())) {
-            KissApplication.getApplication(context).getDataHandler().reload(APPS, SHORTCUTS);
+            KissApplication.getApplication(context).getDataHandler().reload(APPS, SHORTCUTS, CONTACTS);
         }
     }
 
