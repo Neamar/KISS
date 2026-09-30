@@ -935,6 +935,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 hideKeyboard();
             }
         }
+
+        // KISS already focuses the search field for hardware keyboards in onCreate().
+        // Restore that focus whenever the launcher regains window focus as well.
+        // Do not show the IME: physical-keyboard input should be ready while the
+        // LeanType UI remains hidden.
+        if (hasFocus && (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY
+                || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY)) {
+            searchEditText.requestFocus();
+        }
     }
 
 
