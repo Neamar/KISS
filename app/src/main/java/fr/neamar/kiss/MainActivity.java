@@ -361,10 +361,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this, false);
 
-        // For devices with hardware keyboards, give focus to search field.
-        if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
-            searchEditText.requestFocus();
-        }
+        requestSearchFocusIfNeeded();
 
         /*
          * Defer everything else to the forwarders
@@ -933,8 +930,20 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 hideKeyboard();
             }
         }
+
+        if (hasFocus) {
+            requestSearchFocusIfNeeded();
+        }
     }
 
+
+    private void requestSearchFocusIfNeeded() {
+        int keyboard = getResources().getConfiguration().keyboard;
+        if (keyboard == Configuration.KEYBOARD_QWERTY
+                || keyboard == Configuration.KEYBOARD_12KEY) {
+            searchEditText.requestFocus();
+        }
+    }
 
     /**
      * Focus {@link #searchEditText} and show keyboard
