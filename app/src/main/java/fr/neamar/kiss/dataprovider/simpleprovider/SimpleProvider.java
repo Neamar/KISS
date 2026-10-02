@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -42,7 +44,8 @@ public abstract class SimpleProvider<T extends Pojo> implements IProvider<T> {
      * {@inheritDoc}
      */
     @Override
-    public T findById(String id) {
+    @Nullable
+    public Pojo findById(String id) {
         List<T> pojos = getPojos();
         if (pojos != null) {
             for (T pojo : pojos) {

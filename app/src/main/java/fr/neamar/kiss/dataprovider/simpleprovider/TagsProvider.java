@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.Searcher;
 
@@ -33,7 +34,7 @@ public class TagsProvider extends SimpleProvider<TagDummyPojo> {
     }
 
     @Override
-    public TagDummyPojo findById(String id) {
+    public Pojo findById(String id) {
         // keep instances of TagDummyPojo to improve behavior of tags in favorites
         return pojos.computeIfAbsent(id, TagDummyPojo::new);
     }

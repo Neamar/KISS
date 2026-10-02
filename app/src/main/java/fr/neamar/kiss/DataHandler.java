@@ -2,6 +2,7 @@ package fr.neamar.kiss;
 
 import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
 import static fr.neamar.kiss.dataprovider.ProviderName.CONTACTS;
+import static fr.neamar.kiss.dataprovider.ProviderName.PHONE;
 import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
 
 import android.app.KeyguardManager;
@@ -769,6 +770,11 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     @Nullable
     public ContactsProvider getContactsProvider() {
         return (ContactsProvider) getProvider(CONTACTS);
+    }
+
+    @Nullable
+    public PhoneProvider getPhoneProvider() {
+        return (PhoneProvider) getProvider(PHONE);
     }
 
     @Nullable

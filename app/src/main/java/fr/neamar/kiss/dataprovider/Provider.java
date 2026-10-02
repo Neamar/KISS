@@ -121,7 +121,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      * @param id id we're looking for
      * @return null if not found
      */
-    public T findById(String id) {
+    public Pojo findById(String id) {
         for (T pojo : pojos) {
             if (pojo.id.equals(id)) {
                 return pojo;

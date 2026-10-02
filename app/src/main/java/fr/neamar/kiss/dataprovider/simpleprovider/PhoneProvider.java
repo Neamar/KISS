@@ -7,9 +7,14 @@ import androidx.annotation.Nullable;
 
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.PhoneUtils;
 
@@ -40,15 +45,24 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
 
     @Override
     @Nullable
-    public PhonePojo findById(String id) {
+    public Pojo findById(String id) {
         String phoneNumber = id.replaceFirst(Pattern.quote(PHONE_SCHEME), "");
         return findByPhone(phoneNumber);
     }
 
     @Nullable
-    public PhonePojo findByPhone(String phoneNumber) {
+    public Pojo findByPhone(String phoneNumber) {
         if (!PhoneUtils.isPhoneNumber(phoneNumber)) {
             return null;
+        }
+        // search for existing contacts first
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        ContactsProvider contactsProvider = dataHandler.getContactsProvider();
+        if (contactsProvider != null) {
+            ContactsPojo pojo = contactsProvider.findByPhone(phoneNumber);
+            if (pojo != null) {
+                return pojo;
+            }
         }
         // return generic phone pojo
         return getResult(phoneNumber, false);
