@@ -45,9 +45,17 @@ public class UserHandle implements Parcelable, Comparable<UserHandle> {
         } else {
             final UserManager manager = ContextCompat.getSystemService(context, UserManager.class);
             assert manager != null;
-            // Store the given user handle
-            this.serial = manager.getSerialNumberForUser(userHandle);
-            this.handle = userHandle;
+            long serialNumberForUser = manager.getSerialNumberForUser(userHandle);
+            if (serialNumberForUser >= 0) {
+                // Store the given user handle
+                this.serial = manager.getSerialNumberForUser(userHandle);
+                this.handle = userHandle;
+            } else {
+                // use always valid user, e.g. for notifications using USER_ALL
+                Log.w(TAG, "Falling back to default user instead of: '" + userHandle);
+                this.serial = 0;
+                this.handle = null;
+            }
         }
     }
 
