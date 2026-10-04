@@ -122,10 +122,12 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
-            if (!match && queryNormalized.length() > 2 && pojo.normalizedPhone != null) {
+            if (!match && queryNormalized.length() > 2) {
                 // search for the phone number
-                matchInfo = fuzzyScore.match(pojo.normalizedPhone.codePoints);
-                match = pojo.updateMatchingRelevance(matchInfo, match);
+                for (StringNormalizer.Result normalizedPhone : pojo.getAllNormalizedPhoneNumbers()) {
+                    matchInfo = fuzzyScore.match(normalizedPhone.codePoints);
+                    match = pojo.updateMatchingRelevance(matchInfo, match);
+                }
             }
 
             if (!match && queryNormalized.length() > 2 && pojo.getContactData() != null && pojo.getContactData().getNormalizedIdentifier() != null) {
@@ -157,8 +159,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
         PhoneUtils phoneUtils = new PhoneUtils(this);
         for (ContactsPojo pojo : getPojos()) {
-            if (pojo.normalizedPhone != null && phoneUtils.areSamePhoneNumber(pojo.normalizedPhone, simplifiedPhoneNumber)) {
-                return pojo;
+            for (StringNormalizer.Result normalizedPhone : pojo.getAllNormalizedPhoneNumbers()) {
+                if (phoneUtils.areSamePhoneNumber(normalizedPhone, simplifiedPhoneNumber)) {
+                    return pojo;
+                }
             }
         }
 

@@ -3,6 +3,9 @@ package fr.neamar.kiss.pojo;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.PhoneUtils;
@@ -14,6 +17,7 @@ public final class ContactsPojo extends Pojo {
     public String phone;
     //phone without special characters
     public StringNormalizer.Result normalizedPhone;
+    private Set<StringNormalizer.Result> additionalNormalizedPhoneNumbers;
     // Is this number a home (local) number ?
     private boolean homeNumber;
 
@@ -112,5 +116,26 @@ public final class ContactsPojo extends Pojo {
         } else {
             return "contact://default";
         }
+    }
+
+    public void addAdditionalNormalizedPhoneNumber(StringNormalizer.Result phoneNumber) {
+        if (phoneNumber == null) {
+            return;
+        }
+        if (additionalNormalizedPhoneNumbers == null) {
+            additionalNormalizedPhoneNumbers = new HashSet<>();
+        }
+        additionalNormalizedPhoneNumbers.add(phoneNumber);
+    }
+
+    public Set<StringNormalizer.Result> getAllNormalizedPhoneNumbers() {
+        Set<StringNormalizer.Result> result = new HashSet<>();
+        if (normalizedPhone != null) {
+            result.add(normalizedPhone);
+        }
+        if (additionalNormalizedPhoneNumbers != null) {
+            result.addAll(additionalNormalizedPhoneNumbers);
+        }
+        return result;
     }
 }
