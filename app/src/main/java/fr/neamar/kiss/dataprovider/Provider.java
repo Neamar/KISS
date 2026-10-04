@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -77,6 +79,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         }
     }
 
+    @Override
     public void reload() {
         // Handled at subclass level
         if (!pojos.isEmpty()) {
@@ -84,6 +87,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         }
     }
 
+    @Override
     public boolean isLoaded() {
         return this.loaded;
     }
@@ -111,6 +115,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      * @return true if the provider can handle the query ; does not guarantee it
      * will!
      */
+    @Override
     public boolean mayFindById(String id) {
         return id.startsWith(pojoScheme);
     }
@@ -121,6 +126,8 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      * @param id id we're looking for
      * @return null if not found
      */
+    @Override
+    @Nullable
     public Pojo findById(String id) {
         for (T pojo : pojos) {
             if (pojo.id.equals(id)) {

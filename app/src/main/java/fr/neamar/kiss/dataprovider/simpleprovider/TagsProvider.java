@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import androidx.annotation.Nullable;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -34,6 +36,7 @@ public class TagsProvider extends SimpleProvider<TagDummyPojo> {
     }
 
     @Override
+    @Nullable
     public Pojo findById(String id) {
         // keep instances of TagDummyPojo to improve behavior of tags in favorites
         return pojos.computeIfAbsent(id, TagDummyPojo::new);

@@ -142,6 +142,7 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean mayFindById(String id) {
         return id.startsWith(SCHEME);
     }
