@@ -64,6 +64,12 @@ public class ShortcutUtil {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
 
+    private static boolean isPinnedShortcutsOnlyEnabled(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("enable-shortcuts", true)
+                && prefs.getBoolean("pinned-shortcuts-only", false);
+    }
+
     /**
      * Save all oreo shortcuts to DB
      */
@@ -107,7 +113,9 @@ public class ShortcutUtil {
 
         if (launcherApps.hasShortcutHostPermission()) {
             LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
-            shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+            shortcutQuery.setQueryFlags(isPinnedShortcutsOnlyEnabled(context)
+                    ? FLAG_MATCH_PINNED
+                    : FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
             if (!TextUtils.isEmpty(packageName)) {
                 shortcutQuery.setPackage(packageName);
@@ -214,7 +222,11 @@ public class ShortcutUtil {
 
     @RequiresApi(Build.VERSION_CODES.O)
     public static boolean isShortcutVisible(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps, @NonNull Set<String> excludedShortcutApps) {
-        if (!shortcutInfo.isEnabled()) {
+        if (!areShortcutsEnabled(context) || !shortcutInfo.isEnabled()) {
+            return false;
+        }
+
+        if (isPinnedShortcutsOnlyEnabled(context) && !shortcutInfo.isPinned()) {
             return false;
         }
 
