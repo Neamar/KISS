@@ -38,6 +38,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             applicationIdSuffix ".debug"
         }
+        instrumentation {
+            initWith debug
+            // The test runner uses Kotlin classes that are otherwise removed from the app.
+            minifyEnabled false
+            shrinkResources = false
+        }
+    }
+
+    testBuildType "instrumentation"
+
+    sourceSets {
+        instrumentation.res.srcDir 'src/debug/res'
     }
 
     compileOptions {
@@ -63,6 +75,13 @@ android {
     }
 
     namespace = 'fr.neamar.kiss'
+}
+
+androidComponents {
+    // Keep the documented debug unit-test task when device tests use instrumentation.
+    beforeVariants(selector().withBuildType("debug")) { variantBuilder ->
+        variantBuilder.enableUnitTest = true
+    }
 }
 
 dependencies {
