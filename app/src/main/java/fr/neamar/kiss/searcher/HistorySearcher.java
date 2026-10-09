@@ -92,10 +92,11 @@ public class HistorySearcher extends Searcher {
             return false;
         }
 
+        boolean demoteDisabled = prefs.getBoolean("demote-disabled-apps", true);
         DataHandler dataHandler = KissApplication.getApplication(activity).getDataHandler();
         if (dataHandler.getHistoryMode() != HistoryMode.ALPHABETICALLY) {
             for (Pojo pojo : pojos) {
-                if (pojo.isDisabled()) {
+                if (pojo.isDisabled() && demoteDisabled) {
                     // Give penalty for disabled items, these should not be preferred
                     pojo.relevance -= 200;
                 }
