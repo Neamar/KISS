@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
@@ -119,7 +120,7 @@ public final class ContactsPojo extends Pojo {
     }
 
     public void addAdditionalNormalizedPhoneNumber(StringNormalizer.Result phoneNumber) {
-        if (phoneNumber == null) {
+        if (phoneNumber == null || Objects.equals(phoneNumber, normalizedPhone)) {
             return;
         }
         if (additionalNormalizedPhoneNumbers == null) {

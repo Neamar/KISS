@@ -196,10 +196,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     long rawContactId = phoneCursor.getLong(rawContactIdIndex);
                     BasicRawContact basicRawContact = basicRawContacts.get(rawContactId);
                     String phone = phoneCursor.getString(numberIndex);
-                    if (phone == null) {
-                        phone = "";
-                    }
-                    phone = phoneUtils.format(phone);
 
                     if (basicContact != null && basicRawContact != null) {
                         long contactId = basicContact.getContactId();
@@ -207,10 +203,15 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         boolean primary = phoneCursor.getInt(isPrimaryIndex) != 0;
                         Uri icon = basicContact.getIcon();
 
+                        if (phone == null) {
+                            phone = "";
+                        }
+                        String formattedPhone = phoneUtils.format(phone);
+
                         ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, contactId, icon, primary, starred);
                         setNames(contact, basicContact);
 
-                        contact.setPhone(phone, false);
+                        contact.setPhone(formattedPhone, false);
 
                         addContactToMap(contact, mapContacts);
                     } else {
