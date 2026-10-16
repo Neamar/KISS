@@ -773,11 +773,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     }
 
     @Nullable
-    public PhoneProvider getPhoneProvider() {
-        return (PhoneProvider) getProvider(PHONE);
-    }
-
-    @Nullable
     public ShortcutsProvider getShortcutsProvider() {
         return (ShortcutsProvider) getProvider(SHORTCUTS);
     }
@@ -960,9 +955,9 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-phone-history", false)) {
             return;
         }
-        ContactsProvider contactsProvider = getContactsProvider();
-        if (contactsProvider != null) {
-            Pojo pojo = contactsProvider.findByPhone(phoneNumber);
+        PhoneProvider phoneProvider = (PhoneProvider) getProvider(PHONE);
+        if (phoneProvider != null) {
+            Pojo pojo = phoneProvider.findByPhone(phoneNumber);
             if (pojo != null) {
                 addToHistory(pojo.getHistoryId());
             }
