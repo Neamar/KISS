@@ -94,6 +94,13 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
         FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
 
+        // use different normalization for phone numbers
+        FuzzyScore phoneFuzzyScore = null;
+        if (PhoneUtils.isPhoneNumber(queryNormalized.toString())) {
+            StringNormalizer.Result phoneQueryNormalized = PhoneNormalizer.normalizeWithResult(query);
+            phoneFuzzyScore = FuzzyFactory.createFuzzyScore(this, phoneQueryNormalized.codePoints);
+        }
+
         for (ContactsPojo pojo : getPojos()) {
             MatchInfo matchInfo;
             boolean match = false;
@@ -122,10 +129,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
-            if (!match && queryNormalized.length() > 2) {
+            if (!match && phoneFuzzyScore != null && queryNormalized.length() > 2) {
                 // search for the phone number
                 for (StringNormalizer.Result normalizedPhone : pojo.getAllNormalizedPhoneNumbers()) {
-                    matchInfo = fuzzyScore.match(normalizedPhone.codePoints);
+                    matchInfo = phoneFuzzyScore.match(normalizedPhone.codePoints);
                     match = pojo.updateMatchingRelevance(matchInfo, match);
                 }
             }

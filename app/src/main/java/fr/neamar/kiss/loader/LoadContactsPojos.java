@@ -345,13 +345,10 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             }
 
             // Find primary contact
-            ContactsPojo primary = null;
-            for (ContactsPojo contact : mappedContacts) {
-                if (contact.primary) {
-                    primary = contact;
-                    break;
-                }
-            }
+            ContactsPojo primary = mappedContacts.stream()
+                    .filter(contact -> contact.primary)
+                    .findFirst()
+                    .orElse(null);
 
             Set<String> added = new HashSet<>(mappedContacts.size());
             for (ContactsPojo contact : mappedContacts) {
