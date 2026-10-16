@@ -53,7 +53,7 @@ public class FuzzyScoreV2 implements FuzzyScore {
         for (int i = 0; i < patternLower.length; i += 1) {
             patternLower[i] = Character.toLowerCase(pattern[i]);
         }
-        adjacency_bonus = 15;
+        adjacency_bonus = 20;
         separator_bonus = 30;
         camel_bonus = 30;
         first_letter_bonus = 30;

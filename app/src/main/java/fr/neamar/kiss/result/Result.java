@@ -25,12 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
+import androidx.annotation.*;
 import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
@@ -51,14 +46,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
-import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.ContactsPojo;
-import fr.neamar.kiss.pojo.PhonePojo;
-import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.pojo.SettingPojo;
-import fr.neamar.kiss.pojo.ShortcutPojo;
-import fr.neamar.kiss.pojo.TagDummyPojo;
+import fr.neamar.kiss.pojo.*;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
@@ -193,7 +181,7 @@ public abstract class Result<T extends Pojo> {
                                          TextView view, Context context) {
         MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
-        if (!matchInfo.match) {
+        if (matchInfo.getMatchedIndices().isEmpty()) {
             view.setText(text);
             return false;
         }
