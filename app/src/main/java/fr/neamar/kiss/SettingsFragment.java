@@ -92,7 +92,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             removePreference("exclude_apps_category", "edit-excluded-app-shortcuts");
             removePreference("exclude_apps_category", "reset-excluded-app-shortcuts");
             removePreference("search-providers", "enable-shortcuts");
+            removePreference("search-providers", "pinned-shortcuts-only");
             removePreference("search-providers", "reset-shortcuts");
+        } else {
+            setupPinnedShortcutsOnlyPreference();
         }
 
         updateItemsToRun();
@@ -100,6 +103,34 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         updateNightMode();
 
         permissionManager = new Permission(getActivity());
+    }
+
+    private void setupPinnedShortcutsOnlyPreference() {
+        SwitchPreference enableShortcuts = findPreference("enable-shortcuts");
+        if (enableShortcuts != null) {
+            enableShortcuts.setOnPreferenceChangeListener((preference, newValue) -> {
+                updatePinnedShortcutsOnlyPreference((Boolean) newValue);
+                return true;
+            });
+        }
+        updatePinnedShortcutsOnlyPreference();
+    }
+
+    private void updatePinnedShortcutsOnlyPreference() {
+        updatePinnedShortcutsOnlyPreference(prefs.getBoolean("enable-shortcuts", true));
+    }
+
+    private void updatePinnedShortcutsOnlyPreference(boolean shortcutsEnabled) {
+        SwitchPreference pinnedOnly = findPreference("pinned-shortcuts-only");
+        if (pinnedOnly == null) {
+            return;
+        }
+
+        if (!shortcutsEnabled && prefs.getBoolean("pinned-shortcuts-only", false)) {
+            prefs.edit().putBoolean("pinned-shortcuts-only", false).apply();
+        }
+        pinnedOnly.setChecked(shortcutsEnabled && prefs.getBoolean("pinned-shortcuts-only", false));
+        pinnedOnly.setEnabled(shortcutsEnabled);
     }
 
     private void updateItemsToRun() {
@@ -134,6 +165,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onResume() {
         super.onResume();
         prefs.registerOnSharedPreferenceChangeListener(this);
+        updatePinnedShortcutsOnlyPreference();
     }
 
     @Override
@@ -143,6 +175,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
             if (PREF_LISTS_WITH_DEPENDENCY.contains(key)) {
                 updateItemToRun(key);
+            }
+
+            if ("enable-shortcuts".equals(key) || "pinned-shortcuts-only".equals(key)) {
+                updatePinnedShortcutsOnlyPreference();
             }
 
             if (key.equalsIgnoreCase("available-search-providers")) {

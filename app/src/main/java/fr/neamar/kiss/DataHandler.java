@@ -138,6 +138,12 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if ("enable-shortcuts".equals(key) && !sharedPreferences.getBoolean(key, true)) {
+            sharedPreferences.edit().putBoolean("pinned-shortcuts-only", false).apply();
+        } else if ("pinned-shortcuts-only".equals(key)) {
+            reload(SHORTCUTS);
+        }
+
         if (key != null && key.startsWith("enable-")) {
             for (ProviderName providerName : ProviderName.values()) {
                 if (providerName.isService() && key.equals("enable-" + providerName.getSettingName())) {
@@ -172,6 +178,11 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
     protected void connectToProvider(final ProviderName name, final int counter) {
+        // A screen/unlock retry can run after the user has disabled this provider.
+        if (!isProviderEnabled(name)) {
+            return;
+        }
+
         // Do not continue if this provider has already been connected to
         if (this.providers.containsKey(name)) {
             return;
@@ -240,21 +251,26 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         this.providers.put(name, entry);
 
         // Connect and bind to provider service
-        this.context.bindService(intent, new ServiceConnection() {
+        entry.connection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName className, IBinder service) {
+                if (providers.get(name) != entry || !isProviderEnabled(name)) {
+                    return;
+                }
                 // We've bound to LocalService, cast the IBinder and get LocalService instance
                 Provider<?>.LocalBinder binder = (Provider<?>.LocalBinder) service;
 
                 // Update provider info so that it contains something useful
                 entry.provider = binder.getService();
-                entry.connection = this;
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
             }
-        }, Context.BIND_AUTO_CREATE);
+        };
+        // Retain the binding immediately so disabling before onServiceConnected
+        // can still unbind it.
+        this.context.bindService(intent, entry.connection, Context.BIND_AUTO_CREATE);
     }
 
     /**
@@ -277,8 +293,9 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
 
         // Stop provider service
-        if (entry.provider != null) {
-            this.context.stopService(new Intent(this.context, entry.provider.getClass()));
+        Intent intent = providerName2Intent(name);
+        if (intent != null) {
+            this.context.stopService(intent);
         }
 
         // Providers changed! We need to fire the LOAD_OVER event.
@@ -755,8 +772,17 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     @Nullable
     public IProvider<?> getProvider(ProviderName providerName) {
+        if (!isProviderEnabled(providerName)) {
+            return null;
+        }
         ProviderEntry entry = this.providers.get(providerName);
         return (entry != null) ? (entry.provider) : null;
+    }
+
+    private boolean isProviderEnabled(ProviderName providerName) {
+        return !providerName.isService()
+                || PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean("enable-" + providerName.getSettingName(), true);
     }
 
     public void reload(@NonNull ProviderName... providerNames) {
