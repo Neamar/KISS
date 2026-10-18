@@ -3,8 +3,12 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
+import androidx.annotation.Nullable;
+
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.normalizer.PhoneNormalizer;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.PhoneUtils;
@@ -25,9 +29,7 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
     public void requestResults(String query, Searcher searcher) {
         // Append an item only if query looks like a phone number and device has phone capabilities
         if (deviceIsPhone && PhoneUtils.isPhoneNumber(query)) {
-            PhoneUtils phoneUtils = new PhoneUtils(context);
-            String formattedPhone = phoneUtils.format(query);
-            searcher.addResult(getResult(formattedPhone, true));
+            searcher.addResult(getResult(query, true));
         }
     }
 
@@ -36,8 +38,20 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
         return id.startsWith(PHONE_SCHEME);
     }
 
+    @Override
+    @Nullable
     public PhonePojo findById(String id) {
-        return getResult(id.replaceFirst(Pattern.quote(PHONE_SCHEME), ""), false);
+        String phoneNumber = id.replaceFirst(Pattern.quote(PHONE_SCHEME), "");
+        return findByPhone(phoneNumber);
+    }
+
+    @Nullable
+    public PhonePojo findByPhone(String phoneNumber) {
+        if (!PhoneUtils.isPhoneNumber(phoneNumber)) {
+            return null;
+        }
+        // return generic phone pojo
+        return getResult(phoneNumber, false);
     }
 
     /**
@@ -46,12 +60,16 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
      * @return a result that may have a fake id.
      */
     private PhonePojo getResult(String phoneNumber, boolean fromSearch) {
-        String historyId = PHONE_SCHEME + phoneNumber;
+        PhoneUtils phoneUtils = new PhoneUtils(context);
+        String formattedPhone = phoneUtils.format(phoneNumber);
+        StringNormalizer.Result normalizedPhone = PhoneNormalizer.normalizeWithResult(phoneNumber);
+
+        String historyId = PHONE_SCHEME + normalizedPhone.toString();
         String searchId = PHONE_SCHEME + "search";
         String id = fromSearch ? searchId : historyId;
-        PhonePojo pojo = new PhonePojo(id, historyId, phoneNumber, searchId);
+        PhonePojo pojo = new PhonePojo(id, historyId, formattedPhone, searchId);
 
-        String phoneNumberAfterFirstCharacter = phoneNumber.substring(1);
+        String phoneNumberAfterFirstCharacter = formattedPhone.substring(1);
         if (!phoneNumberAfterFirstCharacter.contains("*") && !phoneNumberAfterFirstCharacter.contains("+")) {
             // No * and no + (except maybe as a first character), likely to be a phone number and not a Calculator expression
             pojo.relevance = 20;
@@ -60,7 +78,7 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
             // Calculator expressions have a relevance of 19, so use something lower
             pojo.relevance = 15;
         }
-        pojo.setName(phoneNumber, false);
+        pojo.setName(formattedPhone, false);
         return pojo;
     }
 }
