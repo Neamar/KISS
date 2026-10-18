@@ -942,6 +942,27 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
     }
 
+    /**
+     * Insert specified pojo with given phone number into history
+     *
+     * @param phoneNumber phone number to record
+     */
+    public void addPhoneNumberToHistory(String phoneNumber) {
+        if (TextUtils.isEmpty(phoneNumber)) {
+            return;
+        }
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-phone-history", false)) {
+            return;
+        }
+        ContactsProvider contactsProvider = getContactsProvider();
+        if (contactsProvider != null) {
+            Pojo pojo = contactsProvider.findByPhone(phoneNumber);
+            if (pojo != null) {
+                addToHistory(pojo.getHistoryId());
+            }
+        }
+    }
+
     public Pojo getPojo(String id) {
         // Ask all providers if they know this id
         for (ProviderEntry entry : this.providers.values()) {

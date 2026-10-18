@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
@@ -219,17 +220,23 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     }
 
     private void launchContactView(Context context, View v) {
-        Intent viewContact = new Intent(Intent.ACTION_VIEW);
+        Uri contactUri = ContactsContract.Contacts.getLookupUri(pojo.getContactId(), pojo.lookupKey);
 
-        Uri contactUri = ContactsContract.Contacts.CONTENT_LOOKUP_URI;
-        contactUri = Uri.withAppendedPath(contactUri, String.valueOf(pojo.lookupKey));
-        contactUri = Uri.withAppendedPath(contactUri, String.valueOf(pojo.getContactId()));
-
-        viewContact.setData(contactUri);
-        setSourceBounds(viewContact, v);
-        viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        context.startActivity(viewContact);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pojo.getContactData() != null) {
+            ContactsContract.QuickContact.showQuickContact(
+                    context,
+                    getViewBounds(v),
+                    contactUri,
+                    null,
+                    pojo.getContactData().getMimeType());
+        } else {
+            ContactsContract.QuickContact.showQuickContact(
+                    context,
+                    getViewBounds(v),
+                    contactUri,
+                    ContactsContract.QuickContact.MODE_LARGE,
+                    null);
+        }
     }
 
     @Override
