@@ -523,6 +523,7 @@ public abstract class Result<T extends Pojo> {
         }
     }
 
+    @NonNull
     protected Drawable getThemedDrawable(@NonNull Context context, @NonNull Pojo pojo, @DrawableRes int resId) {
         return KissApplication.getApplication(context).getIconsHandler().getThemedDrawable(pojo, resId, getBackgroundColor(context), getTextColor(context), getThemeFillColor(context), makeThemedIcon());
     }
