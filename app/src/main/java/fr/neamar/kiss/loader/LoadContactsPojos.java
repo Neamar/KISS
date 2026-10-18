@@ -2,13 +2,17 @@ package fr.neamar.kiss.loader;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.pm.LauncherApps;
+import android.content.pm.LauncherUserInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.UserManager;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.util.*;
 
@@ -20,6 +24,7 @@ import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.PhoneUtils;
+import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
@@ -177,6 +182,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         // Prevent duplicates by keeping in memory encountered contacts.
         Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
 
+        // get user handle for managed contacts
+        UserHandle managedUserHandle = getManagedUserHandle(ctx);
+
         // Query all phone numbers
         try (Cursor phoneCursor = ctx.getContentResolver().query(
                 getPhoneUri(),
@@ -208,7 +216,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         }
                         String formattedPhone = phoneUtils.format(phone);
 
-                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, contactId, icon, primary, starred);
+                        UserHandle userHandle = ContactsContract.Contacts.isEnterpriseContactId(contactId) ? managedUserHandle : UserHandle.OWNER;
+
+                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, contactId, icon, primary, starred, userHandle);
                         setNames(contact, basicContact);
 
                         contact.setPhone(formattedPhone, false);
@@ -222,6 +232,22 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone == null ? null : contact.normalizedPhone.toString(), (contact, contactToMerge) -> contact.addAdditionalNormalizedPhoneNumber(contactToMerge.normalizedPhone));
+    }
+
+    private UserHandle getManagedUserHandle(Context ctx) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            UserManager manager = ContextCompat.getSystemService(ctx, UserManager.class);
+            LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
+            return manager.getUserProfiles().stream()
+                    .filter(userHandle -> {
+                        LauncherUserInfo userInfo = launcherApps.getLauncherUserInfo(userHandle);
+                        return userInfo != null && UserManager.USER_TYPE_PROFILE_MANAGED.equals(userInfo.getUserType());
+                    })
+                    .findFirst()
+                    .map(userHandle -> new UserHandle(ctx, userHandle))
+                    .orElse(null);
+        }
+        return UserHandle.OWNER;
     }
 
     private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, @NonNull String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
@@ -274,7 +300,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         }
                         Uri icon = basicContact.getIcon();
 
-                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, contactId, icon, primary, basicRawContact.isStarred());
+                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, contactId, icon, primary, basicRawContact.isStarred(), UserHandle.OWNER);
                         setNames(contact, basicContact);
 
                         ContactData contactData = new ContactData(mimeType, id);
