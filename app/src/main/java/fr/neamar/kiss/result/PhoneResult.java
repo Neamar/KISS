@@ -13,11 +13,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import java.util.Collections;
+import java.util.List;
 
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.PhonePojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
@@ -77,6 +82,21 @@ public class PhoneResult extends CallResult<PhonePojo> {
     @Override
     protected void doLaunch(Context context, View v) {
         launchCall(context, v, pojo.phone);
+    }
+
+    @NonNull
+    @Override
+    protected Pojo getPojoForRecordLaunch(Context context) {
+        // search for existing contacts
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        ContactsProvider contactsProvider = dataHandler.getContactsProvider();
+        if (contactsProvider != null) {
+            List<Pojo> pojos = contactsProvider.findByPhone(pojo.phone);
+            if (!pojos.isEmpty()) {
+                return pojos.get(0);
+            }
+        }
+        return super.getPojoForRecordLaunch(context);
     }
 
     @Override

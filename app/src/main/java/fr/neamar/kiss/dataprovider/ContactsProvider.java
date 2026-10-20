@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
@@ -168,11 +170,21 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     public List<Pojo> findByPhone(String phoneNumber) {
         StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.normalizeWithResult(phoneNumber);
 
+        Comparator<ContactsPojo> comparator = Comparator.comparing(this::isEnterpriseContactId) // non enterprise first
+                .thenComparing(contactsPojo -> !contactsPojo.starred) // starred first
+                .thenComparing(contactsPojo -> !contactsPojo.primary) // primary first
+                .thenComparing(new NameComparator()); // by name
+
         PhoneUtils phoneUtils = new PhoneUtils(this);
         return getPojos().stream()
                 .filter(pojo -> pojo.getAllNormalizedPhoneNumbers()
                         .stream()
                         .anyMatch(normalizedPhone -> phoneUtils.areSamePhoneNumber(normalizedPhone, simplifiedPhoneNumber)))
+                .sorted(comparator)
                 .collect(Collectors.toList());
+    }
+
+    private boolean isEnterpriseContactId(ContactsPojo contactsPojo) {
+        return ContactsContract.Contacts.isEnterpriseContactId(contactsPojo.getContactId());
     }
 }
