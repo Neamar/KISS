@@ -49,11 +49,10 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
     @Nullable
     public Pojo findById(String id) {
         String phoneNumber = id.replaceFirst(Pattern.quote(PHONE_SCHEME), "");
-        List<Pojo> pojos = findByPhone(phoneNumber);
-        if (!pojos.isEmpty()) {
-            return pojos.get(0);
+        if (!PhoneUtils.isPhoneNumber(phoneNumber)) {
+            return null;
         }
-        return null;
+        return getResult(phoneNumber, false);
     }
 
     @NonNull
