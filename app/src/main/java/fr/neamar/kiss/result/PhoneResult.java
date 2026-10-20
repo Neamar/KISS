@@ -3,7 +3,6 @@ package fr.neamar.kiss.result;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Pair;
 import android.view.View;
@@ -63,10 +62,7 @@ public class PhoneResult extends CallResult<PhonePojo> {
             context.startActivity(createIntent);
             return true;
         } else if (stringId == R.string.ui_item_contact_hint_message) {
-            String url = "sms:" + pojo.phone;
-            Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-            messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(messageIntent);
+            launchMessaging(context, null, pojo.phone);
             return true;
         }
 

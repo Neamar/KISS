@@ -123,7 +123,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         } else if (hasPhone) {
             messageButton.setVisibility(View.VISIBLE);
             messageButton.setOnClickListener(v -> {
-                launchMessaging(v.getContext(), v);
+                launchMessaging(v.getContext(), v, pojo.phone);
                 recordLaunch(context, queryInterface);
             });
 
@@ -249,14 +249,6 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         } else {
             launchContactView(context, v);
         }
-    }
-
-    private void launchMessaging(final Context context, final View view) {
-        String url = "sms:" + Uri.encode(pojo.phone);
-        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        setSourceBounds(intent, view);
-        context.startActivity(intent);
     }
 
     private void launchIm(final Context context, final View view) {
