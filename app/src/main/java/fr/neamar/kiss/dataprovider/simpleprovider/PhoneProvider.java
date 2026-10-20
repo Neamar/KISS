@@ -3,8 +3,11 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.DataHandler;
@@ -12,7 +15,6 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
-import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -47,25 +49,29 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
     @Nullable
     public Pojo findById(String id) {
         String phoneNumber = id.replaceFirst(Pattern.quote(PHONE_SCHEME), "");
-        return findByPhone(phoneNumber);
+        List<Pojo> pojos = findByPhone(phoneNumber);
+        if (!pojos.isEmpty()) {
+            return pojos.get(0);
+        }
+        return null;
     }
 
-    @Nullable
-    public Pojo findByPhone(String phoneNumber) {
+    @NonNull
+    public List<Pojo> findByPhone(String phoneNumber) {
         if (!PhoneUtils.isPhoneNumber(phoneNumber)) {
-            return null;
+            return Collections.emptyList();
         }
         // search for existing contacts first
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         ContactsProvider contactsProvider = dataHandler.getContactsProvider();
         if (contactsProvider != null) {
-            ContactsPojo pojo = contactsProvider.findByPhone(phoneNumber);
-            if (pojo != null) {
-                return pojo;
+            List<Pojo> pojos = contactsProvider.findByPhone(phoneNumber);
+            if (!pojos.isEmpty()) {
+                return pojos;
             }
         }
         // return generic phone pojo
-        return getResult(phoneNumber, false);
+        return Collections.singletonList(getResult(phoneNumber, false));
     }
 
     /**

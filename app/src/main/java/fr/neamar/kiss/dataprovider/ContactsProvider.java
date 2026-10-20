@@ -10,11 +10,14 @@ import androidx.annotation.Nullable;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.Permission;
@@ -161,18 +164,15 @@ public class ContactsProvider extends Provider<ContactsPojo> {
      * @param phoneNumber phone number to find (will be normalized)
      * @return a ContactsPojo, or null.
      */
-    public ContactsPojo findByPhone(String phoneNumber) {
+    @NonNull
+    public List<Pojo> findByPhone(String phoneNumber) {
         StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.normalizeWithResult(phoneNumber);
 
         PhoneUtils phoneUtils = new PhoneUtils(this);
-        for (ContactsPojo pojo : getPojos()) {
-            for (StringNormalizer.Result normalizedPhone : pojo.getAllNormalizedPhoneNumbers()) {
-                if (phoneUtils.areSamePhoneNumber(normalizedPhone, simplifiedPhoneNumber)) {
-                    return pojo;
-                }
-            }
-        }
-
-        return null;
+        return getPojos().stream()
+                .filter(pojo -> pojo.getAllNormalizedPhoneNumbers()
+                        .stream()
+                        .anyMatch(normalizedPhone -> phoneUtils.areSamePhoneNumber(normalizedPhone, simplifiedPhoneNumber)))
+                .collect(Collectors.toList());
     }
 }

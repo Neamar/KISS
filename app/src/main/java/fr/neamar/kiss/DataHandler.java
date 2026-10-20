@@ -957,10 +957,8 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
         PhoneProvider phoneProvider = (PhoneProvider) getProvider(PHONE);
         if (phoneProvider != null) {
-            Pojo pojo = phoneProvider.findByPhone(phoneNumber);
-            if (pojo != null) {
-                addToHistory(pojo.getHistoryId());
-            }
+            List<Pojo> pojos = phoneProvider.findByPhone(phoneNumber);
+            pojos.forEach(pojo -> addToHistory(pojo.getHistoryId()));
         }
     }
 
