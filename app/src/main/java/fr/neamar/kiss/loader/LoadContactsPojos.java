@@ -93,7 +93,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         Log.i(TAG, (endBasicContacts - startBasicContacts) + " milliseconds to load " + basicContacts.size() + " basic contacts");
 
         // Query raw contact information and keep in memory to prevent duplicates
-        Map<Long, BasicRawContact> basicRawContacts = new HashMap<>();
+        Map<Long, BasicRawContact> basicRawContacts = new HashMap<>(basicContacts.size());
         long startRawContacts = System.currentTimeMillis();
         try (Cursor rawContactCursor = ctx.getContentResolver().query(
                 ContactsContract.RawContacts.CONTENT_URI,
@@ -180,7 +180,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         PhoneUtils phoneUtils = new PhoneUtils(ctx);
 
         // Prevent duplicates by keeping in memory encountered contacts.
-        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
+        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>(basicContacts.size());
 
         // get user handle for managed contacts
         UserHandle managedUserHandle = getManagedUserHandle(ctx);
@@ -207,9 +207,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                     if (basicContact != null && basicRawContact != null) {
                         long contactId = basicContact.getContactId();
-                        boolean starred = basicRawContact.isStarred();
                         boolean primary = phoneCursor.getInt(isPrimaryIndex) != 0;
-                        Uri icon = basicContact.getIcon();
 
                         if (phone == null) {
                             phone = "";
@@ -218,8 +216,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                         UserHandle userHandle = ContactsContract.Contacts.isEnterpriseContactId(contactId) ? managedUserHandle : UserHandle.OWNER;
 
-                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, contactId, icon, primary, starred, userHandle);
-                        setNames(contact, basicContact);
+                        ContactsPojo contact = createContact(basicContact, basicRawContact, pojoScheme + contactId + '/' + phone, primary, userHandle);
 
                         contact.setPhone(formattedPhone, false);
 
@@ -253,7 +250,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
     private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, @NonNull String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
         final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(ctx);
         // Prevent duplicates by keeping in memory encountered contacts.
-        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
+        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>(basicContacts.size());
 
         List<String> columns = new ArrayList<>();
         columns.add(ContactsContract.Data.LOOKUP_KEY);
@@ -298,10 +295,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         if (TextUtils.isEmpty(label)) {
                             label = mimeTypeCache.getLabel(ctx, mimeType);
                         }
-                        Uri icon = basicContact.getIcon();
-
-                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, contactId, icon, primary, basicRawContact.isStarred(), UserHandle.OWNER);
-                        setNames(contact, basicContact);
+                        ContactsPojo contact = createContact(basicContact, basicRawContact, pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, primary, UserHandle.OWNER);
 
                         ContactData contactData = new ContactData(mimeType, id);
                         contactData.setIdentifier(label);
@@ -316,6 +310,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         return getFilteredContacts(mapContacts, contact -> contact.getContactData().getIdentifier(), null);
+    }
+
+    private ContactsPojo createContact(BasicContact basicContact, BasicRawContact basicRawContact, String id, boolean isPrimary, UserHandle userHandle) {
+        ContactsPojo contact = new ContactsPojo(id, basicContact.lookupKey, basicContact.contactId, basicContact.getIcon(), isPrimary, basicRawContact.isStarred(), userHandle);
+        setNames(contact, basicContact);
+        return contact;
     }
 
     /**
@@ -342,12 +342,10 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
      */
     private void addContactToMap(ContactsPojo contact, Map<String, Set<ContactsPojo>> mapContacts) {
         if (contact.getName() != null) {
-            Set<ContactsPojo> contacts = mapContacts.get(contact.lookupKey);
-            if (contacts == null) {
-                contacts = new HashSet<>(1);
-                mapContacts.put(contact.lookupKey, contacts);
-            }
+            Set<ContactsPojo> contacts = mapContacts.computeIfAbsent(contact.lookupKey, (key) -> new HashSet<>(1));
             contacts.add(contact);
+        } else {
+            Log.v(TAG, "Cannot add ContactPojo without name!");
         }
     }
 
