@@ -171,7 +171,9 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
         super.buildPopupMenu(context, adapter);
 
-        adapter.add(new ListPopup.Item(context, R.string.menu_contact_copy_phone));
+        if (!TextUtils.isEmpty(pojo.phone)) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_contact_copy_phone));
+        }
     }
 
     @Override
