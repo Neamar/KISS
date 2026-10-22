@@ -19,8 +19,7 @@ public abstract class CallResult<T extends Pojo> extends Result<T> {
     }
 
     public void launchCall(Context context, View v, String phone) {
-        Intent phoneIntent = new Intent(Intent.ACTION_CALL);
-        phoneIntent.setData(Uri.parse("tel:" + Uri.encode(phone)));
+        Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Uri.encode(phone)));
         setSourceBounds(phoneIntent, v);
         phoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -42,7 +41,14 @@ public abstract class CallResult<T extends Pojo> extends Result<T> {
         }
 
         // Pre-android 23, or we already have permission
-
         context.startActivity(phoneIntent);
     }
+
+    protected void launchMessaging(Context context, View v, String phone) {
+        Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms:" + Uri.encode(phone)));
+        setSourceBounds(messageIntent, v);
+        messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(messageIntent);
+    }
+
 }

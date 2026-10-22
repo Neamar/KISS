@@ -3,9 +3,16 @@ package fr.neamar.kiss.pojo;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.PhoneUtils;
+import fr.neamar.kiss.utils.UserHandle;
 
 public final class ContactsPojo extends Pojo {
     public final String lookupKey;
@@ -14,6 +21,7 @@ public final class ContactsPojo extends Pojo {
     public String phone;
     //phone without special characters
     public StringNormalizer.Result normalizedPhone;
+    private Set<StringNormalizer.Result> additionalNormalizedPhoneNumbers;
     // Is this number a home (local) number ?
     private boolean homeNumber;
 
@@ -25,6 +33,8 @@ public final class ContactsPojo extends Pojo {
     // Is this contact starred ?
     public final boolean starred;
 
+    private final UserHandle userHandle;
+
     private String nickname = null;
     // nickname without special characters
     public StringNormalizer.Result normalizedNickname = null;
@@ -34,13 +44,14 @@ public final class ContactsPojo extends Pojo {
 
     private ContactData contactData;
 
-    public ContactsPojo(String id, String lookupKey, long contactId, Uri icon, boolean primary, boolean starred) {
+    public ContactsPojo(String id, String lookupKey, long contactId, Uri icon, boolean primary, boolean starred, @NonNull UserHandle userHandle) {
         super(id);
         this.lookupKey = lookupKey;
         this.contactId = contactId;
         this.icon = icon;
         this.primary = primary;
         this.starred = starred;
+        this.userHandle = userHandle;
     }
 
     public String getNickname() {
@@ -112,5 +123,31 @@ public final class ContactsPojo extends Pojo {
         } else {
             return "contact://default";
         }
+    }
+
+    public void addAdditionalNormalizedPhoneNumber(StringNormalizer.Result phoneNumber) {
+        if (phoneNumber == null || Objects.equals(phoneNumber, normalizedPhone)) {
+            return;
+        }
+        if (additionalNormalizedPhoneNumbers == null) {
+            additionalNormalizedPhoneNumbers = new HashSet<>();
+        }
+        additionalNormalizedPhoneNumbers.add(phoneNumber);
+    }
+
+    public Set<StringNormalizer.Result> getAllNormalizedPhoneNumbers() {
+        Set<StringNormalizer.Result> result = new HashSet<>();
+        if (normalizedPhone != null) {
+            result.add(normalizedPhone);
+        }
+        if (additionalNormalizedPhoneNumbers != null) {
+            result.addAll(additionalNormalizedPhoneNumbers);
+        }
+        return result;
+    }
+
+    @Override
+    public UserHandle getUserHandle() {
+        return userHandle;
     }
 }

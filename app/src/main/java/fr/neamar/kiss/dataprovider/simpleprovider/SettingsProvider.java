@@ -82,7 +82,7 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
     }
 
     private void assignName(SettingPojo pojo, String name) {
-        pojo.setName(name, true);
+        pojo.setName(name);
     }
 
     private String getId(String settingName) {
@@ -142,6 +142,7 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean mayFindById(String id) {
         return id.startsWith(SCHEME);
     }

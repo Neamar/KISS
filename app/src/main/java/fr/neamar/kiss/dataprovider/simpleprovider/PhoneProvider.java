@@ -3,13 +3,20 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.PhonePojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.PhoneUtils;
 
@@ -40,18 +47,30 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
 
     @Override
     @Nullable
-    public PhonePojo findById(String id) {
+    public Pojo findById(String id) {
         String phoneNumber = id.replaceFirst(Pattern.quote(PHONE_SCHEME), "");
-        return findByPhone(phoneNumber);
-    }
-
-    @Nullable
-    public PhonePojo findByPhone(String phoneNumber) {
         if (!PhoneUtils.isPhoneNumber(phoneNumber)) {
             return null;
         }
-        // return generic phone pojo
         return getResult(phoneNumber, false);
+    }
+
+    @NonNull
+    public List<Pojo> findByPhone(String phoneNumber) {
+        if (!PhoneUtils.isPhoneNumber(phoneNumber)) {
+            return Collections.emptyList();
+        }
+        // search for existing contacts first
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        ContactsProvider contactsProvider = dataHandler.getContactsProvider();
+        if (contactsProvider != null) {
+            List<Pojo> pojos = contactsProvider.findByPhone(phoneNumber);
+            if (!pojos.isEmpty()) {
+                return pojos;
+            }
+        }
+        // return generic phone pojo
+        return Collections.singletonList(getResult(phoneNumber, false));
     }
 
     /**
