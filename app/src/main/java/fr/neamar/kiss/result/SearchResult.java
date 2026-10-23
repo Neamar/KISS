@@ -21,8 +21,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Collections;
 
 import fr.neamar.kiss.IconsHandler;
@@ -151,12 +149,7 @@ public class SearchResult extends Result<SearchPojo> {
             intent.putExtra(SearchManager.QUERY, pojo.query); // query contains search string
             return intent;
         } else {
-            String query;
-            try {
-                query = URLEncoder.encode(pojo.query, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                query = URLEncoder.encode(pojo.query);
-            }
+            String query = Uri.encode(pojo.query);
             String urlWithQuery = pojo.url.replaceAll("%s|\\{q\\}", query);
             Uri uri = Uri.parse(urlWithQuery);
             return PackageManagerUtils.createUriIntent(uri);
