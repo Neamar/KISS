@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
 
+import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
@@ -9,10 +10,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
@@ -30,20 +34,33 @@ import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 public class ShortcutsProvider extends Provider<ShortcutPojo> {
     private static boolean notifiedKissNotDefaultLauncher = false;
     protected static final String TAG = ShortcutsProvider.class.getSimpleName();
+    private LauncherApps launcher;
+    private LauncherAppsCallback shortcutsCallback;
 
     @Override
     public void onCreate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            final LauncherApps launcher = ContextCompat.getSystemService(this, LauncherApps.class);
+            launcher = ContextCompat.getSystemService(this, LauncherApps.class);
             assert launcher != null;
 
-            launcher.registerCallback(new LauncherAppsCallback() {
+            shortcutsCallback = new LauncherAppsCallback() {
                 @Override
                 public void onShortcutsChanged(@NonNull String packageName, @NonNull List<ShortcutInfo> shortcuts, @NonNull android.os.UserHandle user) {
-                    if (isAnyShortcutVisible(shortcuts)) {
+                    if (isAnyShortcutVisible(shortcuts) || hasLoadedShortcuts(packageName)) {
                         Log.d(TAG, "Shortcuts changed for " + packageName);
                         KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reload(SHORTCUTS);
                     }
+                }
+
+                private boolean hasLoadedShortcuts(String packageName) {
+                    // A removal can leave no visible shortcuts in the callback. Reload to
+                    // remove the package's previous shortcuts from the provider as well.
+                    for (ShortcutPojo pojo : getPojos()) {
+                        if (packageName.equals(pojo.packageName)) {
+                            return true;
+                        }
+                    }
+                    return false;
                 }
 
                 private boolean isAnyShortcutVisible(List<ShortcutInfo> shortcuts) {
@@ -58,10 +75,47 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                     }
                     return false;
                 }
-            });
+            };
+            launcher.registerCallback(shortcutsCallback);
         }
 
         super.onCreate();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (launcher != null && shortcutsCallback != null) {
+            launcher.unregisterCallback(shortcutsCallback);
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public List<ShortcutPojo> getPojos() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("enable-shortcuts", true)) {
+            return Collections.emptyList();
+        }
+
+        List<ShortcutPojo> records = super.getPojos();
+        if (prefs.getBoolean("pinned-shortcuts-only", false)) {
+            return records.stream().filter(ShortcutPojo::isPinned).collect(Collectors.toList());
+        }
+        return records;
+    }
+
+    @Override
+    public ShortcutPojo findById(String id) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("enable-shortcuts", true)) {
+            return null;
+        }
+
+        ShortcutPojo pojo = super.findById(id);
+        if (pojo != null && prefs.getBoolean("pinned-shortcuts-only", false) && !pojo.isPinned()) {
+            return null;
+        }
+        return pojo;
     }
 
     @Override
@@ -116,7 +170,12 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
     }
 
     public List<ShortcutPojo> getPinnedShortcuts() {
-        List<ShortcutPojo> pojos = getPojos();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("enable-shortcuts", true)) {
+            return Collections.emptyList();
+        }
+
+        List<ShortcutPojo> pojos = super.getPojos();
         List<ShortcutPojo> records = new ArrayList<>(pojos.size());
 
         for (ShortcutPojo pojo : pojos) {
