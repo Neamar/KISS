@@ -153,7 +153,7 @@ public class StringNormalizer {
             }
 
             if (this.codePoints.length != that.codePoints.length)
-                return this.codePoints.length - that.codePoints.length;
+                return Integer.compare(this.codePoints.length, that.codePoints.length);
             
             // equal
             return 0;
