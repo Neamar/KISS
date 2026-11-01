@@ -2,6 +2,7 @@ package fr.neamar.kiss;
 
 import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
 import static fr.neamar.kiss.dataprovider.ProviderName.CONTACTS;
+import static fr.neamar.kiss.dataprovider.ProviderName.PHONE;
 import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
 
 import android.app.KeyguardManager;
@@ -954,12 +955,10 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-phone-history", false)) {
             return;
         }
-        ContactsProvider contactsProvider = getContactsProvider();
-        if (contactsProvider != null) {
-            Pojo pojo = contactsProvider.findByPhone(phoneNumber);
-            if (pojo != null) {
-                addToHistory(pojo.getHistoryId());
-            }
+        PhoneProvider phoneProvider = (PhoneProvider) getProvider(PHONE);
+        if (phoneProvider != null) {
+            List<Pojo> pojos = phoneProvider.findByPhone(phoneNumber);
+            pojos.forEach(pojo -> addToHistory(pojo.getHistoryId()));
         }
     }
 

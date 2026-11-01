@@ -376,7 +376,8 @@ public abstract class Result<T extends Pojo> {
     protected final void recordLaunch(Context context, @Nullable QueryInterface queryInterface) {
         // Save in history
         if (canAddToHistory()) {
-            KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
+            Pojo recordLaunchPojo = getPojoForRecordLaunch(context);
+            KissApplication.getApplication(context).getDataHandler().addToHistory(recordLaunchPojo.getHistoryId());
         }
         // Record the launch after some period,
         // * to ensure the animation runs smoothly
@@ -388,6 +389,11 @@ public abstract class Result<T extends Pojo> {
                 queryInterface.launchOccurred();
             }
         }, KissApplication.TOUCH_DELAY * 3);
+    }
+
+    @NonNull
+    protected Pojo getPojoForRecordLaunch(Context context) {
+        return pojo;
     }
 
     /**

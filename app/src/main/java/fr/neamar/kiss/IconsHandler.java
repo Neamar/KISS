@@ -329,6 +329,9 @@ public class IconsHandler {
 
     @NonNull
     private Drawable applyBadge(@NonNull Drawable drawable, @NonNull UserHandle userHandle) {
+        if (userHandle.isCurrentUser()) {
+            return drawable;
+        }
         return pm.getUserBadgedIcon(drawable, userHandle.getRealHandle());
     }
 
