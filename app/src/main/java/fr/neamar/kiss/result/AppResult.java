@@ -3,7 +3,6 @@ package fr.neamar.kiss.result;
 import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
 
 import android.app.ActivityOptions;
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -20,15 +19,11 @@ import android.os.UserManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
 import fr.neamar.kiss.IconsHandler;

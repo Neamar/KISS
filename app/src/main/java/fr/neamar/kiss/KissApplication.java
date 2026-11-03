@@ -112,5 +112,6 @@ public class KissApplication extends Application {
         super.onCreate();
         DBHelper.initDatabase(this);
         InterfaceTweaks.setDefaultNightMode(this);
+        UIColors.setDynamicColors(this);
     }
 }

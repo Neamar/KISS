@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
