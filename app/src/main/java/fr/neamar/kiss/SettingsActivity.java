@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
@@ -194,6 +195,10 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 break;
             case "enable-settings":
                 getDataHandler().reload(SETTINGS);
+                break;
+            case "enable-phone-history":
+                // The permission is requested from the history screen
+                IncomingCallHandler.setEnabled(this, sharedPreferences.getBoolean(key, false));
                 break;
             case "theme":
             case "night-mode":
