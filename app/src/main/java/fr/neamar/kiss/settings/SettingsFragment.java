@@ -18,8 +18,9 @@ import fr.neamar.kiss.R;
 public class SettingsFragment extends BaseSettingsFragment {
     /**
      * All preference XMLs, to initialize default values: they are not read when navigating between screens.
+     * SettingsFragmentTest checks that no XML is missing.
      */
-    private static final int[] PREFERENCES_XML = {
+    static final int[] PREFERENCES_XML = {
             R.xml.preferences,
             R.xml.preferences_history,
             R.xml.preferences_favorites,
