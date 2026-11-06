@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -108,6 +109,13 @@ public final class ContactsPojo extends Pojo {
      */
     public ContactData getContactData(String mimeType) {
         return contactData == null ? null : contactData.get(mimeType);
+    }
+
+    /**
+     * @return mime types of all contact data available for this contact
+     */
+    public Set<String> getContactDataMimeTypes() {
+        return contactData == null ? Collections.emptySet() : contactData.keySet();
     }
 
     /**

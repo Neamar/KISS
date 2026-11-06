@@ -141,17 +141,23 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         contacts.addAll(createPhoneContacts(ctx, basicContacts, basicRawContacts));
 
-        // Attach contact data from other apps (WhatsApp, Signal, ...) used by contact actions
+        // Attach contact data from other apps (WhatsApp, Signal, ...), any of them can be picked for a contact button.
+        // Mime types selected in settings come first, as they also create contacts for people without phone number.
         Map<String, List<ContactsPojo>> contactsByLookupKey = new HashMap<>();
         for (ContactsPojo contact : contacts) {
             addContactToList(contact, contactsByLookupKey);
         }
         PhoneUtils phoneUtils = new PhoneUtils(ctx);
-        List<String> mimeTypes = new ArrayList<>(MimeTypeUtils.getActiveMimeTypes(ctx));
-        Collections.sort(mimeTypes);
+        Set<String> selectedMimeTypes = MimeTypeUtils.getSelectedMimeTypes(ctx);
+        List<String> mimeTypes = new ArrayList<>(MimeTypeUtils.getSupportedMimeTypes(ctx));
+        mimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        Collections.sort(mimeTypes, (a, b) -> {
+            int compareSelected = Boolean.compare(selectedMimeTypes.contains(b), selectedMimeTypes.contains(a));
+            return compareSelected != 0 ? compareSelected : a.compareTo(b);
+        });
         for (String mimeType : mimeTypes) {
             long startMimeType = System.currentTimeMillis();
-            addContactData(ctx, mimeType, basicContacts, basicRawContacts, contactsByLookupKey, contacts, phoneUtils);
+            addContactData(ctx, mimeType, selectedMimeTypes.contains(mimeType), basicContacts, basicRawContacts, contactsByLookupKey, contacts, phoneUtils);
             long endMimeType = System.currentTimeMillis();
             Log.i(TAG, (endMimeType - startMimeType) + " milliseconds to add contact data for " + mimeType);
         }
@@ -251,9 +257,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
     /**
      * Attach contact data of given mime type to the phone contacts of the same person.
      * Contact data is attached to the phone numbers found in its detail column, or to all phone numbers if none matches.
-     * People without any phone number get a contact of their own.
+     * People without any phone number get a contact of their own if requested.
      */
-    private void addContactData(@NonNull Context ctx, @NonNull String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts, Map<String, List<ContactsPojo>> contactsByLookupKey, List<ContactsPojo> contacts, PhoneUtils phoneUtils) {
+    private void addContactData(@NonNull Context ctx, @NonNull String mimeType, boolean createContacts, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts, Map<String, List<ContactsPojo>> contactsByLookupKey, List<ContactsPojo> contacts, PhoneUtils phoneUtils) {
         final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(ctx);
 
         List<String> columns = new ArrayList<>();
@@ -301,11 +307,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                         List<ContactsPojo> sameContacts = contactsByLookupKey.get(lookupKey);
                         if (sameContacts == null) {
-                            ContactsPojo contact = createContact(basicContact, basicRawContact, pojoScheme + basicContact.getContactId() + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, false, UserHandle.OWNER);
-                            if (contact.getName() != null) {
-                                contact.addContactData(contactData);
-                                contacts.add(contact);
-                                addContactToList(contact, contactsByLookupKey);
+                            if (createContacts) {
+                                ContactsPojo contact = createContact(basicContact, basicRawContact, pojoScheme + basicContact.getContactId() + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, false, UserHandle.OWNER);
+                                if (contact.getName() != null) {
+                                    contact.addContactData(contactData);
+                                    contacts.add(contact);
+                                    addContactToList(contact, contactsByLookupKey);
+                                }
                             }
                         } else {
                             List<ContactsPojo> matchingContacts = getContactsWithPhone(sameContacts, label, phoneUtils);

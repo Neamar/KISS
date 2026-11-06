@@ -432,40 +432,19 @@
                     app:defaultValue="false"
                     app:key="call-contact-on-click"
                     app:title="@string/contacts_call_on_click" />
-                <PreferenceCategory app:title="@string/contact_action_left">
-                    <fr.neamar.kiss.preference.ContactActionPreference
-                        app:defaultValue="sms"
-                        app:key="contact-action-left"
-                        app:title="@string/contact_action_main"
-                        app:useSimpleSummaryProvider="true" />
-                    <fr.neamar.kiss.preference.ContactActionPreference
-                        app:defaultValue="sms"
-                        app:key="contact-action-left-fallback"
-                        app:title="@string/contact_action_fallback"
-                        app:useSimpleSummaryProvider="true" />
-                    <fr.neamar.kiss.preference.ContactActionPreference
-                        app:defaultValue="sms"
-                        app:key="contact-action-left-fallback-2"
-                        app:title="@string/contact_action_fallback_2"
-                        app:useSimpleSummaryProvider="true" />
-                </PreferenceCategory>
-                <PreferenceCategory app:title="@string/contact_action_right">
-                    <fr.neamar.kiss.preference.ContactActionPreference
-                        app:defaultValue="call"
-                        app:key="contact-action-right"
-                        app:title="@string/contact_action_main"
-                        app:useSimpleSummaryProvider="true" />
-                    <fr.neamar.kiss.preference.ContactActionPreference
-                        app:defaultValue="call"
-                        app:key="contact-action-right-fallback"
-                        app:title="@string/contact_action_fallback"
-                        app:useSimpleSummaryProvider="true" />
-                    <fr.neamar.kiss.preference.ContactActionPreference
-                        app:defaultValue="call"
-                        app:key="contact-action-right-fallback-2"
-                        app:title="@string/contact_action_fallback_2"
-                        app:useSimpleSummaryProvider="true" />
-                </PreferenceCategory>
+                <fr.neamar.kiss.preference.ContactActionPreference
+                    app:defaultValue="sms"
+                    app:key="contact-action-left"
+                    app:title="@string/contact_action_left"
+                    app:useSimpleSummaryProvider="true" />
+                <fr.neamar.kiss.preference.ContactActionPreference
+                    app:defaultValue="call"
+                    app:key="contact-action-right"
+                    app:title="@string/contact_action_right"
+                    app:useSimpleSummaryProvider="true" />
+                <Preference
+                    app:selectable="false"
+                    app:summary="@string/contact_actions_override_hint" />
             </PreferenceScreen>
         </PreferenceCategory>
         <PreferenceScreen

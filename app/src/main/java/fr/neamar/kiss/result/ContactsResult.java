@@ -25,6 +25,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.widget.ImageViewCompat;
 import androidx.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -114,13 +115,19 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         contactIcon.setExtraOnClickListener(v -> recordLaunch(v.getContext(), queryInterface));
 
-        // Contact actions, the right button never repeats the action of the left one
-        String leftAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_LEFT), null);
-        String rightAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_RIGHT), leftAction);
-        displayAction(context, view.findViewById(R.id.item_contact_action_message), leftAction, View.INVISIBLE);
-        displayAction(context, view.findViewById(R.id.item_contact_action_phone), rightAction, View.GONE);
+        displayActions(context, view);
 
         return view;
+    }
+
+    /**
+     * Display contact actions, the right button never repeats the action of the left one
+     */
+    private void displayActions(Context context, View view) {
+        String leftAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_LEFT, pojo.lookupKey), null);
+        String rightAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_RIGHT, pojo.lookupKey), leftAction);
+        displayAction(context, view, view.findViewById(R.id.item_contact_action_message), MimeTypeUtils.CONTACT_ACTION_LEFT, leftAction, View.INVISIBLE);
+        displayAction(context, view, view.findViewById(R.id.item_contact_action_phone), MimeTypeUtils.CONTACT_ACTION_RIGHT, rightAction, View.GONE);
     }
 
     /**
@@ -130,34 +137,41 @@ public class ContactsResult extends CallResult<ContactsPojo> {
      * @return first action available for this contact, null if none
      */
     private String getAvailableAction(Context context, List<String> actions, String exclude) {
-        boolean hasPhone = pojo.phone != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
         for (String action : actions) {
-            if (action.equals(exclude)) {
-                continue;
+            if (MimeTypeUtils.CONTACT_ACTION_NONE.equals(action)) {
+                return null;
             }
-            boolean available;
-            if (MimeTypeUtils.CONTACT_ACTION_SMS.equals(action)) {
-                available = hasPhone && !pojo.isHomeNumber();
-            } else if (MimeTypeUtils.CONTACT_ACTION_CALL.equals(action)) {
-                available = hasPhone;
-            } else {
-                available = pojo.getContactData(action) != null;
-            }
-            if (available) {
+            if (!action.equals(exclude) && isAvailableAction(context, action)) {
                 return action;
             }
         }
         return null;
     }
 
-    private void displayAction(Context context, ImageButton button, String action, int hiddenVisibility) {
+    private boolean isAvailableAction(Context context, String action) {
+        boolean hasPhone = pojo.phone != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+        if (MimeTypeUtils.CONTACT_ACTION_SMS.equals(action)) {
+            return hasPhone && !pojo.isHomeNumber();
+        } else if (MimeTypeUtils.CONTACT_ACTION_CALL.equals(action)) {
+            return hasPhone;
+        } else {
+            return pojo.getContactData(action) != null;
+        }
+    }
+
+    private void displayAction(Context context, View view, ImageButton button, String side, String action, int hiddenVisibility) {
         if (action == null) {
             button.setVisibility(hiddenVisibility);
             button.setOnClickListener(null);
+            button.setOnLongClickListener(null);
             return;
         }
 
         button.setVisibility(View.VISIBLE);
+        button.setOnLongClickListener(v -> {
+            showContactActionMenu(context, view, v, side);
+            return true;
+        });
         if (MimeTypeUtils.CONTACT_ACTION_SMS.equals(action) || MimeTypeUtils.CONTACT_ACTION_CALL.equals(action)) {
             boolean sms = MimeTypeUtils.CONTACT_ACTION_SMS.equals(action);
             ImageViewCompat.setImageTintList(button, (ColorStateList) button.getTag());
@@ -182,6 +196,38 @@ public class ContactsResult extends CallResult<ContactsPojo> {
                 recordLaunch(context, queryInterface);
             });
         }
+    }
+
+    /**
+     * Let the user pick the action of a contact button for this contact only
+     */
+    private void showContactActionMenu(Context context, View view, View button, String side) {
+        List<String> actions = new ArrayList<>();
+        ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
+
+        Map<String, String> labels = MimeTypeUtils.getContactActionLabels(context, pojo.getContactDataMimeTypes());
+        String defaultAction = MimeTypeUtils.getContactAction(context, side);
+        String defaultLabel = MimeTypeUtils.CONTACT_ACTION_NONE.equals(defaultAction) ? context.getString(R.string.contact_action_none) : labels.get(defaultAction);
+        if (defaultLabel == null) {
+            defaultLabel = KissApplication.getMimeTypeCache(context).getLabel(context, defaultAction);
+        }
+        actions.add(null);
+        adapter.add(new ListPopup.Item(context.getString(R.string.contact_action_default, defaultLabel)));
+        for (Map.Entry<String, String> label : labels.entrySet()) {
+            if (isAvailableAction(context, label.getKey())) {
+                actions.add(label.getKey());
+                adapter.add(new ListPopup.Item(label.getValue()));
+            }
+        }
+
+        ListPopup menu = new ListPopup(context);
+        menu.setAdapter(adapter);
+        menu.setOnItemClickListener((a, v, position) -> {
+            MimeTypeUtils.setContactActionOverride(context, side, pojo.lookupKey, actions.get(position));
+            displayActions(context, view);
+        });
+        queryInterface.registerPopup(menu);
+        menu.show(button);
     }
 
     private Drawable getAppDrawable(Context context, String mimeType) {

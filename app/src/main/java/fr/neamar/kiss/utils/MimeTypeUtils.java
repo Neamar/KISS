@@ -15,12 +15,19 @@ import android.provider.ContactsContract;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
 
 public class MimeTypeUtils {
 
@@ -108,40 +115,113 @@ public class MimeTypeUtils {
 
     /**
      * @param context
-     * @return a set of all supported mime types that are used by a contact action
+     * @return a set of all mime types selected in settings for a contact button
      */
-    public static Set<String> getActiveMimeTypes(Context context) {
-        long start = System.currentTimeMillis();
-
+    public static Set<String> getSelectedMimeTypes(Context context) {
         Set<String> selectedMimeTypes = new HashSet<>();
         for (String side : CONTACT_ACTION_SIDES) {
-            selectedMimeTypes.addAll(getContactActions(context, side));
+            selectedMimeTypes.add(getContactAction(context, side));
         }
-        Set<String> supportedMimeTypes = getSupportedMimeTypes(context);
+        selectedMimeTypes.remove(CONTACT_ACTION_NONE);
+        selectedMimeTypes.remove(CONTACT_ACTION_SMS);
+        selectedMimeTypes.remove(CONTACT_ACTION_CALL);
+        return selectedMimeTypes;
+    }
 
-        supportedMimeTypes.retainAll(selectedMimeTypes);
-        supportedMimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-
-        long end = System.currentTimeMillis();
-        Log.i(TAG, (end - start) + " milliseconds to load " + supportedMimeTypes.size() + " active mime types");
-
-        return supportedMimeTypes;
+    /**
+     * @param side {@link #CONTACT_ACTION_LEFT} or {@link #CONTACT_ACTION_RIGHT}
+     * @return action used when the configured one isn't available for a contact
+     */
+    public static String getDefaultContactAction(String side) {
+        return CONTACT_ACTION_LEFT.equals(side) ? CONTACT_ACTION_SMS : CONTACT_ACTION_CALL;
     }
 
     /**
      * @param context
      * @param side    {@link #CONTACT_ACTION_LEFT} or {@link #CONTACT_ACTION_RIGHT}
-     * @return configured actions for given contact button, ordered from main action to last fallback
+     * @return action configured in settings for given contact button
      */
-    public static List<String> getContactActions(Context context, String side) {
+    public static String getContactAction(Context context, String side) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String defaultAction = CONTACT_ACTION_LEFT.equals(side) ? CONTACT_ACTION_SMS : CONTACT_ACTION_CALL;
-        String key = "contact-action-" + side;
-        return Arrays.asList(
-                prefs.getString(key, defaultAction),
-                prefs.getString(key + "-fallback", defaultAction),
-                prefs.getString(key + "-fallback-2", defaultAction)
-        );
+        return prefs.getString("contact-action-" + side, getDefaultContactAction(side));
+    }
+
+    /**
+     * @param context
+     * @param side      {@link #CONTACT_ACTION_LEFT} or {@link #CONTACT_ACTION_RIGHT}
+     * @param lookupKey lookup key of the contact
+     * @return actions for given contact button, in order of preference: contact override, settings, default
+     */
+    public static List<String> getContactActions(Context context, String side, String lookupKey) {
+        List<String> actions = new ArrayList<>(3);
+        String override = getContactActionOverride(context, side, lookupKey);
+        if (override != null) {
+            actions.add(override);
+        }
+        actions.add(getContactAction(context, side));
+        actions.add(getDefaultContactAction(side));
+        return actions;
+    }
+
+    /**
+     * @param context
+     * @param mimeTypes mime types of contact data, phone is ignored as it is already handled by SMS and call
+     * @return contact actions with their labels: SMS, call, then given mime types sorted by label
+     */
+    public static Map<String, String> getContactActionLabels(Context context, Set<String> mimeTypes) {
+        Set<String> appMimeTypes = new HashSet<>(mimeTypes);
+        appMimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        Map<String, String> appLabels = KissApplication.getMimeTypeCache(context).getActionLabels(context, appMimeTypes);
+        List<String> sortedMimeTypes = new ArrayList<>(appMimeTypes);
+        Collections.sort(sortedMimeTypes, (a, b) -> appLabels.get(a).compareToIgnoreCase(appLabels.get(b)));
+
+        Map<String, String> labels = new LinkedHashMap<>();
+        labels.put(CONTACT_ACTION_SMS, context.getString(R.string.contact_action_sms));
+        labels.put(CONTACT_ACTION_CALL, context.getString(R.string.ui_item_contact_hint_call));
+        for (String mimeType : sortedMimeTypes) {
+            labels.put(mimeType, appLabels.get(mimeType));
+        }
+        return labels;
+    }
+
+    // Overrides are stored as "<action> <lookup key>", actions never contain spaces
+    private static String getContactActionOverridesKey(String side) {
+        return "contact-action-" + side + "-overrides";
+    }
+
+    /**
+     * @param context
+     * @param side      {@link #CONTACT_ACTION_LEFT} or {@link #CONTACT_ACTION_RIGHT}
+     * @param lookupKey lookup key of the contact
+     * @return action chosen for given contact button of this contact only, null if none
+     */
+    @Nullable
+    public static String getContactActionOverride(Context context, String side, String lookupKey) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        for (String override : prefs.getStringSet(getContactActionOverridesKey(side), emptySet())) {
+            int separator = override.indexOf(' ');
+            if (separator > 0 && override.substring(separator + 1).equals(lookupKey)) {
+                return override.substring(0, separator);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param context
+     * @param side      {@link #CONTACT_ACTION_LEFT} or {@link #CONTACT_ACTION_RIGHT}
+     * @param lookupKey lookup key of the contact
+     * @param action    action for given contact button of this contact only, null to use settings
+     */
+    public static void setContactActionOverride(Context context, String side, String lookupKey, @Nullable String action) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String key = getContactActionOverridesKey(side);
+        Set<String> overrides = new HashSet<>(prefs.getStringSet(key, emptySet()));
+        overrides.removeIf(override -> override.substring(override.indexOf(' ') + 1).equals(lookupKey));
+        if (action != null) {
+            overrides.add(action + ' ' + lookupKey);
+        }
+        prefs.edit().putStringSet(key, overrides).apply();
     }
 
     /**
