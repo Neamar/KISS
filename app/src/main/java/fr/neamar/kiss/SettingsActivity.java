@@ -95,6 +95,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 .beginTransaction()
                 .replace(R.id.content_container, fragment, ARG_SHOW_FRAGMENT)
                 .commit();
+
+        // Restore the title of the current screen when the activity is recreated
+        onBackStackChanged();
     }
 
     @Override
