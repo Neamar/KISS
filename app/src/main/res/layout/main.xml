@@ -6,8 +6,8 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/widgetLayout"
+    <fr.neamar.kiss.ui.WidgetScrollView
+        android:id="@+id/widgetScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/resultLayout"
@@ -18,8 +18,16 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical" />
+        android:fillViewport="true">
+
+        <!-- Vertically scrolling widget area: hosts an unlimited number of widgets in minimalistic mode -->
+        <LinearLayout
+            android:id="@+id/widgetLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" />
+    </fr.neamar.kiss.ui.WidgetScrollView>
 
     <FrameLayout
         android:id="@+id/resultLayout"

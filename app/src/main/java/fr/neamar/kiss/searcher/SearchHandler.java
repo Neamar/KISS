@@ -1,6 +1,7 @@
 package fr.neamar.kiss.searcher;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.MainActivity;
 
@@ -45,7 +46,7 @@ public class SearchHandler {
      * @param query     the search query
      * @param isRefresh true, if refresh of last search is needed
      */
-    public void search(@NonNull Searcher.Type type, @NonNull MainActivity activity, String query, boolean isRefresh) {
+    public void search(@NonNull Searcher.Type type, @NonNull MainActivity activity, @Nullable String query, boolean isRefresh) {
         cancelSearch();
 
         runningSearch = createSearcher(type, activity, query, isRefresh);
@@ -72,7 +73,7 @@ public class SearchHandler {
     }
 
     @NonNull
-    private Searcher createSearcher(@NonNull Searcher.Type type, @NonNull MainActivity activity, String query, boolean isRefresh) {
+    private Searcher createSearcher(@NonNull Searcher.Type type, @NonNull MainActivity activity, @Nullable String query, boolean isRefresh) {
         if (isRefresh && lastSearchType != null) {
             type = this.lastSearchType;
             query = this.lastSearchQuery;
@@ -99,7 +100,13 @@ public class SearchHandler {
         }
     }
 
+    @Nullable
     public Searcher.Type getLastSearchType() {
         return lastSearchType;
+    }
+
+    @Nullable
+    public String getLastSearchQuery() {
+        return lastSearchQuery;
     }
 }

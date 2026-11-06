@@ -40,7 +40,7 @@ public abstract class Pojo {
         if (name != null) {
             // Set the actual user-friendly name
             this.name = name;
-            this.normalizedName = StringNormalizer.normalizeWithResult(this.name, false);
+            this.normalizedName = getNormalizedName(this.name);
         } else {
             this.name = null;
             this.normalizedName = null;
@@ -101,4 +101,9 @@ public abstract class Pojo {
     public String getCustomIconId() {
         return id;
     }
+
+    protected StringNormalizer.Result getNormalizedName(String name) {
+        return StringNormalizer.normalizeWithResult(name, false);
+    }
+
 }

@@ -1,5 +1,7 @@
 package fr.neamar.kiss.shortcut;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.LauncherApps;
@@ -77,7 +79,7 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
 
             Context context = this.context.get();
             if (context != null) {
-                KissApplication.getApplication(context).getDataHandler().reloadShortcuts();
+                KissApplication.getApplication(context).getDataHandler().reload(SHORTCUTS);
             }
         }
     }

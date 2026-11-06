@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 import fr.neamar.kiss.pojo.Pojo;
@@ -52,7 +54,8 @@ public interface IProvider<T extends Pojo> {
      * @param id id we're looking for
      * @return null if not found
      */
-    T findById(String id);
+    @Nullable
+    Pojo findById(String id);
 
     /**
      * Get a list of all pojos, do not modify this list!

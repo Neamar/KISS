@@ -8,8 +8,6 @@ import android.telephony.TelephonyManager;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.dataprovider.ContactsProvider;
-import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
@@ -25,26 +23,10 @@ public class IncomingCallHandler extends BroadcastReceiver {
         }
 
         try {
-            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
-            ContactsProvider contactsProvider = dataHandler.getContactsProvider();
-
-            // Stop if contacts are not enabled
-            if (contactsProvider == null) {
-                return;
-            }
-
             if (TelephonyManager.EXTRA_STATE_RINGING.equals(intent.getStringExtra(TelephonyManager.EXTRA_STATE))) {
                 String phoneNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-
-                if (phoneNumber == null) {
-                    // Skipping (private call)
-                    return;
-                }
-
-                ContactsPojo contactPojo = contactsProvider.findByPhone(phoneNumber);
-                if (contactPojo != null) {
-                    dataHandler.addToHistory(contactPojo.getHistoryId());
-                }
+                DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+                dataHandler.addPhoneNumberToHistory(phoneNumber);
             }
         } catch (Exception e) {
             Log.e(TAG, "Phone Receive Error", e);

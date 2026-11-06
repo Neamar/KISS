@@ -1,5 +1,8 @@
 package fr.neamar.kiss.pojo;
 
+import fr.neamar.kiss.normalizer.PhoneNormalizer;
+import fr.neamar.kiss.normalizer.StringNormalizer;
+
 public final class PhonePojo extends Pojo {
     public final String phone;
     private final String historyId;
@@ -21,4 +24,10 @@ public final class PhonePojo extends Pojo {
     public String getCustomIconId() {
         return customIconId;
     }
+
+    @Override
+    protected StringNormalizer.Result getNormalizedName(String name) {
+        return PhoneNormalizer.normalizeWithResult(name);
+    }
+
 }

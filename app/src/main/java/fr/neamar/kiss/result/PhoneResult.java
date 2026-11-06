@@ -3,7 +3,6 @@ package fr.neamar.kiss.result;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Pair;
 import android.view.View;
@@ -14,11 +13,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import java.util.Collections;
+import java.util.List;
 
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.PhonePojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
@@ -63,10 +67,7 @@ public class PhoneResult extends CallResult<PhonePojo> {
             context.startActivity(createIntent);
             return true;
         } else if (stringId == R.string.ui_item_contact_hint_message) {
-            String url = "sms:" + pojo.phone;
-            Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-            messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(messageIntent);
+            launchMessaging(context, null, pojo.phone);
             return true;
         }
 
@@ -81,6 +82,21 @@ public class PhoneResult extends CallResult<PhonePojo> {
     @Override
     protected void doLaunch(Context context, View v) {
         launchCall(context, v, pojo.phone);
+    }
+
+    @NonNull
+    @Override
+    protected Pojo getPojoForRecordLaunch(Context context) {
+        // search for existing contacts
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        ContactsProvider contactsProvider = dataHandler.getContactsProvider();
+        if (contactsProvider != null) {
+            List<Pojo> pojos = contactsProvider.findByPhone(pojo.phone);
+            if (!pojos.isEmpty()) {
+                return pojos.get(0);
+            }
+        }
+        return super.getPojoForRecordLaunch(context);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.ContextMenu;
@@ -33,6 +34,18 @@ public class ForwarderManager extends Forwarder {
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
+
+        // empty areas of the widget scroll area behave as a non-widget area
+        widgetsForwarder.setEmptyAreaTouchListener(new View.OnTouchListener() {
+            // click semantics are owned by the gesture pipeline the events are forwarded to
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                experienceTweaks.onTouch(event);
+                liveWallpaperForwarder.onTouch(v, event);
+                return true;
+            }
+        });
     }
 
     public void onCreate() {
@@ -45,7 +58,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStart() {
-        widgetsForwarder.onStart();
     }
 
     public void onResume() {
@@ -58,6 +70,13 @@ public class ForwarderManager extends Forwarder {
     public void onPause() {
         experienceTweaks.onPause();
         notificationForwarder.onPause();
+    }
+
+    public void onStop() {
+    }
+
+    public void onDestroy() {
+        widgetsForwarder.onDestroy();
     }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -98,12 +117,9 @@ public class ForwarderManager extends Forwarder {
         return tagsMenu.onMenuButtonClicked(menuButton);
     }
 
-    public void onDestroy() {
-        widgetsForwarder.onDestroy();
-    }
-
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         interfaceTweaks.onConfigurationChanged(newConfig);
         favoritesForwarder.onConfigurationChanged(newConfig);
+        widgetsForwarder.onConfigurationChanged(newConfig);
     }
 }

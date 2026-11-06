@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         InterfaceTweaks.applySettingsTheme(this, prefs);
 
-        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
+        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this, true);
 
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible

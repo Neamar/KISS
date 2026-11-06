@@ -226,11 +226,7 @@ public class MimeTypeCache {
         Map<String, Set<String>> mappedMimeTypes = new HashMap<>();
         for (String mimeType : mimeTypes) {
             String label = getLabel(context, mimeType);
-            Set<String> mimeTypesPerLabel = mappedMimeTypes.get(label);
-            if (mimeTypesPerLabel == null) {
-                mimeTypesPerLabel = new HashSet<>();
-                mappedMimeTypes.put(label, mimeTypesPerLabel);
-            }
+            Set<String> mimeTypesPerLabel = mappedMimeTypes.computeIfAbsent(label, key -> new HashSet<>(1));
             mimeTypesPerLabel.add(mimeType);
         }
 

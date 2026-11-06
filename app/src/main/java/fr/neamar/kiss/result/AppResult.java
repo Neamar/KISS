@@ -1,5 +1,7 @@
 package fr.neamar.kiss.result;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
+
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -266,7 +268,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         if (!KissApplication.getApplication(context).getRootHandler().hibernateApp(pojo.packageName)) {
             msg = context.getResources().getString(R.string.toast_hibernate_error);
         } else {
-            KissApplication.getApplication(context).getDataHandler().reloadApps();
+            KissApplication.getApplication(context).getDataHandler().reload(APPS);
         }
 
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();

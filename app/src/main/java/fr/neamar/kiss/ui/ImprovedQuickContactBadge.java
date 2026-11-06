@@ -26,7 +26,7 @@ import android.widget.QuickContactBadge;
  * class may use {@link View#setOnClickListener} internally, so this class adds
  * a separate click listener field.
  */
-public class ImprovedQuickContactBadge extends ShapedContactBadge {
+public class ImprovedQuickContactBadge extends QuickContactBadge {
 
     private View.OnClickListener mExtraOnClickListener;
 
