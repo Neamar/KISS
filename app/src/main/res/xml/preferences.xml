@@ -484,6 +484,12 @@
                 app:defaultValue="true"
                 app:key="enable-shortcuts"
                 app:title="@string/shortcuts_name" />
+            <SwitchPreference
+                app:defaultValue="false"
+                app:dependency="enable-shortcuts"
+                app:key="pinned-shortcuts-only"
+                app:summary="@string/pinned_shortcuts_only_desc"
+                app:title="@string/pinned_shortcuts_only_name" />
             <fr.neamar.kiss.preference.DialogShowingPreference
                 app:dialogMessage="@string/regenerate_shortcuts_desc"
                 app:key="reset-shortcuts"

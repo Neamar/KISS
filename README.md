@@ -11,6 +11,10 @@ Results clicked more often are promoted.
 
 _Browsing for apps is and should be secondary_.
 
+On Android 8.0 and later, **Settings → Search → Pinned shortcuts only**
+shows only shortcuts pinned in KISS. It defaults to off. Turning **Shortcuts**
+off also resets and disables this option; turning Shortcuts on leaves it off.
+
 [<img src="https://img.shields.io/f-droid/v/fr.neamar.kiss.svg?logo=f-droid&label=F-Droid&style=flat-square"
       alt="F-Droid Release"/>](https://f-droid.org/packages/fr.neamar.kiss)
 [<img src="https://img.shields.io/endpoint?color=blue&logo=google-play&style=flat-square&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dfr.neamar.kiss%26l%3DGoogle%2520Play%26m%3D%24version"
