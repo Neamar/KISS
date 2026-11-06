@@ -2,6 +2,8 @@ package fr.neamar.kiss;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,10 +11,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
@@ -48,6 +52,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
     private SystemUiVisibilityHelper systemUiVisibilityHelper;
 
+    @ColorInt
+    private int toolbarTextColor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +71,19 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         setContentView(R.layout.activity_toolbar_content);
 
+        toolbarTextColor = UIColors.getTextColorOnPrimary(this);
         Toolbar toolbar = findViewById(R.id.main_toolbar);
+        toolbar.setTitleTextColor(toolbarTextColor);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        Drawable navigationIcon = toolbar.getNavigationIcon();
+        if (navigationIcon != null) {
+            navigationIcon.mutate().setTint(toolbarTextColor);
         }
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
@@ -97,6 +110,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_settings, menu);
+        MenuItemCompat.setIconTintList(menu.findItem(R.id.help), ColorStateList.valueOf(toolbarTextColor));
         return true;
     }
 
