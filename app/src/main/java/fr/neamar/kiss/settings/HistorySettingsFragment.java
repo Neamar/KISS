@@ -1,5 +1,6 @@
 package fr.neamar.kiss.settings;
 
+import android.Manifest;
 import android.app.role.RoleManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
@@ -19,6 +22,22 @@ import fr.neamar.kiss.utils.Permission;
 
 public class HistorySettingsFragment extends BaseSettingsFragment {
     private static final int REQUEST_CALL_SCREENING_APP = 1;
+
+    // Requested from this fragment so the result is delivered here while the screen is displayed
+    private final ActivityResultLauncher<String> requestPhoneStatePermission = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            granted -> {
+                if (granted) {
+                    setPhoneHistoryEnabled(true);
+                } else {
+                    // You don't want to give us permission, that's fine. Revert the toggle.
+                    SwitchPreference p = findPreference("enable-phone-history");
+                    if (p != null) {
+                        p.setChecked(false);
+                    }
+                    Toast.makeText(requireContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
+                }
+            });
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
@@ -46,22 +65,7 @@ public class HistorySettingsFragment extends BaseSettingsFragment {
         if ("enable-phone-history".equals(key)) {
             boolean enabled = sharedPreferences.getBoolean(key, false);
             if (enabled && !Permission.checkPermission(getContext(), Permission.PERMISSION_READ_PHONE_STATE)) {
-                Permission.askPermission(Permission.PERMISSION_READ_PHONE_STATE, new Permission.PermissionResultListener() {
-                    @Override
-                    public void onGranted() {
-                        setPhoneHistoryEnabled(true);
-                    }
-
-                    @Override
-                    public void onDenied() {
-                        // You don't want to give us permission, that's fine. Revert the toggle.
-                        SwitchPreference p = findPreference(key);
-                        if (p != null) {
-                            p.setChecked(false);
-                        }
-                        Toast.makeText(getContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                requestPhoneStatePermission.launch(Manifest.permission.READ_PHONE_STATE);
             } else {
                 setPhoneHistoryEnabled(enabled);
             }
