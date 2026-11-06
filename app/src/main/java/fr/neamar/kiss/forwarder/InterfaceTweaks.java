@@ -106,7 +106,6 @@ public class InterfaceTweaks extends Forwarder {
         }
         UIColors.applyAccentColor(act);
         UIColors.updateThemePrimaryColor(act);
-        applySystemBarInsets(act.getWindow().getDecorView());
     }
 
     public static void setDefaultNightMode(@NonNull Context context) {
@@ -141,6 +140,20 @@ public class InterfaceTweaks extends Forwarder {
             ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return WindowInsetsCompat.CONSUMED;
+            });
+        }
+    }
+
+    /**
+     * The status bar can't be colored anymore on edge-to-edge, so extend the toolbar behind it instead
+     */
+    public static void applySettingsSystemBarInsets(View root, View toolbar) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
+                v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+                toolbar.setPadding(toolbar.getPaddingLeft(), systemBars.top, toolbar.getPaddingRight(), toolbar.getPaddingBottom());
                 return WindowInsetsCompat.CONSUMED;
             });
         }
