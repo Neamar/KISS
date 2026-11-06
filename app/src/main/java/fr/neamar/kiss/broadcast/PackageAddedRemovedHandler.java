@@ -1,5 +1,8 @@
 package fr.neamar.kiss.broadcast;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
+import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
+
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -50,7 +53,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
             if (!replacing) {
                 KissApplication.getApplication(ctx).resetIconsHandler();
                 // Reload application list
-                KissApplication.getApplication(ctx).getDataHandler().reloadApps();
+                KissApplication.getApplication(ctx).getDataHandler().reload(APPS);
                 // Remove all installed shortcuts
                 for (String packageName : packageNames) {
                     KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
@@ -62,10 +65,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
             boolean isAnyPackageVisible = isAnyPackageVisible(ctx, packageNames, user);
             if (isAnyPackageVisible) {
-                // Reload application list
-                KissApplication.getApplication(ctx).getDataHandler().reloadApps();
-                // Reload shortcuts
-                KissApplication.getApplication(ctx).getDataHandler().reloadShortcuts();
+                KissApplication.getApplication(ctx).getDataHandler().reload(APPS, SHORTCUTS);
             }
         }
     }

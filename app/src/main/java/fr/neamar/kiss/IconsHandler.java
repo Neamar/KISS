@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.ColorInt;
@@ -28,6 +29,8 @@ import androidx.preference.PreferenceManager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -275,6 +278,31 @@ public class IconsHandler {
         return forceIconMask(drawable, shape);
     }
 
+    public Drawable getDrawableForContact(@NonNull Pojo pojo, @Nullable Uri iconUri, @ColorInt int backgroundColor, @ColorInt int textColor, @ColorInt int themeFillColor) {
+        Drawable icon = getCustomIcon(pojo);
+        if (icon != null) {
+            return icon;
+        }
+
+        if (iconUri != null) {
+            try (InputStream inputStream = ctx.getContentResolver()
+                    .openInputStream(iconUri)) {
+                icon = Drawable.createFromStream(inputStream, null);
+            } catch (IOException e) {
+                Log.d(TAG, "Unable to load contact icon", e);
+            }
+        }
+
+        // Default icon
+        if (icon == null) {
+            icon = getThemedDrawable(pojo, R.drawable.ic_contact, backgroundColor, textColor, themeFillColor, false);
+        }
+
+        icon = applyContactMask(ctx, icon);
+        icon = applyBadge(icon, pojo.getUserHandle());
+        return icon;
+    }
+
     public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable) {
         return applyIconMask(ctx, drawable, false);
     }
@@ -299,11 +327,15 @@ public class IconsHandler {
         }
     }
 
-    public Drawable applyBadge(@NonNull Drawable drawable, @NonNull UserHandle userHandle) {
+    @NonNull
+    private Drawable applyBadge(@NonNull Drawable drawable, @NonNull UserHandle userHandle) {
+        if (userHandle.isCurrentUser()) {
+            return drawable;
+        }
         return pm.getUserBadgedIcon(drawable, userHandle.getRealHandle());
     }
 
-    public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
+    private Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
         final IconShape shape = getContactsShape();
 
         if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
@@ -449,10 +481,14 @@ public class IconsHandler {
         return new File(getIconsCacheDir(), iconsPackPackageName + "_" + key.hashCode() + ".png");
     }
 
+    /**
+     * Best-effort directory creation; never throws. Cache I/O failures are
+     * handled (caught and logged) by all callers, and these helpers are invoked
+     * from background tasks where an uncaught exception would kill the process.
+     */
     private File getIconsCacheDir() {
         File dir = new File(this.ctx.getCacheDir(), "icons");
-        if (!dir.exists() && !dir.mkdir())
-            throw new IllegalStateException("failed to create path " + dir.getPath());
+        dir.mkdirs(); // no-op when the directory already exists
         return dir;
     }
 
@@ -463,8 +499,7 @@ public class IconsHandler {
 
     private File getCustomIconsDir() {
         File dir = new File(this.ctx.getCacheDir(), "custom_icons");
-        if (!dir.exists() && !dir.mkdir())
-            throw new IllegalStateException("failed to create path " + dir.getPath());
+        dir.mkdirs(); // no-op when the directory already exists
         return dir;
     }
 
@@ -608,17 +643,20 @@ public class IconsHandler {
         return null;
     }
 
-    public Drawable getThemedDrawable(@NonNull Pojo pojo, @DrawableRes int resId, @ColorInt int backgroundColor, @ColorInt int textColor, @ColorInt int themeFillColor) {
+    @NonNull
+    public Drawable getThemedDrawable(@NonNull Pojo pojo, @DrawableRes int resId, @ColorInt int backgroundColor, @ColorInt int textColor, @ColorInt int themeFillColor, boolean makeThemedIcon) {
         Drawable icon = getCustomIcon(pojo);
         if (icon != null) {
             return icon;
         }
 
         icon = ResourcesCompat.getDrawable(ctx.getResources(), resId, ctx.getTheme());
-        if (DrawableUtils.isAdaptiveIconDrawable(icon)) {
-            return icon;
-        } else if (DrawableUtils.hasThemedIcons() &&
-                DrawableUtils.isThemedIconEnabled(ctx)) {
+        if (icon == null) {
+            return PackageManagerUtils.getDefaultActivityIcon(ctx);
+        } else if (DrawableUtils.isAdaptiveIconDrawable(icon)) {
+            return DrawableUtils.getThemedDrawable(ctx, icon);
+        } else if (makeThemedIcon ||
+                (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx))) {
             Drawable background = getBackgroundDrawable(backgroundColor);
             int insetX = (int) (background.getIntrinsicWidth() * 0.15);
             int insetY = (int) (background.getIntrinsicHeight() * 0.15);

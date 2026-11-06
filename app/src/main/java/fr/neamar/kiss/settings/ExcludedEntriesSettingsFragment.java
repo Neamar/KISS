@@ -1,5 +1,7 @@
 package fr.neamar.kiss.settings;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.*;
+
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -23,25 +25,21 @@ public class ExcludedEntriesSettingsFragment extends BaseSettingsFragment {
         setOnDialogClosedListener("reset-excluded-apps", (pref, positiveResult) -> {
             if (positiveResult) {
                 getPrefs().edit().putStringSet("excluded-apps", null).apply();
-                getDataHandler().reloadApps();
+                getDataHandler().reload(APPS);
                 Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
             }
         });
         setOnDialogClosedListener("reset-excluded-from-history-apps", (pref, positiveResult) -> {
             if (positiveResult) {
                 getPrefs().edit().putStringSet("excluded-apps-from-history", null).apply();
-                getDataHandler().reloadApps(); // reload because it's cached in AppPojo#excludedFromHistory
+                getDataHandler().reload(APPS); // reload because it's cached in AppPojo#excludedFromHistory
                 Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
             }
         });
         setOnDialogClosedListener("reset-excluded-app-shortcuts", (pref, positiveResult) -> {
             if (positiveResult) {
                 getPrefs().edit().putStringSet(DataHandler.PREF_KEY_EXCLUDED_SHORTCUT_APPS, null).apply();
-                DataHandler dataHandler = getDataHandler();
-                // Reload shortcuts to refresh the shortcuts shown in KISS
-                dataHandler.reloadShortcuts();
-                // Reload apps since the `AppPojo.isExcludedShortcuts` value also needs to be refreshed
-                dataHandler.reloadApps();
+                getDataHandler().reload(APPS, SHORTCUTS);  // reload because it's cached in AppPojo#isExcludedShortcuts
                 Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
             }
         });

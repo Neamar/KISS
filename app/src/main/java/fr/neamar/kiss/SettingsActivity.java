@@ -1,5 +1,7 @@
 package fr.neamar.kiss;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.*;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -59,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         InterfaceTweaks.applySettingsTheme(this, prefs);
 
-        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
+        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this, true);
 
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible
@@ -147,7 +149,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             case "available-search-providers":
             case "selected-search-provider-names":
             case "default-search-provider":
-                getDataHandler().reloadSearchProvider();
+                getDataHandler().reload(SEARCH);
                 break;
             case "primary-color":
                 UIColors.clearColorCache();
@@ -156,7 +158,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 QuerySearcher.clearMaxResultCountCache();
                 break;
             case "pref-fav-tags-list":
-                getDataHandler().reloadTags();
+                getDataHandler().reload(TAGS);
 
                 // after we edit the fav tags list update DataHandler
                 Set<String> favTags = sharedPreferences.getStringSet(key, Collections.emptySet());
@@ -169,10 +171,13 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
                 break;
             case "exclude-favorites-apps":
-                getDataHandler().reloadApps();
+                getDataHandler().reload(APPS);
                 break;
             case "selected-contact-mime-types":
-                getDataHandler().reloadContactsProvider();
+                getDataHandler().reload(CONTACTS);
+                break;
+            case "enable-settings":
+                getDataHandler().reload(SETTINGS);
                 break;
             case "theme":
                 // AMOLED theme is always dark

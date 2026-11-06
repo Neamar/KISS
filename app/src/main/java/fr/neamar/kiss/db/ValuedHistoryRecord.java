@@ -10,4 +10,9 @@ public class ValuedHistoryRecord {
      * Context dependant value, e.g. number of access
      */
     public int value;
+
+    /**
+     * Normalized relevance for record
+     */
+    public int relevance;
 }

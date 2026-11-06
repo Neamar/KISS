@@ -19,7 +19,7 @@ import fr.neamar.kiss.pojo.ShortcutPojo;
  */
 public class ApplicationsSearcher extends Searcher {
     public ApplicationsSearcher(MainActivity activity, boolean isRefresh) {
-        super(activity, "<application>", isRefresh);
+        super(activity, null, isRefresh);
     }
 
     @Override

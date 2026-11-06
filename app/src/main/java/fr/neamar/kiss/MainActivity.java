@@ -22,15 +22,7 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.view.ContextMenu;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.ImageView;
@@ -368,12 +360,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
-        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
+        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this, false);
 
-        // For devices with hardware keyboards, give focus to search field.
-        if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
-            searchEditText.requestFocus();
-        }
+        requestSearchFocusIfNeeded();
 
         /*
          * Defer everything else to the forwarders
@@ -468,6 +457,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     protected void onPause() {
         super.onPause();
         forwarderManager.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        forwarderManager.onStop();
     }
 
     @Override
@@ -936,8 +931,20 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 hideKeyboard();
             }
         }
+
+        if (hasFocus) {
+            requestSearchFocusIfNeeded();
+        }
     }
 
+
+    private void requestSearchFocusIfNeeded() {
+        int keyboard = getResources().getConfiguration().keyboard;
+        if (keyboard == Configuration.KEYBOARD_QWERTY
+                || keyboard == Configuration.KEYBOARD_12KEY) {
+            searchEditText.requestFocus();
+        }
+    }
 
     /**
      * Focus {@link #searchEditText} and show keyboard

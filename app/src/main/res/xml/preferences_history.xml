@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_history">
     <fr.neamar.kiss.preference.DialogShowingPreference
         app:dialogMessage="@string/reset_warn"
         app:key="reset-history"
         app:title="@string/reset_name" />
-    <EditTextPreference
-        android:inputType="number"
+    <fr.neamar.kiss.preference.RangeEditTextPreference
         app:defaultValue="20"
         app:key="number-of-display-elements"
         app:title="@string/number_of_display_items"
+        app:maxValue="150"
+        app:minValue="0"
         app:useSimpleSummaryProvider="true" />
     <ListPreference
         app:defaultValue="recency"

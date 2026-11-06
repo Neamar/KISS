@@ -16,10 +16,13 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.utils.Log;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class SettingsResult extends Result<SettingPojo> {
     private static final String TAG = SettingsResult.class.getSimpleName();
+
+    private volatile Drawable icon = null;
 
     SettingsResult(@NonNull SettingPojo pojo) {
         super(pojo);
@@ -45,12 +48,29 @@ public class SettingsResult extends Result<SettingPojo> {
     }
 
     @Override
-    public Drawable getDrawable(Context context) {
-        if (pojo.icon != -1) {
-            return getThemedDrawable(context, pojo, pojo.icon);
-        }
+    boolean isDrawableCached() {
+        return icon != null;
+    }
 
-        return null;
+    @Override
+    void setDrawableCache(Drawable drawable) {
+        icon = drawable;
+    }
+
+    @Override
+    public Drawable getDrawable(Context context) {
+        if (icon == null) {
+            synchronized (this) {
+                if (icon == null) {
+                    icon = getThemedDrawable(context, pojo, pojo.icon);
+                    if (icon == null) {
+                        // This should never happen, let's just return the generic activity icon
+                        icon = PackageManagerUtils.getDefaultActivityIcon(context);
+                    }
+                }
+            }
+        }
+        return icon;
     }
 
     @Override
@@ -82,6 +102,14 @@ public class SettingsResult extends Result<SettingPojo> {
 
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean makeThemedIcon() {
         return true;
     }
 }

@@ -1,12 +1,18 @@
 package fr.neamar.kiss.utils;
 
+import static android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+import static android.content.res.Configuration.UI_MODE_NIGHT_NO;
+import static android.content.res.Configuration.UI_MODE_NIGHT_YES;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChangeListener {
@@ -14,6 +20,8 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
     private final Activity mActivity;
     private final Handler mHandler;
     private final SharedPreferences prefs;
+    private final boolean hasBlackNotificationIconsForTheme;
+
     private boolean mKeyboardVisible;
     private boolean mIsScrolling;
     private int mPopupCount;
@@ -22,14 +30,17 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
     private final Runnable autoApplySystemUiRunnable = this::autoApplySystemUi;
 
     private void autoApplySystemUi() {
-        if (!mKeyboardVisible && !mIsScrolling && mPopupCount == 0)
+        if (!mKeyboardVisible && !mIsScrolling && mPopupCount == 0) {
             applySystemUi();
+        }
     }
 
-    public SystemUiVisibilityHelper(Activity activity) {
-        mActivity = activity;
-        mHandler = new Handler(Looper.getMainLooper());
-        prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+    public SystemUiVisibilityHelper(@NonNull Activity activity, boolean hasBlackNotificationIconsForTheme) {
+        this.mActivity = activity;
+        this.hasBlackNotificationIconsForTheme = hasBlackNotificationIconsForTheme;
+        this.mHandler = new Handler(Looper.getMainLooper());
+        this.prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+
         View decorView = mActivity.getWindow()
                 .getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(this);
@@ -106,6 +117,15 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
     }
 
     private boolean hasBlackNotificationIcons() {
+        if (hasBlackNotificationIconsForTheme) {
+            Resources res = mActivity.getResources();
+            switch ((res.getConfiguration().uiMode & UI_MODE_NIGHT_MASK)) {
+                case UI_MODE_NIGHT_NO:
+                    return true;
+                case UI_MODE_NIGHT_YES:
+                    return false;
+            }
+        }
         return prefs.getBoolean("black-notification-icons", false);
     }
 
@@ -137,7 +157,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
         }
 
         if (visibility == 0) {
-            mHandler.postDelayed(autoApplySystemUiRunnable, 1500);
+            mHandler.postDelayed(autoApplySystemUiRunnable, 1000);
         }
     }
 

@@ -311,8 +311,7 @@ public class PackageManagerUtils {
         }
 
         // This should never happen, let's just return the generic activity icon
-        Drawable drawable = ctx.getPackageManager().getDefaultActivityIcon();
-        return DrawableUtils.getThemedDrawable(ctx, drawable);
+        return getDefaultActivityIcon(ctx);
     }
 
     public static boolean isAppSuspended(ApplicationInfo appInfo) {
@@ -341,4 +340,9 @@ public class PackageManagerUtils {
         return false;
     }
 
+    @NonNull
+    public static Drawable getDefaultActivityIcon(@NonNull Context context) {
+        Drawable drawable = context.getPackageManager().getDefaultActivityIcon();
+        return DrawableUtils.getThemedDrawable(context, drawable);
+    }
 }

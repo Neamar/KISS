@@ -1,5 +1,7 @@
 package fr.neamar.kiss.broadcast;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +30,6 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
             Log.w(TAG, "Unable to reset tags", e);
         }
         // Reload application list
-        KissApplication.getApplication(ctx).getDataHandler().reloadApps();
+        KissApplication.getApplication(ctx).getDataHandler().reload(APPS);
     }
 }

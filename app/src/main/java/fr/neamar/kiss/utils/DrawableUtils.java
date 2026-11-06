@@ -349,6 +349,7 @@ public class DrawableUtils {
      * @param drawable
      * @return themed drawable
      */
+    @NonNull
     public static Drawable getThemedDrawable(@NonNull Context ctx, @NonNull Drawable drawable) {
         if (isAdaptiveIconDrawable(drawable) &&
                 hasThemedIcons() &&

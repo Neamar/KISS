@@ -182,6 +182,7 @@ public class UIColors {
     }
 
     public static void updateThemePrimaryColor(Activity activity) {
+        @ColorInt
         int notificationBarColorOverride = getNotificationBarColor(activity);
 
         // Circuit breaker, keep default behavior.
@@ -189,10 +190,7 @@ public class UIColors {
             return;
         }
 
-        updateThemePrimaryColor(notificationBarColorOverride, activity.getWindow());
-    }
-
-    private static void updateThemePrimaryColor(int notificationBarColorOverride, Window window) {
+        Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
@@ -204,6 +202,7 @@ public class UIColors {
         }
     }
 
+    @ColorInt
     private static int getNotificationBarColor(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             return COLOR_TRANSPARENT;

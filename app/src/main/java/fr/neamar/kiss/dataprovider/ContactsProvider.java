@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
@@ -9,11 +10,16 @@ import androidx.annotation.Nullable;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.pojo.NameComparator;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.Permission;
@@ -60,7 +66,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         super.onCreate();
         // register content observer if we have permission
         if (Permission.checkPermission(this, Permission.PERMISSION_READ_CONTACTS)) {
-            getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                getContentResolver().registerContentObserver(ContactsContract.Contacts.ENTERPRISE_CONTENT_URI, false, cObserver);
+            } else {
+                getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+            }
         } else {
             Permission.askPermission(Permission.PERMISSION_READ_CONTACTS, new Permission.PermissionResultListener() {
                 @Override
@@ -88,6 +98,13 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         }
 
         FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+
+        // use different normalization for phone numbers
+        FuzzyScore phoneFuzzyScore = null;
+        if (PhoneUtils.isPhoneNumber(queryNormalized.toString())) {
+            StringNormalizer.Result phoneQueryNormalized = PhoneNormalizer.normalizeWithResult(query);
+            phoneFuzzyScore = FuzzyFactory.createFuzzyScore(this, phoneQueryNormalized.codePoints);
+        }
 
         for (ContactsPojo pojo : getPojos()) {
             MatchInfo matchInfo;
@@ -117,10 +134,12 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
-            if (!match && queryNormalized.length() > 2 && pojo.normalizedPhone != null) {
+            if (!match && phoneFuzzyScore != null && queryNormalized.length() > 2) {
                 // search for the phone number
-                matchInfo = fuzzyScore.match(pojo.normalizedPhone.codePoints);
-                match = pojo.updateMatchingRelevance(matchInfo, match);
+                for (StringNormalizer.Result normalizedPhone : pojo.getAllNormalizedPhoneNumbers()) {
+                    matchInfo = phoneFuzzyScore.match(normalizedPhone.codePoints);
+                    match = pojo.updateMatchingRelevance(matchInfo, match);
+                }
             }
 
             if (!match && queryNormalized.length() > 2 && pojo.getContactData() != null && pojo.getContactData().getNormalizedIdentifier() != null) {
@@ -147,16 +166,25 @@ public class ContactsProvider extends Provider<ContactsPojo> {
      * @param phoneNumber phone number to find (will be normalized)
      * @return a ContactsPojo, or null.
      */
-    public ContactsPojo findByPhone(String phoneNumber) {
+    @NonNull
+    public List<Pojo> findByPhone(String phoneNumber) {
         StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.normalizeWithResult(phoneNumber);
 
-        PhoneUtils phoneUtils = new PhoneUtils(this);
-        for (ContactsPojo pojo : getPojos()) {
-            if (pojo.normalizedPhone != null && phoneUtils.areSamePhoneNumber(pojo.normalizedPhone, simplifiedPhoneNumber)) {
-                return pojo;
-            }
-        }
+        Comparator<ContactsPojo> comparator = Comparator.comparing(this::isEnterpriseContactId) // non enterprise first
+                .thenComparing(contactsPojo -> !contactsPojo.starred) // starred first
+                .thenComparing(contactsPojo -> !contactsPojo.primary) // primary first
+                .thenComparing(new NameComparator()); // by name
 
-        return null;
+        PhoneUtils phoneUtils = new PhoneUtils(this);
+        return getPojos().stream()
+                .filter(pojo -> pojo.getAllNormalizedPhoneNumbers()
+                        .stream()
+                        .anyMatch(normalizedPhone -> phoneUtils.areSamePhoneNumber(normalizedPhone, simplifiedPhoneNumber)))
+                .sorted(comparator)
+                .collect(Collectors.toList());
+    }
+
+    private boolean isEnterpriseContactId(ContactsPojo contactsPojo) {
+        return ContactsContract.Contacts.isEnterpriseContactId(contactsPojo.getContactId());
     }
 }
