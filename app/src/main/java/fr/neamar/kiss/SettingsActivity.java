@@ -66,6 +66,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+        InterfaceTweaks.applySettingsSystemBarInsets(findViewById(R.id.settings_root), toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
