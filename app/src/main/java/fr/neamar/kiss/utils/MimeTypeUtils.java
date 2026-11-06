@@ -12,14 +12,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MimeTypeUtils {
 
@@ -40,6 +41,17 @@ public class MimeTypeUtils {
             ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE
     ));
     private static final String TAG = MimeTypeUtils.class.getSimpleName();
+
+    // Contact buttons, and actions that can be assigned to them besides mime types
+    public static final String CONTACT_ACTION_LEFT = "left";
+    public static final String CONTACT_ACTION_RIGHT = "right";
+    private static final String[] CONTACT_ACTION_SIDES = {CONTACT_ACTION_LEFT, CONTACT_ACTION_RIGHT};
+    public static final String CONTACT_ACTION_NONE = "none";
+    public static final String CONTACT_ACTION_SMS = "sms";
+    public static final String CONTACT_ACTION_CALL = "call";
+
+    // Phone number at the end of a contact data detail, like "Voice call +1 (234) 567-890"
+    private static final Pattern TRAILING_PHONE_NUMBER = Pattern.compile("[\\s+0-9().-]*[0-9][\\s+0-9().-]*$");
 
     private MimeTypeUtils() {
     }
@@ -96,21 +108,40 @@ public class MimeTypeUtils {
 
     /**
      * @param context
-     * @return a set of all mime types that should be shown
+     * @return a set of all supported mime types that are used by a contact action
      */
     public static Set<String> getActiveMimeTypes(Context context) {
         long start = System.currentTimeMillis();
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> selectedMimeTypes = prefs.getStringSet("selected-contact-mime-types", getDefaultMimeTypes());
+        Set<String> selectedMimeTypes = new HashSet<>();
+        for (String side : CONTACT_ACTION_SIDES) {
+            selectedMimeTypes.addAll(getContactActions(context, side));
+        }
         Set<String> supportedMimeTypes = getSupportedMimeTypes(context);
 
         supportedMimeTypes.retainAll(selectedMimeTypes);
+        supportedMimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
 
         long end = System.currentTimeMillis();
         Log.i(TAG, (end - start) + " milliseconds to load " + supportedMimeTypes.size() + " active mime types");
 
         return supportedMimeTypes;
+    }
+
+    /**
+     * @param context
+     * @param side    {@link #CONTACT_ACTION_LEFT} or {@link #CONTACT_ACTION_RIGHT}
+     * @return configured actions for given contact button, ordered from main action to last fallback
+     */
+    public static List<String> getContactActions(Context context, String side) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String defaultAction = CONTACT_ACTION_LEFT.equals(side) ? CONTACT_ACTION_SMS : CONTACT_ACTION_CALL;
+        String key = "contact-action-" + side;
+        return Arrays.asList(
+                prefs.getString(key, defaultAction),
+                prefs.getString(key + "-fallback", defaultAction),
+                prefs.getString(key + "-fallback-2", defaultAction)
+        );
     }
 
     /**
@@ -180,9 +211,15 @@ public class MimeTypeUtils {
     }
 
     /**
-     * @return mimeTypes that are shown by default
+     * @param text text that may end with a phone number
+     * @return phone number at the end of text, null if none
      */
-    public static Set<String> getDefaultMimeTypes() {
-        return new TreeSet<>(Collections.singletonList(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE));
+    @Nullable
+    public static String getTrailingPhoneNumber(@Nullable String text) {
+        if (text == null) {
+            return null;
+        }
+        Matcher matcher = TRAILING_PHONE_NUMBER.matcher(text);
+        return matcher.find() ? matcher.group().trim() : null;
     }
 }

@@ -7,6 +7,7 @@ import android.content.pm.ShortcutInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,7 @@ import fr.neamar.kiss.utils.UserHandle;
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 11;
+    private final static int DB_VERSION = 12;
     private static final String TAG = DB.class.getSimpleName();
 
     private final Context mContext;
@@ -95,6 +96,9 @@ class DB extends SQLiteOpenHelper {
                     // fall through
                 case 10:
                     addCustomComponentsTable(database);
+                    // fall through
+                case 11:
+                    convertContactMimeTypes();
                     // fall through
                 default:
                     break;
@@ -214,6 +218,23 @@ class DB extends SQLiteOpenHelper {
                 break;
         }
         commit(prefsEditor, "theme");
+    }
+
+    /**
+     * Contacts from other apps (WhatsApp, Signal, ...) used to be shown as separate results.
+     * They are now an action of the phone contact: use the first one for the left button, SMS stays as fallback.
+     */
+    private void convertContactMimeTypes() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        List<String> mimeTypes = new ArrayList<>(prefs.getStringSet("selected-contact-mime-types", Collections.emptySet()));
+        mimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        Collections.sort(mimeTypes);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        if (!mimeTypes.isEmpty()) {
+            prefsEditor.putString("contact-action-left", mimeTypes.get(0));
+        }
+        prefsEditor.remove("selected-contact-mime-types");
+        commit(prefsEditor, "selected-contact-mime-types");
     }
 
     private void commit(SharedPreferences.Editor prefsEditor, String key) {

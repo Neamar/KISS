@@ -142,8 +142,8 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 }
             }
 
-            if (!match && queryNormalized.length() > 2 && pojo.getContactData() != null && pojo.getContactData().getNormalizedIdentifier() != null) {
-                // search for IM identifier
+            if (!match && queryNormalized.length() > 2 && pojo.normalizedPhone == null && pojo.getContactData() != null && pojo.getContactData().getNormalizedIdentifier() != null) {
+                // search for IM identifier of contacts without phone number
                 matchInfo = fuzzyScore.match(pojo.getContactData().getNormalizedIdentifier().codePoints);
                 match = pojo.updateMatchingRelevance(matchInfo, match);
             }
