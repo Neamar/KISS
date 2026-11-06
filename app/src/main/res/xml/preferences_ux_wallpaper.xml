@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_wallpaper">
+    <SwitchPreference
+        app:defaultValue="true"
+        app:key="lwp-touch"
+        app:title="@string/lwp_touch" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="lwp-drag"
+        app:summary="@string/lwp_drag_desc"
+        app:title="@string/lwp_drag" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="wp-drag-animate"
+        app:summary="@string/wp_drag_animate_desc"
+        app:title="@string/wp_drag_animate" />
+    <SwitchPreference
+        app:defaultValue="true"
+        app:dependency="wp-drag-animate"
+        app:key="wp-animate-center"
+        app:summary="@string/wp_animate_center_desc"
+        app:title="@string/wp_animate_center" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:dependency="wp-drag-animate"
+        app:key="wp-animate-sides"
+        app:summary="@string/wp_animate_sides_desc"
+        app:title="@string/wp_animate_sides" />
+</PreferenceScreen>

@@ -18,6 +18,7 @@ import java.util.Set;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.settings.SettingsFragment;
 import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.Log;
 
@@ -31,7 +32,7 @@ public class ExportSettingsPreference {
 
             // Get default values from XML, to only write changed data
             SharedPreferences defaultValues = context.getSharedPreferences("__default__", Context.MODE_PRIVATE);
-            PreferenceManager.setDefaultValues(context, "__default__", Context.MODE_PRIVATE, R.xml.preferences, true);
+            SettingsFragment.setDefaultValues(context, "__default__");
             JSONObject out = new JSONObject();
             try {
                 // Min version required to read those settings

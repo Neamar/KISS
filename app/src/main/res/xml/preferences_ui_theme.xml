@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/theme_customisation">
+    <ListPreference
+        app:defaultValue="default"
+        app:entries="@array/shadowEntries"
+        app:entryValues="@array/shadowValues"
+        app:key="theme-shadow"
+        app:title="@string/theme_shadow"
+        app:useSimpleSummaryProvider="true" />
+    <ListPreference
+        app:defaultValue="default"
+        app:entries="@array/separatorEntries"
+        app:entryValues="@array/separatorValues"
+        app:key="theme-separator"
+        app:title="@string/theme_separator"
+        app:useSimpleSummaryProvider="true" />
+    <ListPreference
+        app:defaultValue="default"
+        app:entries="@array/resultColorEntries"
+        app:entryValues="@array/resultColorValues"
+        app:key="theme-result-color"
+        app:title="@string/theme_result_color"
+        app:useSimpleSummaryProvider="true" />
+    <ListPreference
+        app:defaultValue="default"
+        app:entries="@array/wallpaperEntries"
+        app:entryValues="@array/wallpaperValues"
+        app:key="theme-wallpaper"
+        app:title="@string/theme_wallpaper"
+        app:useSimpleSummaryProvider="true" />
+    <ListPreference
+        app:defaultValue="default"
+        app:entries="@array/barColorEntries"
+        app:entryValues="@array/barColorValues"
+        app:key="theme-bar-color"
+        app:title="@string/theme_bar_color"
+        app:useSimpleSummaryProvider="true" />
+    <SwitchPreference
+        app:key="transparent-search"
+        app:title="@string/transparent_search_bar" />
+</PreferenceScreen>
