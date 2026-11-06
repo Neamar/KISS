@@ -25,6 +25,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.dataprovider.ProviderName;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.settings.SettingsFragment;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 
@@ -54,7 +55,7 @@ public class ImportSettingsPreference {
                 // Reset everything to default
                 SharedPreferences oldPrefs = PreferenceManager.getDefaultSharedPreferences(context);
                 if (oldPrefs.edit().clear().commit()) {
-                    PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
+                    SettingsFragment.setDefaultValues(context, true);
                 }
 
                 // Set imported values

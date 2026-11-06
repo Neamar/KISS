@@ -1,4 +1,4 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.settings;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreference;
 
@@ -16,22 +15,26 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import fr.neamar.kiss.IconsHandler;
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.utils.Utilities;
 
-public class ExcludeAppSettingsFragment extends PreferenceFragmentCompat {
-
-    public ExcludeAppSettingsFragment() {
-        super();
-    }
+public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
+    /**
+     * Which exclusion list to edit, set as an extra in the preferences XML
+     */
+    private static final String ARG_EXCLUSION = "exclusion";
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         addPreferencesFromResource(R.xml.preferences_exclude_app);
 
-        if (rootKey != null) {
-            switch (rootKey) {
+        String exclusion = requireArguments().getString(ARG_EXCLUSION);
+        if (exclusion != null) {
+            switch (exclusion) {
                 case "edit-excluded-apps":
                     addExcludedAppSettings();
                     break;
@@ -132,9 +135,4 @@ public class ExcludeAppSettingsFragment extends PreferenceFragmentCompat {
         );
         return switchPreference;
     }
-
-    private DataHandler getDataHandler() {
-        return KissApplication.getApplication(requireContext()).getDataHandler();
-    }
-
 }

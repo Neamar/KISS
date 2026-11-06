@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_favorites">
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/reset_favorites_warn"
+        app:key="reset-favorites"
+        app:title="@string/reset_favorites_name" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="exclude-favorites-apps"
+        app:title="@string/exclude_favorites_apps" />
+    <SwitchPreference
+        app:defaultValue="true"
+        app:key="exclude-favorites-history"
+        app:title="@string/exclude_favorites_history" />
+    <fr.neamar.kiss.preference.TagsSelectPreference
+        app:defaultValue="@array/favTagsDefault"
+        app:key="pref-fav-tags-list"
+        app:title="@string/pref_fav_tags_select" />
+    <PreferenceCategory app:title="@string/misc">
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-favorites-bar"
+            app:summaryOff="@string/enable_favorites_bar_summary_off"
+            app:summaryOn="@string/enable_favorites_bar_summary_on"
+            app:title="@string/enable_favorites_bar" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:dependency="enable-favorites-bar"
+            app:key="large-favorites-bar"
+            app:title="@string/large_favorites_bar" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="transparent-favorites"
+            app:title="@string/transparent_favorites_bar" />
+    </PreferenceCategory>
+</PreferenceScreen>
