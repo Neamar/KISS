@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_ui">
     <ListPreference
         app:defaultValue="transparent"
@@ -7,14 +8,22 @@
         app:entryValues="@array/themesValues"
         app:key="theme"
         app:title="@string/theme_name"
-        app:useSimpleSummaryProvider="true" />
+        app:useSimpleSummaryProvider="true">
+        <extra
+            android:name="restart"
+            android:value="settings" />
+    </ListPreference>
     <ListPreference
         app:defaultValue="no"
         app:entries="@array/nightModeEntries"
         app:entryValues="@array/nightModeValues"
         app:key="night-mode"
         app:title="@string/theme_night_mode"
-        app:useSimpleSummaryProvider="true" />
+        app:useSimpleSummaryProvider="true">
+        <extra
+            android:name="restart"
+            android:value="settings" />
+    </ListPreference>
     <Preference
         app:fragment="fr.neamar.kiss.settings.ThemeCustomisationSettingsFragment"
         app:key="theme-customisation"
@@ -28,7 +37,11 @@
             app:entryValues="@array/resultsSizeValues"
             app:key="results-size"
             app:title="@string/results_size"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </ListPreference>
         <MultiSelectListPreference
             app:defaultValue="@array/resultHighlightingDefault"
             app:entries="@array/resultHighlightingEntries"
@@ -43,14 +56,26 @@
         <fr.neamar.kiss.preference.ColorPreference
             app:dialogTitle="@string/color_picker_default_title"
             app:key="primary-color"
-            app:title="@string/main_color" />
+            app:title="@string/main_color">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </fr.neamar.kiss.preference.ColorPreference>
         <fr.neamar.kiss.preference.ColorPreference
             app:dialogTitle="@string/color_picker_default_title"
             app:key="notification-bar-color"
-            app:title="@string/notification_bar_color" />
+            app:title="@string/notification_bar_color">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </fr.neamar.kiss.preference.ColorPreference>
         <SwitchPreference
             app:key="black-notification-icons"
-            app:title="@string/black_notification_icons" />
+            app:title="@string/black_notification_icons">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
     </PreferenceCategory>
     <PreferenceCategory
         app:key="icons-section"
@@ -58,7 +83,11 @@
         <fr.neamar.kiss.preference.IconPackSelectPreference
             app:key="icons-pack"
             app:title="@string/icons_pack_name"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </fr.neamar.kiss.preference.IconPackSelectPreference>
 
         <ListPreference
             app:defaultValue="0"
@@ -102,7 +131,11 @@
             app:defaultValue="false"
             app:key="themed-icons"
             app:summary="@string/icons_themed_summary"
-            app:title="@string/icons_themed_name" />
+            app:title="@string/icons_themed_name">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
         <SwitchPreference
             app:defaultValue="true"
             app:key="subicon-visible"
@@ -111,24 +144,44 @@
             app:defaultValue="false"
             app:key="icons-hide"
             app:summary="@string/icons_hide_desc"
-            app:title="@string/icons_hide_main" />
+            app:title="@string/icons_hide_main">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/misc">
         <SwitchPreference
             app:defaultValue="false"
             app:key="pref-rounded-list"
-            app:title="@string/rounded_list" />
+            app:title="@string/rounded_list">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
         <SwitchPreference
             app:defaultValue="true"
             app:key="pref-rounded-bars"
-            app:title="@string/rounded_bars" />
+            app:title="@string/rounded_bars">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
         <SwitchPreference
             app:defaultValue="false"
             app:key="pref-swap-kiss-button-with-menu"
-            app:title="@string/swap_kiss_button_with_menu" />
+            app:title="@string/swap_kiss_button_with_menu">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
         <SwitchPreference
             app:defaultValue="false"
             app:key="large-result-list-margins"
-            app:title="@string/large_result_list_margins" />
+            app:title="@string/large_result_list_margins">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
     </PreferenceCategory>
 </PreferenceScreen>

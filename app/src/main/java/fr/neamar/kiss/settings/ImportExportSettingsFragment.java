@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.SettingsActivity;
 import fr.neamar.kiss.preference.ExportSettingsPreference;
 import fr.neamar.kiss.preference.ImportSettingsPreference;
 
@@ -16,7 +17,12 @@ public class ImportExportSettingsFragment extends BaseSettingsFragment {
 
         setOnDialogClosedListener("export-settings", (pref, positiveResult) ->
                 new ExportSettingsPreference().onDialogClosed(getContext(), positiveResult));
-        setOnDialogClosedListener("import-settings", (pref, positiveResult) ->
-                new ImportSettingsPreference().onDialogClosed(getContext(), positiveResult));
+        setOnDialogClosedListener("import-settings", (pref, positiveResult) -> {
+            new ImportSettingsPreference().onDialogClosed(getContext(), positiveResult);
+            if (positiveResult) {
+                // Any setting may have changed
+                ((SettingsActivity) requireActivity()).requireRestart(true);
+            }
+        });
     }
 }

@@ -23,7 +23,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -43,16 +42,6 @@ import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
  * and reacts to settings changes that impact the rest of the app, whichever screen they come from (including settings import).
  */
 public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
-
-    // Those settings require the app to restart
-    private static final List<String> SETTINGS_REQUIRING_RESTART = Arrays.asList("primary-color", "transparent-search", "transparent-favorites",
-            "pref-rounded-list", "pref-rounded-bars", "pref-swap-kiss-button-with-menu", "pref-hide-circle", "history-hide",
-            "enable-favorites-bar", "notification-bar-color", "black-notification-icons", "icons-pack", "theme-shadow",
-            "theme-separator", "theme-result-color", "large-favorites-bar", "pref-hide-search-bar-hint", "theme-wallpaper",
-            "theme-bar-color", "results-size", "large-result-list-margins", "themed-icons", "icons-hide",
-            "pref-fav-tags-drawable", null);
-    // Those settings require a restart of the settings
-    private static final List<String> SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY = Arrays.asList("theme", "force-portrait", "night-mode", null);
 
     private boolean requireFullRestart = false;
 
@@ -143,14 +132,17 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         if (key != null) {
             onSettingChanged(sharedPreferences, key);
         }
+    }
 
-        if (SETTINGS_REQUIRING_RESTART.contains(key) || SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY.contains(key)) {
-            requireFullRestart = true;
-
-            if (SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY.contains(key)) {
-                // Kill this activity too, and restart
-                recreate();
-            }
+    /**
+     * Some settings are only applied when restarting the launcher (on resume),
+     * or also these settings, e.g. for the theme.
+     * Set in preferences XML with a "restart" extra, either "launcher" or "settings".
+     */
+    public void requireRestart(boolean restartSettings) {
+        requireFullRestart = true;
+        if (restartSettings) {
+            recreate();
         }
     }
 

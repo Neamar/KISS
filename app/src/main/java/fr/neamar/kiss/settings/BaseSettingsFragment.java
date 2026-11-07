@@ -1,6 +1,7 @@
 package fr.neamar.kiss.settings;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import androidx.preference.PreferenceManager;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.SettingsActivity;
 import fr.neamar.kiss.preference.AddSearchProviderPreference;
 import fr.neamar.kiss.preference.AddSearchProviderPreferenceDialogFragment;
 import fr.neamar.kiss.preference.ColorPreference;
@@ -29,17 +31,34 @@ public abstract class BaseSettingsFragment extends PreferenceFragmentCompat impl
 
     protected SharedPreferences prefs;
 
+    // Kept as a field: SharedPreferences only keeps weak references to listeners
+    private final SharedPreferences.OnSharedPreferenceChangeListener restartListener = this::requireRestartIfNeeded;
+
     @Override
     public void onResume() {
         super.onResume();
         requireActivity().setTitle(getPreferenceScreen().getTitle());
         getPrefs().registerOnSharedPreferenceChangeListener(this);
+        getPrefs().registerOnSharedPreferenceChangeListener(restartListener);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         getPrefs().unregisterOnSharedPreferenceChangeListener(this);
+        getPrefs().unregisterOnSharedPreferenceChangeListener(restartListener);
+    }
+
+    /**
+     * Restart when a preference with a "restart" extra changes, see {@link SettingsActivity#requireRestart(boolean)}
+     */
+    private void requireRestartIfNeeded(SharedPreferences sharedPreferences, @Nullable String key) {
+        Preference preference = key == null ? null : findPreference(key);
+        Bundle extras = preference == null ? null : preference.peekExtras();
+        String restart = extras == null ? null : extras.getString("restart");
+        if (restart != null) {
+            ((SettingsActivity) requireActivity()).requireRestart("settings".equals(restart));
+        }
     }
 
     @Override
