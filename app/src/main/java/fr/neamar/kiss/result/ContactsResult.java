@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -18,18 +21,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.widget.ImageViewCompat;
 import androidx.preference.PreferenceManager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
+import fr.neamar.kiss.pojo.ContactData;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.ClipboardUtils;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
@@ -38,7 +50,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
     private final QueryInterface queryInterface;
     private volatile Drawable icon = null;
-    private volatile Drawable appDrawable = null;
+    private final Map<String, Drawable> appDrawables = new ConcurrentHashMap<>();
     private static final String TAG = ContactsResult.class.getSimpleName();
 
     ContactsResult(QueryInterface queryInterface, @NonNull ContactsPojo pojo) {
@@ -49,8 +61,14 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     @NonNull
     @Override
     public View display(Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        if (view == null)
+        if (view == null) {
             view = inflateFromId(context, R.layout.item_contact, parent);
+            // Keep tint from layout, to restore it after showing an app icon
+            ImageButton messageButton = view.findViewById(R.id.item_contact_action_message);
+            messageButton.setTag(ImageViewCompat.getImageTintList(messageButton));
+            ImageButton phoneButton = view.findViewById(R.id.item_contact_action_phone);
+            phoneButton.setTag(ImageViewCompat.getImageTintList(phoneButton));
+        }
 
         // Contact name
         TextView contactName = view.findViewById(R.id.item_contact_name);
@@ -60,12 +78,12 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         // Contact phone or IM identifier
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);
-        if (pojo.getContactData() != null && !TextUtils.isEmpty(pojo.getContactData().getIdentifier())) {
-            contactPhone.setVisibility(View.VISIBLE);
-            displayHighlighted(pojo.getContactData().getNormalizedIdentifier(), pojo.getContactData().getIdentifier(), fuzzyScore, contactPhone, context);
-        } else if (!TextUtils.isEmpty(pojo.phone)) {
+        if (!TextUtils.isEmpty(pojo.phone)) {
             contactPhone.setVisibility(View.VISIBLE);
             displayHighlighted(pojo.normalizedPhone, pojo.phone, fuzzyScore, contactPhone, context);
+        } else if (pojo.getContactData() != null && !TextUtils.isEmpty(pojo.getContactData().getIdentifier())) {
+            contactPhone.setVisibility(View.VISIBLE);
+            displayHighlighted(pojo.getContactData().getNormalizedIdentifier(), pojo.getContactData().getIdentifier(), fuzzyScore, contactPhone, context);
         } else {
             contactPhone.setVisibility(View.GONE);
         }
@@ -97,72 +115,136 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         contactIcon.setExtraOnClickListener(v -> recordLaunch(v.getContext(), queryInterface));
 
-        PackageManager pm = context.getPackageManager();
-        boolean hasPhone = pojo.phone != null && pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
-
-        // Phone action
-        ImageButton phoneButton = view.findViewById(R.id.item_contact_action_phone);
-        if (hasPhone) {
-            phoneButton.setVisibility(View.VISIBLE);
-            phoneButton.setOnClickListener(v -> {
-                launchCall(v.getContext(), v, pojo.phone);
-                recordLaunch(context, queryInterface);
-            });
-        } else {
-            phoneButton.setVisibility(View.GONE);
-        }
-
-        // Message action
-        ImageButton messageButton = view.findViewById(R.id.item_contact_action_message);
-        if (pojo.getContactData() != null) {
-            messageButton.setVisibility(View.VISIBLE);
-            messageButton.setOnClickListener(v -> {
-                launchIm(v.getContext(), v);
-                recordLaunch(context, queryInterface);
-            });
-        } else if (hasPhone) {
-            messageButton.setVisibility(View.VISIBLE);
-            messageButton.setOnClickListener(v -> {
-                launchMessaging(v.getContext(), v, pojo.phone);
-                recordLaunch(context, queryInterface);
-            });
-
-            if (pojo.isHomeNumber()) {
-                messageButton.setVisibility(View.INVISIBLE);
-            } else {
-                messageButton.setVisibility(View.VISIBLE);
-            }
-        } else {
-            messageButton.setVisibility(View.INVISIBLE);
-        }
-
-        // App icon
-        final ImageView appIcon = view.findViewById(R.id.item_app_icon);
-        if (pojo.getContactData() != null && !hideIcons && isSubIconVisible(context)) {
-            appIcon.setVisibility(View.VISIBLE);
-            setAsyncDrawable(appIcon, R.drawable.ic_launcher_white, false, () -> appDrawable != null, this::getAppDrawable, (drawable) -> appDrawable = drawable);
-        } else {
-            appIcon.setVisibility(View.GONE);
-        }
+        displayActions(context, view);
 
         return view;
     }
 
-    private Drawable getAppDrawable(Context context) {
-        if (appDrawable == null) {
-            synchronized (this) {
-                if (appDrawable == null) {
-                    ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getContactData().getMimeType());
-                    if (componentName != null) {
-                        IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
-                    }
-                    if (appDrawable == null) {
-                        // This should never happen, let's just return the generic activity icon
-                        appDrawable = PackageManagerUtils.getDefaultActivityIcon(context);
-                    }
-                }
+    /**
+     * Display contact actions, the right button never repeats the action of the left one
+     */
+    private void displayActions(Context context, View view) {
+        String leftAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_LEFT, pojo.lookupKey), null);
+        String rightAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_RIGHT, pojo.lookupKey), leftAction);
+        displayAction(context, view, view.findViewById(R.id.item_contact_action_message), MimeTypeUtils.CONTACT_ACTION_LEFT, leftAction, View.INVISIBLE);
+        displayAction(context, view, view.findViewById(R.id.item_contact_action_phone), MimeTypeUtils.CONTACT_ACTION_RIGHT, rightAction, View.GONE);
+    }
+
+    /**
+     * @param context context
+     * @param actions configured actions, in order of preference
+     * @param exclude action that must not be used
+     * @return first action available for this contact, null if none
+     */
+    private String getAvailableAction(Context context, List<String> actions, String exclude) {
+        for (String action : actions) {
+            if (MimeTypeUtils.CONTACT_ACTION_NONE.equals(action)) {
+                return null;
             }
+            if (!action.equals(exclude) && isAvailableAction(context, action)) {
+                return action;
+            }
+        }
+        return null;
+    }
+
+    private boolean isAvailableAction(Context context, String action) {
+        boolean hasPhone = pojo.phone != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+        if (MimeTypeUtils.CONTACT_ACTION_SMS.equals(action)) {
+            return hasPhone && !pojo.isHomeNumber();
+        } else if (MimeTypeUtils.CONTACT_ACTION_CALL.equals(action)) {
+            return hasPhone;
+        } else {
+            return pojo.getContactData(action) != null;
+        }
+    }
+
+    private void displayAction(Context context, View view, ImageButton button, String side, String action, int hiddenVisibility) {
+        if (action == null) {
+            button.setVisibility(hiddenVisibility);
+            button.setOnClickListener(null);
+            button.setOnLongClickListener(null);
+            return;
+        }
+
+        button.setVisibility(View.VISIBLE);
+        button.setOnLongClickListener(v -> {
+            showContactActionMenu(context, view, v, side);
+            return true;
+        });
+        if (MimeTypeUtils.CONTACT_ACTION_SMS.equals(action) || MimeTypeUtils.CONTACT_ACTION_CALL.equals(action)) {
+            boolean sms = MimeTypeUtils.CONTACT_ACTION_SMS.equals(action);
+            ImageViewCompat.setImageTintList(button, (ColorStateList) button.getTag());
+            button.setContentDescription(context.getString(sms ? R.string.ui_item_contact_hint_message : R.string.ui_item_contact_hint_call));
+            int drawableId = sms ? R.drawable.ic_message : R.drawable.ic_phone;
+            setAsyncDrawable(button, 0, false, () -> true, ctx -> AppCompatResources.getDrawable(ctx, drawableId), drawable -> {
+            });
+            button.setOnClickListener(v -> {
+                if (sms) {
+                    launchMessaging(v.getContext(), v, pojo.phone);
+                } else {
+                    launchCall(v.getContext(), v, pojo.phone);
+                }
+                recordLaunch(context, queryInterface);
+            });
+        } else {
+            ImageViewCompat.setImageTintList(button, null);
+            button.setContentDescription(KissApplication.getMimeTypeCache(context).getLabel(context, action));
+            setAsyncDrawable(button, 0, false, () -> appDrawables.containsKey(action), ctx -> getAppDrawable(ctx, action), drawable -> appDrawables.put(action, drawable));
+            button.setOnClickListener(v -> {
+                launchIm(v.getContext(), v, pojo.getContactData(action));
+                recordLaunch(context, queryInterface);
+            });
+        }
+    }
+
+    /**
+     * Let the user pick the action of a contact button for this contact only
+     */
+    private void showContactActionMenu(Context context, View view, View button, String side) {
+        List<String> actions = new ArrayList<>();
+        ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
+
+        Map<String, String> labels = MimeTypeUtils.getContactActionLabels(context, pojo.getContactDataMimeTypes());
+        String defaultAction = MimeTypeUtils.getContactAction(context, side);
+        String defaultLabel = MimeTypeUtils.CONTACT_ACTION_NONE.equals(defaultAction) ? context.getString(R.string.contact_action_none) : labels.get(defaultAction);
+        if (defaultLabel == null) {
+            defaultLabel = KissApplication.getMimeTypeCache(context).getLabel(context, defaultAction);
+        }
+        actions.add(null);
+        adapter.add(new ListPopup.Item(context.getString(R.string.contact_action_default, defaultLabel)));
+        for (Map.Entry<String, String> label : labels.entrySet()) {
+            if (isAvailableAction(context, label.getKey())) {
+                actions.add(label.getKey());
+                adapter.add(new ListPopup.Item(label.getValue()));
+            }
+        }
+
+        ListPopup menu = new ListPopup(context);
+        menu.setAdapter(adapter);
+        menu.setOnItemClickListener((a, v, position) -> {
+            MimeTypeUtils.setContactActionOverride(context, side, pojo.lookupKey, actions.get(position));
+            displayActions(context, view);
+        });
+        queryInterface.registerPopup(menu);
+        menu.show(button);
+    }
+
+    private Drawable getAppDrawable(Context context, String mimeType) {
+        Drawable appDrawable = appDrawables.get(mimeType);
+        if (appDrawable == null) {
+            ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, mimeType);
+            if (componentName != null) {
+                IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
+            }
+            if (appDrawable == null) {
+                // This should never happen, let's just return the generic activity icon
+                appDrawable = PackageManagerUtils.getDefaultActivityIcon(context);
+            }
+            // Same size as SMS and call icons
+            int size = DrawableUtils.dpToPx(context, 24);
+            appDrawable = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(DrawableUtils.drawableToBitmap(appDrawable), size, size, true));
         }
         return appDrawable;
     }
@@ -253,8 +335,8 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         }
     }
 
-    private void launchIm(final Context context, final View view) {
-        Intent intent = MimeTypeUtils.getRegisteredIntentByMimeType(context, pojo.getContactData().getMimeType(), pojo.getContactData().getId(), pojo.getContactData().getIdentifier());
+    private void launchIm(final Context context, final View view, final ContactData contactData) {
+        Intent intent = MimeTypeUtils.getRegisteredIntentByMimeType(context, contactData.getMimeType(), contactData.getId(), contactData.getIdentifier());
         if (intent != null) {
             setSourceBounds(intent, view);
             context.startActivity(intent);

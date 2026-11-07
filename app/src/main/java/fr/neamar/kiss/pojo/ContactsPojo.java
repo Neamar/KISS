@@ -5,7 +5,10 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -42,7 +45,8 @@ public final class ContactsPojo extends Pojo {
     public StringNormalizer.Result normalizedNameAlternative = null;
     public StringNormalizer.Result normalizedPhoneticName = null;
 
-    private ContactData contactData;
+    // Contact data from other apps (WhatsApp, Signal, ...), by mime type
+    private Map<String, ContactData> contactData = null;
 
     public ContactsPojo(String id, String lookupKey, long contactId, Uri icon, boolean primary, boolean starred, @NonNull UserHandle userHandle) {
         super(id);
@@ -85,12 +89,40 @@ public final class ContactsPojo extends Pojo {
         return homeNumber;
     }
 
-    public void setIm(ContactData contactData) {
-        this.contactData = contactData;
+    /**
+     * Add contact data from another app, only the first one for each mime type is kept
+     *
+     * @param data contact data to add
+     */
+    public void addContactData(ContactData data) {
+        if (contactData == null) {
+            contactData = new LinkedHashMap<>(1);
+        }
+        if (!contactData.containsKey(data.getMimeType())) {
+            contactData.put(data.getMimeType(), data);
+        }
     }
 
+    /**
+     * @param mimeType mime type of contact data
+     * @return contact data for given mime type, null if not available for this contact
+     */
+    public ContactData getContactData(String mimeType) {
+        return contactData == null ? null : contactData.get(mimeType);
+    }
+
+    /**
+     * @return mime types of all contact data available for this contact
+     */
+    public Set<String> getContactDataMimeTypes() {
+        return contactData == null ? Collections.emptySet() : contactData.keySet();
+    }
+
+    /**
+     * @return first contact data added, used for contacts without phone number
+     */
     public ContactData getContactData() {
-        return contactData;
+        return contactData == null ? null : contactData.values().iterator().next();
     }
 
     public long getContactId() {

@@ -18,6 +18,8 @@ import java.util.*;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MimeTypeCache;
+import fr.neamar.kiss.normalizer.PhoneNormalizer;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactData;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.utils.Log;
@@ -46,12 +48,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         // Skip if we don't have permission to list contacts yet:(
         if (!Permission.checkPermission(ctx, Permission.PERMISSION_READ_CONTACTS)) {
-            return contacts;
-        }
-
-        // Skip if we don't have any mime types to be shown
-        Set<String> mimeTypes = MimeTypeUtils.getActiveMimeTypes(ctx);
-        if (mimeTypes.isEmpty()) {
             return contacts;
         }
 
@@ -143,16 +139,27 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         long endNicks = System.currentTimeMillis();
         Log.i(TAG, (endNicks - startNicks) + " milliseconds to load nicknames");
 
-        // Query all mime types
+        contacts.addAll(createPhoneContacts(ctx, basicContacts, basicRawContacts));
+
+        // Attach contact data from other apps (WhatsApp, Signal, ...), any of them can be picked for a contact button.
+        // Mime types selected in settings come first, as they also create contacts for people without phone number.
+        Map<String, List<ContactsPojo>> contactsByLookupKey = new HashMap<>();
+        for (ContactsPojo contact : contacts) {
+            addContactToList(contact, contactsByLookupKey);
+        }
+        PhoneUtils phoneUtils = new PhoneUtils(ctx);
+        Set<String> selectedMimeTypes = MimeTypeUtils.getSelectedMimeTypes(ctx);
+        List<String> mimeTypes = new ArrayList<>(MimeTypeUtils.getSupportedMimeTypes(ctx));
+        mimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        Collections.sort(mimeTypes, (a, b) -> {
+            int compareSelected = Boolean.compare(selectedMimeTypes.contains(b), selectedMimeTypes.contains(a));
+            return compareSelected != 0 ? compareSelected : a.compareTo(b);
+        });
         for (String mimeType : mimeTypes) {
             long startMimeType = System.currentTimeMillis();
-            if (ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                contacts.addAll(createPhoneContacts(ctx, basicContacts, basicRawContacts));
-            } else {
-                contacts.addAll(createGenericContacts(ctx, mimeType, basicContacts, basicRawContacts));
-            }
+            addContactData(ctx, mimeType, selectedMimeTypes.contains(mimeType), basicContacts, basicRawContacts, contactsByLookupKey, contacts, phoneUtils);
             long endMimeType = System.currentTimeMillis();
-            Log.i(TAG, (endMimeType - startMimeType) + " milliseconds to list contacts for " + mimeType);
+            Log.i(TAG, (endMimeType - startMimeType) + " milliseconds to add contact data for " + mimeType);
         }
 
         long end = System.currentTimeMillis();
@@ -247,33 +254,34 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         return UserHandle.OWNER;
     }
 
-    private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, @NonNull String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
+    /**
+     * Attach contact data of given mime type to the phone contacts of the same person.
+     * Contact data is attached to the phone numbers found in its detail column, or to all phone numbers if none matches.
+     * People without any phone number get a contact of their own if requested.
+     */
+    private void addContactData(@NonNull Context ctx, @NonNull String mimeType, boolean createContacts, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts, Map<String, List<ContactsPojo>> contactsByLookupKey, List<ContactsPojo> contacts, PhoneUtils phoneUtils) {
         final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(ctx);
-        // Prevent duplicates by keeping in memory encountered contacts.
-        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>(basicContacts.size());
 
         List<String> columns = new ArrayList<>();
         columns.add(ContactsContract.Data.LOOKUP_KEY);
         columns.add(ContactsContract.Data.RAW_CONTACT_ID);
         columns.add(ContactsContract.Data._ID);
-        columns.add(ContactsContract.Data.IS_PRIMARY);
 
         String detailColumn = mimeTypeCache.getDetailColumn(ctx, mimeType);
         if (detailColumn != null && !columns.contains(detailColumn)) {
             columns.add(detailColumn);
         }
 
-        // Query all entries by mimeType
+        // Query all entries by mimeType, primary ones first
         try (Cursor mimeTypeCursor = ctx.getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
                 columns.toArray(new String[]{}),
                 ContactsContract.Data.MIMETYPE + "= ?",
-                new String[]{mimeType}, null)) {
+                new String[]{mimeType}, ContactsContract.Data.IS_PRIMARY + " DESC")) {
             if (mimeTypeCursor != null && mimeTypeCursor.getCount() > 0) {
                 int lookupIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY);
                 int rawContactIdIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data.RAW_CONTACT_ID);
                 int idIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data._ID);
-                int isPrimaryIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data.IS_PRIMARY);
                 int detailColumnIndex = -1;
                 if (detailColumn != null) {
                     detailColumnIndex = mimeTypeCursor.getColumnIndex(detailColumn);
@@ -286,8 +294,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     BasicRawContact basicRawContact = basicRawContacts.get(rawContactId);
 
                     if (basicContact != null && basicRawContact != null) {
-                        long contactId = basicContact.getContactId();
-                        boolean primary = mimeTypeCursor.getInt(isPrimaryIndex) != 0;
                         String label = null;
                         if (detailColumnIndex >= 0) {
                             label = mimeTypeCursor.getString(detailColumnIndex);
@@ -295,21 +301,55 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         if (TextUtils.isEmpty(label)) {
                             label = mimeTypeCache.getLabel(ctx, mimeType);
                         }
-                        ContactsPojo contact = createContact(basicContact, basicRawContact, pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, primary, UserHandle.OWNER);
 
                         ContactData contactData = new ContactData(mimeType, id);
                         contactData.setIdentifier(label);
-                        contact.setIm(contactData);
 
-                        addContactToMap(contact, mapContacts);
+                        List<ContactsPojo> sameContacts = contactsByLookupKey.get(lookupKey);
+                        if (sameContacts == null) {
+                            if (createContacts) {
+                                ContactsPojo contact = createContact(basicContact, basicRawContact, pojoScheme + basicContact.getContactId() + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, false, UserHandle.OWNER);
+                                if (contact.getName() != null) {
+                                    contact.addContactData(contactData);
+                                    contacts.add(contact);
+                                    addContactToList(contact, contactsByLookupKey);
+                                }
+                            }
+                        } else {
+                            List<ContactsPojo> matchingContacts = getContactsWithPhone(sameContacts, label, phoneUtils);
+                            for (ContactsPojo contact : matchingContacts.isEmpty() ? sameContacts : matchingContacts) {
+                                contact.addContactData(contactData);
+                            }
+                        }
                     } else {
-                        Log.v(TAG, "Cannot create ContactPojo for mimetype: " + mimeType + "/" + id);
+                        Log.v(TAG, "Cannot add contact data for mimetype: " + mimeType + "/" + id);
                     }
                 }
             }
         }
+    }
 
-        return getFilteredContacts(mapContacts, contact -> contact.getContactData().getIdentifier(), null);
+    /**
+     * @param contacts   contacts to search in
+     * @param label      text that may end with a phone number
+     * @param phoneUtils utils to compare phone numbers
+     * @return contacts with a phone number at the end of given label
+     */
+    private List<ContactsPojo> getContactsWithPhone(List<ContactsPojo> contacts, String label, PhoneUtils phoneUtils) {
+        List<ContactsPojo> matchingContacts = new ArrayList<>(1);
+        String phone = MimeTypeUtils.getTrailingPhoneNumber(label);
+        if (phone != null) {
+            StringNormalizer.Result normalizedLabel = PhoneNormalizer.normalizeWithResult(phone);
+            for (ContactsPojo contact : contacts) {
+                for (StringNormalizer.Result normalizedPhone : contact.getAllNormalizedPhoneNumbers()) {
+                    if (phoneUtils.areSamePhoneNumber(normalizedPhone, normalizedLabel)) {
+                        matchingContacts.add(contact);
+                        break;
+                    }
+                }
+            }
+        }
+        return matchingContacts;
     }
 
     private ContactsPojo createContact(BasicContact basicContact, BasicRawContact basicRawContact, String id, boolean isPrimary, UserHandle userHandle) {
@@ -350,6 +390,16 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
     }
 
     /**
+     * add contact to contactsByLookupKey, grouped by lookup key
+     *
+     * @param contact             contact to add
+     * @param contactsByLookupKey all contacts grouped by lookup key
+     */
+    private void addContactToList(ContactsPojo contact, Map<String, List<ContactsPojo>> contactsByLookupKey) {
+        contactsByLookupKey.computeIfAbsent(contact.lookupKey, (key) -> new ArrayList<>(1)).add(contact);
+    }
+
+    /**
      * Filter all contacts dependent of fields.
      * Return primary contacts if available.
      * If no primary contacts are available all contacts are returned.
@@ -376,14 +426,18 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
             Set<String> added = new HashSet<>(mappedContacts.size());
             for (ContactsPojo contact : mappedContacts) {
-                String id = idSupplier.getId(contact);
-                if (id == null || added.add(id)) {
-                    // If no primary contact available, add all (excluding duplicates).
-                    // Else add only primary
-                    if (primary == null || primary == contact) {
+                if (primary != null) {
+                    // Add only primary, even if a duplicate of it was encountered first
+                    if (primary == contact) {
                         contacts.add(contact);
                     } else if (mergeFunction != null) {
                         mergeFunction.merge(primary, contact);
+                    }
+                } else {
+                    // If no primary contact available, add all (excluding duplicates).
+                    String id = idSupplier.getId(contact);
+                    if (id == null || added.add(id)) {
+                        contacts.add(contact);
                     }
                 }
             }
