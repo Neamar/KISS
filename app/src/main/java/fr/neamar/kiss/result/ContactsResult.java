@@ -124,32 +124,40 @@ public class ContactsResult extends CallResult<ContactsPojo> {
      * Display contact actions, the right button never repeats the action of the left one
      */
     private void displayActions(Context context, View view) {
-        String leftAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_LEFT, pojo.lookupKey), null);
-        String rightAction = getAvailableAction(context, MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_RIGHT, pojo.lookupKey), leftAction);
+        boolean hasPhone = hasPhone(context);
+        String leftAction = getLeftAction(context, hasPhone);
+        String rightAction = getAvailableAction(MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_RIGHT, pojo.lookupKey), leftAction, hasPhone);
         displayAction(context, view, view.findViewById(R.id.item_contact_action_message), MimeTypeUtils.CONTACT_ACTION_LEFT, leftAction, View.INVISIBLE);
         displayAction(context, view, view.findViewById(R.id.item_contact_action_phone), MimeTypeUtils.CONTACT_ACTION_RIGHT, rightAction, View.GONE);
     }
 
+    private String getLeftAction(Context context, boolean hasPhone) {
+        return getAvailableAction(MimeTypeUtils.getContactActions(context, MimeTypeUtils.CONTACT_ACTION_LEFT, pojo.lookupKey), null, hasPhone);
+    }
+
     /**
-     * @param context context
-     * @param actions configured actions, in order of preference
-     * @param exclude action that must not be used
+     * @param actions  configured actions, in order of preference
+     * @param exclude  action that must not be used
+     * @param hasPhone result of {@link #hasPhone(Context)}
      * @return first action available for this contact, null if none
      */
-    private String getAvailableAction(Context context, List<String> actions, String exclude) {
+    private String getAvailableAction(List<String> actions, String exclude, boolean hasPhone) {
         for (String action : actions) {
             if (MimeTypeUtils.CONTACT_ACTION_NONE.equals(action)) {
                 return null;
             }
-            if (!action.equals(exclude) && isAvailableAction(context, action)) {
+            if (!action.equals(exclude) && isAvailableAction(action, hasPhone)) {
                 return action;
             }
         }
         return null;
     }
 
-    private boolean isAvailableAction(Context context, String action) {
-        boolean hasPhone = pojo.phone != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+    private boolean hasPhone(Context context) {
+        return pojo.phone != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+    }
+
+    private boolean isAvailableAction(String action, boolean hasPhone) {
         if (MimeTypeUtils.CONTACT_ACTION_SMS.equals(action)) {
             return hasPhone && !pojo.isHomeNumber();
         } else if (MimeTypeUtils.CONTACT_ACTION_CALL.equals(action)) {
@@ -213,8 +221,11 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         }
         actions.add(null);
         adapter.add(new ListPopup.Item(context.getString(R.string.contact_action_default, defaultLabel)));
+        boolean hasPhone = hasPhone(context);
+        // The right button never repeats the action of the left one
+        String excludedAction = MimeTypeUtils.CONTACT_ACTION_RIGHT.equals(side) ? getLeftAction(context, hasPhone) : null;
         for (Map.Entry<String, String> label : labels.entrySet()) {
-            if (isAvailableAction(context, label.getKey())) {
+            if (!label.getKey().equals(excludedAction) && isAvailableAction(label.getKey(), hasPhone)) {
                 actions.add(label.getKey());
                 adapter.add(new ListPopup.Item(label.getValue()));
             }
@@ -306,7 +317,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     private void launchContactView(Context context, View v) {
         Uri contactUri = ContactsContract.Contacts.getLookupUri(pojo.getContactId(), pojo.lookupKey);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pojo.getContactData() != null) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pojo.phone == null && pojo.getContactData() != null) {
             ContactsContract.QuickContact.showQuickContact(
                     context,
                     getViewBounds(v),

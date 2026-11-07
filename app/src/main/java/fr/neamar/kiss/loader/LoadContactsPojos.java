@@ -315,6 +315,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                                     addContactToList(contact, contactsByLookupKey);
                                 }
                             }
+                        } else if (sameContacts.size() == 1) {
+                            sameContacts.get(0).addContactData(contactData);
                         } else {
                             List<ContactsPojo> matchingContacts = getContactsWithPhone(sameContacts, label, phoneUtils);
                             for (ContactsPojo contact : matchingContacts.isEmpty() ? sameContacts : matchingContacts) {

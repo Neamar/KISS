@@ -228,6 +228,10 @@ class DB extends SQLiteOpenHelper {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         List<String> mimeTypes = new ArrayList<>(prefs.getStringSet("selected-contact-mime-types", Collections.emptySet()));
         mimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        // Prefer a messaging app over email
+        if (mimeTypes.size() > 1) {
+            mimeTypes.remove(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE);
+        }
         Collections.sort(mimeTypes);
         SharedPreferences.Editor prefsEditor = prefs.edit();
         if (!mimeTypes.isEmpty()) {

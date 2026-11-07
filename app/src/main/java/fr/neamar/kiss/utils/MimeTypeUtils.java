@@ -83,14 +83,12 @@ public class MimeTypeUtils {
                 if (cursor.getCount() > 0) {
                     int mimeTypeIndex = cursor.getColumnIndex(ContactsContract.Data.MIMETYPE);
                     while (cursor.moveToNext()) {
-                        String mimeType = cursor.getString(mimeTypeIndex);
-                        if (isSupportedMimeType(context, mimeType)) {
-                            mimeTypes.add(mimeType);
-                        }
+                        mimeTypes.add(cursor.getString(mimeTypeIndex));
                     }
                 }
             }
         }
+        mimeTypes.removeIf(mimeType -> !isSupportedMimeType(context, mimeType));
 
         // always add classic phone contacts
         mimeTypes.add(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
