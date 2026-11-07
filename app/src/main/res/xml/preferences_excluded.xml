@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/settings_excluded_apps">
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.ExcludeAppSettingsFragment"
+        app:key="edit-excluded-apps"
+        app:summary="@string/ui_excluded_apps_dialog_title"
+        app:title="@string/ui_excluded_apps">
+        <extra
+            android:name="exclusion"
+            android:value="edit-excluded-apps" />
+    </Preference>
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.ExcludeAppSettingsFragment"
+        app:key="edit-excluded-from-history-apps"
+        app:summary="@string/ui_excluded_apps_dialog_title"
+        app:title="@string/ui_excluded_from_history_apps">
+        <extra
+            android:name="exclusion"
+            android:value="edit-excluded-from-history-apps" />
+    </Preference>
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.ExcludeAppSettingsFragment"
+        app:key="edit-excluded-app-shortcuts"
+        app:summary="@string/ui_excluded_apps_dialog_title"
+        app:title="@string/ui_excluded_from_shortcuts_apps">
+        <extra
+            android:name="exclusion"
+            android:value="edit-excluded-app-shortcuts" />
+    </Preference>
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/reset_excluded_apps_warn"
+        app:key="reset-excluded-apps"
+        app:title="@string/reset_excluded_apps_name" />
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/reset_excluded_from_history_apps_warn"
+        app:key="reset-excluded-from-history-apps"
+        app:title="@string/reset_excluded_from_history_apps_name" />
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
+        app:key="reset-excluded-app-shortcuts"
+        app:title="@string/reset_excluded_app_shortcuts_name" />
+</PreferenceScreen>

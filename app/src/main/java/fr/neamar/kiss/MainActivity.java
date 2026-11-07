@@ -52,6 +52,7 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.settings.SettingsFragment;
 import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         /*
          * Initialize preferences
          */
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        SettingsFragment.setDefaultValues(this, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         /*

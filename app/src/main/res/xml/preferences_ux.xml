@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_ux">
+    <PreferenceCategory app:title="@string/keyboard_options">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="display-keyboard"
+            app:title="@string/keyboard_name" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="enable-suggestions-keyboard"
+            app:title="@string/keyboard_suggestions" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="hide-keyboard"
+            app:title="@string/keyboard_hide" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="history-hide-section"
+        app:title="@string/history_hide_name">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="history-hide"
+            app:summary="@string/history_hide_desc"
+            app:title="@string/history_hide_name" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:dependency="history-hide"
+            app:key="history-onclick"
+            app:title="@string/history_onclick_name" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:dependency="history-hide"
+            app:key="history-onkeyboard"
+            app:summary="@string/history_onkeyboard_desc"
+            app:title="@string/history_onkeyboard_name" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:dependency="history-hide"
+            app:key="favorites-hide"
+            app:title="@string/favorites_hide" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="pref-hide-navbar"
+            app:summary="@string/pref_hide_navbar_desc"
+            app:title="@string/pref_hide_navbar" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="pref-hide-statusbar"
+            app:summary="@string/pref_hide_statusbar_desc"
+            app:title="@string/pref_hide_statusbar" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="pref-hide-circle"
+            app:summary="@string/pref_hide_circle_desc"
+            app:title="@string/pref_hide_circle" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="gestures-holder"
+        app:title="@string/gestures">
+        <ListPreference
+            app:defaultValue="display-keyboard"
+            app:entries="@array/gestureEntries"
+            app:entryValues="@array/gestureValues"
+            app:key="gesture-up"
+            app:title="@string/gesture_up_name"
+            app:useSimpleSummaryProvider="true" />
+        <fr.neamar.kiss.preference.LaunchPojoSelectPreference
+            app:dependency="gesture-up"
+            app:key="gesture-up-launch-id"
+            app:title="@string/gesture_launch_pojo"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="display-notifications"
+            app:entries="@array/gestureEntries"
+            app:entryValues="@array/gestureValues"
+            app:key="gesture-down"
+            app:title="@string/gesture_down_name"
+            app:useSimpleSummaryProvider="true" />
+        <fr.neamar.kiss.preference.LaunchPojoSelectPreference
+            app:dependency="gesture-down"
+            app:key="gesture-down-launch-id"
+            app:title="@string/gesture_launch_pojo"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="display-apps"
+            app:entries="@array/gestureEntries"
+            app:entryValues="@array/gestureValues"
+            app:key="gesture-left"
+            app:title="@string/gesture_left_name"
+            app:useSimpleSummaryProvider="true" />
+        <fr.neamar.kiss.preference.LaunchPojoSelectPreference
+            app:dependency="gesture-left"
+            app:key="gesture-left-launch-id"
+            app:title="@string/gesture_launch_pojo"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="display-apps"
+            app:entries="@array/gestureEntries"
+            app:entryValues="@array/gestureValues"
+            app:key="gesture-right"
+            app:title="@string/gesture_right_name"
+            app:useSimpleSummaryProvider="true" />
+        <fr.neamar.kiss.preference.LaunchPojoSelectPreference
+            app:dependency="gesture-right"
+            app:key="gesture-right-launch-id"
+            app:title="@string/gesture_launch_pojo"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="display-apps"
+            app:entries="@array/gestureEntries"
+            app:entryValues="@array/gestureValues"
+            app:key="gesture-long-press"
+            app:title="@string/gesture_long_press_name"
+            app:useSimpleSummaryProvider="true" />
+        <fr.neamar.kiss.preference.LaunchPojoSelectPreference
+            app:dependency="gesture-long-press"
+            app:key="gesture-long-press-launch-id"
+            app:title="@string/gesture_launch_pojo"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="double-tap"
+            app:title="@string/double_tap_to_lock" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/tags_category">
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="tags-visible"
+            app:title="@string/tags_visible" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="pref-fav-tags-drawable"
+            app:summary="@string/pref_fav_tags_drawable_desc"
+            app:title="@string/pref_fav_tags_drawable" />
+        <Preference
+            app:fragment="fr.neamar.kiss.settings.TagsMenuSettingsFragment"
+            app:key="customize-tags-menu"
+            app:title="@string/screen_toggle_tags" />
+        <ListPreference
+            app:entries="@array/taggedResultSortModeEntries"
+            app:entryValues="@array/taggedResultSortModeValues"
+            app:key="tagged-result-sort-mode"
+            app:summary="@string/tagged_result_sort_mode_desc"
+            app:title="@string/tagged_result_sort_mode_name" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/misc">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="force-portrait"
+            app:title="@string/portrait_title" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="call-contact-on-click"
+            app:title="@string/contacts_call_on_click" />
+    </PreferenceCategory>
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.WallpaperSettingsFragment"
+        app:key="wallpaper-holder"
+        app:title="@string/title_wallpaper" />
+</PreferenceScreen>

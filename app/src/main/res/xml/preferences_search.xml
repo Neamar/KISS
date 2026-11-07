@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_providers">
+    <PreferenceCategory
+        app:key="search-providers"
+        app:title="@string/search_results_options">
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-contacts"
+            app:title="@string/contacts_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-settings"
+            app:title="@string/settings_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-timer"
+            app:summary="@string/timer_description"
+            app:title="@string/timer_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-shortcuts"
+            app:title="@string/shortcuts_name" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            app:dialogMessage="@string/regenerate_shortcuts_desc"
+            app:key="reset-shortcuts"
+            app:title="@string/regenerate_shortcuts" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-search"
+            app:title="@string/search_provider_toggle" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="enable-excluded-apps"
+            app:title="@string/excluded_apps_toggle" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="web-providers"
+        app:title="@string/search_name">
+        <fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference
+            app:key="default-search-provider"
+            app:title="@string/search_provider_default"
+            app:useSimpleSummaryProvider="true" />
+        <fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference
+            app:key="selected-search-provider-names"
+            app:title="@string/search_providers_title" />
+        <fr.neamar.kiss.preference.DeleteCustomSearchProvidersPreference
+            app:key="deleting-search-providers-names"
+            app:title="@string/search_providers_delete" />
+        <fr.neamar.kiss.preference.AddSearchProviderPreference
+            app:key="custom-search-provider-add"
+            app:title="@string/custom_search_provider" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            app:dialogMessage="@string/search_provider_reset_desc"
+            app:key="reset-search-providers"
+            app:title="@string/search_provider_reset" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/misc">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="always-default-web-search-on-enter"
+            app:title="@string/always_default_web_search_on_enter" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="large-search-bar"
+            app:title="@string/large_search_bar" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="pref-hide-search-bar-hint"
+            app:title="@string/hide_search_bar_hint" />
+    </PreferenceCategory>
+</PreferenceScreen>

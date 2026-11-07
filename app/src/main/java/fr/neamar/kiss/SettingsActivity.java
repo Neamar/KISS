@@ -1,10 +1,11 @@
 package fr.neamar.kiss;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.*;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,23 +15,30 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
-import androidx.preference.PreferenceScreen;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
+import fr.neamar.kiss.broadcast.IncomingCallHandler;
+import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
-import fr.neamar.kiss.utils.Log;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.TagDummyPojo;
+import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.settings.SettingsFragment;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
-public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, PreferenceFragmentCompat.OnPreferenceStartScreenCallback, FragmentManager.OnBackStackChangedListener, PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
-    private static final String TAG = SettingsActivity.class.getSimpleName();
-    public static final String ARG_SHOW_FRAGMENT = "show_fragment";
+/**
+ * Hosts the settings screens (see {@link fr.neamar.kiss.settings.BaseSettingsFragment}),
+ * and reacts to settings changes that impact the rest of the app, whichever screen they come from (including settings import).
+ */
+public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     // Those settings require the app to restart
     private static final List<String> SETTINGS_REQUIRING_RESTART = Arrays.asList("primary-color", "transparent-search", "transparent-favorites",
@@ -73,15 +81,13 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        getSupportFragmentManager().addOnBackStackChangedListener(this);
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(ARG_SHOW_FRAGMENT);
-        if (fragment == null) {
-            fragment = new SettingsFragment();
+        // When recreated, the fragment manager restores the screens itself
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_container, new SettingsFragment())
+                    .commit();
         }
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content_container, fragment, ARG_SHOW_FRAGMENT)
-                .commit();
     }
 
     @Override
@@ -119,6 +125,10 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key != null) {
+            onSettingChanged(sharedPreferences, key);
+        }
+
         if (SETTINGS_REQUIRING_RESTART.contains(key) || SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY.contains(key)) {
             requireFullRestart = true;
 
@@ -127,6 +137,67 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 recreate();
             }
         }
+    }
+
+    /**
+     * Update the rest of the app after a setting changed.
+     * UI changes in the settings themselves are handled by each screen.
+     */
+    private void onSettingChanged(SharedPreferences sharedPreferences, @NonNull String key) {
+        KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences, key);
+
+        switch (key) {
+            case "available-search-providers":
+            case "selected-search-provider-names":
+            case "default-search-provider":
+                getDataHandler().reload(SEARCH);
+                break;
+            case "primary-color":
+                UIColors.clearColorCache();
+                break;
+            case "number-of-display-elements":
+                QuerySearcher.clearMaxResultCountCache();
+                break;
+            case "pref-fav-tags-list":
+                getDataHandler().reload(TAGS);
+
+                // after we edit the fav tags list update DataHandler
+                Set<String> favTags = sharedPreferences.getStringSet(key, Collections.emptySet());
+                DataHandler dh = getDataHandler();
+                List<Pojo> favoritesPojo = dh.getFavorites();
+                for (Pojo pojo : favoritesPojo)
+                    if (pojo instanceof TagDummyPojo && !favTags.contains(pojo.getName()))
+                        dh.removeFromFavorites(pojo.id);
+                for (String tagName : favTags)
+                    dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
+                break;
+            case "exclude-favorites-apps":
+                getDataHandler().reload(APPS);
+                break;
+            case "selected-contact-mime-types":
+                getDataHandler().reload(CONTACTS);
+                break;
+            case "enable-settings":
+                getDataHandler().reload(SETTINGS);
+                break;
+            case "enable-phone-history":
+                // The permission is requested from the history screen
+                IncomingCallHandler.setEnabled(this, sharedPreferences.getBoolean(key, false));
+                break;
+            case "theme":
+                // AMOLED theme is always dark
+                if ("amoled-dark".equals(sharedPreferences.getString("theme", "transparent"))) {
+                    sharedPreferences.edit().putString("night-mode", "yes").apply();
+                }
+                break;
+            case "night-mode":
+                InterfaceTweaks.setDefaultNightMode(KissApplication.getApplication(this));
+                break;
+        }
+    }
+
+    private DataHandler getDataHandler() {
+        return KissApplication.getApplication(this).getDataHandler();
     }
 
     @Override
@@ -157,62 +228,14 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     }
 
     @Override
-    public boolean onPreferenceStartScreen(@NonNull PreferenceFragmentCompat caller, @NonNull PreferenceScreen pref) {
-        final Bundle args = new Bundle(pref.getExtras());
-        String key = pref.getKey();
-        if (!TextUtils.isEmpty(key)) {
-            args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, key);
-            SettingsFragment fragment = new SettingsFragment();
-            fragment.setArguments(args);
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.content_container, fragment, ARG_SHOW_FRAGMENT)
-                    .addToBackStack(key)
-                    .commit();
-        } else {
-            Log.w(TAG, "No key set for preference screen!");
-            caller.setPreferenceScreen(pref);
-            setTitle(pref.getTitle());
-        }
-        return true;
-    }
-
-    @Override
-    public void onBackStackChanged() {
-        CharSequence title = null;
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(ARG_SHOW_FRAGMENT);
-        if (fragment instanceof PreferenceFragmentCompat) {
-            Preference preference = ((PreferenceFragmentCompat) fragment).getPreferenceScreen();
-            if (preference != null)
-                title = preference.getTitle();
-        }
-
-        if (title != null) {
-            setTitle(title);
-        } else {
-            setTitle(R.string.activity_setting);
-        }
-    }
-
-    @Override
     public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat caller, @NonNull Preference pref) {
-        if (pref.getFragment() == null) {
-            Log.w(TAG, "No fragment set for preference!");
-            return false;
-        }
-        // Instantiate the new Fragment.
-        final Bundle args = pref.getExtras();
-        String key = pref.getKey();
-        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, key);
         final Fragment fragment = getSupportFragmentManager().getFragmentFactory().instantiate(
                 getClassLoader(),
                 pref.getFragment());
-        fragment.setArguments(args);
-        fragment.setTargetFragment(caller, 0);
-        // Replace the existing Fragment with the new Fragment.
+        fragment.setArguments(pref.getExtras());
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_container, fragment, ARG_SHOW_FRAGMENT)
-                .addToBackStack(key)
+                .replace(R.id.content_container, fragment)
+                .addToBackStack(null)
                 .commit();
         return true;
     }

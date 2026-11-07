@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_import_export">
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/clipboard_warning_dialog"
+        app:key="export-settings"
+        app:title="@string/export_settings" />
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/import_settings_dialog"
+        app:key="import-settings"
+        app:title="@string/import_settings" />
+</PreferenceScreen>
