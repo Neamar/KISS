@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_providers">
     <PreferenceCategory
         app:key="search-providers"
@@ -67,6 +68,10 @@
         <SwitchPreference
             app:defaultValue="false"
             app:key="pref-hide-search-bar-hint"
-            app:title="@string/hide_search_bar_hint" />
+            app:title="@string/hide_search_bar_hint">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
     </PreferenceCategory>
 </PreferenceScreen>

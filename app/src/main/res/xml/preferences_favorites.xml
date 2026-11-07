@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_favorites">
     <fr.neamar.kiss.preference.DialogShowingPreference
         app:dialogMessage="@string/reset_favorites_warn"
@@ -23,15 +24,27 @@
             app:key="enable-favorites-bar"
             app:summaryOff="@string/enable_favorites_bar_summary_off"
             app:summaryOn="@string/enable_favorites_bar_summary_on"
-            app:title="@string/enable_favorites_bar" />
+            app:title="@string/enable_favorites_bar">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
         <SwitchPreference
             app:defaultValue="false"
             app:dependency="enable-favorites-bar"
             app:key="large-favorites-bar"
-            app:title="@string/large_favorites_bar" />
+            app:title="@string/large_favorites_bar">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
         <SwitchPreference
             app:defaultValue="true"
             app:key="transparent-favorites"
-            app:title="@string/transparent_favorites_bar" />
+            app:title="@string/transparent_favorites_bar">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </SwitchPreference>
     </PreferenceCategory>
 </PreferenceScreen>
