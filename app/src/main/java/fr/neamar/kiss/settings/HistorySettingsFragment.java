@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreference;
@@ -21,8 +23,6 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.utils.Permission;
 
 public class HistorySettingsFragment extends BaseSettingsFragment {
-    private static final int REQUEST_CALL_SCREENING_APP = 1;
-
     // Requested from this fragment so the result is delivered here while the screen is displayed
     private final ActivityResultLauncher<String> requestPhoneStatePermission = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(),
@@ -31,11 +31,16 @@ public class HistorySettingsFragment extends BaseSettingsFragment {
                     setPhoneHistoryEnabled(true);
                 } else {
                     // You don't want to give us permission, that's fine. Revert the toggle.
-                    SwitchPreference p = findPreference("enable-phone-history");
-                    if (p != null) {
-                        p.setChecked(false);
-                    }
-                    Toast.makeText(requireContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
+                    disablePhoneHistory(R.string.permission_denied);
+                }
+            });
+
+    // Since Android 10, incoming calls are received as the call screening app
+    private final ActivityResultLauncher<Intent> requestCallScreeningRole = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !isCallScreeningRoleHeld()) {
+                    disablePhoneHistory(R.string.enable_phone_call_screening_denied);
                 }
             });
 
@@ -48,6 +53,13 @@ public class HistorySettingsFragment extends BaseSettingsFragment {
             Preference resetHistory = findPreference("reset-history");
             if (resetHistory != null) {
                 resetHistory.setSummary(getString(R.string.items_title, historyLength));
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Preference phoneHistory = findPreference("enable-phone-history");
+            if (phoneHistory != null) {
+                phoneHistory.setSummary(R.string.enable_phone_call_screening_summary);
             }
         }
 
@@ -79,10 +91,26 @@ public class HistorySettingsFragment extends BaseSettingsFragment {
 
     private void setPhoneHistoryEnabled(boolean enabled) {
         IncomingCallHandler.setEnabled(getContext(), enabled);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && enabled) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && enabled && !isCallScreeningRoleHeld()) {
             RoleManager roleManager = ContextCompat.getSystemService(requireContext(), RoleManager.class);
-            Intent intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_CALL_SCREENING);
-            startActivityForResult(intent, REQUEST_CALL_SCREENING_APP);
+            requestCallScreeningRole.launch(roleManager.createRequestRoleIntent(RoleManager.ROLE_CALL_SCREENING));
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private boolean isCallScreeningRoleHeld() {
+        RoleManager roleManager = ContextCompat.getSystemService(requireContext(), RoleManager.class);
+        return roleManager != null && roleManager.isRoleHeld(RoleManager.ROLE_CALL_SCREENING);
+    }
+
+    /**
+     * Revert the phone history toggle, explaining why
+     */
+    private void disablePhoneHistory(@StringRes int reason) {
+        SwitchPreference p = findPreference("enable-phone-history");
+        if (p != null) {
+            p.setChecked(false);
+        }
+        Toast.makeText(requireContext(), reason, Toast.LENGTH_LONG).show();
     }
 }
