@@ -26,6 +26,15 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v7
 
+      - name: set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Decode Keystore
+        run: echo "${{ secrets.KEYSTORE_B64 }}" | base64 -d > "$RUNNER_TEMP/release.jks"
+
       - name: Create Release Directory
         run: mkdir -p release
 
@@ -35,10 +44,14 @@ jobs:
           bash ./gradlew testDebugUnitTest --stacktrace
 
       - name: Build APKs
+        env:
+          KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          bash ./gradlew assembleDebug assembleRelease --stacktrace
-          cp "app/build/outputs/apk/debug/app-debug.apk" "release/"
-          cp "app/build/outputs/apk/release/app-release-unsigned.apk" "release/"
+          bash ./gradlew assembleRelease --stacktrace
+          cp "app/build/outputs/apk/release/app-release.apk" "release/${ARCHIVE_NAME}.apk"
 
       - name: Upload Files
         run: >
