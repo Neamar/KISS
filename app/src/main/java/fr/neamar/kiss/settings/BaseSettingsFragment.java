@@ -2,6 +2,7 @@ package fr.neamar.kiss.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,11 +29,27 @@ import fr.neamar.kiss.preference.DialogShowingPreferenceDialogFragment;
  */
 public abstract class BaseSettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String DIALOG_FRAGMENT_TAG = "fr.neamar.kiss.settings.DIALOG";
+    /**
+     * Key of the preference to scroll to when opening the screen, e.g. from search
+     */
+    public static final String ARG_SCROLL_TO_KEY = "scroll-to-key";
 
     protected SharedPreferences prefs;
 
     // Kept as a field: SharedPreferences only keeps weak references to listeners
     private final SharedPreferences.OnSharedPreferenceChangeListener restartListener = this::requireRestartIfNeeded;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Bundle args = getArguments();
+        String key = args == null ? null : args.getString(ARG_SCROLL_TO_KEY);
+        if (key != null) {
+            // Only once, not when coming back to this screen
+            args.remove(ARG_SCROLL_TO_KEY);
+            scrollToPreference(key);
+        }
+    }
 
     @Override
     public void onResume() {

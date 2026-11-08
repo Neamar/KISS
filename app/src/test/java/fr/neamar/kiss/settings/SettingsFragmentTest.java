@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,8 +29,7 @@ public class SettingsFragmentTest {
 	@MethodSource("preferencesWithDefaultValues")
 	public void testDefaultValuesAreWritten(String name) throws ReflectiveOperationException {
 		int id = R.xml.class.getField(name).getInt(null);
-		List<Integer> listed = Arrays.stream(SettingsFragment.PREFERENCES_XML).boxed().collect(Collectors.toList());
-		assertThat(name + " is missing from SettingsFragment.PREFERENCES_XML", listed, hasItem(id));
+		assertThat(name + " is missing from SettingsFragment.PREFERENCES_XML", SettingsFragment.PREFERENCES_XML.keySet(), hasItem(id));
 	}
 
 	@Test
