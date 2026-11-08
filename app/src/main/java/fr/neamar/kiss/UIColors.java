@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -174,17 +176,37 @@ public class UIColors {
         }
     }
 
-    public static void applyAccentColor(Context context) {
+    public static void applyAccentColor(Activity activity) {
         // We want to update the accent color for the theme.
         // Each possible accent color is defined as a custom overlay, we need to find the matching one and apply it
-        Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(context, "primary-color"));
+        Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(activity, "primary-color"));
         if (overlayAccentResId == null || overlayAccentResId == -1) {
-            overlayAccentResId = OVERLAY_MAP.get(getPrimaryColor(context));
+            overlayAccentResId = OVERLAY_MAP.get(getPrimaryColor(activity));
         }
         if (overlayAccentResId != null && overlayAccentResId != -1) {
-            context.getTheme().applyStyle(overlayAccentResId, true);
+            activity.getTheme().applyStyle(overlayAccentResId, true);
+            Resources.Theme windowDecorViewTheme = getWindowDecorViewTheme(activity);
+            if (windowDecorViewTheme != null) {
+                windowDecorViewTheme.applyStyle(overlayAccentResId, true);
+            }
         }
     }
+
+    private static Resources.Theme getWindowDecorViewTheme(@NonNull Activity activity) {
+        Window window = activity.getWindow();
+        if (window != null) {
+            View decorView = window.peekDecorView();
+            if (decorView != null) {
+                Context context = decorView.getContext();
+                if (context != null) {
+                    return context.getTheme();
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     public static void updateThemePrimaryColor(Activity activity) {
         @ColorInt
