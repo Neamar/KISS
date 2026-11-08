@@ -18,11 +18,14 @@ import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
+
+    private static final String TAG = LoadShortcutsPojos.class.getSimpleName();
 
     public LoadShortcutsPojos(Context context) {
         super(context, ShortcutPojo.SCHEME);
@@ -53,7 +56,14 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             Set<String> excludedApps = dataHandler.getExcluded();
             Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
             UserManager userManager = ContextCompat.getSystemService(context, UserManager.class);
-            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
+            List<ShortcutInfo> shortcutInfos;
+            try {
+                shortcutInfos = ShortcutUtil.getAllShortcuts(context);
+            } catch (SecurityException e) {
+                // shortcut host permission lost (e.g. KISS no longer default launcher)
+                Log.w(TAG, "Unable to get all shortcuts", e);
+                return oreoPojos;
+            }
 
             for (ShortcutInfo shortcutInfo : shortcutInfos) {
                 if (isCancelled()) {
