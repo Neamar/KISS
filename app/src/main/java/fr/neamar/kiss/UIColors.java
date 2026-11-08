@@ -223,8 +223,8 @@ public class UIColors {
         if (primaryColor == -1) {
             // use primary color from theme
             primaryColor = getThemedColor(context, "primary-color", android.R.attr.colorPrimary);
-            // Transparent can't be displayed for text color, replace with light gray.
-            if (primaryColor == COLOR_TRANSPARENT || primaryColor == COLOR_LIGHT_TRANSPARENT) {
+            // Transparent and black can't be displayed for text color, replace with light gray.
+            if (primaryColor == COLOR_TRANSPARENT || primaryColor == COLOR_LIGHT_TRANSPARENT || primaryColor == Color.BLACK) {
                 primaryColor = 0xFFBDBDBD;
             }
         }
