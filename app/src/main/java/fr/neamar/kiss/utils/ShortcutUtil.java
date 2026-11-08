@@ -115,9 +115,17 @@ public class ShortcutUtil {
 
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
                 if (manager.isUserRunning(profile) && manager.isUserUnlocked(profile)) {
-                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(shortcutQuery, profile);
-                    if (shortcuts != null) {
-                        shortcutInfoList.addAll(shortcuts);
+                    try {
+                        List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(shortcutQuery, profile);
+                        if (shortcuts != null) {
+                            shortcutInfoList.addAll(shortcuts);
+                        }
+                    } catch (SecurityException e) {
+                        // callers handle missing permission themselves
+                        throw e;
+                    } catch (RuntimeException e) {
+                        // binder failures (DeadSystemRuntimeException, BadParcelableException) when system server dies
+                        Log.w(TAG, "Unable to get shortcuts for " + profile, e);
                     }
                 }
             }
