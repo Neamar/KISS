@@ -8,6 +8,8 @@
 # Required env:
 #   KEYSTORE_FILE, KEY_ALIAS      release keystore (passwords are prompted if KEYSTORE_PASSWORD/KEY_PASSWORD are unset)
 #   PLAY_CREDENTIALS              path to the Google Play service account JSON
+# Optional env:
+#   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID   announce the release on Telegram
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -65,3 +67,14 @@ git push origin master "v$name"
 apk="app/build/outputs/apk/release/KISS-v$name.apk"
 cp app/build/outputs/apk/release/app-release.apk "$apk"
 gh release create "v$name" --title "v$name" --notes-file "$notes" "$apk"
+
+if [[ -n ${TELEGRAM_BOT_TOKEN:-} ]]; then
+    # Strip @ from GitHub handles, Telegram would link them to unrelated Telegram users
+    curl -fsS "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+        --data-urlencode chat_id="${TELEGRAM_CHAT_ID:?}" \
+        --data-urlencode text="KISS $name is out on GitHub: https://github.com/Neamar/KISS/releases/tag/v$name
+Play Store and F-Droid will follow in the coming days.
+
+$(sed 's/@//g' "$notes")" \
+        --data-urlencode link_preview_options='{"is_disabled":true}' >/dev/null
+fi
