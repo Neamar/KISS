@@ -75,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setTitleTextColor(toolbarTextColor);
         setSupportActionBar(toolbar);
-        InterfaceTweaks.applySettingsSystemBarInsets(findViewById(R.id.settings_root), toolbar);
+        InterfaceTweaks.applySystemBarInsets(findViewById(R.id.settings_root), toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

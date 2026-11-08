@@ -137,24 +137,19 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     private static void applySystemBarInsets(View view) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return WindowInsetsCompat.CONSUMED;
-            });
-        }
+        applySystemBarInsets(view, view);
     }
 
     /**
-     * The status bar can't be colored anymore on edge-to-edge, so extend the toolbar behind it instead
+     * Pad {@code view} for the system bars, giving the top inset to {@code topView}.
+     * The status bar can't be colored anymore on edge-to-edge, so settings extend their toolbar behind it instead.
      */
-    public static void applySettingsSystemBarInsets(View root, View toolbar) {
+    public static void applySystemBarInsets(View view, View topView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
                 v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
-                toolbar.setPadding(toolbar.getPaddingLeft(), systemBars.top, toolbar.getPaddingRight(), toolbar.getPaddingBottom());
+                topView.setPadding(topView.getPaddingLeft(), systemBars.top, topView.getPaddingRight(), topView.getPaddingBottom());
                 return WindowInsetsCompat.CONSUMED;
             });
         }
