@@ -54,6 +54,21 @@ public class Permission {
         currentActivity = new WeakReference<>(activity);
     }
 
+    /**
+     * Ask again for permissions that were requested but never answered
+     * (no activity at the time, or the system dialog was dismissed, e.g. by pressing Home)
+     */
+    public void askPendingPermissions() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+        Activity activity = currentActivity.get();
+        if (activity != null && !permissionListeners.isEmpty()) {
+            int permission = permissionListeners.get(0).permission;
+            activity.requestPermissions(new String[]{permissions[permission]}, permission);
+        }
+    }
+
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (grantResults.length == 0) {
             return;
