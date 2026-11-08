@@ -115,6 +115,7 @@ public class InterfaceTweaks extends Forwarder {
         String theme = getTheme(prefs);
         if ("amoled-dark".equals(theme)) {
             AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+            return;
         }
 
         String darkMode = prefs.getString("night-mode", "follow-system");
