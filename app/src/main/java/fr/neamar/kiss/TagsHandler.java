@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class TagsHandler {
@@ -180,7 +181,7 @@ public class TagsHandler {
         for (android.os.UserHandle profile : manager.getUserProfiles()) {
             UserHandle userHandle = new UserHandle(manager.getSerialNumberForUser(profile), profile);
             for (String packageName : packageNames) {
-                for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(packageName, profile)) {
+                for (LauncherActivityInfo activityInfo : PackageManagerUtils.getActivityList(launcherApps, packageName, profile)) {
                     String app = userHandle.addUserSuffixToString("app://" + activityInfo.getComponentName().getPackageName() + "/" + activityInfo.getComponentName().getClassName(), '/');
                     apps.add(app);
                 }

@@ -177,10 +177,24 @@ public class PackageManagerUtils {
         }
     }
 
+    /**
+     * Same as {@link LauncherApps#getActivityList(String, android.os.UserHandle)}, but returns an empty list
+     * instead of crashing on binder failures (BadParcelableException, DeadSystemRuntimeException).
+     */
+    @NonNull
+    public static List<LauncherActivityInfo> getActivityList(@NonNull LauncherApps launcherApps, @Nullable String packageName, @NonNull android.os.UserHandle user) {
+        try {
+            return launcherApps.getActivityList(packageName, user);
+        } catch (RuntimeException e) {
+            Log.e(TAG, "Unable to list activities for " + packageName + " / " + user, e);
+            return Collections.emptyList();
+        }
+    }
+
     @Nullable
     private static LauncherActivityInfo getLauncherActivityInfo(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
         LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
-        List<LauncherActivityInfo> activities = launcherApps.getActivityList(componentName.getPackageName(), user.getRealHandle());
+        List<LauncherActivityInfo> activities = getActivityList(launcherApps, componentName.getPackageName(), user.getRealHandle());
         for (LauncherActivityInfo activity : activities) {
             if (activity.getComponentName().equals(componentName)) {
                 return activity;
@@ -215,7 +229,7 @@ public class PackageManagerUtils {
 
         if (!user.isCurrentUser()) {
             LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
-            List<LauncherActivityInfo> activities = launcherApps.getActivityList(packageName, user.getRealHandle());
+            List<LauncherActivityInfo> activities = getActivityList(launcherApps, packageName, user.getRealHandle());
             if (!activities.isEmpty()) {
                 List<ComponentName> componentNames = new ArrayList<>();
                 for (LauncherActivityInfo activity : activities) {
