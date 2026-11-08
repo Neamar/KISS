@@ -376,14 +376,18 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
             Set<String> added = new HashSet<>(mappedContacts.size());
             for (ContactsPojo contact : mappedContacts) {
-                String id = idSupplier.getId(contact);
-                if (id == null || added.add(id)) {
-                    // If no primary contact available, add all (excluding duplicates).
-                    // Else add only primary
-                    if (primary == null || primary == contact) {
+                if (primary != null) {
+                    // Add only primary, even if a duplicate of it was encountered first
+                    if (primary == contact) {
                         contacts.add(contact);
                     } else if (mergeFunction != null) {
                         mergeFunction.merge(primary, contact);
+                    }
+                } else {
+                    // If no primary contact available, add all (excluding duplicates).
+                    String id = idSupplier.getId(contact);
+                    if (id == null || added.add(id)) {
+                        contacts.add(contact);
                     }
                 }
             }

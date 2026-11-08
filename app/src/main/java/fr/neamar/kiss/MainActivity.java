@@ -417,6 +417,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         }
 
         dismissPopup();
+        permissionManager.askPendingPermissions();
 
         if (KissApplication.getApplication(this).getDataHandler().isAllProvidersLoaded()) {
             displayLoader(false);

@@ -16,7 +16,8 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 public class PhoneUtils {
 
     // See https://github.com/Neamar/KISS/issues/1137
-    private static final Pattern KISS_PHONE_PATTERN = Pattern.compile("^[*+0-9# ]{3,}$");
+    // '+' only at the start or right after '*' / '#' (MMI codes such as *31#+33612345678), so 12*3+4 isn't a phone number
+    private static final Pattern KISS_PHONE_PATTERN = Pattern.compile("^(?=.{3,}$)\\+?(?:[0-9 ]|[*#]\\+?)+$");
 
     private final String countryIso;
 
