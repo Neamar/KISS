@@ -19,6 +19,7 @@ import java.util.Map;
 
 import fr.neamar.kiss.SettingsActivity;
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.preference.LaunchPojoSelectPreference;
 
 /**
  * Lists the settings matching a query, from all screens.
@@ -92,7 +93,8 @@ public class SettingsSearchFragment extends PreferenceFragmentCompat {
             StringBuilder text = new StringBuilder();
             text.append(normalize(title)).append('\n').append(normalize(preference.getSummary()));
             CharSequence[] entries = null;
-            if (preference instanceof ListPreference) {
+            // Choices of LaunchPojoSelectPreference are all apps, matching most queries
+            if (preference instanceof ListPreference && !(preference instanceof LaunchPojoSelectPreference)) {
                 entries = ((ListPreference) preference).getEntries();
             } else if (preference instanceof MultiSelectListPreference) {
                 entries = ((MultiSelectListPreference) preference).getEntries();
