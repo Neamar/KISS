@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Spannable;
@@ -33,6 +34,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -62,6 +65,8 @@ public abstract class Result<T extends Pojo> {
 
     private static final String TAG = Result.class.getSimpleName();
     private static final int TAG_RUNNING_TASK = R.id.item_app_icon;
+    // Android 11 and below lock ResourcesManager while loading app icons: one load at a time so the main thread never queues behind many (#2715)
+    private static final Executor ICON_EXECUTOR = Build.VERSION.SDK_INT < Build.VERSION_CODES.S ? Executors.newSingleThreadExecutor() : Utilities.getDefaultExecutor();
 
     /**
      * Current information pojo
@@ -487,7 +492,7 @@ public abstract class Result<T extends Pojo> {
                         imageView.invalidateDrawable(drawable);
                     }
                 }
-            });
+            }, ICON_EXECUTOR);
             imageView.setTag(TAG_RUNNING_TASK, newTask);
         }
     }
