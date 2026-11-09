@@ -5,6 +5,10 @@
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator</item>
+        <item name="android:textColor">@color/theme_solid_text_color</item>
+        <item name="android:textColorPrimary">@color/theme_solid_text_color</item>
+        <item name="android:textColorSecondary">@color/theme_solid_text_color_secondary</item>
+        <item name="android:textColorTertiary">@color/theme_solid_text_color_tertiary</item>
         <item name="searchColor">@color/theme_solid_search_color</item>
         <item name="resultColor">@color/theme_solid_result_color</item>
         <item name="resultShadowColor">@color/theme_solid_result_shadow_color</item>
@@ -53,8 +57,29 @@
     </style>
 
     <style name="OverlayAccentSystem" parent="OverlayAccentDefault">
-        <item name="colorPrimary">@android:color/system_accent1_200</item>
-        <item name="colorPrimaryDark">@android:color/system_accent1_400</item>
-        <item name="colorAccent">@android:color/system_accent1_600</item>
+        <item name="colorPrimary">@color/material_dynamic_primary50</item>
+        <item name="colorPrimaryDark">@color/material_dynamic_primary40</item>
+        <item name="colorAccent">@color/material_dynamic_tertiary60</item>
     </style>
+
+    <style name="OverlayResultColorLight">
+        <item name="resultColor">@color/material_dynamic_neutral10</item>
+    </style>
+
+    <style name="OverlayResultColorSemiLight">
+        <item name="resultColor">@color/material_dynamic_neutral10</item>
+    </style>
+
+    <style name="OverlayResultColorDark">
+        <item name="resultColor">@color/material_dynamic_neutral90</item>
+    </style>
+
+    <style name="OverlayResultColorSemiDark">
+        <item name="resultColor">@color/material_dynamic_neutral90</item>
+    </style>
+
+    <style name="OverlayResultColorBlack">
+        <item name="resultColor">@android:color/white</item>
+    </style>
+
 </resources>
