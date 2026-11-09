@@ -3,6 +3,7 @@ package fr.neamar.kiss;
 import static fr.neamar.kiss.dataprovider.ProviderName.*;
 
 import android.app.role.RoleManager;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -98,6 +99,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         updateItemsToRun();
         fixSummaries();
         updateNightMode();
+        setupDefaultLauncher();
 
         permissionManager = new Permission(getActivity());
     }
@@ -272,6 +274,21 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         }
     }
 
+    private void setupDefaultLauncher() {
+        Preference defaultLauncher = findPreference("default-launcher");
+        if (defaultLauncher != null) {
+            defaultLauncher.setOnPreferenceClickListener(preference -> {
+                try {
+                    startActivity(new Intent(Settings.ACTION_HOME_SETTINGS));
+                } catch (ActivityNotFoundException e) {
+                    // some devices don't expose the home app picker directly
+                    startActivity(new Intent(Settings.ACTION_SETTINGS));
+                }
+                return true;
+            });
+        }
+    }
+
     private void updateNightMode() {
         boolean isAmoledTheme = "amoled-dark".equals(prefs.getString("theme", "transparent"));
 
@@ -389,9 +406,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 if (positiveResult && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 }
-                break;
-            case "default-launcher":
-                new DefaultLauncherPreference().onDialogClosed(getContext(), positiveResult);
                 break;
             case "export-settings":
                 new ExportSettingsPreference().onDialogClosed(getContext(), positiveResult);
