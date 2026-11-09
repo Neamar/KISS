@@ -106,7 +106,6 @@ public class InterfaceTweaks extends Forwarder {
         }
         UIColors.applyAccentColor(act);
         UIColors.updateThemePrimaryColor(act);
-        applySystemBarInsets(act.getWindow().getDecorView());
     }
 
     public static void setDefaultNightMode(@NonNull Context context) {
@@ -115,6 +114,7 @@ public class InterfaceTweaks extends Forwarder {
         String theme = getTheme(prefs);
         if ("amoled-dark".equals(theme)) {
             AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+            return;
         }
 
         String darkMode = prefs.getString("night-mode", "follow-system");
@@ -137,10 +137,19 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     private static void applySystemBarInsets(View view) {
+        applySystemBarInsets(view, view);
+    }
+
+    /**
+     * Pad {@code view} for the system bars, giving the top inset to {@code topView}.
+     * The status bar can't be colored anymore on edge-to-edge, so settings extend their toolbar behind it instead.
+     */
+    public static void applySystemBarInsets(View view, View topView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+                topView.setPadding(topView.getPaddingLeft(), systemBars.top, topView.getPaddingRight(), topView.getPaddingBottom());
                 return WindowInsetsCompat.CONSUMED;
             });
         }

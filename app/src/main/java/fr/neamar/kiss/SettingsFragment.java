@@ -203,6 +203,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 getDataHandler().reload(CONTACTS);
             } else if ("theme".equals(key)) {
                 updateNightMode();
+                InterfaceTweaks.setDefaultNightMode(KissApplication.getApplication(requireContext()));
             } else if ("night-mode".equals(key)) {
                 InterfaceTweaks.setDefaultNightMode(KissApplication.getApplication(requireContext()));
             } else if ("enable-settings".equals(key)) {
@@ -278,11 +279,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         if (darkMode != null) {
             darkMode.setEnabled(!isAmoledTheme);
             darkMode.setVisible(!isAmoledTheme);
-        }
-
-        if (isAmoledTheme) {
-            PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                    .putString("night-mode", "yes").apply();
         }
     }
 

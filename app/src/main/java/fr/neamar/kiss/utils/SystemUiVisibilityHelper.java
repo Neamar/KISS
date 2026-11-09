@@ -74,6 +74,12 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 
     private void applySystemUi(boolean hideNavBar, boolean hideStatusBar, boolean hasBlackNotificationIcons) {
         int visibility = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            // Edge-to-edge is enforced, keep the layout flags or the decor view will be shifted below the system bars
+            visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+        }
         if (hideNavBar) {
             visibility = visibility
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
