@@ -142,13 +142,14 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         contacts.addAll(createPhoneContacts(ctx, basicContacts, basicRawContacts));
 
         // Attach contact data from other apps (WhatsApp, Signal, ...), any of them can be picked for a contact button.
-        // Mime types selected in settings come first, as they also create contacts for people without phone number.
+        // Mime types selected in settings come first, as they also create contacts for people without phone number (as do contact overrides).
         Map<String, List<ContactsPojo>> contactsByLookupKey = new HashMap<>();
         for (ContactsPojo contact : contacts) {
             addContactToList(contact, contactsByLookupKey);
         }
         PhoneUtils phoneUtils = new PhoneUtils(ctx);
         Set<String> selectedMimeTypes = MimeTypeUtils.getSelectedMimeTypes(ctx);
+        Set<String> contactActionOverrides = MimeTypeUtils.getContactActionOverrides(ctx);
         List<String> mimeTypes = new ArrayList<>(MimeTypeUtils.getSupportedMimeTypes(ctx));
         mimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
         Collections.sort(mimeTypes, (a, b) -> {
@@ -157,7 +158,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         });
         for (String mimeType : mimeTypes) {
             long startMimeType = System.currentTimeMillis();
-            addContactData(ctx, mimeType, selectedMimeTypes.contains(mimeType), basicContacts, basicRawContacts, contactsByLookupKey, contacts, phoneUtils);
+            addContactData(ctx, mimeType, selectedMimeTypes.contains(mimeType), contactActionOverrides, basicContacts, basicRawContacts, contactsByLookupKey, contacts, phoneUtils);
             long endMimeType = System.currentTimeMillis();
             Log.i(TAG, (endMimeType - startMimeType) + " milliseconds to add contact data for " + mimeType);
         }
@@ -259,7 +260,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
      * Contact data is attached to the phone numbers found in its detail column, or to all phone numbers if none matches.
      * People without any phone number get a contact of their own if requested.
      */
-    private void addContactData(@NonNull Context ctx, @NonNull String mimeType, boolean createContacts, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts, Map<String, List<ContactsPojo>> contactsByLookupKey, List<ContactsPojo> contacts, PhoneUtils phoneUtils) {
+    private void addContactData(@NonNull Context ctx, @NonNull String mimeType, boolean createContacts, Set<String> contactActionOverrides, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts, Map<String, List<ContactsPojo>> contactsByLookupKey, List<ContactsPojo> contacts, PhoneUtils phoneUtils) {
         final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(ctx);
 
         List<String> columns = new ArrayList<>();
@@ -307,7 +308,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                         List<ContactsPojo> sameContacts = contactsByLookupKey.get(lookupKey);
                         if (sameContacts == null) {
-                            if (createContacts) {
+                            if (createContacts || contactActionOverrides.contains(MimeTypeUtils.getContactActionOverride(mimeType, lookupKey))) {
                                 ContactsPojo contact = createContact(basicContact, basicRawContact, pojoScheme + basicContact.getContactId() + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, false, UserHandle.OWNER);
                                 if (contact.getName() != null) {
                                     contact.addContactData(contactData);
@@ -338,16 +339,23 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
      * @return contacts with a phone number at the end of given label
      */
     private List<ContactsPojo> getContactsWithPhone(List<ContactsPojo> contacts, String label, PhoneUtils phoneUtils) {
+        String phone = PhoneUtils.getTrailingPhoneNumber(label);
+        if (phone == null) {
+            return Collections.emptyList();
+        }
+        StringNormalizer.Result normalizedLabel = PhoneNormalizer.normalizeWithResult(phone);
+        // Exact comparison first, as areSamePhoneNumber is slow
+        List<ContactsPojo> matchingContacts = getContactsWithPhone(contacts, normalizedLabel, phoneUtils, true);
+        return matchingContacts.isEmpty() ? getContactsWithPhone(contacts, normalizedLabel, phoneUtils, false) : matchingContacts;
+    }
+
+    private List<ContactsPojo> getContactsWithPhone(List<ContactsPojo> contacts, StringNormalizer.Result phone, PhoneUtils phoneUtils, boolean exact) {
         List<ContactsPojo> matchingContacts = new ArrayList<>(1);
-        String phone = MimeTypeUtils.getTrailingPhoneNumber(label);
-        if (phone != null) {
-            StringNormalizer.Result normalizedLabel = PhoneNormalizer.normalizeWithResult(phone);
-            for (ContactsPojo contact : contacts) {
-                for (StringNormalizer.Result normalizedPhone : contact.getAllNormalizedPhoneNumbers()) {
-                    if (phoneUtils.areSamePhoneNumber(normalizedPhone, normalizedLabel)) {
-                        matchingContacts.add(contact);
-                        break;
-                    }
+        for (ContactsPojo contact : contacts) {
+            for (StringNormalizer.Result normalizedPhone : contact.getAllNormalizedPhoneNumbers()) {
+                if (exact ? normalizedPhone.equals(phone) : phoneUtils.areSamePhoneNumber(normalizedPhone, phone)) {
+                    matchingContacts.add(contact);
+                    break;
                 }
             }
         }

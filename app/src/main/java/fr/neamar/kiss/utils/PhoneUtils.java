@@ -8,7 +8,9 @@ import android.text.TextUtils;
 import android.util.Patterns;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -17,6 +19,8 @@ public class PhoneUtils {
 
     // See https://github.com/Neamar/KISS/issues/1137
     private static final Pattern KISS_PHONE_PATTERN = Pattern.compile("^[*+0-9# ]{3,}$");
+    // Phone number at the end of a contact data detail, like "Voice call +1 (234) 567-890"
+    private static final Pattern TRAILING_PHONE_NUMBER = Pattern.compile("[\\s+0-9().-]*[0-9][\\s+0-9().-]*$");
 
     private final String countryIso;
 
@@ -66,5 +70,18 @@ public class PhoneUtils {
 
     public static String convertKeypadLettersToDigits(String phoneNumber) {
         return PhoneNumberUtils.convertKeypadLettersToDigits(phoneNumber);
+    }
+
+    /**
+     * @param text text that may end with a phone number
+     * @return phone number at the end of text, null if none
+     */
+    @Nullable
+    public static String getTrailingPhoneNumber(@Nullable String text) {
+        if (text == null) {
+            return null;
+        }
+        Matcher matcher = TRAILING_PHONE_NUMBER.matcher(text);
+        return matcher.find() ? matcher.group().trim() : null;
     }
 }

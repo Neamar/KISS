@@ -7,7 +7,6 @@ import android.content.pm.ShortcutInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -18,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.utils.Log;
+import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -220,25 +220,11 @@ class DB extends SQLiteOpenHelper {
         commit(prefsEditor, "theme");
     }
 
-    /**
-     * Contacts from other apps (WhatsApp, Signal, ...) used to be shown as separate results.
-     * They are now an action of the phone contact: use the first one for the left button, SMS stays as fallback.
-     */
     private void convertContactMimeTypes() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        List<String> mimeTypes = new ArrayList<>(prefs.getStringSet("selected-contact-mime-types", Collections.emptySet()));
-        mimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-        // Prefer a messaging app over email
-        if (mimeTypes.size() > 1) {
-            mimeTypes.remove(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE);
-        }
-        Collections.sort(mimeTypes);
         SharedPreferences.Editor prefsEditor = prefs.edit();
-        if (!mimeTypes.isEmpty()) {
-            prefsEditor.putString("contact-action-left", mimeTypes.get(0));
-        }
-        prefsEditor.remove("selected-contact-mime-types");
-        commit(prefsEditor, "selected-contact-mime-types");
+        MimeTypeUtils.convertSelectedMimeTypes(mContext, prefs, prefsEditor);
+        commit(prefsEditor, MimeTypeUtils.SELECTED_MIME_TYPES_KEY);
     }
 
     private void commit(SharedPreferences.Editor prefsEditor, String key) {

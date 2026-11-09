@@ -23,8 +23,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -56,9 +54,8 @@ public class MimeTypeUtils {
     public static final String CONTACT_ACTION_NONE = "none";
     public static final String CONTACT_ACTION_SMS = "sms";
     public static final String CONTACT_ACTION_CALL = "call";
-
-    // Phone number at the end of a contact data detail, like "Voice call +1 (234) 567-890"
-    private static final Pattern TRAILING_PHONE_NUMBER = Pattern.compile("[\\s+0-9().-]*[0-9][\\s+0-9().-]*$");
+    // Setting from before contact actions, when contacts from other apps were shown as separate results
+    public static final String SELECTED_MIME_TYPES_KEY = "selected-contact-mime-types";
 
     private MimeTypeUtils() {
     }
@@ -182,9 +179,52 @@ public class MimeTypeUtils {
         return labels;
     }
 
+    /**
+     * Contacts from other apps (WhatsApp, Signal, ...) used to be shown as separate results.
+     * They are now actions of the phone contact: use the first one for the left button,
+     * and the second one for the right button on devices that can't call.
+     *
+     * @param context
+     * @param prefs   settings to convert
+     * @param editor  editor of these settings, to commit afterwards
+     */
+    public static void convertSelectedMimeTypes(Context context, SharedPreferences prefs, SharedPreferences.Editor editor) {
+        List<String> mimeTypes = new ArrayList<>(prefs.getStringSet(SELECTED_MIME_TYPES_KEY, emptySet()));
+        mimeTypes.remove(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        // Prefer a messaging app over email
+        if (mimeTypes.size() > 1) {
+            mimeTypes.remove(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE);
+        }
+        Collections.sort(mimeTypes);
+        if (!mimeTypes.isEmpty()) {
+            editor.putString("contact-action-" + CONTACT_ACTION_LEFT, mimeTypes.get(0));
+        }
+        if (mimeTypes.size() > 1 && !context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            editor.putString("contact-action-" + CONTACT_ACTION_RIGHT, mimeTypes.get(1));
+        }
+        editor.remove(SELECTED_MIME_TYPES_KEY);
+    }
+
     // Overrides are stored as "<action> <lookup key>", actions never contain spaces
     private static String getContactActionOverridesKey(String side) {
         return "contact-action-" + side + "-overrides";
+    }
+
+    public static String getContactActionOverride(String action, String lookupKey) {
+        return action + ' ' + lookupKey;
+    }
+
+    /**
+     * @param context
+     * @return overrides of both contact buttons, see {@link #getContactActionOverride(String, String)}
+     */
+    public static Set<String> getContactActionOverrides(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Set<String> overrides = new HashSet<>();
+        for (String side : CONTACT_ACTION_SIDES) {
+            overrides.addAll(prefs.getStringSet(getContactActionOverridesKey(side), emptySet()));
+        }
+        return overrides;
     }
 
     /**
@@ -217,7 +257,7 @@ public class MimeTypeUtils {
         Set<String> overrides = new HashSet<>(prefs.getStringSet(key, emptySet()));
         overrides.removeIf(override -> override.substring(override.indexOf(' ') + 1).equals(lookupKey));
         if (action != null) {
-            overrides.add(action + ' ' + lookupKey);
+            overrides.add(getContactActionOverride(action, lookupKey));
         }
         prefs.edit().putStringSet(key, overrides).apply();
     }
@@ -286,18 +326,5 @@ public class MimeTypeUtils {
      */
     public static String getShortMimeType(String mimeType) {
         return mimeType.replaceFirst("vnd\\.android\\.cursor\\.item/", "");
-    }
-
-    /**
-     * @param text text that may end with a phone number
-     * @return phone number at the end of text, null if none
-     */
-    @Nullable
-    public static String getTrailingPhoneNumber(@Nullable String text) {
-        if (text == null) {
-            return null;
-        }
-        Matcher matcher = TRAILING_PHONE_NUMBER.matcher(text);
-        return matcher.find() ? matcher.group().trim() : null;
     }
 }

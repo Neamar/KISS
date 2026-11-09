@@ -35,7 +35,7 @@ public class ExportSettingsPreference {
             JSONObject out = new JSONObject();
             try {
                 // Min version required to read those settings
-                out.put("__v", 223);
+                out.put("__v", 225);
 
                 Set<String> keys = new HashSet<>();
                 keys.addAll(defaultValues.getAll().keySet());

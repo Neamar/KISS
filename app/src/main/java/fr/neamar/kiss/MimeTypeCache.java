@@ -31,6 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
+import fr.neamar.kiss.utils.PhoneUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class MimeTypeCache {
@@ -289,7 +290,7 @@ public class MimeTypeCache {
                 continue;
             }
             // remove phone number, then app name from detail: "Signal Voice Call +1 234" -> "Voice Call"
-            String phone = MimeTypeUtils.getTrailingPhoneNumber(detail);
+            String phone = PhoneUtils.getTrailingPhoneNumber(detail);
             if (phone == null) {
                 // no phone number, detail is not an action but personal data (e.g. an email address)
                 continue;
