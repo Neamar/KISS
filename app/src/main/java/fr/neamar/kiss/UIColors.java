@@ -15,6 +15,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleableRes;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.preference.PreferenceManager;
 
 import java.util.HashMap;
@@ -222,13 +223,31 @@ public class UIColors {
         if (primaryColor == -1) {
             // use primary color from theme
             primaryColor = getThemedColor(context, "primary-color", android.R.attr.colorPrimary);
-            // Transparent can't be displayed for text color, replace with light gray.
-            if (primaryColor == COLOR_TRANSPARENT || primaryColor == COLOR_LIGHT_TRANSPARENT) {
+            // Transparent and black can't be displayed for text color, replace with light gray.
+            if (primaryColor == COLOR_TRANSPARENT || primaryColor == COLOR_LIGHT_TRANSPARENT || primaryColor == Color.BLACK) {
                 primaryColor = 0xFFBDBDBD;
             }
         }
 
         return primaryColor;
+    }
+
+    /**
+     * Get black or white, whichever is more readable on the toolbar.
+     * The toolbar background is the primary color, drawn over the window background (primary color can be transparent).
+     *
+     * @param context themed context
+     * @return color to use for toolbar title and icons
+     */
+    @ColorInt
+    public static int getTextColorOnPrimary(@NonNull Context context) {
+        try (TypedArray array = context.obtainStyledAttributes(new int[]{androidx.appcompat.R.attr.colorPrimary, android.R.attr.windowBackground})) {
+            int background = ColorUtils.compositeColors(array.getColor(0, COLOR_DEFAULT), array.getColor(1, Color.WHITE));
+            if (ColorUtils.calculateContrast(Color.BLACK, background) >= ColorUtils.calculateContrast(Color.WHITE, background)) {
+                return Color.BLACK;
+            }
+            return Color.WHITE;
+        }
     }
 
     /**

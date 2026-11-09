@@ -55,7 +55,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         for (android.os.UserHandle profile : manager.getUserProfiles()) {
             boolean isPrivateProfile = PackageManagerUtils.isPrivateProfile(launcherApps, profile);
             UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
-            for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(null, profile)) {
+            for (LauncherActivityInfo activityInfo : PackageManagerUtils.getActivityList(launcherApps, null, profile)) {
                 if (isCancelled()) {
                     break;
                 }

@@ -1,15 +1,15 @@
-KISS
-======
+# KISS
+
 An Android launcher not spending time and memory on stuff you'd rather do.
 
-[Copylefted](https://en.wikipedia.org/wiki/Copyleft) libre software, licensed [GPLv3+](https://github.com/Neamar/KISS/blob/master/LICENSE):
+Libre software, licensed [GPLv3+](https://github.com/Neamar/KISS/blob/master/LICENSE): use, see, [change](CONTRIBUTING.md) and share at will.
 
-Use, see, [change](CONTRIBUTING.md) and share at will; with all.
-
-From _your_ background, type the first letters of apps, contact names, or settings—and click.  
+Type the first letters of apps, contact names, or settings—and click.
 Results clicked more often are promoted.
 
-_Browsing for apps is and should be secondary_.
+_No more idle app browsing_.
+
+That's it. Fast and efficient.
 
 [<img src="https://img.shields.io/f-droid/v/fr.neamar.kiss.svg?logo=f-droid&label=F-Droid&style=flat-square"
       alt="F-Droid Release"/>](https://f-droid.org/packages/fr.neamar.kiss)
@@ -27,4 +27,4 @@ Join the [Hosted Weblate](https://hosted.weblate.org/engage/kiss/) translation p
 Public Telegram chat: https://t.me/joinchat/_eDeAIQJU1FlNjM0
 
 | ![Less interface](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Search anything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Customize everything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png) | ![Settings](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
-|:-------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------:|
+| :-----------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
