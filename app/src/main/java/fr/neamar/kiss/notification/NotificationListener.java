@@ -42,7 +42,17 @@ public class NotificationListener extends NotificationListenerService {
     private void refreshAllNotifications() {
         // Build a map of notifications currently displayed,
         // ordered per package
-        StatusBarNotification[] sbns = getActiveNotifications();
+        StatusBarNotification[] sbns;
+        try {
+            sbns = getActiveNotifications();
+        } catch (RuntimeException e) {
+            // SecurityException when the listener is no longer registered, BadParcelableException on oversized notifications
+            Log.w(TAG, "Unable to get active notifications", e);
+            return;
+        }
+        if (sbns == null) {
+            return;
+        }
         Map<String, Set<String>> notificationsByPackage = new HashMap<>();
         for (StatusBarNotification sbn : sbns) {
             if (isNotificationTrivial(sbn)) {
