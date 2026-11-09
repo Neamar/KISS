@@ -94,7 +94,6 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
 
         if (prefs.getBoolean("enable-search", true)) {
             for (SearchPojo provider : searchProviders) {
-                // New pojo per query: this runs off the UI thread, mutating a shared pojo races with rows being displayed
                 SearchPojo pojo = new SearchPojo(query, provider.url, SearchPojoType.SEARCH_QUERY);
                 pojo.relevance = provider.relevance;
                 pojo.setName(provider.getName(), false);
