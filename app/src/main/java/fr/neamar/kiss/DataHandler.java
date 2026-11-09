@@ -939,7 +939,9 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excludedFromHistory = getExcludedFromHistory();
 
         if (!frozen && !excludedFromHistory.contains(id)) {
-            DBHelper.insertHistory(this.context, SearchHandler.getInstance().getLastSearchQuery(), id);
+            String query = SearchHandler.getInstance().getLastSearchQuery();
+            // Write off the main thread; searchers run on the same single thread, so they always see this entry
+            Searcher.SEARCH_THREAD.execute(() -> DBHelper.insertHistory(this.context, query, id));
         }
     }
 
