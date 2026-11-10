@@ -1,7 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 public final class SearchPojo extends Pojo {
-    public String query;
+    public final String query;
     public final String url;
     public final SearchPojoType type;
 
