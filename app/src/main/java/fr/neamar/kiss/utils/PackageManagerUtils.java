@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -267,13 +268,17 @@ public class PackageManagerUtils {
     /**
      * @return last time the package was installed or updated, {@link Long#MAX_VALUE} if unknown
      */
-    public static long getLastUpdateTime(@NonNull Context context, @NonNull String packageName) {
-        try {
-            return context.getPackageManager().getPackageInfo(packageName, 0).lastUpdateTime;
-        } catch (PackageManager.NameNotFoundException e) {
-            // shortcut: packages only installed in another profile are unknown, so never cached; use LauncherApps if this matters
-            return Long.MAX_VALUE;
-        }
+    public static long getLastUpdateTime(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
+        return getLastUpdateTime(getApplicationInfo(context, packageName, user));
+    }
+
+    /**
+     * @return last time the package was installed or updated, {@link Long#MAX_VALUE} if unknown
+     */
+    public static long getLastUpdateTime(@Nullable ApplicationInfo appInfo) {
+        // An update replaces the APK, which is shared by all profiles. System updates keep file times, callers must also watch Build.FINGERPRINT.
+        long lastModified = appInfo == null ? 0 : new File(appInfo.sourceDir).lastModified();
+        return lastModified == 0 ? Long.MAX_VALUE : lastModified;
     }
 
     /**

@@ -208,10 +208,14 @@ public class IconsHandler {
             // don't cache icon if themed with system colors which can change
             useCache = false;
         }
+        if (mSystemPack.hasDynamicIcon(componentName) || (mIconPack != null && mIconPack.hasDynamicIcon(componentName))) {
+            // don't cache icon showing the date, the cache outlives the day
+            useCache = false;
+        }
 
         // Search in cache
         if (useCache) {
-            Drawable cacheIcon = cacheGetDrawable(cacheKey, componentName.getPackageName());
+            Drawable cacheIcon = cacheGetDrawable(cacheKey, PackageManagerUtils.getLastUpdateTime(ctx, componentName.getPackageName(), userHandle));
             if (cacheIcon != null) {
                 return cacheIcon;
             }
@@ -434,9 +438,9 @@ public class IconsHandler {
         return mIconPack != null ? mIconPack : mSystemPack;
     }
 
-    private boolean isDrawableInCache(String key, String packageName) {
+    private boolean isDrawableInCache(String key, long appLastUpdateTime) {
         // lastModified() is 0 for a missing file. An icon cached before the app was updated is stale.
-        return cacheGetFileName(key).lastModified() > PackageManagerUtils.getLastUpdateTime(ctx, packageName);
+        return cacheGetFileName(key).lastModified() > appLastUpdateTime;
     }
 
     private void storeDrawable(File drawableFile, Drawable drawable) {
@@ -452,9 +456,9 @@ public class IconsHandler {
         }
     }
 
-    private Drawable cacheGetDrawable(String key, String packageName) {
+    private Drawable cacheGetDrawable(String key, long appLastUpdateTime) {
 
-        if (!isDrawableInCache(key, packageName)) {
+        if (!isDrawableInCache(key, appLastUpdateTime)) {
             return null;
         }
 
@@ -511,11 +515,15 @@ public class IconsHandler {
     private void cacheClearIfStale(boolean force) {
         Resources system = Resources.getSystem();
         int maskId = system.getIdentifier("config_icon_mask", "string", "android");
-        String stamp = BuildConfig.VERSION_CODE + "|" + Build.FINGERPRINT + "|" + system.getDisplayMetrics().densityDpi
+        String stamp = PackageManagerUtils.getLastUpdateTime(ctx, ctx.getPackageName(), UserHandle.OWNER) + "|" + Build.FINGERPRINT + "|" + system.getDisplayMetrics().densityDpi
                 + "|" + (maskId != 0 ? system.getString(maskId) : "")
-                + "|" + PackageManagerUtils.getLastUpdateTime(ctx, getIconPack().getPackPackageName());
+                + "|" + PackageManagerUtils.getLastUpdateTime(ctx, getIconPack().getPackPackageName(), UserHandle.OWNER);
         SharedPreferences cachePrefs = ctx.getSharedPreferences("icons-cache", Context.MODE_PRIVATE);
         if (force || !stamp.equals(cachePrefs.getString("stamp", null))) {
+            if (!force && mIconPack != null) {
+                // the icon pack may be the one that changed: parse it again
+                mIconPack = KissApplication.iconPackCache(ctx).reloadIconPack(ctx, mIconPack.getPackPackageName());
+            }
             cacheClear();
             cachePrefs.edit().putString("stamp", stamp).apply();
         }

@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.os.ConfigurationCompat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,7 +29,6 @@ import fr.neamar.kiss.utils.UserHandle;
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     private static final String TAG = LoadAppPojos.class.getSimpleName();
-    private static final String LABEL_CACHE_STAMP = "stamp";
     private final TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
@@ -55,9 +55,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         // Only do it for new or updated apps, or when the system or its languages changed.
         SharedPreferences labelCache = ctx.getSharedPreferences("app-labels", Context.MODE_PRIVATE);
         String stamp = Build.FINGERPRINT + "|" + ConfigurationCompat.getLocales(ctx.getResources().getConfiguration()).toLanguageTags();
-        boolean isLabelCacheValid = stamp.equals(labelCache.getString(LABEL_CACHE_STAMP, null));
-        // rewritten on every load, to forget removed apps
-        SharedPreferences.Editor newLabelCache = labelCache.edit().clear().putString(LABEL_CACHE_STAMP, stamp);
+        boolean isLabelCacheValid = stamp.equals(labelCache.getString("stamp", null));
+        // replaces the cache after the load, to forget removed apps
+        Map<String, String> newLabelCache = new HashMap<>();
+        newLabelCache.put("stamp", stamp);
 
         UserManager manager = ContextCompat.getSystemService(ctx, UserManager.class);
         LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
@@ -74,7 +75,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
                 if (!disabled || !isPrivateProfile) {
                     String label = null;
-                    long lastUpdateTime = PackageManagerUtils.getLastUpdateTime(ctx, appInfo.packageName);
+                    long lastUpdateTime = PackageManagerUtils.getLastUpdateTime(appInfo);
                     String labelKey = AppPojo.getComponentName(appInfo.packageName, activityInfo.getName(), user) + "@" + lastUpdateTime;
                     if (isLabelCacheValid) {
                         label = labelCache.getString(labelKey, null);
@@ -83,7 +84,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                         label = activityInfo.getLabel().toString();
                     }
                     if (lastUpdateTime != Long.MAX_VALUE) {
-                        newLabelCache.putString(labelKey, label);
+                        newLabelCache.put(labelKey, label);
                     }
                     final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), label, disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                     apps.add(app);
@@ -91,8 +92,12 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             }
         }
 
-        if (!isCancelled()) {
-            newLabelCache.apply();
+        if (!isCancelled() && !newLabelCache.equals(labelCache.getAll())) {
+            SharedPreferences.Editor editor = labelCache.edit().clear();
+            for (Map.Entry<String, String> entry : newLabelCache.entrySet()) {
+                editor.putString(entry.getKey(), entry.getValue());
+            }
+            editor.apply();
         }
 
         Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
