@@ -424,10 +424,28 @@
                 app:defaultValue="false"
                 app:key="force-portrait"
                 app:title="@string/portrait_title" />
-            <SwitchPreference
-                app:defaultValue="false"
-                app:key="call-contact-on-click"
-                app:title="@string/contacts_call_on_click" />
+            <PreferenceScreen
+                app:key="contact-actions"
+                app:summary="@string/contact_actions_summary"
+                app:title="@string/contact_actions">
+                <SwitchPreference
+                    app:defaultValue="false"
+                    app:key="call-contact-on-click"
+                    app:title="@string/contacts_call_on_click" />
+                <fr.neamar.kiss.preference.ContactActionPreference
+                    app:defaultValue="sms"
+                    app:key="contact-action-left"
+                    app:title="@string/contact_action_left"
+                    app:useSimpleSummaryProvider="true" />
+                <fr.neamar.kiss.preference.ContactActionPreference
+                    app:defaultValue="call"
+                    app:key="contact-action-right"
+                    app:title="@string/contact_action_right"
+                    app:useSimpleSummaryProvider="true" />
+                <Preference
+                    app:selectable="false"
+                    app:summary="@string/contact_actions_override_hint" />
+            </PreferenceScreen>
         </PreferenceCategory>
         <PreferenceScreen
             app:key="wallpaper-holder"
@@ -589,11 +607,6 @@
         <Preference
             app:key="default-launcher"
             app:title="@string/default_launcher_title" />
-        <fr.neamar.kiss.preference.MimeTypeSelectPreference
-            app:defaultValue="@array/contactMimeTypesDefault"
-            app:key="selected-contact-mime-types"
-            app:summary="@string/contact_mime_types_summary"
-            app:title="@string/contact_mime_types_title" />
         <SwitchPreference
             app:defaultValue="false"
             app:key="use-fuzzy-score-v1"

@@ -17,13 +17,14 @@ import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.utils.Log;
+import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 11;
+    private final static int DB_VERSION = 12;
     private static final String TAG = DB.class.getSimpleName();
 
     private final Context mContext;
@@ -95,6 +96,9 @@ class DB extends SQLiteOpenHelper {
                     // fall through
                 case 10:
                     addCustomComponentsTable(database);
+                    // fall through
+                case 11:
+                    convertContactMimeTypes();
                     // fall through
                 default:
                     break;
@@ -214,6 +218,13 @@ class DB extends SQLiteOpenHelper {
                 break;
         }
         commit(prefsEditor, "theme");
+    }
+
+    private void convertContactMimeTypes() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        MimeTypeUtils.convertSelectedMimeTypes(mContext, prefs, prefsEditor);
+        commit(prefsEditor, MimeTypeUtils.SELECTED_MIME_TYPES_KEY);
     }
 
     private void commit(SharedPreferences.Editor prefsEditor, String key) {

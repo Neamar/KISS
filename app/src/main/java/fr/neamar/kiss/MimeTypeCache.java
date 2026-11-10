@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.XmlResourceParser;
+import android.database.Cursor;
 import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
+import fr.neamar.kiss.utils.PhoneUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class MimeTypeCache {
@@ -273,5 +275,63 @@ public class MimeTypeCache {
         }
 
         return uniqueLabels;
+    }
+
+    /**
+     * Generates labels for contact actions, like "WhatsApp – Voice call".
+     * The action name is taken from the detail column of any contact, without its phone number.
+     * Falls back to {@link #getUniqueLabels(Context, Set)} if no action name is found.
+     *
+     * @param context
+     * @param mimeTypes
+     * @return labels for given mime types
+     */
+    public Map<String, String> getActionLabels(Context context, Set<String> mimeTypes) {
+        Map<String, String> actionLabels = getUniqueLabels(context, mimeTypes);
+        for (String mimeType : mimeTypes) {
+            String label = getLabel(context, mimeType);
+            String detail = getSampleDetail(context, mimeType);
+            if (label == null || detail == null) {
+                continue;
+            }
+            // remove phone number, then app name from detail: "Signal Voice Call +1 234" -> "Voice Call"
+            String phone = PhoneUtils.getTrailingPhoneNumber(detail);
+            if (phone == null) {
+                // no phone number, detail is not an action but personal data (e.g. an email address)
+                continue;
+            }
+            String action = detail.substring(0, detail.lastIndexOf(phone));
+            if (action.regionMatches(true, 0, label, 0, label.length())) {
+                action = action.substring(label.length());
+            }
+            action = action.trim();
+            if (!action.isEmpty()) {
+                actionLabels.put(mimeType, label + " – " + action);
+            }
+        }
+        return actionLabels;
+    }
+
+    /**
+     * @param context
+     * @param mimeType
+     * @return content of the detail column for any contact with given mime type, null if not available
+     */
+    @Nullable
+    private String getSampleDetail(Context context, String mimeType) {
+        String detailColumn = getDetailColumn(context, mimeType);
+        if (detailColumn == null) {
+            return null;
+        }
+        try (Cursor cursor = context.getContentResolver().query(
+                ContactsContract.Data.CONTENT_URI,
+                new String[]{detailColumn},
+                ContactsContract.Data.MIMETYPE + "= ?",
+                new String[]{mimeType}, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                return cursor.getString(0);
+            }
+        }
+        return null;
     }
 }

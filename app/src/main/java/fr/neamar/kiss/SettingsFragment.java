@@ -201,7 +201,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 }
-            } else if ("selected-contact-mime-types".equals(key)) {
+            } else if (key.startsWith("contact-action-")) {
                 getDataHandler().reload(CONTACTS);
             } else if ("theme".equals(key)) {
                 updateNightMode();
