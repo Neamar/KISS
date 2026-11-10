@@ -32,6 +32,11 @@ public interface IconPack {
     @Nullable
     Drawable getDrawable(@NonNull DrawableInfo drawableInfo);
 
+    /**
+     * @return true if the icon changes over time (calendars showing the date)
+     */
+    boolean hasDynamicIcon(@NonNull ComponentName componentName);
+
     boolean allowForCustomIcons();
 
     boolean isSystemIconPack();

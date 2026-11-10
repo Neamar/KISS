@@ -25,6 +25,12 @@ public class IconPackCache {
         return pack;
     }
 
+    @NonNull
+    public IconPack reloadIconPack(Context context, String packageName) {
+        mCache.put(packageName, null);
+        return getIconPack(context, packageName);
+    }
+
     public void clearCache(KissApplication app) {
         mCache.evictAll();
         IconPack customIconPack = app.getIconsHandler().getIconPack();

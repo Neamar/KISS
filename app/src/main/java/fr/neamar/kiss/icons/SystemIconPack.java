@@ -50,6 +50,11 @@ public class SystemIconPack implements IconPack {
         mAdaptiveShape = shape;
     }
 
+    @Override
+    public boolean hasDynamicIcon(@NonNull ComponentName componentName) {
+        return componentName.getPackageName().equals(GoogleCalendarIcon.GOOGLE_CALENDAR);
+    }
+
     @Nullable
     @Override
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {

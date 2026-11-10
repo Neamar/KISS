@@ -128,6 +128,11 @@ public class IconPackXML implements IconPack {
         return null;
     }
 
+    @Override
+    public boolean hasDynamicIcon(@NonNull ComponentName componentName) {
+        return getCalendarDrawable(componentName) != null;
+    }
+
     @Nullable
     @Override
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
