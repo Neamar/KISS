@@ -8,6 +8,7 @@ import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -82,6 +83,7 @@ public class IconsHandler {
         loadAvailableIconsPacks();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         loadIconsPack(prefs);
+        cacheClearIfStale(false);
     }
 
     /**
@@ -96,6 +98,7 @@ public class IconsHandler {
                 key.equalsIgnoreCase("contacts-shape") ||
                 key.equalsIgnoreCase(DrawableUtils.KEY_THEMED_ICONS)) {
             loadIconsPack(prefs);
+            cacheClearIfStale(true);
             getDataHandler().refreshFavorites();
         }
     }
@@ -118,7 +121,6 @@ public class IconsHandler {
      * Parse icons pack metadata
      */
     private void loadIconsPack(SharedPreferences prefs) {
-        cacheClear();
         mSystemPack.setAdaptiveShape(getAdaptiveShape(prefs, "adaptive-shape"));
         mForceAdaptive = prefs.getBoolean("force-adaptive", true);
         mForceShape = prefs.getBoolean("force-shape", true);
@@ -128,14 +130,12 @@ public class IconsHandler {
 
         // system icons, nothing to do
         if (packageName == null || packageName.equalsIgnoreCase("default")) {
-            cacheClear();
             mIconPack = null;
             return;
         }
 
         // don't reload the icon pack
         if (mIconPack == null || !mIconPack.getPackPackageName().equals(packageName)) {
-            cacheClear();
             // set the current icon pack
             mIconPack = KissApplication.iconPackCache(ctx).getIconPack(ctx, packageName);
         }
@@ -211,7 +211,7 @@ public class IconsHandler {
 
         // Search in cache
         if (useCache) {
-            Drawable cacheIcon = cacheGetDrawable(cacheKey);
+            Drawable cacheIcon = cacheGetDrawable(cacheKey, componentName.getPackageName());
             if (cacheIcon != null) {
                 return cacheIcon;
             }
@@ -434,9 +434,9 @@ public class IconsHandler {
         return mIconPack != null ? mIconPack : mSystemPack;
     }
 
-    private boolean isDrawableInCache(String key) {
-        File drawableFile = cacheGetFileName(key);
-        return drawableFile.isFile();
+    private boolean isDrawableInCache(String key, String packageName) {
+        // lastModified() is 0 for a missing file. An icon cached before the app was updated is stale.
+        return cacheGetFileName(key).lastModified() > PackageManagerUtils.getLastUpdateTime(ctx, packageName);
     }
 
     private void storeDrawable(File drawableFile, Drawable drawable) {
@@ -452,9 +452,9 @@ public class IconsHandler {
         }
     }
 
-    private Drawable cacheGetDrawable(String key) {
+    private Drawable cacheGetDrawable(String key, String packageName) {
 
-        if (!isDrawableInCache(key)) {
+        if (!isDrawableInCache(key, packageName)) {
             return null;
         }
 
@@ -501,6 +501,24 @@ public class IconsHandler {
         File dir = new File(this.ctx.getCacheDir(), "custom_icons");
         dir.mkdirs(); // no-op when the directory already exists
         return dir;
+    }
+
+    /**
+     * The cache survives restarts: loading an icon from its APK is slow and blocks the main thread on Android 10-11 (#2715).
+     * Clear it when what the icons were rendered from changes: KISS, the system (build, density, icon shape) or the icon pack.
+     * Updated apps are handled per icon, see {@link #isDrawableInCache}.
+     */
+    private void cacheClearIfStale(boolean force) {
+        Resources system = Resources.getSystem();
+        int maskId = system.getIdentifier("config_icon_mask", "string", "android");
+        String stamp = BuildConfig.VERSION_CODE + "|" + Build.FINGERPRINT + "|" + system.getDisplayMetrics().densityDpi
+                + "|" + (maskId != 0 ? system.getString(maskId) : "")
+                + "|" + PackageManagerUtils.getLastUpdateTime(ctx, getIconPack().getPackPackageName());
+        SharedPreferences cachePrefs = ctx.getSharedPreferences("icons-cache", Context.MODE_PRIVATE);
+        if (force || !stamp.equals(cachePrefs.getString("stamp", null))) {
+            cacheClear();
+            cachePrefs.edit().putString("stamp", stamp).apply();
+        }
     }
 
     /**

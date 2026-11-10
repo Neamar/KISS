@@ -1,6 +1,7 @@
 package fr.neamar.kiss.loader;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.os.UserManager;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.os.ConfigurationCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import fr.neamar.kiss.utils.UserHandle;
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     private static final String TAG = LoadAppPojos.class.getSimpleName();
+    private static final String LABEL_CACHE_STAMP = "stamp";
     private final TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
@@ -48,6 +51,14 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Set<String> excludedFromHistoryAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedFromHistory();
         Set<String> excludedShortcutsAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedShortcutApps();
 
+        // Reading a label loads the app's resources: slow, and it blocks the main thread on Android 10-11 (#2715).
+        // Only do it for new or updated apps, or when the system or its languages changed.
+        SharedPreferences labelCache = ctx.getSharedPreferences("app-labels", Context.MODE_PRIVATE);
+        String stamp = Build.FINGERPRINT + "|" + ConfigurationCompat.getLocales(ctx.getResources().getConfiguration()).toLanguageTags();
+        boolean isLabelCacheValid = stamp.equals(labelCache.getString(LABEL_CACHE_STAMP, null));
+        // rewritten on every load, to forget removed apps
+        SharedPreferences.Editor newLabelCache = labelCache.edit().clear().putString(LABEL_CACHE_STAMP, stamp);
+
         UserManager manager = ContextCompat.getSystemService(ctx, UserManager.class);
         LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
 
@@ -62,10 +73,26 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 ApplicationInfo appInfo = activityInfo.getApplicationInfo();
                 boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
                 if (!disabled || !isPrivateProfile) {
-                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
+                    String label = null;
+                    long lastUpdateTime = PackageManagerUtils.getLastUpdateTime(ctx, appInfo.packageName);
+                    String labelKey = AppPojo.getComponentName(appInfo.packageName, activityInfo.getName(), user) + "@" + lastUpdateTime;
+                    if (isLabelCacheValid) {
+                        label = labelCache.getString(labelKey, null);
+                    }
+                    if (label == null) {
+                        label = activityInfo.getLabel().toString();
+                    }
+                    if (lastUpdateTime != Long.MAX_VALUE) {
+                        newLabelCache.putString(labelKey, label);
+                    }
+                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), label, disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                     apps.add(app);
                 }
             }
+        }
+
+        if (!isCancelled()) {
+            newLabelCache.apply();
         }
 
         Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
