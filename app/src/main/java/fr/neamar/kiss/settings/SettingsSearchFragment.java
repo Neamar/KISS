@@ -80,15 +80,18 @@ public class SettingsSearchFragment extends PreferenceFragmentCompat {
         private final String fragment;
         @Nullable
         private final String key;
+        @Nullable
+        private final Bundle extras;
         // Normalized title, summary and choices
         private final String text;
 
         SearchableSetting(@NonNull Preference preference, @Nullable CharSequence screenTitle, @NonNull String screenFragment) {
             this.title = preference.getTitle();
             this.screenTitle = screenTitle;
-            // Links to another screen open that screen
+            // Links to another screen open that screen, with their extras
             this.fragment = preference.getFragment() != null ? preference.getFragment() : screenFragment;
             this.key = preference.getFragment() != null ? null : preference.getKey();
+            this.extras = preference.getFragment() != null ? preference.peekExtras() : null;
 
             StringBuilder text = new StringBuilder();
             text.append(normalize(title)).append('\n').append(normalize(preference.getSummary()));
@@ -114,7 +117,7 @@ public class SettingsSearchFragment extends PreferenceFragmentCompat {
             result.setTitle(title);
             result.setSummary(screenTitle);
             result.setOnPreferenceClickListener(preference -> {
-                ((SettingsActivity) requireActivity()).openSearchResult(fragment, key);
+                ((SettingsActivity) requireActivity()).openSearchResult(fragment, key, extras);
                 return true;
             });
             return result;

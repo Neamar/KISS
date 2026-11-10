@@ -286,9 +286,10 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     /**
      * Close the search, and open the screen of the setting found, scrolled to that setting
      */
-    public void openSearchResult(@NonNull String fragment, @Nullable String key) {
+    public void openSearchResult(@NonNull String fragment, @Nullable String key, @Nullable Bundle extras) {
         searchItem.collapseActionView();
-        Bundle args = new Bundle();
+        // Copy: the extras belong to the preference
+        Bundle args = extras == null ? new Bundle() : new Bundle(extras);
         args.putString(BaseSettingsFragment.ARG_SCROLL_TO_KEY, key);
         openScreen(fragment, args);
     }
