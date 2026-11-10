@@ -102,12 +102,15 @@ public class MimeTypeCache {
      * @return all mime types and related data columns from contact sync adapters
      */
     private Map<String, String> fetchDetailColumns(Context context) {
-        if (detailColumns == null) {
+        // read field once: clearCache() may reset it concurrently from the main thread
+        Map<String, String> result = detailColumns;
+        if (result == null) {
             synchronized (this) {
-                if (detailColumns == null) {
+                result = detailColumns;
+                if (result == null) {
                     long start = System.currentTimeMillis();
 
-                    detailColumns = new HashMap<>();
+                    result = new HashMap<>();
 
                     final Set<String> contactSyncableTypes = new HashSet<>();
 
@@ -138,7 +141,7 @@ public class MimeTypeCache {
                                                 }
                                             }
                                             if (foundMimeType != null) {
-                                                detailColumns.put(foundMimeType, foundDetailColumn);
+                                                result.put(foundMimeType, foundDetailColumn);
                                             }
                                         }
                                     }
@@ -150,15 +153,17 @@ public class MimeTypeCache {
                     }
 
                     // Add additional data columns for known mime types
-                    detailColumns.put(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Email.ADDRESS);
-                    detailColumns.put(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Phone.NUMBER);
+                    result.put(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Email.ADDRESS);
+                    result.put(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+                    detailColumns = result;
 
                     long end = System.currentTimeMillis();
                     Log.i(TAG, (end - start) + " milliseconds to fetch detail data columns");
                 }
             }
         }
-        return detailColumns;
+        return result;
     }
 
     /**
