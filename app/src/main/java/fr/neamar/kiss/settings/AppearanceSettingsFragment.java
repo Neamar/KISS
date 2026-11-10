@@ -8,11 +8,11 @@ import androidx.preference.Preference;
 
 import fr.neamar.kiss.R;
 
-public class UserInterfaceSettingsFragment extends BaseSettingsFragment {
+public class AppearanceSettingsFragment extends BaseSettingsFragment {
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences_ui, rootKey);
+        setPreferencesFromResource(R.xml.preferences_appearance, rootKey);
 
         updateNightMode();
     }

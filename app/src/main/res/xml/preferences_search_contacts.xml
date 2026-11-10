@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:title="@string/contact_actions">
+    app:title="@string/contacts_name">
     <SwitchPreference
         app:defaultValue="false"
         app:key="call-contact-on-click"
@@ -18,4 +18,18 @@
     <Preference
         app:selectable="false"
         app:summary="@string/contact_actions_override_hint" />
+    <SwitchPreference
+        app:defaultValue="true"
+        app:disableDependentsState="true"
+        app:key="contact-pack-mask"
+        app:summary="@string/contact_pack_mask_summary"
+        app:title="@string/contact_pack_mask" />
+    <ListPreference
+        app:defaultValue="0"
+        app:dependency="contact-pack-mask"
+        app:entries="@array/adaptiveEntriesForContacts"
+        app:entryValues="@array/adaptiveValues"
+        app:key="contacts-shape"
+        app:summary="@string/contacts_shape_summary"
+        app:title="@string/contacts_shape" />
 </PreferenceScreen>

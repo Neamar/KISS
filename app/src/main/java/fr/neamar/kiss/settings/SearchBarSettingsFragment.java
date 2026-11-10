@@ -6,10 +6,9 @@ import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.R;
 
-public class ThemeCustomisationSettingsFragment extends BaseSettingsFragment {
-
+public class SearchBarSettingsFragment extends BaseSettingsFragment {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences_ui_theme, rootKey);
+        setPreferencesFromResource(R.xml.preferences_search_bar, rootKey);
     }
 }

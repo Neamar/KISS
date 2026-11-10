@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/search_name">
+    <fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference
+        app:key="default-search-provider"
+        app:title="@string/search_provider_default"
+        app:useSimpleSummaryProvider="true" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="always-default-web-search-on-enter"
+        app:title="@string/always_default_web_search_on_enter" />
+    <fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference
+        app:key="selected-search-provider-names"
+        app:title="@string/search_providers_title" />
+    <fr.neamar.kiss.preference.AddSearchProviderPreference
+        app:key="custom-search-provider-add"
+        app:title="@string/custom_search_provider" />
+    <fr.neamar.kiss.preference.DeleteCustomSearchProvidersPreference
+        app:key="deleting-search-providers-names"
+        app:title="@string/search_providers_delete" />
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/search_provider_reset_desc"
+        app:key="reset-search-providers"
+        app:title="@string/search_provider_reset" />
+</PreferenceScreen>

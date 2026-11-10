@@ -10,6 +10,6 @@ public class TagsMenuSettingsFragment extends BaseSettingsFragment {
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences_ux_tags_menu, rootKey);
+        setPreferencesFromResource(R.xml.preferences_favorites_tags_menu, rootKey);
     }
 }

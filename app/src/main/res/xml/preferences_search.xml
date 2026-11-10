@@ -2,13 +2,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_providers">
-    <PreferenceCategory
-        app:key="search-providers"
-        app:title="@string/search_results_options">
+    <PreferenceCategory app:title="@string/search_sources">
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-contacts"
             app:title="@string/contacts_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-shortcuts"
+            app:title="@string/shortcuts_name">
+            <extra
+                android:name="minSdk"
+                android:value="26" />
+        </SwitchPreference>
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-search"
+            app:title="@string/search_provider_toggle" />
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-settings"
@@ -18,68 +28,73 @@
             app:key="enable-timer"
             app:summary="@string/timer_description"
             app:title="@string/timer_name" />
-        <SwitchPreference
-            app:defaultValue="true"
-            app:key="enable-shortcuts"
-            app:title="@string/shortcuts_name">
-            <extra
-                android:name="minSdk"
-                android:value="26" />
-        </SwitchPreference>
-        <fr.neamar.kiss.preference.DialogShowingPreference
-            app:dialogMessage="@string/regenerate_shortcuts_desc"
-            app:key="reset-shortcuts"
-            app:title="@string/regenerate_shortcuts">
-            <extra
-                android:name="minSdk"
-                android:value="26" />
-        </fr.neamar.kiss.preference.DialogShowingPreference>
-        <SwitchPreference
-            app:defaultValue="true"
-            app:key="enable-search"
-            app:title="@string/search_provider_toggle" />
-        <SwitchPreference
-            app:defaultValue="false"
-            app:key="enable-excluded-apps"
-            app:title="@string/excluded_apps_toggle" />
     </PreferenceCategory>
-    <PreferenceCategory
-        app:key="web-providers"
-        app:title="@string/search_name">
-        <fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference
-            app:key="default-search-provider"
-            app:title="@string/search_provider_default"
-            app:useSimpleSummaryProvider="true" />
-        <fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference
-            app:key="selected-search-provider-names"
-            app:title="@string/search_providers_title" />
-        <fr.neamar.kiss.preference.DeleteCustomSearchProvidersPreference
-            app:key="deleting-search-providers-names"
-            app:title="@string/search_providers_delete" />
-        <fr.neamar.kiss.preference.AddSearchProviderPreference
-            app:key="custom-search-provider-add"
-            app:title="@string/custom_search_provider" />
-        <fr.neamar.kiss.preference.DialogShowingPreference
-            app:dialogMessage="@string/search_provider_reset_desc"
-            app:key="reset-search-providers"
-            app:title="@string/search_provider_reset" />
-    </PreferenceCategory>
-    <PreferenceCategory app:title="@string/misc">
+    <PreferenceCategory app:title="@string/search_results_options">
+        <ListPreference
+            app:defaultValue="default"
+            app:entries="@array/resultsSizeEntries"
+            app:entryValues="@array/resultsSizeValues"
+            app:key="results-size"
+            app:title="@string/results_size"
+            app:useSimpleSummaryProvider="true">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </ListPreference>
         <SwitchPreference
             app:defaultValue="false"
-            app:key="always-default-web-search-on-enter"
-            app:title="@string/always_default_web_search_on_enter" />
-        <SwitchPreference
-            app:defaultValue="false"
-            app:key="large-search-bar"
-            app:title="@string/large_search_bar" />
-        <SwitchPreference
-            app:defaultValue="false"
-            app:key="pref-hide-search-bar-hint"
-            app:title="@string/hide_search_bar_hint">
+            app:key="large-result-list-margins"
+            app:title="@string/large_result_list_margins">
             <extra
                 android:name="restart"
                 android:value="launcher" />
         </SwitchPreference>
+        <ListPreference
+            app:defaultValue="default"
+            app:entries="@array/separatorEntries"
+            app:entryValues="@array/separatorValues"
+            app:key="theme-separator"
+            app:title="@string/theme_separator"
+            app:useSimpleSummaryProvider="true">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </ListPreference>
+        <MultiSelectListPreference
+            app:defaultValue="@array/resultHighlightingDefault"
+            app:entries="@array/resultHighlightingEntries"
+            app:entryValues="@array/resultHighlightingValues"
+            app:key="pref-result-highlighting"
+            app:summary="@string/pref_result_highlighting_summary"
+            app:title="@string/pref_result_highlighting" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="use-fuzzy-score-v1"
+            app:title="Use legacy fuzzy search algorithm" />
+        <Preference
+            app:fragment="fr.neamar.kiss.settings.AppsSettingsFragment"
+            app:key="search-apps"
+            app:title="@string/settings_applications" />
+        <Preference
+            app:dependency="enable-contacts"
+            app:fragment="fr.neamar.kiss.settings.ContactsSettingsFragment"
+            app:key="search-contacts"
+            app:title="@string/contacts_name" />
+        <Preference
+            app:dependency="enable-shortcuts"
+            app:fragment="fr.neamar.kiss.settings.ShortcutsSettingsFragment"
+            app:key="search-shortcuts"
+            app:title="@string/shortcuts_name">
+            <extra
+                android:name="minSdk"
+                android:value="26" />
+        </Preference>
+        <Preference
+            app:dependency="enable-search"
+            app:fragment="fr.neamar.kiss.settings.WebSearchSettingsFragment"
+            app:key="search-web"
+            app:title="@string/search_name" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -28,18 +28,21 @@ public class SettingsFragment extends BaseSettingsFragment {
 
     static {
         PREFERENCES_XML.put(R.xml.preferences, SettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_appearance, AppearanceSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_home, HomeScreenSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_home_wallpaper, WallpaperSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_search_bar, SearchBarSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_search, SearchSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_search_apps, AppsSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_search_contacts, ContactsSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_search_shortcuts, ShortcutsSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_search_web, WebSearchSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_history, HistorySettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_favorites, FavoritesSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_ui, UserInterfaceSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_ui_theme, ThemeCustomisationSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_ux, UserExperienceSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_ux_tags_menu, TagsMenuSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_ux_wallpaper, WallpaperSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_ux_contact_actions, ContactActionsSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_search, SearchSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_excluded, ExcludedEntriesSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_favorites_tags_menu, TagsMenuSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_gestures, GesturesSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_import_export, ImportExportSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_advanced, AdvancedSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_system, SystemSettingsFragment.class);
     }
 
     @Override

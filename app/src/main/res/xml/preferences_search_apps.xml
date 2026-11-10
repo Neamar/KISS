@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/settings_applications">
+    <SwitchPreference
+        app:key="enable-notifications"
+        app:persistent="false"
+        app:title="@string/notification_support">
+        <extra
+            android:name="minSdk"
+            android:value="22" />
+    </SwitchPreference>
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="enable-excluded-apps"
+        app:title="@string/excluded_apps_toggle" />
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.ExcludeAppSettingsFragment"
+        app:key="edit-excluded-apps"
+        app:summary="@string/ui_excluded_apps_dialog_title"
+        app:title="@string/ui_excluded_apps">
+        <extra
+            android:name="exclusion"
+            android:value="edit-excluded-apps" />
+    </Preference>
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/reset_excluded_apps_warn"
+        app:key="reset-excluded-apps"
+        app:title="@string/reset_excluded_apps_name" />
+</PreferenceScreen>

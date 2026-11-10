@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_search_bar">
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="display-keyboard"
+        app:title="@string/keyboard_name" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="hide-keyboard"
+        app:title="@string/keyboard_hide" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="enable-suggestions-keyboard"
+        app:title="@string/keyboard_suggestions" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="large-search-bar"
+        app:title="@string/large_search_bar" />
+    <SwitchPreference
+        app:key="transparent-search"
+        app:title="@string/transparent_search_bar">
+        <extra
+            android:name="restart"
+            android:value="launcher" />
+    </SwitchPreference>
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="pref-hide-search-bar-hint"
+        app:title="@string/hide_search_bar_hint">
+        <extra
+            android:name="restart"
+            android:value="launcher" />
+    </SwitchPreference>
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="pref-swap-kiss-button-with-menu"
+        app:title="@string/swap_kiss_button_with_menu">
+        <extra
+            android:name="restart"
+            android:value="launcher" />
+    </SwitchPreference>
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="pref-hide-circle"
+        app:summary="@string/pref_hide_circle_desc"
+        app:title="@string/pref_hide_circle">
+        <extra
+            android:name="restart"
+            android:value="launcher" />
+    </SwitchPreference>
+</PreferenceScreen>

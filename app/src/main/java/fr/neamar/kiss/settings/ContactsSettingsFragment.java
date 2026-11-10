@@ -6,10 +6,9 @@ import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.R;
 
-public class ContactActionsSettingsFragment extends BaseSettingsFragment {
-
+public class ContactsSettingsFragment extends BaseSettingsFragment {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences_ux_contact_actions, rootKey);
+        setPreferencesFromResource(R.xml.preferences_search_contacts, rootKey);
     }
 }

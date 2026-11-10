@@ -10,6 +10,6 @@ public class WallpaperSettingsFragment extends BaseSettingsFragment {
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences_ux_wallpaper, rootKey);
+        setPreferencesFromResource(R.xml.preferences_home_wallpaper, rootKey);
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.preference.LaunchPojoSelectPreference;
 
-public class UserExperienceSettingsFragment extends BaseSettingsFragment {
+public class GesturesSettingsFragment extends BaseSettingsFragment {
     private static final List<String> PREF_LISTS_WITH_DEPENDENCY = Arrays.asList(
             "gesture-up", "gesture-down",
             "gesture-left", "gesture-right",
@@ -20,7 +20,7 @@ public class UserExperienceSettingsFragment extends BaseSettingsFragment {
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences_ux, rootKey);
+        setPreferencesFromResource(R.xml.preferences_gestures, rootKey);
 
         for (String key : PREF_LISTS_WITH_DEPENDENCY) {
             updateItemToRun(key);

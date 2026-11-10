@@ -83,7 +83,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When searching and adding a result to favorites, the search remains visible and the favorite appears
 
 #### Minimalistic mode on for favorites
-* [ ] In settings, UX, enable Minimalistic mode and Minimalistic mode for favorites
+* [ ] In settings, Home screen, enable Minimalistic mode and Minimalistic mode for favorites
 * [ ] Favorites bar is hidden by default
 * [ ] Touching the screen on an empty area displays history and the favorites
 * [ ] When entering a search query, favorite bar is hidden
@@ -93,7 +93,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When kiss bar is opened, favorites are displayed
 
 #### When using the internal favorite bar
-* [ ] In settings, Favorites settings, disable "Show favorites above search bar", disable Minimalistic mode and Minimalistic mode for favorites
+* [ ] In settings, Favorites & tags, disable "Show favorites above search bar", disable Minimalistic mode and Minimalistic mode for favorites
 * [ ] The external favorite bar is hidden by default
 * [ ] When entering a search query, external favorite bar is hidden
 * [ ] When search query is removed, external favorite bar is still hidden
@@ -104,12 +104,12 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When kiss bar is opened, favorites' context menu can be interacted with
 
 #### When using the external favorite bar, with transparent favorite bar
-* [ ] In settings, Favorites settings, enable "Show favorites above search bar". In UI, enable "Transparent favorite bar"
+* [ ] In settings, Favorites & tags, enable "Show favorites above search bar" and "Transparent favorite bar"
 * [ ] The bar background is transparent
 
 
 #### When using the internal favorite bar, with transparent favorite bar
-* [ ] In settings, Favorites settings, disable "Show favorites above search bar". In UI, enable "Transparent favorite bar"
+* [ ] In settings, Favorites & tags, disable "Show favorites above search bar" and "Transparent favorite bar"
 * [ ] The bar background is *not* transparent, but still green.
 
 #### First run
@@ -184,7 +184,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Gestures on empty areas behave exactly as in non-minimalistic KISS: tap reveals history/favorites as configured, double tap locks (or shows the accessibility prompt), long press and swipes trigger their configured actions (e.g. swipe down opens notifications)
 * [ ] Visible spacing is present between stacked widgets
 * [ ] Advanced setting "Enable widget scrolling" off: widget area no longer scrolls, new widgets shrink to fit the screen, widgets stay clickable, widgets are stacked edge-to-edge, and "Space between widgets" is disabled (not clickable)
-* [ ] Advanced setting "Space between widgets": changing it updates existing widget spacing immediately after leaving settings; the row is disabled (not clickable) while "Enable widget scrolling" is off
+* [ ] Home screen setting "Space between widgets": changing it updates existing widget spacing immediately after leaving settings; the row is disabled (not clickable) while "Enable widget scrolling" is off
 * [ ] After scrolling, long-press menu actions (resize, move up/down, reconfigure, remove) apply to the correct widget
 * [ ] Widget order is preserved after rotation and after process death
 
@@ -208,17 +208,17 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Wallpaper reacts to touch events
 * [ ] TODO: drag events
 
-### Providers settings
+### Search settings
 * [ ] Search for a contact. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a device setting. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a phone number. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance, WhatsApp). Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a long text. Make sure a web search option is displayed as a result
-* [ ] From Providers selection, disable Contacts. From now on, they are not displayed anymore in search or history
-* [ ] From Providers selection, disable Device settings. From now on, they are not displayed anymore in search or history
-* [ ] From Providers selection, disable Phone numbers. From now on, they are not displayed anymore in search or history
-* [ ] From Providers selection, disable Shortcuts. From now on, they are not displayed anymore in search or history
-* [ ] From Providers selection, disable Web Search. From now on, they are not displayed anymore in search
+* [ ] From Search sources, disable Contacts. From now on, they are not displayed anymore in search or history
+* [ ] From Search sources, disable Device settings. From now on, they are not displayed anymore in search or history
+* [ ] From Search sources, disable Phone numbers. From now on, they are not displayed anymore in search or history
+* [ ] From Search sources, disable Shortcuts. From now on, they are not displayed anymore in search or history
+* [ ] From Search sources, disable Web Search. From now on, they are not displayed anymore in search
 * [ ] Add a search provider. Ensure it is available in the select search provider setting
 * [ ] Select a search provider. Ensure it is available in search
 * [ ] Reset search providers. Ensure only default providers are visible
@@ -226,7 +226,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Disable search providers. Disable minimalistic mode. Enter a query with no results. Help text is displayed.
 * [ ] Disable search providers. Enable minimalistic mode. Enter a query with no results. Nothing is displayed
 
-### Advanced settings
+### System settings
 * [ ] Change default launcher option opens system dialog to pick a launcher
 * [ ] TODO: root mode
 * [ ] "Restart KISS" option closes the settings and reopen KISS
