@@ -2,15 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_advanced">
-    <fr.neamar.kiss.preference.DialogShowingPreference
-        app:defaultValue="true"
-        app:dialogMessage="@string/notification_dialog"
+    <SwitchPreference
         app:key="enable-notifications"
+        app:persistent="false"
         app:title="@string/notification_support">
         <extra
             android:name="minSdk"
             android:value="22" />
-    </fr.neamar.kiss.preference.DialogShowingPreference>
+    </SwitchPreference>
     <Preference
         app:key="default-launcher"
         app:title="@string/default_launcher_title" />
