@@ -321,13 +321,23 @@ public class IconsHandler {
                 return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
             }
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
-            // use adaptive shape (with white background for non adaptive icons)
-            return mSystemPack.applyBackgroundAndMask(ctx, drawable, true, Color.WHITE);
+            // use adaptive shape (with solid background for non-adaptive icons)
+            return mSystemPack.applyBackgroundAndMask(ctx, drawable, true, getBackgroundColor(ctx));
         } else if (mForceShape) {
             // use adaptive shape
             return mSystemPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else {
             return drawable;
+        }
+    }
+
+    @ColorInt
+    protected int getBackgroundColor(Context context) {
+        if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(context)) {
+            return UIColors.getIconColors(context)[0];
+        } else {
+            return Color.WHITE;
         }
     }
 
@@ -346,8 +356,8 @@ public class IconsHandler {
             // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
-            // use adaptive shape (with white background for non adaptive icons)
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, Color.WHITE);
+            // use adaptive shape (with solid background for non-adaptive icons)
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, getBackgroundColor(ctx));
         } else {
             // use adaptive shape
             return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
