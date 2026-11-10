@@ -2,7 +2,6 @@ package fr.neamar.kiss.dataprovider;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 
@@ -11,6 +10,8 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -35,8 +36,8 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      */
     private String pojoScheme = "(none)://";
 
-    private LoadPojos<T> loader;
-    private boolean loaded = false;
+    private final ExecutorService LOAD_THREAD = Executors.newSingleThreadExecutor();
+    private final List<LoadPojos<T>> runningLoaders = new ArrayList<>();
 
     /**
      * (Re-)load the providers resources when the provider has been completely initialized
@@ -66,50 +67,55 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        cancelInitialize();
+        cancelInitialize(null);
     }
 
     void initialize(LoadPojos<T> loader) {
-        cancelInitialize();
+        cancelInitialize(loader);
 
         loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
-        this.loader = (LoadPojos<T>) loader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        this.runningLoaders.add((LoadPojos<T>) loader.executeOnExecutor(LOAD_THREAD));
     }
 
     /**
-     * Cancel running {@link LoadPojos<T>} task and set to null.
+     * Cancel running {@link LoadPojos<T>} tasks and set to null.
      */
-    private void cancelInitialize() {
-        if (this.loader != null) {
-            this.loader.cancel(false);
-            this.loader.setProvider(null);
-            this.loader = null;
-            this.loaded = false;
-        }
+    private void cancelInitialize(LoadPojos<T> newLoader) {
+        List<LoadPojos<T>> loadersToCancel = this.runningLoaders.stream().filter(loader -> loader.isCancellableBy(newLoader)).toList();
+        loadersToCancel.forEach(loader -> {
+            loader.cancel(false);
+            loader.setProvider(null);
+            this.runningLoaders.remove(loader);
+        });
     }
 
     @Override
-    public void reload() {
+    public void reload(ReloadFilter filter) {
         // Handled at subclass level
         if (!pojos.isEmpty()) {
-            Log.v(TAG, "Reloading provider: " + this.getClass().getSimpleName());
+            Log.v(TAG, "Reloading provider: " + this.getClass().getSimpleName() + " (filter=" + filter+ ")");
         }
     }
 
     @Override
     public boolean isLoaded() {
-        return this.loaded;
+        return this.runningLoaders.isEmpty();
     }
 
-    public void loadOver(List<T> results) {
-        // Store results
-        this.loader.setProvider(null);
-        this.loader = null;
-        this.loaded = true;
-        this.pojos = results;
+    public void loadOver(LoadPojos<T> finishedLoader, List<T> results, ReloadFilter filter) {
+        finishedLoader.setProvider(null);
 
-        KissApplication.getApplication(this).getDataHandler().notifyMainActivity(MainActivity.LOAD_OVER);
+        if (this.runningLoaders.remove(finishedLoader)) {
+            if (filter == null) {
+                this.pojos = results;
+            } else {
+                this.pojos = filter.merge(this.pojos, results);
+            }
+        }
+        if (isLoaded()) {
+            KissApplication.getApplication(this).getDataHandler().notifyMainActivity(MainActivity.LOAD_OVER);
+        }
     }
 
     /**

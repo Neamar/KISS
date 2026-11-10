@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.utils.UserHandle;
 
-public final class AppPojo extends PojoWithTags {
+public final class AppPojo extends PojoWithTags implements PojoWithPackageName {
 
     public static String getComponentName(String packageName, String activityName,
                                           UserHandle userHandle) {
@@ -87,5 +87,10 @@ public final class AppPojo extends PojoWithTags {
     @Override
     public String getCustomIconId() {
         return getComponent().flattenToString();
+    }
+
+    @Override
+    public String getPackageName() {
+        return this.packageName;
     }
 }

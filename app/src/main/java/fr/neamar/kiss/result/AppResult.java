@@ -40,6 +40,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
+import fr.neamar.kiss.loader.PackageNameFilter;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.ListPopup;
@@ -272,7 +273,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         if (!KissApplication.getApplication(context).getRootHandler().hibernateApp(pojo.packageName)) {
             msg = context.getResources().getString(R.string.toast_hibernate_error);
         } else {
-            KissApplication.getApplication(context).getDataHandler().reload(APPS);
+            KissApplication.getApplication(context).getDataHandler().reload(new PackageNameFilter(pojo.packageName), APPS);
         }
 
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();

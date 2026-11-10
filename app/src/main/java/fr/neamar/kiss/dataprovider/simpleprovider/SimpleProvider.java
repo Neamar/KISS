@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 import fr.neamar.kiss.dataprovider.IProvider;
+import fr.neamar.kiss.dataprovider.ReloadFilter;
 import fr.neamar.kiss.pojo.Pojo;
 
 /**
@@ -18,7 +19,7 @@ public abstract class SimpleProvider<T extends Pojo> implements IProvider<T> {
      * {@inheritDoc}
      */
     @Override
-    public void reload() {
+    public void reload(ReloadFilter filter) {
         // Simple providers doesn't reload anything by default
     }
 

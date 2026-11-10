@@ -86,9 +86,9 @@ public class AppProvider extends Provider<AppPojo> {
     }
 
     @Override
-    public void reload() {
-        super.reload();
-        this.initialize(new LoadAppPojos(this));
+    public void reload(ReloadFilter filter) {
+        super.reload(filter);
+        this.initialize(new LoadAppPojos(this, filter));
     }
 
     /**
