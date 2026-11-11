@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import android.content.SharedPreferences;
+
 import androidx.annotation.VisibleForTesting;
 
 import java.math.BigDecimal;
@@ -27,8 +29,10 @@ public class CalculatorProvider extends SimpleProvider<SearchPojo> {
     private final Pattern trailingPercentRegexp;
     private final NumberFormat LOCALIZED_NUMBER_FORMATTER = NumberFormat.getInstance();
     private static final BigDecimal HUNDRED = new BigDecimal(100);
+    private final SharedPreferences prefs;
 
-    public CalculatorProvider() {
+    public CalculatorProvider(SharedPreferences prefs) {
+        this.prefs = prefs;
         //This should try to match as much as possible without going out of the expression,
         //even if the expression is not actually a computable operation.
         computableRegexp = Pattern.compile("^[\\-.,\\d+*×x/÷^'()%]+$");
@@ -38,6 +42,10 @@ public class CalculatorProvider extends SimpleProvider<SearchPojo> {
 
     @Override
     public void requestResults(String query, Searcher searcher) {
+        if (!prefs.getBoolean("enable-calculator", true)) {
+            return;
+        }
+
         String spacelessQuery = query.replaceAll("\\s+", "");
         // Now create matcher object.
         Matcher m = computableRegexp.matcher(spacelessQuery);

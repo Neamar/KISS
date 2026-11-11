@@ -10,6 +10,7 @@
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-shortcuts"
+            app:summary="@string/shortcuts_summary"
             app:title="@string/shortcuts_name">
             <extra
                 android:name="minSdk"
@@ -18,16 +19,28 @@
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-search"
+            app:summary="@string/search_provider_summary"
             app:title="@string/search_provider_toggle" />
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-settings"
+            app:summary="@string/settings_summary"
             app:title="@string/settings_name" />
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-timer"
             app:summary="@string/timer_description"
             app:title="@string/timer_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-calculator"
+            app:summary="@string/calculator_description"
+            app:title="@string/calculator_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-phone"
+            app:summary="@string/phone_description"
+            app:title="@string/phone_name" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/search_results_options">
         <ListPreference

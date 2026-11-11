@@ -121,7 +121,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     private IProvider<?> getProviderInstance(Context context, ProviderName providerName) {
         switch (providerName) {
             case CALCULATOR:
-                return new CalculatorProvider();
+                return new CalculatorProvider(PreferenceManager.getDefaultSharedPreferences(context));
             case TIMER:
                 return new TimerProvider(context);
             case PHONE:
