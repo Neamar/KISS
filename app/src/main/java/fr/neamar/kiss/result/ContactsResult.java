@@ -247,7 +247,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
             ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, mimeType);
             if (componentName != null) {
                 IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
+                appDrawable = iconsHandler.getDrawableIconForPackage(context, PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
             }
             if (appDrawable == null) {
                 // This should never happen, let's just return the generic activity icon
@@ -299,7 +299,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
             synchronized (this) {
                 if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    icon = iconsHandler.getDrawableForContact(pojo, pojo.icon, getBackgroundColor(context), getTextColor(context), getThemeFillColor(context));
+                    icon = iconsHandler.getDrawableForContact(context, pojo, pojo.icon, getBackgroundColor(context), getTextColor(context), getThemeFillColor(context));
                 }
             }
         }

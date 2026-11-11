@@ -20,12 +20,7 @@ import android.os.UserManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -300,7 +295,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
             synchronized (this) {
                 if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    icon = iconsHandler.getDrawableIconForPackage(getClassName(), this.pojo.userHandle);
+                    icon = iconsHandler.getDrawableIconForPackage(context, getClassName(), this.pojo.userHandle);
                 }
             }
         }

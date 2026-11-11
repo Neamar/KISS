@@ -106,7 +106,7 @@ public class ExcludeAppSettingsFragment extends PreferenceFragmentCompat {
         switchPreference.setIcon(R.drawable.ic_launcher_white);
         Utilities.runAsync((task) -> {
             final ComponentName componentName = new ComponentName(app.packageName, app.activityName);
-            return iconsHandler.getDrawableIconForPackage(componentName, app.userHandle);
+            return iconsHandler.getDrawableIconForPackage(context, componentName, app.userHandle);
         }, (task, result) -> {
             if (!task.isCancelled()) {
                 switchPreference.setIcon((Drawable) result);
