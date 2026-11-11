@@ -218,7 +218,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             case "primary-color":
                 UIColors.clearColorCache();
                 break;
-            case "number-of-display-elements":
+            case "number-of-search-results":
                 QuerySearcher.clearMaxResultCountCache();
                 break;
             case "pref-fav-tags-list":

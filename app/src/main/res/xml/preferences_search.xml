@@ -43,6 +43,13 @@
             app:title="@string/phone_name" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/search_results_options">
+        <fr.neamar.kiss.preference.RangeEditTextPreference
+            app:defaultValue="20"
+            app:key="number-of-search-results"
+            app:title="@string/number_of_search_results"
+            app:maxValue="150"
+            app:minValue="1"
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
             app:defaultValue="default"
             app:entries="@array/resultsSizeEntries"
