@@ -2,23 +2,6 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/contacts_name">
     <SwitchPreference
-        app:defaultValue="false"
-        app:key="call-contact-on-click"
-        app:title="@string/contacts_call_on_click" />
-    <fr.neamar.kiss.preference.ContactActionPreference
-        app:defaultValue="sms"
-        app:key="contact-action-left"
-        app:title="@string/contact_action_left"
-        app:useSimpleSummaryProvider="true" />
-    <fr.neamar.kiss.preference.ContactActionPreference
-        app:defaultValue="call"
-        app:key="contact-action-right"
-        app:title="@string/contact_action_right"
-        app:useSimpleSummaryProvider="true" />
-    <Preference
-        app:selectable="false"
-        app:summary="@string/contact_actions_override_hint" />
-    <SwitchPreference
         app:defaultValue="true"
         app:disableDependentsState="true"
         app:key="contact-pack-mask"
@@ -32,4 +15,26 @@
         app:key="contacts-shape"
         app:summary="@string/contacts_shape_summary"
         app:title="@string/contacts_shape" />
+    <PreferenceCategory
+        app:key="contact-actions"
+        app:summary="@string/contact_actions_summary"
+        app:title="@string/contact_actions">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="call-contact-on-click"
+            app:title="@string/contacts_call_on_click" />
+        <fr.neamar.kiss.preference.ContactActionPreference
+            app:defaultValue="sms"
+            app:key="contact-action-left"
+            app:title="@string/contact_action_left"
+            app:useSimpleSummaryProvider="true" />
+        <fr.neamar.kiss.preference.ContactActionPreference
+            app:defaultValue="call"
+            app:key="contact-action-right"
+            app:title="@string/contact_action_right"
+            app:useSimpleSummaryProvider="true" />
+        <Preference
+            app:selectable="false"
+            app:summary="@string/contact_actions_override_hint" />
+    </PreferenceCategory>
 </PreferenceScreen>
