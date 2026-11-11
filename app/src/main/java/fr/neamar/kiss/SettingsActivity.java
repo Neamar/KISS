@@ -120,6 +120,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         MenuItemCompat.setIconTintList(menu.findItem(R.id.help), ColorStateList.valueOf(toolbarTextColor));
 
         searchItem = menu.findItem(R.id.search);
+        MenuItemCompat.setIconTintList(searchItem, ColorStateList.valueOf(toolbarTextColor));
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setQueryHint(getString(R.string.settings_search_hint));
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
