@@ -35,7 +35,6 @@ import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.TrimmingTextChangedListener;
 import fr.neamar.kiss.utils.Utilities;
-import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class CustomIconDialog extends DialogFragment {
@@ -173,7 +172,7 @@ public class CustomIconDialog extends DialogFragment {
         if (drawables != null) {
             CharSequence searchText = mSearch.getText();
             StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(searchText, true);
-            FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(normalized.codePoints);
+            FuzzyScore fuzzyScore = new FuzzyScore(normalized.codePoints, false);
             drawables.entrySet().forEach(entry -> {
                 ComponentName componentName = entry.getKey();
                 entry.getValue().forEach(info -> {

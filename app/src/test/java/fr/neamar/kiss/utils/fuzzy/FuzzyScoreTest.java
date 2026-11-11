@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
-class FuzzyScoreV2Test {
+class FuzzyScoreTest {
     private static final int first_letter_bonus = 1000000;
     private static final int adjacency_bonus = 100000;
     private static final int separator_bonus = 10000;
@@ -60,7 +60,7 @@ class FuzzyScoreV2Test {
     }
 
     private FuzzyScore createFuzzyScore(int[] query) {
-        return new FuzzyScoreV2(query, true)
+        return new FuzzyScore(query, true)
                 .setAdjacencyBonus(adjacency_bonus)
                 .setSeparatorBonus(separator_bonus)
                 .setCamelBonus(camel_bonus)

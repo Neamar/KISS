@@ -24,7 +24,6 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.Log;
-import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class RecordAdapter extends BaseAdapter implements SectionIndexer {
@@ -132,7 +131,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         this.results.addAll(updatedResults);
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
-        fuzzyScore = FuzzyFactory.createFuzzyScore(queryNormalized.codePoints, true);
+        fuzzyScore = new FuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
 
         if (isRefresh) {

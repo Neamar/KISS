@@ -21,7 +21,6 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
@@ -114,7 +113,7 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints, false);
         Set<String> excludedFavoriteIds = KissApplication.getApplication(context).getDataHandler().getExcludedFavorites();
 
         for (SettingPojo pojo : getPojos()) {
