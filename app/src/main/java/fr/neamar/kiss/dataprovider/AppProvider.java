@@ -99,7 +99,7 @@ public class AppProvider extends Provider<AppPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(queryNormalized.codePoints);
 
         Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

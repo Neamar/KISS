@@ -97,13 +97,13 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(queryNormalized.codePoints);
 
         // use different normalization for phone numbers
         FuzzyScore phoneFuzzyScore = null;
         if (PhoneUtils.isPhoneNumber(queryNormalized.toString())) {
             StringNormalizer.Result phoneQueryNormalized = PhoneNormalizer.normalizeWithResult(query);
-            phoneFuzzyScore = FuzzyFactory.createFuzzyScore(this, phoneQueryNormalized.codePoints);
+            phoneFuzzyScore = FuzzyFactory.createFuzzyScore(phoneQueryNormalized.codePoints);
         }
 
         for (ContactsPojo pojo : getPojos()) {

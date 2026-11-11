@@ -173,7 +173,7 @@ public class CustomIconDialog extends DialogFragment {
         if (drawables != null) {
             CharSequence searchText = mSearch.getText();
             StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(searchText, true);
-            FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(requireContext(), normalized.codePoints);
+            FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(normalized.codePoints);
             drawables.entrySet().forEach(entry -> {
                 ComponentName componentName = entry.getKey();
                 entry.getValue().forEach(info -> {

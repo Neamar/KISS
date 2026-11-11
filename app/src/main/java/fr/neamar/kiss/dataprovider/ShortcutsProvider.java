@@ -90,7 +90,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(queryNormalized.codePoints);
 
         Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
 

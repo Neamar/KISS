@@ -114,7 +114,7 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(context, queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(queryNormalized.codePoints);
         Set<String> excludedFavoriteIds = KissApplication.getApplication(context).getDataHandler().getExcludedFavorites();
 
         for (SettingPojo pojo : getPojos()) {

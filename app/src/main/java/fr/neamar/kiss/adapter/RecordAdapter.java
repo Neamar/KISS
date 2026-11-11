@@ -132,7 +132,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         this.results.addAll(updatedResults);
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
-        fuzzyScore = FuzzyFactory.createFuzzyScore(context, queryNormalized.codePoints, true);
+        fuzzyScore = FuzzyFactory.createFuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
 
         if (isRefresh) {
