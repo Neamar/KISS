@@ -16,6 +16,7 @@ import androidx.preference.PreferenceScreen;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.SettingsActivity;
 import fr.neamar.kiss.preference.AddSearchProviderPreference;
 import fr.neamar.kiss.preference.AddSearchProviderPreferenceDialogFragment;
@@ -57,6 +58,7 @@ public abstract class BaseSettingsFragment extends PreferenceFragmentCompat impl
     public void setPreferenceScreen(PreferenceScreen preferenceScreen) {
         if (preferenceScreen != null) {
             removeUnavailablePreferences(preferenceScreen);
+            markSubscreens(preferenceScreen);
         }
         super.setPreferenceScreen(preferenceScreen);
     }
@@ -81,6 +83,20 @@ public abstract class BaseSettingsFragment extends PreferenceFragmentCompat impl
         return extras == null
                 || (Build.VERSION.SDK_INT >= extras.getInt("minSdk", 0)
                 && Build.VERSION.SDK_INT <= extras.getInt("maxSdk", Integer.MAX_VALUE));
+    }
+
+    /**
+     * Display a chevron on preferences opening another screen, to tell them apart from actual settings
+     */
+    private void markSubscreens(PreferenceGroup group) {
+        for (int i = 0; i < group.getPreferenceCount(); i++) {
+            Preference preference = group.getPreference(i);
+            if (preference instanceof PreferenceGroup) {
+                markSubscreens((PreferenceGroup) preference);
+            } else if (preference.getFragment() != null) {
+                preference.setWidgetLayoutResource(R.layout.pref_subscreen_widget);
+            }
+        }
     }
 
     @Override
