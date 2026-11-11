@@ -28,6 +28,7 @@ public class SettingsFragment extends BaseSettingsFragment {
             R.xml.preferences_ux,
             R.xml.preferences_ux_tags_menu,
             R.xml.preferences_ux_wallpaper,
+            R.xml.preferences_ux_contact_actions,
             R.xml.preferences_search,
             R.xml.preferences_excluded,
             R.xml.preferences_import_export,
