@@ -21,10 +21,10 @@
     <string name="ui_empty_3">Quick access to most used apps</string>
     <string name="ui_empty_3_sub">KISS launcher learns from your habits</string>
     <string name="contacts_name">Contacts</string>
-    <string name="contacts_call_on_click">Click to call contacts</string>
+    <string name="contacts_call_on_click">Touch to call contacts</string>
     <string name="search_results_options">Results display</string>
     <string name="search_name">Web search</string>
-    <string name="search_provider_toggle">Links to web search providers</string>
+    <string name="search_provider_toggle">Web search</string>
     <string name="settings_name">Device settings</string>
     <string name="shortcuts_name">App shortcuts</string>
     <string name="timer_name">Start timer</string>
@@ -44,7 +44,7 @@
     <string name="reset_excluded_apps_name">Reset apps excluded from KISS</string>
     <string name="reset_excluded_apps_warn">Do you really want to reset your excluded app list?</string>
     <string name="reset_excluded_from_history_apps_name">Reset apps excluded from history</string>
-    <string name="reset_excluded_from_history_apps_warn">Do you really want to reset your excluded from history app list?</string>
+    <string name="reset_excluded_from_history_apps_warn">Reset the list of apps excluded from history?</string>
     <string name="reset_excluded_app_shortcuts_name">Reset apps excluded from shortcuts</string>
     <string name="reset_excluded_app_shortcuts_warn">Do you really want to reset your list of apps excluded from showing shortcuts?</string>
     <string name="settings_excluded_apps">Exclusions</string>
@@ -58,10 +58,10 @@
     <string name="reset_favorites_warn">Do you really want to reset your favorites?</string>
     <string name="keyboard_name">Display keyboard on start</string>
     <string name="keyboard_suggestions">Enable autocomplete/suggestions</string>
-    <string name="keyboard_hide">Hide keyboard when clicking on desktop</string>
+    <string name="keyboard_hide">Hide keyboard when touching outside the search bar</string>
     <string name="history_hide_desc">Hide history and intro screen, turn on widgets</string>
     <string name="history_hide_name">Minimalistic UI</string>
-    <string name="history_onclick_name">Show history on touch</string>
+    <string name="history_onclick_name">Show history when touching the home screen</string>
     <string name="history_onkeyboard_name">Show history with keyboard</string>
     <string name="history_onkeyboard_desc">Show history when software keyboard is visible</string>
     <string name="portrait_title">Force portrait mode</string>
@@ -81,7 +81,7 @@
     <string name="search_providers_delete">Delete web search providers</string>
     <string name="custom_search_provider">Add web search provider</string>
     <string name="search_provider_reset">Reset web search providers</string>
-    <string name="search_provider_default">Default web search provider on enter</string>
+    <string name="search_provider_default">Default web search provider</string>
     <string name="search_provider_reset_desc">Would you like to reset the list of search providers?</string>
     <string name="regenerate_shortcuts_desc">Would you like to regenerate the list of shortcuts?</string>
     <string name="regenerate_shortcuts_done">Shortcuts have been regenerated</string>
@@ -95,7 +95,7 @@
     <string name="search_provider_error_url">Please, use a valid URL</string>
     <string name="search_provider_error_uri_cannot_be_handle">URI provided cannot be handle by any application in your device.</string>
     <string name="search_provider_error_exists">A provider with this name already exists</string>
-    <string name="history_mode_name">History mode</string>
+    <string name="history_mode_name">History sort order</string>
     <string name="history_mode_desc">Select how history should be sorted</string>
     <string name="root_mode_desc">Use to hibernate apps</string>
     <string name="root_mode_name">Root mode</string>
@@ -168,12 +168,12 @@
     <string name="exclude_favorites_apps">Exclude favorites from apps list</string>
     <string name="exclude_favorites_history">Exclude favorites from history</string>
     <string name="favorites_hide">Favorites bar hidden by default</string>
-    <string name="pref_hide_navbar">Hide navbar</string>
+    <string name="pref_hide_navbar">Hide navigation bar</string>
     <string name="pref_hide_navbar_desc">Hide navigation bar and turn on immersive mode</string>
     <string name="pref_hide_statusbar">Hide status bar</string>
-    <string name="pref_hide_statusbar_desc">Hide notification bar and turn on immersive mode</string>
+    <string name="pref_hide_statusbar_desc">Hide status bar and turn on immersive mode</string>
     <string name="pref_hide_circle">Hide KISS circle and three-dots menu</string>
-    <string name="pref_hide_circle_desc">Buttons will still work, but they\'ll be invisible.</string>
+    <string name="pref_hide_circle_desc">Buttons will still work, but they\'ll be invisible</string>
     <string name="restart_desc">Fix theme issues and new contacts not displaying</string>
     <string name="restart_name">Restart KISS</string>
     <string name="restart_warn">Do you really want to restart KISS? If KISS is not your default launcher the app will simply quit.</string>
@@ -189,9 +189,9 @@
     <string name="color_transparent_dark">Transparently dark</string>
     <string name="color_transparent_white">Transparently white</string>
     <string name="color_transparent">Transparent</string>
-    <string name="color_system">Colors of System</string>
+    <string name="color_system">System color</string>
     <!-- Default title for color picker dialog [CHAR LIMIT=30] -->
-    <string name="color_picker_default_title">Select a Color</string>
+    <string name="color_picker_default_title">Select a color</string>
     <!-- Content description for a color square. -->
     <string name="color_swatch_description">Color %1$d</string>
     <!-- Content description for a selected color square. -->
@@ -209,10 +209,10 @@
     <string name="menu_widget_remove">Remove widget</string>
     <string name="rate_the_app">Rate the app</string>
     <string name="history_settings_summary">Reset your history, freeze it, …</string>
-    <string name="user_interface_summary">Themes, transparency and colors</string>
+    <string name="user_interface_summary">Themes, transparency, colors, icons and shapes</string>
     <string name="providers_summary">Adjust search results, add custom search engines, …</string>
     <string name="title_favorites">Favorites</string>
-    <string name="history_favorites_summary">Reset your favorites, remove favorites bar, …</string>
+    <string name="history_favorites_summary">Favorites bar, tags, tags menu, …</string>
     <string name="title_wallpaper">Live wallpaper interactions</string>
     <string name="freeze_history_summary">Keep history as-is until unchecked</string>
     <string name="enable_favorites_bar_summary_off">Only display favorites when pressing the KISS icon</string>
@@ -225,7 +225,7 @@
     <!-- Strings from tags menu -->
     <string name="screen_toggle_tags">Customize tags menu</string>
     <string name="pref_toggle_tags_select">Tags to show in menu</string>
-    <string name="pref_fav_tags_select">Tags to show in fav bar</string>
+    <string name="pref_fav_tags_select">Tags to show in favorites bar</string>
     <string name="ctx_menu">KISS Menu</string>
     <string name="pref_tags_menu">Add tags in menu</string>
     <string name="pref_tags_menu_summary">Pick tags from the ⋮ menu</string>
@@ -234,15 +234,15 @@
     <string name="popup_tags_actions">Available actions</string>
     <string name="show_history">Show history</string>
     <string name="show_untagged">Show untagged</string>
-    <string name="pref_show_untagged">Show untagged action</string>
+    <string name="pref_show_untagged">Show \'Untagged\' entry in tags menu</string>
     <string name="unable_to_initialize_shortcuts">Unable to initialize shortcuts. Is KISS your default launcher?</string>
-    <string name="pref_fav_tags_drawable_desc">Turn off to use less memory for many fav tags</string>
-    <string name="pref_fav_tags_drawable">Generate icons for fav tags</string>
+    <string name="pref_fav_tags_drawable_desc">Turn off to use less memory for many favorite tags</string>
+    <string name="pref_fav_tags_drawable">Generate icons for favorite tags</string>
     <string name="notification_support">Display a dot on apps with notifications</string>
     <string name="notification_dialog">Check KISS in the following menu to turn it on.</string>
     <string name="cant_pin_shortcut">Could not add shortcut. Is KISS your default launcher\?</string>
     <string name="copy_confirmation">Copied to clipboard</string>
-    <string name="large_favorites_bar">Use bigger favorites</string>
+    <string name="large_favorites_bar">Bigger favorites bar</string>
     <string name="menu_size_down">Reduce</string>
     <string name="menu_size_up">Enlarge</string>
     <string name="menu_widget_move_up">Move up</string>
@@ -297,12 +297,11 @@
     <string name="gesture_long_press_name">Action on long press</string>
     <string name="contacts_shape">Contacts shape</string>
     <string name="adaptive_shape_name">Background shape for icons</string>
-    <string name="force_adaptive">Force icon background</string>
+    <string name="force_adaptive">White background for old icons</string>
     <string name="force_adaptive_summary">For non-adaptive icons, reduce scale and place on a white background</string>
-    <string name="force_shape">Force background shape</string>
+    <string name="force_shape">Crop old icons to shape</string>
     <string name="force_shape_summary">Use adaptive mask on non-adaptive icons</string>
-    <string name="contact_pack_mask_summary">Use icon pack mask for contacts</string>
-    <string name="contact_pack_mask">Shape contact icons</string>
+    <string name="contact_pack_mask">Use icon pack mask for contacts</string>
     <string name="contacts_shape_summary">Shape of contacts icon</string>
     <string name="icons_category">Icons</string>
     <string name="loading">Loading…</string>
@@ -310,7 +309,7 @@
     <string name="export_settings">Export settings and tags</string>
     <string name="import_settings">Import settings and tags</string>
     <string name="import_settings_dialog">This will overwrite your current settings and tags with clipboard content. Existing tags will be REMOVED. Are you sure?</string>
-    <string name="theme_bar_color">Favorites bar and Search bar color</string>
+    <string name="theme_bar_color">Favorites bar and search bar color</string>
     <string name="adaptive_shape_summary">Shape of apps icon</string>
     <string name="shape_system_default">System default</string>
     <string name="shape_app">App shape</string>
@@ -354,14 +353,14 @@
     <string name="gesture_hide_keyboard">Hide keyboard</string>
     <string name="gesture_quicksettings">Display quick settings</string>
     <string name="tagged_result_sort_mode_default">Default, like history mode</string>
-    <string name="tagged_result_sort_mode_name">Tagged result sort mode</string>
+    <string name="tagged_result_sort_mode_name">Sort order for tagged results</string>
     <string name="tagged_result_sort_mode_desc">Select how results should be sorted when shown by tag</string>
     <string name="tags_category">Tags</string>
     <string name="menu_private_space">Private Space</string>
     <string name="unlock_private_space">Unlock Private Space</string>
     <string name="lock_private_space">Lock Private Space</string>
     <string name="pref_result_highlighting">Highlight search result</string>
-    <string name="pref_result_highlighting_summary">Defines how matches in results are highlighted.</string>
+    <string name="pref_result_highlighting_summary">Defines how matches in results are highlighted</string>
     <string name="result_highlighting_text_color">Change text color</string>
     <string name="result_highlighting_underline">Underline</string>
     <string name="result_highlighting_bold">Bold</string>
