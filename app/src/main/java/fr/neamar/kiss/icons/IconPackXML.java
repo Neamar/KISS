@@ -4,13 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PaintFlagsDrawFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
+import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -27,15 +21,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -60,13 +46,15 @@ public class IconPackXML implements IconPack {
     private float scaleFactor = 1.0f;
     private volatile boolean loaded = false;
     private Utilities.AsyncRun<Drawable> mLoadTask = null;
+    private final Context baseContext;
 
-    public IconPackXML(Context context, String packageName) {
-        iconPackPackageName = packageName;
+    public IconPackXML(Context baseContext, String packageName) {
+        this.iconPackPackageName = packageName;
+        this.baseContext = baseContext;
         // start async loading
         mLoadTask = Utilities.runAsync((task) -> {
             if (task == mLoadTask) {
-                load(context.getPackageManager());
+                load(baseContext.getPackageManager());
             }
             return null;
         }, (task, result) -> {
@@ -138,13 +126,13 @@ public class IconPackXML implements IconPack {
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
         CalendarDrawable calendar = getCalendarDrawable(componentName);
         if (calendar != null) {
-            return getDrawable(calendar);
+            return getDrawable(ctx, calendar);
         }
 
         Set<DrawableInfo> drawables = drawablesByComponent.get(componentName);
         if (drawables != null) {
             for (DrawableInfo info : drawables) {
-                Drawable drawable = getDrawable(info);
+                Drawable drawable = getDrawable(ctx, info);
                 if (drawable != null) {
                     return drawable;
                 }
@@ -154,8 +142,8 @@ public class IconPackXML implements IconPack {
     }
 
     @Override
-    public Drawable getDrawable(@NonNull DrawableInfo drawableInfo) {
-        return drawableInfo.getDrawable(null, packResources, getPackPackageName());
+    public Drawable getDrawable(@NonNull Context ctx, @NonNull DrawableInfo drawableInfo) {
+        return drawableInfo.getDrawable(ctx, packResources, getPackPackageName());
     }
 
     @Override
@@ -302,7 +290,7 @@ public class IconPackXML implements IconPack {
                             for (int i = 0; i < xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).startsWith("img")) {
                                     String drawableName = xpp.getAttributeValue(i);
-                                    Drawable drawable = getDrawable(new SimpleDrawable(drawableName));
+                                    Drawable drawable = getDrawable(baseContext, new SimpleDrawable(drawableName));
                                     if (drawable != null) {
                                         backImages.add(drawable);
                                     }
@@ -313,7 +301,7 @@ public class IconPackXML implements IconPack {
                         else if (xpp.getName().equals("iconmask")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                Drawable drawable = getDrawable(new SimpleDrawable(drawableName));
+                                Drawable drawable = getDrawable(baseContext, new SimpleDrawable(drawableName));
                                 if (drawable != null) {
                                     maskImage = drawable;
                                 }
@@ -323,7 +311,7 @@ public class IconPackXML implements IconPack {
                         else if (xpp.getName().equals("iconupon")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                Drawable drawable = getDrawable(new SimpleDrawable(drawableName));
+                                Drawable drawable = getDrawable(baseContext, new SimpleDrawable(drawableName));
                                 if (drawable != null) {
                                     frontImage = drawable;
                                 }
@@ -511,11 +499,11 @@ public class IconPackXML implements IconPack {
         protected abstract Integer getCachedDrawableId();
 
         @Nullable
-        public Drawable getDrawable(Context context, @NonNull Resources resources, @NonNull String iconPackPackageName) {
+        public Drawable getDrawable(@NonNull Context context, @NonNull Resources resources, @NonNull String iconPackPackageName) {
             try {
                 int drawableId = getDrawableId(resources, iconPackPackageName);
                 if (drawableId != 0) {
-                    return ResourcesCompat.getDrawable(resources, drawableId, null);
+                    return ResourcesCompat.getDrawable(resources, drawableId, context.getTheme());
                 }
             } catch (Resources.NotFoundException e) {
                 Log.w(TAG, "Unable to load resource for: " + getDrawableName(), e);

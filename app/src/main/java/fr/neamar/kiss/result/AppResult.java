@@ -295,7 +295,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
             synchronized (this) {
                 if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    icon = iconsHandler.getDrawableIconForPackage(getClassName(), this.pojo.userHandle);
+                    icon = iconsHandler.getDrawableIconForPackage(context, getClassName(), this.pojo.userHandle);
                 }
             }
         }
