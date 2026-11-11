@@ -19,10 +19,6 @@
         app:key="contact-actions"
         app:summary="@string/contact_actions_summary"
         app:title="@string/contact_actions">
-        <SwitchPreference
-            app:defaultValue="false"
-            app:key="call-contact-on-click"
-            app:title="@string/contacts_call_on_click" />
         <fr.neamar.kiss.preference.ContactActionPreference
             app:defaultValue="sms"
             app:key="contact-action-left"
@@ -36,5 +32,9 @@
         <Preference
             app:selectable="false"
             app:summary="@string/contact_actions_override_hint" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="call-contact-on-click"
+            app:title="@string/contacts_call_on_click" />
     </PreferenceCategory>
 </PreferenceScreen>
