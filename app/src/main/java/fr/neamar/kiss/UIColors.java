@@ -1,7 +1,6 @@
 package fr.neamar.kiss;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -177,6 +176,20 @@ public class UIColors {
     }
 
     public static void applyAccentColor(Activity activity) {
+        if (DynamicColors.isDynamicColorAvailable()) {
+            // use primary color from theme
+            int color = getColorWithoutFallback(activity, "primary-color");
+            if (color == COLOR_TRANSPARENT || color == COLOR_LIGHT_TRANSPARENT || color == COLOR_DARK_TRANSPARENT) {
+                color = COLOR_DEFAULT;
+            }
+
+            DynamicColorsOptions.Builder optionsBuilder = new DynamicColorsOptions.Builder();
+            if (color != COLOR_SYSTEM) {
+                optionsBuilder.setContentBasedSource(color);
+            }
+            DynamicColors.applyToActivityIfAvailable(activity, optionsBuilder.build());
+        }
+
         // We want to update the accent color for the theme.
         // Each possible accent color is defined as a custom overlay, we need to find the matching one and apply it
         Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(activity, "primary-color"));
@@ -257,19 +270,6 @@ public class UIColors {
 
         return primaryColor;
     }
-
-    public static void setDynamicColors(Application application) {
-        if (DynamicColors.isDynamicColorAvailable()) {
-            // use primary color from theme
-            int color = getColor(application, "primary-color", R.color.kiss_dynamic_color);
-            if (color == COLOR_TRANSPARENT || color == COLOR_LIGHT_TRANSPARENT || color == COLOR_DARK_TRANSPARENT) {
-                color = COLOR_DEFAULT;
-            }
-
-            DynamicColors.applyToActivitiesIfAvailable(application, new DynamicColorsOptions.Builder().setContentBasedSource(color).build());
-        }
-    }
-
 
     /**
      * Get black or white, whichever is more readable on the toolbar.

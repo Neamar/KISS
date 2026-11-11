@@ -28,7 +28,6 @@ import androidx.preference.PreferenceManager;
 
 import java.util.List;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
@@ -281,7 +280,6 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        UIColors.setDynamicColors(KissApplication.getApplication(mainActivity));
         TagDummyResult.resetShape();
         UIColors.clearColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);

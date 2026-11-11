@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 
-import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.widget.AppCompatEditText;
 
-public class SearchEditText extends TextInputEditText {
+public class SearchEditText extends AppCompatEditText {
     private OnEditorActionListener mEditorListener;
 
     public SearchEditText(Context context) {
