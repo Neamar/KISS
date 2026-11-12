@@ -44,4 +44,18 @@
         <item name="android:layout_marginBottom">@dimen/icon_margin_bottom</item>
     </style>
 
+    <!-- Toolbar content color depends on the primary color, see SettingsActivity -->
+    <style name="OverlayToolbarDarkText">
+        <item name="actionBarTheme">@style/ToolbarDarkText</item>
+    </style>
+
+    <style name="OverlayToolbarLightText">
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <style name="ToolbarDarkText" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
+    </style>
+
 </resources>

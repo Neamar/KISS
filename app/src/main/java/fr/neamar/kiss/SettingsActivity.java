@@ -5,6 +5,7 @@ import static fr.neamar.kiss.dataprovider.ProviderName.*;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -74,9 +75,12 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         super.onCreate(savedInstanceState);
 
+        // Theme the toolbar for the primary color, so views it creates later (search field, collapse button) match too
+        toolbarTextColor = UIColors.getTextColorOnPrimary(this);
+        getTheme().applyStyle(toolbarTextColor == Color.BLACK ? R.style.OverlayToolbarDarkText : R.style.OverlayToolbarLightText, true);
+
         setContentView(R.layout.activity_toolbar_content);
 
-        toolbarTextColor = UIColors.getTextColorOnPrimary(this);
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setTitleTextColor(toolbarTextColor);
         setSupportActionBar(toolbar);
