@@ -280,8 +280,8 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        UIColors.clearColorCache();
         TagDummyResult.resetShape();
+        UIColors.clearColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
     }
 }
