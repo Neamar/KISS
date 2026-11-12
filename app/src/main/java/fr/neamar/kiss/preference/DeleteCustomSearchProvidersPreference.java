@@ -65,6 +65,7 @@ public class DeleteCustomSearchProvidersPreference extends CustomSearchProviders
             }
         }
 
-        return true;
+        // Don't keep the deleted providers as the checked values
+        return false;
     }
 }
