@@ -41,12 +41,15 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
         if (exclusion != null) {
             switch (exclusion) {
                 case "edit-excluded-apps":
+                    getPreferenceScreen().setTitle(R.string.ui_excluded_apps);
                     addExcludedAppSettings();
                     break;
                 case "edit-excluded-from-history-apps":
+                    getPreferenceScreen().setTitle(R.string.ui_excluded_from_history_apps);
                     addExcludedFromHistoryAppSettings();
                     break;
                 case "edit-excluded-app-shortcuts":
+                    getPreferenceScreen().setTitle(R.string.ui_excluded_from_shortcuts_apps);
                     addExcludedShortcutAppSettings();
                     break;
             }
