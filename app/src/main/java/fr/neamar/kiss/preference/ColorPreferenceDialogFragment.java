@@ -45,13 +45,14 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
     }
 
     public void onColorSelected(@ColorInt int color) {
-        if (color != this.getPreference().getSelectedColor()) {
-            this.getPreference().setSelectedColor(color);
-            this.colorsAdapter.setSelectedColor(color);
-        }
+        ColorPreference preference = this.getPreference();
 
-        // Close the dialog
-        this.getDialog().dismiss();
+        // Close the dialog first: changing the color may recreate the settings, which would restore it
+        this.dismissNow();
+
+        if (color != preference.getSelectedColor()) {
+            preference.setSelectedColor(color);
+        }
     }
 
     private void selectButton(Button button) {
