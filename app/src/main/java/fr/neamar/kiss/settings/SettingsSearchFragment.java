@@ -60,6 +60,9 @@ public class SettingsSearchFragment extends PreferenceFragmentCompat {
     private void addSettings(@NonNull PreferenceGroup group, @Nullable CharSequence screenTitle, @NonNull String screenFragment) {
         for (int i = 0; i < group.getPreferenceCount(); i++) {
             Preference preference = group.getPreference(i);
+            if (!BaseSettingsFragment.isAvailable(preference)) {
+                continue;
+            }
             if (preference.isVisible() && !TextUtils.isEmpty(preference.getTitle())) {
                 settings.add(new SearchableSetting(preference, screenTitle, screenFragment));
             }

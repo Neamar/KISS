@@ -17,10 +17,6 @@ public class AdvancedSettingsFragment extends BaseSettingsFragment {
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferences_advanced, rootKey);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
-            removePreference("enable-notifications");
-        }
-
         setOnDialogClosedListener("enable-notifications", (pref, positiveResult) -> {
             if (positiveResult && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                 startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));

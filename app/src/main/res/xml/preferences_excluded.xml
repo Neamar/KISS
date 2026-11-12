@@ -26,6 +26,9 @@
         app:summary="@string/ui_excluded_apps_dialog_title"
         app:title="@string/ui_excluded_from_shortcuts_apps">
         <extra
+            android:name="minSdk"
+            android:value="26" />
+        <extra
             android:name="exclusion"
             android:value="edit-excluded-app-shortcuts" />
     </Preference>
@@ -40,5 +43,9 @@
     <fr.neamar.kiss.preference.DialogShowingPreference
         app:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
         app:key="reset-excluded-app-shortcuts"
-        app:title="@string/reset_excluded_app_shortcuts_name" />
+        app:title="@string/reset_excluded_app_shortcuts_name">
+        <extra
+            android:name="minSdk"
+            android:value="26" />
+    </fr.neamar.kiss.preference.DialogShowingPreference>
 </PreferenceScreen>

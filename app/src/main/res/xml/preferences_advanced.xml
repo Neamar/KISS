@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_advanced">
     <fr.neamar.kiss.preference.DialogShowingPreference
         app:defaultValue="true"
         app:dialogMessage="@string/notification_dialog"
         app:key="enable-notifications"
-        app:title="@string/notification_support" />
+        app:title="@string/notification_support">
+        <extra
+            android:name="minSdk"
+            android:value="22" />
+    </fr.neamar.kiss.preference.DialogShowingPreference>
     <Preference
         app:key="default-launcher"
         app:title="@string/default_launcher_title" />
