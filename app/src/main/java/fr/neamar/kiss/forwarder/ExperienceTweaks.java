@@ -202,10 +202,11 @@ public class ExperienceTweaks extends Forwarder {
                         mainActivity.openContextMenu(mainActivity.menuButton);
                         break;
                     case "go-to-homescreen":
-                        mainActivity.displayKissBar(false);
-                        if (!shouldShowKeyboard()) {
-                            mainActivity.hideKeyboard();
-                        }
+                        // Opens the default launcher; when that's KISS, onNewIntent() resets the search
+                        Intent home = new Intent(Intent.ACTION_MAIN);
+                        home.addCategory(Intent.CATEGORY_HOME);
+                        home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mainActivity.startActivity(home);
                         break;
                     case "launch-pojo": {
                         String launchId = prefs.getString(source + "-launch-id", "");
