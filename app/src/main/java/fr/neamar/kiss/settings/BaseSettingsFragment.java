@@ -1,7 +1,9 @@
 package fr.neamar.kiss.settings;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,6 +12,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
@@ -28,11 +31,57 @@ import fr.neamar.kiss.preference.DialogShowingPreferenceDialogFragment;
  */
 public abstract class BaseSettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String DIALOG_FRAGMENT_TAG = "fr.neamar.kiss.settings.DIALOG";
+    /**
+     * Key of the preference to scroll to when opening the screen, e.g. from search
+     */
+    public static final String ARG_SCROLL_TO_KEY = "scroll-to-key";
 
     protected SharedPreferences prefs;
 
     // Kept as a field: SharedPreferences only keeps weak references to listeners
     private final SharedPreferences.OnSharedPreferenceChangeListener restartListener = this::requireRestartIfNeeded;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Bundle args = getArguments();
+        String key = args == null ? null : args.getString(ARG_SCROLL_TO_KEY);
+        if (key != null) {
+            // Only once, not when coming back to this screen
+            args.remove(ARG_SCROLL_TO_KEY);
+            scrollToPreference(key);
+        }
+    }
+
+    @Override
+    public void setPreferenceScreen(PreferenceScreen preferenceScreen) {
+        if (preferenceScreen != null) {
+            removeUnavailablePreferences(preferenceScreen);
+        }
+        super.setPreferenceScreen(preferenceScreen);
+    }
+
+    private void removeUnavailablePreferences(PreferenceGroup group) {
+        for (int i = group.getPreferenceCount() - 1; i >= 0; i--) {
+            Preference preference = group.getPreference(i);
+            if (!isAvailable(preference)) {
+                group.removePreference(preference);
+            } else if (preference instanceof PreferenceGroup) {
+                removeUnavailablePreferences((PreferenceGroup) preference);
+            }
+        }
+    }
+
+    /**
+     * Some settings only exist on some versions of Android.
+     * Set in preferences XML with "minSdk" and "maxSdk" extras.
+     */
+    static boolean isAvailable(@NonNull Preference preference) {
+        Bundle extras = preference.peekExtras();
+        return extras == null
+                || (Build.VERSION.SDK_INT >= extras.getInt("minSdk", 0)
+                && Build.VERSION.SDK_INT <= extras.getInt("maxSdk", Integer.MAX_VALUE));
+    }
 
     @Override
     public void onResume() {
@@ -75,19 +124,6 @@ public abstract class BaseSettingsFragment extends PreferenceFragmentCompat impl
 
     protected DataHandler getDataHandler() {
         return KissApplication.getApplication(requireContext()).getDataHandler();
-    }
-
-    /**
-     * Remove a preference from this screen, if it exists
-     */
-    protected void removePreference(@NonNull String key) {
-        Preference preference = findPreference(key);
-        if (preference != null) {
-            PreferenceGroup parent = preference.getParent();
-            if (parent != null) {
-                parent.removePreference(preference);
-            }
-        }
     }
 
     /**

@@ -21,11 +21,19 @@
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-shortcuts"
-            app:title="@string/shortcuts_name" />
+            app:title="@string/shortcuts_name">
+            <extra
+                android:name="minSdk"
+                android:value="26" />
+        </SwitchPreference>
         <fr.neamar.kiss.preference.DialogShowingPreference
             app:dialogMessage="@string/regenerate_shortcuts_desc"
             app:key="reset-shortcuts"
-            app:title="@string/regenerate_shortcuts" />
+            app:title="@string/regenerate_shortcuts">
+            <extra
+                android:name="minSdk"
+                android:value="26" />
+        </fr.neamar.kiss.preference.DialogShowingPreference>
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-search"

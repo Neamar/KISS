@@ -28,11 +28,6 @@ public class SearchSettingsFragment extends BaseSettingsFragment {
             getPrefs().edit().putStringSet("selected-search-provider-names", SearchProvider.getSelectedSearchProviders(getPrefs())).apply();
         }
 
-        if (!ShortcutUtil.canDeviceShowShortcuts()) {
-            removePreference("enable-shortcuts");
-            removePreference("reset-shortcuts");
-        }
-
         setOnDialogClosedListener("reset-shortcuts", (pref, positiveResult) -> {
             if (positiveResult && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 // Remove all shortcuts

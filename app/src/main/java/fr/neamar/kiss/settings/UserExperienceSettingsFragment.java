@@ -1,7 +1,6 @@
 package fr.neamar.kiss.settings;
 
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,10 +21,6 @@ public class UserExperienceSettingsFragment extends BaseSettingsFragment {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferences_ux, rootKey);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-            removePreference("double-tap");
-        }
 
         for (String key : PREF_LISTS_WITH_DEPENDENCY) {
             updateItemToRun(key);

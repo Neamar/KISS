@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import fr.neamar.kiss.R;
 
 /**
@@ -17,24 +20,27 @@ import fr.neamar.kiss.R;
  */
 public class SettingsFragment extends BaseSettingsFragment {
     /**
-     * All preference XMLs, to initialize default values: they are not read when navigating between screens.
+     * All preference XMLs, with the screen displaying them.
+     * Used to initialize default values (they are not read when navigating between screens) and to search settings.
      * SettingsFragmentTest checks that no XML is missing.
      */
-    static final int[] PREFERENCES_XML = {
-            R.xml.preferences,
-            R.xml.preferences_history,
-            R.xml.preferences_favorites,
-            R.xml.preferences_ui,
-            R.xml.preferences_ui_theme,
-            R.xml.preferences_ux,
-            R.xml.preferences_ux_tags_menu,
-            R.xml.preferences_ux_wallpaper,
-            R.xml.preferences_ux_contact_actions,
-            R.xml.preferences_search,
-            R.xml.preferences_excluded,
-            R.xml.preferences_import_export,
-            R.xml.preferences_advanced,
-    };
+    static final Map<Integer, Class<? extends BaseSettingsFragment>> PREFERENCES_XML = new LinkedHashMap<>();
+
+    static {
+        PREFERENCES_XML.put(R.xml.preferences, SettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_history, HistorySettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_favorites, FavoritesSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_ui, UserInterfaceSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_ui_theme, ThemeCustomisationSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_ux, UserExperienceSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_ux_tags_menu, TagsMenuSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_ux_wallpaper, WallpaperSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_ux_contact_actions, ContactActionsSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_search, SearchSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_excluded, ExcludedEntriesSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_import_export, ImportExportSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_advanced, AdvancedSettingsFragment.class);
+    }
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
@@ -66,7 +72,7 @@ public class SettingsFragment extends BaseSettingsFragment {
                 .getBoolean(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, false)) {
             return;
         }
-        for (int xml : PREFERENCES_XML) {
+        for (int xml : PREFERENCES_XML.keySet()) {
             PreferenceManager.setDefaultValues(context, xml, true);
         }
     }
@@ -75,7 +81,7 @@ public class SettingsFragment extends BaseSettingsFragment {
      * Write the default value of all settings in the given shared preferences.
      */
     public static void setDefaultValues(@NonNull Context context, @NonNull String sharedPreferencesName) {
-        for (int xml : PREFERENCES_XML) {
+        for (int xml : PREFERENCES_XML.keySet()) {
             PreferenceManager.setDefaultValues(context, sharedPreferencesName, Context.MODE_PRIVATE, xml, true);
         }
     }

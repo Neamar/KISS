@@ -66,12 +66,18 @@
             app:key="notification-bar-color"
             app:title="@string/notification_bar_color">
             <extra
+                android:name="maxSdk"
+                android:value="34" />
+            <extra
                 android:name="restart"
                 android:value="launcher" />
         </fr.neamar.kiss.preference.ColorPreference>
         <SwitchPreference
             app:key="black-notification-icons"
             app:title="@string/black_notification_icons">
+            <extra
+                android:name="minSdk"
+                android:value="23" />
             <extra
                 android:name="restart"
                 android:value="launcher" />
@@ -133,13 +139,20 @@
             app:summary="@string/icons_themed_summary"
             app:title="@string/icons_themed_name">
             <extra
+                android:name="minSdk"
+                android:value="33" />
+            <extra
                 android:name="restart"
                 android:value="launcher" />
         </SwitchPreference>
         <SwitchPreference
             app:defaultValue="true"
             app:key="subicon-visible"
-            app:title="@string/show_subicons" />
+            app:title="@string/show_subicons">
+            <extra
+                android:name="minSdk"
+                android:value="26" />
+        </SwitchPreference>
         <SwitchPreference
             app:defaultValue="false"
             app:key="icons-hide"

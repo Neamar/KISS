@@ -130,7 +130,11 @@
         <SwitchPreference
             app:defaultValue="false"
             app:key="double-tap"
-            app:title="@string/double_tap_to_lock" />
+            app:title="@string/double_tap_to_lock">
+            <extra
+                android:name="minSdk"
+                android:value="28" />
+        </SwitchPreference>
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/tags_category">
         <SwitchPreference

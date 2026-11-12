@@ -9,18 +9,12 @@ import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class ExcludedEntriesSettingsFragment extends BaseSettingsFragment {
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferences_excluded, rootKey);
-
-        if (!ShortcutUtil.canDeviceShowShortcuts()) {
-            removePreference("edit-excluded-app-shortcuts");
-            removePreference("reset-excluded-app-shortcuts");
-        }
 
         setOnDialogClosedListener("reset-excluded-apps", (pref, positiveResult) -> {
             if (positiveResult) {
