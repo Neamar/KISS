@@ -18,4 +18,4 @@ You'll now be able to find this contact by alias:
 
 ![Example contact alias](/screenshots/contact-alias.png)
 
-> On some older phones, you'll need to restart KISS for the change to be visible: `⋮, KISS Settings, Advanced Settings, Restart KISS`.
+> On some older phones, you'll need to restart KISS for the change to be visible: `⋮, KISS settings, Advanced, Restart KISS`.

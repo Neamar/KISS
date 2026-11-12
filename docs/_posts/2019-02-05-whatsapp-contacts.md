@@ -6,7 +6,9 @@ description: "How to start a WhatsApp conversation from KISS?"
 type: Document
 ---
 
-Although KISS doesn't support WhatsApp natively, you can use a workaround to display some of your WhatsApp contact in KISS.
+To message your contacts with WhatsApp instead of SMS, use [contact actions](/contacts/contact-actions/): the buttons next to each contact can open WhatsApp directly.
+
+Contact actions only work for contacts, though. For a WhatsApp group, or to get a separate result opening a WhatsApp conversation, you can add a shortcut to KISS instead.
 
 > Note: since Android 7, you'll need to define KISS as your default launcher to be able to add WhatsApp contacts.
 

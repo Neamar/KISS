@@ -100,7 +100,7 @@ public class ExperienceTweaks extends Forwarder {
 
             @Override
             public void onLongPress(@NonNull MotionEvent e) {
-                doAction("gesture-long-press", prefs.getString("gesture-long-press", "do-nothing"));
+                doAction("gesture-long-press", prefs.getString("gesture-long-press", "display-apps"));
 
                 super.onLongPress(e);
             }

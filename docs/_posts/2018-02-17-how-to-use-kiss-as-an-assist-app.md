@@ -15,6 +15,13 @@ However, if you'd rather keep your default launcher and only use KISS for search
 
 The way to set KISS as the default assist app differs slightly across Android versions, but the general gist is the same.
 
+### Android 9 and above
+Assist apps are still supported, they're now called "digital assistant app".
+
+Go to `Settings > Apps > Default apps > Digital assistant app`, then select KISS. The exact wording changes between devices: if you can't find it, search for "assistant" in the system settings.
+
+How you open the assistant depends on your device and navigation mode: long press the Home button with 3-button navigation, or swipe up from a bottom corner / hold the power button with gesture navigation.
+
 ### Android 8
 Open the system settings, then search for "assist app".
 

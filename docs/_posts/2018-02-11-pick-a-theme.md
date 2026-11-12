@@ -6,38 +6,37 @@ description: "A quick description of available themes."
 type: Document
 ---
 
-KISS comes with 7 pre-defined themes:
+KISS comes with 4 pre-defined themes:
 
-* Light theme, which is the theme enabled by default
-* Semi-transparent theme, a small deviation from the light theme which lets you see part of your wallpaper
-* Transparent theme, where you can completely see the wallpaper, but might have issues reading your app names on dark wallpapers
-* Dark theme, if you like vampires and low luminosity
-* Dark-semi-transparent theme, to dim your wallpaper
-* Dark transparent theme, for really light wallpapers
+* Opaque, a plain background which hides your wallpaper
+* Semi-transparent, which lets you see part of your wallpaper
+* Transparent, the theme enabled by default, where you can completely see the wallpaper, but might have issues reading your app names
 * AMOLED dark, almost black theme
+
+The first three exist in a light and a dark version (if you like vampires and low luminosity): this is controlled by a separate `Dark theme` setting, which can be `No` (the default), `Yes` or `System default` to follow your device. AMOLED dark is always dark.
 
 Not all themes will work correctly with all wallpapers, make sure you pick a theme that you like, and that doesn't block legibility!
 
-To change your theme, click `⋮, KISS Settings, User interface, Theme interface`.
+To change your theme, click `⋮, KISS settings, Appearance`, then select `Theme` and `Dark theme`.
 
 Below is a preview of the built-in themes.
 
-## Light theme
+## Opaque
 ![Light theme](/screenshots/light-theme.png)
 
-## Semi-transparent theme
+## Semi-transparent
 ![Semi-transparent theme](/screenshots/semi-transparent-theme.png)
 
-## Transparent theme
+## Transparent
 ![Transparent theme](/screenshots/transparent-theme.png)
 
-## Dark theme
+## Opaque, with dark theme
 ![Dark theme](/screenshots/dark-theme.png)
 
-## Dark-semi-transparent theme
+## Semi-transparent, with dark theme
 ![Dark-semi-transparent theme](/screenshots/dark-semi-transparent-theme.png)
 
-## Dark transparent theme
+## Transparent, with dark theme
 ![Dark transparent theme](/screenshots/dark-transparent-theme.png)
 
 ## AMOLED dark
