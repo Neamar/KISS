@@ -42,6 +42,7 @@ import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
+import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.settings.BaseSettingsFragment;
 import fr.neamar.kiss.settings.SettingsFragment;
@@ -222,6 +223,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 break;
             case "primary-color":
                 UIColors.clearColorCache();
+                TagDummyResult.resetShape();
                 break;
             case "number-of-search-results":
                 QuerySearcher.clearMaxResultCountCache();

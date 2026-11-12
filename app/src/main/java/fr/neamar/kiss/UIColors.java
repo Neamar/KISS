@@ -26,6 +26,8 @@ import com.google.android.material.color.DynamicColorsOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.neamar.kiss.result.TagDummyResult;
+
 public class UIColors {
     public static final int COLOR_DEFAULT = 0xFF4CAF50;
 
@@ -203,6 +205,9 @@ public class UIColors {
                 windowDecorViewTheme.applyStyle(overlayAccentResId, true);
             }
         }
+
+        clearColorCache();
+        TagDummyResult.resetShape();
     }
 
     private static Resources.Theme getWindowDecorViewTheme(@NonNull Activity activity) {
@@ -247,7 +252,7 @@ public class UIColors {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             return COLOR_TRANSPARENT;
         } else {
-            return getColor(KissApplication.getApplication(context), "notification-bar-color", R.color.kiss_notification_bar_color);
+            return getColor(context, "notification-bar-color", R.color.kiss_notification_bar_color);
         }
     }
 
@@ -300,7 +305,7 @@ public class UIColors {
         if (isFavorite && !PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-favorites-bar", true)) {
             return Color.WHITE;
         }
-        return getColor(context, "primary-color", R.color.kiss_notification_dot_color);
+        return getThemedColor(context, "primary-color", R.attr.kiss_notification_dot_color);
     }
 
     /**
@@ -358,13 +363,9 @@ public class UIColors {
     @ColorInt
     public static int[] getIconColors(Context context) {
         int[] colors = new int[2];
-        context = KissApplication.getApplication(context);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            colors[0] = ContextCompat.getColor(context, R.color.kiss_icon_background); // background
-            colors[1] = ContextCompat.getColor(context, R.color.kiss_icon_foreground); // foreground
-        } else {
-            colors[0] = Color.WHITE; // background
-            colors[1] = getPrimaryColor(context); // foreground
+        try (TypedArray array = context.obtainStyledAttributes(new int[]{R.attr.kiss_icon_background, R.attr.kiss_icon_foreground})) {
+            colors[0] = array.getColor(0, Color.WHITE); // background
+            colors[1] = array.getColor(1, getPrimaryColor(context)); // foreground
         }
         return colors;
     }
