@@ -188,7 +188,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         }
 
         final UserHandle userHandle = new UserHandle(context, info.getProfile());
-        return KissApplication.getApplication(context).getIconsHandler().getDrawableIconForPackage(info.provider, userHandle);
+        return KissApplication.getApplication(context).getIconsHandler().getDrawableIconForPackage(context, info.provider, userHandle);
     }
 
     private static class WidgetInfo {
