@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/title_history">
-    <fr.neamar.kiss.preference.DialogShowingPreference
-        app:dialogMessage="@string/reset_warn"
-        app:key="reset-history"
-        app:title="@string/reset_name" />
-    <fr.neamar.kiss.preference.RangeEditTextPreference
-        app:defaultValue="20"
-        app:key="number-of-display-elements"
-        app:title="@string/number_of_display_items"
-        app:maxValue="150"
-        app:minValue="0"
-        app:useSimpleSummaryProvider="true" />
     <ListPreference
         app:defaultValue="recency"
         app:entries="@array/historyModeEntries"
@@ -19,14 +9,38 @@
         app:key="history-mode"
         app:summary="@string/history_mode_desc"
         app:title="@string/history_mode_name" />
+    <fr.neamar.kiss.preference.RangeEditTextPreference
+        app:defaultValue="20"
+        app:key="number-of-display-elements"
+        app:title="@string/number_of_display_items"
+        app:maxValue="150"
+        app:minValue="0"
+        app:useSimpleSummaryProvider="true" />
     <fr.neamar.kiss.preference.FreezeHistorySwitch
         app:defaultValue="false"
         app:key="freeze-history"
         app:summary="@string/freeze_history_summary"
         app:title="@string/freeze_history_name" />
-    <PreferenceCategory
-        app:key="alternate-history-inputs-section"
-        app:title="@string/alternate_history_inputs">
+    <PreferenceCategory app:title="@string/settings_excluded_apps">
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="exclude-favorites-history"
+            app:title="@string/exclude_favorites_history" />
+        <Preference
+            app:fragment="fr.neamar.kiss.settings.ExcludeAppSettingsFragment"
+            app:key="edit-excluded-from-history-apps"
+            app:summary="@string/ui_excluded_apps_dialog_title"
+            app:title="@string/ui_excluded_from_history_apps">
+            <extra
+                android:name="exclusion"
+                android:value="edit-excluded-from-history-apps" />
+        </Preference>
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            app:dialogMessage="@string/reset_excluded_from_history_apps_warn"
+            app:key="reset-excluded-from-history-apps"
+            app:title="@string/reset_excluded_from_history_apps_name" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/alternate_history_inputs">
         <SwitchPreference
             app:defaultValue="false"
             app:key="enable-phone-history"
@@ -39,5 +53,11 @@
             app:defaultValue="false"
             app:key="enable-notification-history"
             app:title="@string/enable_notification_history" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            app:dialogMessage="@string/reset_warn"
+            app:key="reset-history"
+            app:title="@string/reset_name" />
     </PreferenceCategory>
 </PreferenceScreen>

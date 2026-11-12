@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_system">
+    <Preference
+        app:key="default-launcher"
+        app:title="@string/default_launcher_title" />
+    <fr.neamar.kiss.preference.RootModeSwitch
+        app:defaultValue="false"
+        app:key="root-mode"
+        app:summary="@string/root_mode_desc"
+        app:title="@string/root_mode_name" />
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/restart_warn"
+        app:key="restart"
+        app:summary="@string/restart_desc"
+        app:title="@string/restart_name" />
+</PreferenceScreen>

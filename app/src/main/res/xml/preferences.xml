@@ -2,6 +2,26 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/activity_setting">
     <Preference
+        app:fragment="fr.neamar.kiss.settings.AppearanceSettingsFragment"
+        app:key="appearance"
+        app:summary="@string/user_interface_summary"
+        app:title="@string/title_appearance" />
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.HomeScreenSettingsFragment"
+        app:key="home-screen"
+        app:summary="@string/home_screen_summary"
+        app:title="@string/title_home_screen" />
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.SearchBarSettingsFragment"
+        app:key="search-bar"
+        app:summary="@string/search_bar_summary"
+        app:title="@string/title_search_bar" />
+    <Preference
+        app:fragment="fr.neamar.kiss.settings.SearchSettingsFragment"
+        app:key="providers"
+        app:summary="@string/providers_summary"
+        app:title="@string/title_providers" />
+    <Preference
         app:fragment="fr.neamar.kiss.settings.HistorySettingsFragment"
         app:key="history_category"
         app:summary="@string/history_settings_summary"
@@ -10,35 +30,22 @@
         app:fragment="fr.neamar.kiss.settings.FavoritesSettingsFragment"
         app:key="history_favorites"
         app:summary="@string/history_favorites_summary"
-        app:title="@string/title_favorites" />
+        app:title="@string/title_favorites_tags" />
     <Preference
-        app:fragment="fr.neamar.kiss.settings.UserInterfaceSettingsFragment"
-        app:key="ui-holder"
-        app:summary="@string/user_interface_summary"
-        app:title="@string/title_ui" />
-    <Preference
-        app:fragment="fr.neamar.kiss.settings.UserExperienceSettingsFragment"
-        app:key="ux-holder"
-        app:summary="@string/user_experience_summary"
-        app:title="@string/title_ux" />
-    <Preference
-        app:fragment="fr.neamar.kiss.settings.SearchSettingsFragment"
-        app:key="providers"
-        app:summary="@string/providers_summary"
-        app:title="@string/title_providers" />
-    <Preference
-        app:fragment="fr.neamar.kiss.settings.ExcludedEntriesSettingsFragment"
-        app:key="exclude_apps_category"
-        app:summary="@string/ui_excluded_apps_dialog_title"
-        app:title="@string/settings_excluded_apps" />
+        app:fragment="fr.neamar.kiss.settings.GesturesSettingsFragment"
+        app:key="gestures"
+        app:summary="@string/gestures_summary"
+        app:title="@string/gestures" />
     <Preference
         app:fragment="fr.neamar.kiss.settings.ImportExportSettingsFragment"
         app:key="importexport"
-        app:title="@string/title_import_export" />
+        app:summary="@string/backup_restore_summary"
+        app:title="@string/title_backup_restore" />
     <Preference
-        app:fragment="fr.neamar.kiss.settings.AdvancedSettingsFragment"
-        app:key="advanced"
-        app:title="@string/title_advanced" />
+        app:fragment="fr.neamar.kiss.settings.SystemSettingsFragment"
+        app:key="system"
+        app:summary="@string/system_summary"
+        app:title="@string/title_system" />
     <Preference
         app:key="rate-app"
         app:title="@string/rate_the_app" />
