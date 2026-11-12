@@ -17,7 +17,7 @@ The first three exist in a light and a dark version (if you like vampires and lo
 
 Not all themes will work correctly with all wallpapers, make sure you pick a theme that you like, and that doesn't block legibility!
 
-To change your theme, click `⋮, KISS Settings, Appearance`, then select `Theme` and `Dark theme`.
+To change your theme, click `⋮, KISS settings, Appearance`, then select `Theme` and `Dark theme`.
 
 Below is a preview of the built-in themes.
 

@@ -83,7 +83,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When searching and adding a result to favorites, the search remains visible and the favorite appears
 
 #### Minimalistic mode on for favorites
-* [ ] In settings, Home screen, enable Minimalistic mode and Minimalistic mode for favorites
+* [ ] In settings, Home screen, enable "Minimalistic UI" and "Favorites bar hidden by default"
 * [ ] Favorites bar is hidden by default
 * [ ] Touching the screen on an empty area displays history and the favorites
 * [ ] When entering a search query, favorite bar is hidden
@@ -93,7 +93,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When kiss bar is opened, favorites are displayed
 
 #### When using the internal favorite bar
-* [ ] In settings, Favorites & tags, disable "Show favorites above search bar", disable Minimalistic mode and Minimalistic mode for favorites
+* [ ] In settings, Favorites & tags, disable "Show favorites above search bar", disable "Minimalistic UI" and "Favorites bar hidden by default"
 * [ ] The external favorite bar is hidden by default
 * [ ] When entering a search query, external favorite bar is hidden
 * [ ] When search query is removed, external favorite bar is still hidden
@@ -104,12 +104,12 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When kiss bar is opened, favorites' context menu can be interacted with
 
 #### When using the external favorite bar, with transparent favorite bar
-* [ ] In settings, Favorites & tags, enable "Show favorites above search bar" and "Transparent favorite bar"
+* [ ] In settings, Favorites & tags, enable "Show favorites above search bar" and "Transparent favorites bar"
 * [ ] The bar background is transparent
 
 
 #### When using the internal favorite bar, with transparent favorite bar
-* [ ] In settings, Favorites & tags, disable "Show favorites above search bar" and "Transparent favorite bar"
+* [ ] In settings, Favorites & tags, disable "Show favorites above search bar" and "Transparent favorites bar"
 * [ ] The bar background is *not* transparent, but still green.
 
 #### First run
@@ -183,8 +183,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] A widget containing its own vertical list (e.g. agenda/calendar) scrolls its inner list normally with one finger
 * [ ] Gestures on empty areas behave exactly as in non-minimalistic KISS: tap reveals history/favorites as configured, double tap locks (or shows the accessibility prompt), long press and swipes trigger their configured actions (e.g. swipe down opens notifications)
 * [ ] Visible spacing is present between stacked widgets
-* [ ] Advanced setting "Enable widget scrolling" off: widget area no longer scrolls, new widgets shrink to fit the screen, widgets stay clickable, widgets are stacked edge-to-edge, and "Space between widgets" is disabled (not clickable)
-* [ ] Home screen setting "Space between widgets": changing it updates existing widget spacing immediately after leaving settings; the row is disabled (not clickable) while "Enable widget scrolling" is off
+* [ ] Home screen setting "Space between widgets": changing it updates existing widget spacing immediately after leaving settings; the row is disabled (not clickable) while "Minimalistic UI" is off
 * [ ] After scrolling, long-press menu actions (resize, move up/down, reconfigure, remove) apply to the correct widget
 * [ ] Widget order is preserved after rotation and after process death
 
@@ -216,15 +215,27 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Search for a long text. Make sure a web search option is displayed as a result
 * [ ] From Search sources, disable Contacts. From now on, they are not displayed anymore in search or history
 * [ ] From Search sources, disable Device settings. From now on, they are not displayed anymore in search or history
-* [ ] From Search sources, disable Phone numbers. From now on, they are not displayed anymore in search or history
+* [ ] From Search sources, disable Direct phone calls. From now on, typing a phone number doesn't display a "Call" result
+* [ ] From Search sources, disable Math formulae. From now on, typing `2+2` doesn't display a result
+* [ ] From Search sources, disable Timers. From now on, typing `5m` doesn't display a result
 * [ ] From Search sources, disable Shortcuts. From now on, they are not displayed anymore in search or history
 * [ ] From Search sources, disable Web Search. From now on, they are not displayed anymore in search
+* [ ] Set "Max number of search results" to 2. Searching never displays more than 2 results, history is not impacted
+* [ ] Set "Max number of history results" (in History settings) to 2. History never displays more than 2 results, search is not impacted
 * [ ] Add a search provider. Ensure it is available in the select search provider setting
 * [ ] Select a search provider. Ensure it is available in search
 * [ ] Reset search providers. Ensure only default providers are visible
 * [ ] Delete a search provider. Ensure it is not available in search anymore
 * [ ] Disable search providers. Disable minimalistic mode. Enter a query with no results. Help text is displayed.
 * [ ] Disable search providers. Enable minimalistic mode. Enter a query with no results. Nothing is displayed
+
+### Settings search
+* [ ] Pressing the search icon in settings displays a search field, with an empty list
+* [ ] Typing part of a setting title, summary or choice (e.g. "hexagon") lists matching settings, with the name of their screen
+* [ ] Selecting a result opens its screen, scrolled to the setting
+* [ ] Selecting a result linking to another screen (e.g. "Apps excluded from history") opens that screen with the right content
+* [ ] From a search result, pressing back goes back to the main settings screen, and search is closed
+* [ ] Rotating the device while searching doesn't crash (search is closed)
 
 ### System settings
 * [ ] Change default launcher option opens system dialog to pick a launcher

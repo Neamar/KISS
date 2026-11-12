@@ -1,5 +1,5 @@
 ---
-title: What are the different history modes?
+title: What are the different history sort orders?
 categories:
   - History
 description: "What is the difference between frequently, frecency, recently, etc."
@@ -8,11 +8,11 @@ type: Document
 
 By default, KISS history will display the most recently used items first.
 
-You can customize this behavior from `⋮, KISS Settings, History`. Select `History sort order`.
+You can customize this behavior from `⋮, KISS settings, History`. Select `History sort order`.
 
-> Note that changing this mode will not change the search results.
+> Note that changing the sort order will not change the search results.
 
-![History modes](/screenshots/history-modes.png)
+![History sort order](/screenshots/history-modes.png)
 
 
 ## Accessed recently first
