@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/title_history">
+    <fr.neamar.kiss.preference.DialogShowingPreference
+        app:dialogMessage="@string/reset_warn"
+        app:key="reset-history"
+        app:title="@string/reset_name" />
+    <fr.neamar.kiss.preference.RangeEditTextPreference
+        app:defaultValue="20"
+        app:key="number-of-display-elements"
+        app:title="@string/number_of_display_items"
+        app:maxValue="150"
+        app:minValue="0"
+        app:useSimpleSummaryProvider="true" />
+    <ListPreference
+        app:defaultValue="recency"
+        app:entries="@array/historyModeEntries"
+        app:entryValues="@array/historyModeValues"
+        app:key="history-mode"
+        app:summary="@string/history_mode_desc"
+        app:title="@string/history_mode_name" />
+    <fr.neamar.kiss.preference.FreezeHistorySwitch
+        app:defaultValue="false"
+        app:key="freeze-history"
+        app:summary="@string/freeze_history_summary"
+        app:title="@string/freeze_history_name" />
+    <PreferenceCategory
+        app:key="alternate-history-inputs-section"
+        app:title="@string/alternate_history_inputs">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="enable-phone-history"
+            app:title="@string/enable_phone" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-app-history"
+            app:title="@string/enable_app" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="enable-notification-history"
+            app:title="@string/enable_notification_history" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.preference.DialogPreference;
 
 public class DialogShowingPreference extends DialogPreference {
+    private OnDialogClosedListener onDialogClosedListener = null;
+
     public DialogShowingPreference(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -24,4 +26,22 @@ public class DialogShowingPreference extends DialogPreference {
         super(context);
     }
 
+    /**
+     * Set by the fragment displaying this preference, so it is restored with the fragment
+     * (unlike a callback stored on the dialog fragment, which is lost when the dialog is recreated)
+     */
+    public void setOnDialogClosedListener(@Nullable OnDialogClosedListener onDialogClosedListener) {
+        this.onDialogClosedListener = onDialogClosedListener;
+    }
+
+    void onDialogClosed(boolean positiveResult) {
+        if (onDialogClosedListener != null) {
+            onDialogClosedListener.onDialogClosed(this, positiveResult);
+        }
+    }
+
+    @FunctionalInterface
+    public interface OnDialogClosedListener {
+        void onDialogClosed(@NonNull DialogShowingPreference preference, boolean positiveResult);
+    }
 }

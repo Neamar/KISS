@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="@string/screen_toggle_tags">
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="pref-tags-menu"
+        app:title="@string/pref_tags_menu" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="pref-show-untagged"
+        app:title="@string/pref_show_untagged" />
+    <SwitchPreference
+        app:defaultValue="false"
+        app:key="pref-tags-menu-dismiss"
+        app:title="@string/pref_tags_menu_dismiss" />
+    <fr.neamar.kiss.preference.TagsSelectPreference
+        app:defaultValue="@array/toggleTagsDefault"
+        app:key="pref-toggle-tags-list"
+        app:title="@string/pref_toggle_tags_select" />
+</PreferenceScreen>
