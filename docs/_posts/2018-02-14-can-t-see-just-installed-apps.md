@@ -8,7 +8,7 @@ type: Document
 
 When you install a new app, KISS relies on the device to be notified that the app list has changed.
 
-Sadly, some devices don't broadcast this change properly, and you'll have to manually restart KISS to pick up the change. You can do so by going to `⋮, KISS settings, System, Restart KISS`.
+Sadly, some devices don't broadcast this change properly, and you'll have to manually restart KISS to pick up the change. You can do so by going to `⋮, KISS settings, Advanced, Restart KISS`.
 
 > Please note that some apps don't provide a "launcher intent", which means they can't be opened from the launcher. This typically includes themes, assistant apps, alternative lock screens or Watch Faces.
 
