@@ -14,7 +14,8 @@ Here are some example minimalist configurations from KISS.
 
 From `⋮, KISS Settings, Appearance`:
 
-* Theme: select dark transparent theme
+* Theme: select transparent
+* Dark theme: select yes
 * Status bar color: select transparent
 * Primary color: select gray
 
@@ -28,7 +29,7 @@ From `⋮, KISS Settings, Home screen`:
 
 From `⋮, KISS Settings, Appearance`:
 
-* Theme: select transparent theme
+* Theme: select transparent
 * Status bar color: select transparent
 * Primary color: select teal
 
@@ -53,7 +54,7 @@ Finally, find an icon pack that you like ([Aeon](https://play.google.com/store/a
 
 From `⋮, KISS Settings, Appearance`:
 
-* Theme: select transparent theme
+* Theme: select transparent
 * Status bar color: select transparent
 * Primary color: select dark gray
 
