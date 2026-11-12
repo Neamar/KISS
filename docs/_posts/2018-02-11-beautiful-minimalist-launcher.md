@@ -12,13 +12,13 @@ Here are some example minimalist configurations from KISS.
 ![Image: Derk Wola](/screenshots/example-minimalist-1.png)
 > Image: Derk Wola
 
-From `⋮, KISS Settings, User interface`:
+From `⋮, KISS Settings, Appearance`:
 
-* Theme interface: select dark transparent theme
-* Notification bar color: select transparent
+* Theme: select dark transparent theme
+* Status bar color: select transparent
 * Primary color: select gray
 
-From `⋮, KISS Settings, User experience`:
+From `⋮, KISS Settings, Home screen`:
 
 * Minimalistic UI: enable
 
@@ -26,18 +26,24 @@ From `⋮, KISS Settings, User experience`:
 ![Image: Benjamin Slade](/screenshots/example-minimalist-2.png)
 > Image: Benjamin Slade
 
-From `⋮, KISS Settings, User interface`:
+From `⋮, KISS Settings, Appearance`:
 
-* Theme interface: select transparent theme
-* Notification bar color: select transparent
+* Theme: select transparent theme
+* Status bar color: select transparent
 * Primary color: select teal
-* Transparent search bar: enable
-* Transparent favorites bar: enable
 
-From `⋮, KISS Settings, User experience`:
+From `⋮, KISS Settings, Search bar & keyboard`:
+
+* Transparent search bar: enable
+
+From `⋮, KISS Settings, Favorites & tags`:
+
+* Transparent favorites bar: enable
+* Show tags: enable
+
+From `⋮, KISS Settings, Home screen`:
 
 * Minimalistic UI: disable
-* Show app tag: enable
 
 Finally, find an icon pack that you like ([Aeon](https://play.google.com/store/apps/details?id=stealthychief.theme.aeon) in the screenshot)!
 
@@ -45,30 +51,39 @@ Finally, find an icon pack that you like ([Aeon](https://play.google.com/store/a
 ![Image: Muhammad Samir](/screenshots/example-minimalist-3.png)
 > Image: Muhammad Samir
 
-From `⋮, KISS Settings, User interface`:
+From `⋮, KISS Settings, Appearance`:
 
-* Theme interface: select transparent theme
-* Notification bar color: select transparent
+* Theme: select transparent theme
+* Status bar color: select transparent
 * Primary color: select dark gray
+
+From `⋮, KISS Settings, Search bar & keyboard`:
+
 * Transparent search bar: enable
 
-From `⋮, KISS Settings, User experience`:
+From `⋮, KISS Settings, Home screen`:
 
-* Hide favorites bar: enable
 * Minimalistic UI: enable
+* Favorites bar hidden by default: enable
 
 ## Example 4: minimalist, widget, rounded
 ![Image: Guillaume Besson](/screenshots/example-minimalist-4.png)
 > Image: Guillaume Besson
 
-From `⋮, KISS Settings, User interface`:
+From `⋮, KISS Settings, Appearance`:
 
-* Notification bar color: select green
+* Status bar color: select green
+* Rounded search and favorites bar corners: enable
+
+From `⋮, KISS Settings, Search bar & keyboard`:
+
+* Bigger search bar: enable
+
+From `⋮, KISS Settings, Favorites & tags`:
+
 * Transparent favorites bar: enable
-* Large search bar: enable
-* Rounded bars corners: enable
 
-From `⋮, KISS Settings, User experience`:
+From `⋮, KISS Settings, Home screen`:
 
 * Minimalistic UI: enable
 
@@ -78,14 +93,20 @@ Press `⋮`, then select "Add widget" and [pick a widget you like](https://play.
 ![Image: Shubham Thakur](/screenshots/example-minimalist-5.jpg)
 > Image: Shubham Thakur
 
-From `⋮, KISS Settings, User interface`:
+From `⋮, KISS Settings, Appearance`:
 
-* Notification bar color: select transparent
-* UI color: select white
+* Status bar color: select transparent
+* Primary color: select white
+
+From `⋮, KISS Settings, Search bar & keyboard`:
+
+* Bigger search bar: disable
+
+From `⋮, KISS Settings, Favorites & tags`:
+
 * Transparent favorites bar: enable
-* Large search bar: disable
 
-From `⋮, KISS Settings, User experience`:
+From `⋮, KISS Settings, Home screen`:
 
 * Minimalistic UI: enable
 

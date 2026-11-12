@@ -10,7 +10,7 @@ KISS only supports widget in `Minimalistic UI`.
 
 ## Enable `Minimalistic UI`
 
-From the settings, enable `Minimalistic UI` (`⋮, KISS Settings, User experience`, enable `Minimalistic UI`).
+From the settings, enable `Minimalistic UI` (`⋮, KISS Settings, Home screen`, enable `Minimalistic UI`).
 
 While you're there, you may want to enable some other settings in the `Minimalistic UI` section to make sure you're happy with the end result!
 

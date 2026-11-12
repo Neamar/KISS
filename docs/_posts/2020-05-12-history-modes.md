@@ -8,7 +8,7 @@ type: Document
 
 By default, KISS history will display the most recently used items first.
 
-You can customize this behavior from `⋮, KISS Settings, History Settings`. Select `History mode`.
+You can customize this behavior from `⋮, KISS Settings, History`. Select `History sort order`.
 
 > Note that changing this mode will not change the search results.
 

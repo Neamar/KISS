@@ -11,7 +11,7 @@ If *your phone is rooted*, you can enable an option to hibernate an app from KIS
 Hibernated app do not consume any battery or memory until you launch them again.
 
 
-Navigate to `⋮, KISS Settings, Advanced Settings`. Select `Root mode`.
+Navigate to `⋮, KISS Settings, System`. Enable `Root mode`.
 
 > If you get an error message saying "Unable to gain root privileges", your device is not rooted and you won't be able to hibernate apps. Check online how to root your device (this will depend on your model), then try again!
 
