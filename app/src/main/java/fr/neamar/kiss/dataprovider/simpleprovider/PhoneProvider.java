@@ -2,9 +2,11 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,9 +27,11 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
 
     private final boolean deviceIsPhone;
     private final Context context;
+    private final SharedPreferences prefs;
 
     public PhoneProvider(Context context) {
         this.context = context;
+        this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
         PackageManager pm = context.getPackageManager();
         deviceIsPhone = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
     }
@@ -35,7 +39,7 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
     @Override
     public void requestResults(String query, Searcher searcher) {
         // Append an item only if query looks like a phone number and device has phone capabilities
-        if (deviceIsPhone && PhoneUtils.isPhoneNumber(query)) {
+        if (deviceIsPhone && prefs.getBoolean("enable-phone", true) && PhoneUtils.isPhoneNumber(query)) {
             searcher.addResult(getResult(query, true));
         }
     }

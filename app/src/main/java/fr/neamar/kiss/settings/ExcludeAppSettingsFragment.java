@@ -1,9 +1,12 @@
 package fr.neamar.kiss.settings;
 
+import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,9 +15,11 @@ import androidx.preference.SwitchPreference;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -36,12 +41,15 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
         if (exclusion != null) {
             switch (exclusion) {
                 case "edit-excluded-apps":
+                    getPreferenceScreen().setTitle(R.string.ui_excluded_apps);
                     addExcludedAppSettings();
                     break;
                 case "edit-excluded-from-history-apps":
+                    getPreferenceScreen().setTitle(R.string.ui_excluded_from_history_apps);
                     addExcludedFromHistoryAppSettings();
                     break;
                 case "edit-excluded-app-shortcuts":
+                    getPreferenceScreen().setTitle(R.string.ui_excluded_from_shortcuts_apps);
                     addExcludedShortcutAppSettings();
                     break;
             }
@@ -52,7 +60,10 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
         addExcludedApps(
                 app -> getDataHandler().addToExcluded(app),
                 app -> getDataHandler().removeFromExcluded(app),
-                AppPojo::isExcluded
+                AppPojo::isExcluded,
+                "excluded-apps",
+                app -> getDataHandler().getExcluded().contains(app.getComponentName()),
+                AppPojo::setExcluded
         );
     }
 
@@ -60,7 +71,10 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
         addExcludedApps(
                 app -> getDataHandler().addToExcludedFromHistory(app),
                 app -> getDataHandler().removeFromExcludedFromHistory(app),
-                AppPojo::isExcludedFromHistory
+                AppPojo::isExcludedFromHistory,
+                "excluded-apps-from-history",
+                app -> getDataHandler().getExcludedFromHistory().contains(app.id),
+                AppPojo::setExcludedFromHistory
         );
     }
 
@@ -68,14 +82,20 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
         addExcludedApps(
                 app -> getDataHandler().addToExcludedShortcutApps(app),
                 app -> getDataHandler().removeFromExcludedShortcutApps(app),
-                AppPojo::isExcludedShortcuts
+                AppPojo::isExcludedShortcuts,
+                DataHandler.PREF_KEY_EXCLUDED_SHORTCUT_APPS,
+                app -> getDataHandler().getExcludedShortcutApps().contains(app.packageName),
+                AppPojo::setExcludedShortcuts
         );
     }
 
     private void addExcludedApps(
             @NonNull Consumer<AppPojo> onExcludedListener,
             @NonNull Consumer<AppPojo> onIncludedListener,
-            @NonNull Function<AppPojo, Boolean> isExcludedCallback
+            @NonNull Function<AppPojo, Boolean> isExcludedCallback,
+            @NonNull String prefKey,
+            @NonNull Function<AppPojo, Boolean> isExcludedInPrefs,
+            @NonNull BiConsumer<AppPojo, Boolean> setExcluded
     ) {
         List<AppPojo> appList = getDataHandler().getApplications();
         IconsHandler iconsHandler = KissApplication.getApplication(requireContext()).getIconsHandler();
@@ -89,11 +109,27 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
         Arrays.sort(apps, new NameComparator());
 
         final PreferenceScreen excludedAppsScreen = getPreferenceScreen();
-        for (AppPojo app : apps) {
-            SwitchPreference pref = createExcludeAppSwitch(requireContext(), iconsHandler, isExcludedCallback, app, onExcludedListener, onIncludedListener);
+        final SwitchPreference[] switches = new SwitchPreference[apps.length];
+        for (int i = 0; i < apps.length; i++) {
+            switches[i] = createExcludeAppSwitch(requireContext(), iconsHandler, isExcludedCallback, apps[i], onExcludedListener, onIncludedListener);
 
-            excludedAppsScreen.addPreference(pref);
+            excludedAppsScreen.addPreference(switches[i]);
         }
+
+        setOnDialogClosedListener("reset-excluded-list", (pref, positiveResult) -> {
+            if (positiveResult) {
+                getPrefs().edit().putStringSet(prefKey, null).apply();
+                // Sync apps and switches with the default list, which may not be empty (KISS itself)
+                for (int i = 0; i < apps.length; i++) {
+                    boolean excluded = isExcludedInPrefs.apply(apps[i]);
+                    setExcluded.accept(apps[i], excluded);
+                    switches[i].setChecked(excluded);
+                }
+                // Shortcuts depend on both the excluded apps and the apps excluded from shortcuts
+                getDataHandler().reload(SHORTCUTS);
+                Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private SwitchPreference createExcludeAppSwitch(

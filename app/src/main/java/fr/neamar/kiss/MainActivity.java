@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             public void onReceive(Context context, Intent intent) {
                 if (REFRESH_FAVORITES.equals(intent.getAction())) {
                     onFavoriteChange();
-                    if (prefs.getBoolean("exclude-favorites-history", false)) {
+                    if (prefs.getBoolean("exclude-favorites-history", true)) {
                         // update search to reflect favorite change, if the "exclude favorites" option is active
                         updateSearchRecords();
                     }

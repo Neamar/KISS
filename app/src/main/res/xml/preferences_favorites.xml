@@ -47,6 +47,10 @@
             app:defaultValue="false"
             app:key="exclude-favorites-apps"
             app:title="@string/exclude_favorites_apps" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="exclude-favorites-history"
+            app:title="@string/exclude_favorites_history" />
         <fr.neamar.kiss.preference.DialogShowingPreference
             app:dialogMessage="@string/reset_favorites_warn"
             app:key="reset-favorites"
@@ -58,10 +62,11 @@
             app:key="tags-visible"
             app:title="@string/tags_visible" />
         <ListPreference
+            app:defaultValue="default"
             app:entries="@array/taggedResultSortModeEntries"
             app:entryValues="@array/taggedResultSortModeValues"
             app:key="tagged-result-sort-mode"
-            app:summary="@string/tagged_result_sort_mode_desc"
+            app:useSimpleSummaryProvider="true"
             app:title="@string/tagged_result_sort_mode_name" />
         <Preference
             app:fragment="fr.neamar.kiss.settings.TagsMenuSettingsFragment"

@@ -10,6 +10,7 @@
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-shortcuts"
+            app:summary="@string/shortcuts_summary"
             app:title="@string/shortcuts_name">
             <extra
                 android:name="minSdk"
@@ -18,18 +19,37 @@
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-search"
+            app:summary="@string/search_provider_summary"
             app:title="@string/search_provider_toggle" />
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-settings"
+            app:summary="@string/settings_summary"
             app:title="@string/settings_name" />
         <SwitchPreference
             app:defaultValue="true"
             app:key="enable-timer"
             app:summary="@string/timer_description"
             app:title="@string/timer_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-calculator"
+            app:summary="@string/calculator_description"
+            app:title="@string/calculator_name" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="enable-phone"
+            app:summary="@string/phone_description"
+            app:title="@string/phone_name" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/search_results_options">
+        <fr.neamar.kiss.preference.RangeEditTextPreference
+            app:defaultValue="20"
+            app:key="number-of-search-results"
+            app:title="@string/number_of_search_results"
+            app:maxValue="150"
+            app:minValue="1"
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
             app:defaultValue="default"
             app:entries="@array/resultsSizeEntries"
@@ -65,14 +85,9 @@
             app:entries="@array/resultHighlightingEntries"
             app:entryValues="@array/resultHighlightingValues"
             app:key="pref-result-highlighting"
-            app:summary="@string/pref_result_highlighting_summary"
             app:title="@string/pref_result_highlighting" />
     </PreferenceCategory>
-    <PreferenceCategory>
-        <SwitchPreference
-            app:defaultValue="false"
-            app:key="use-fuzzy-score-v1"
-            app:title="Use legacy fuzzy search algorithm" />
+    <PreferenceCategory app:title="@string/search_result_types">
         <Preference
             app:fragment="fr.neamar.kiss.settings.AppsSettingsFragment"
             app:key="search-apps"

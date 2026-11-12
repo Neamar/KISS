@@ -23,9 +23,4 @@ public class SelectCustomSearchProvidersPreference extends CustomSearchProviders
         super(context);
     }
 
-    public void refresh() {
-        setEntries();
-        notifyChanged();
-    }
-
 }

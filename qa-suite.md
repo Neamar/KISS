@@ -51,7 +51,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Adding an excluded app hides the app from app list
 * [ ] Resetting excluded app removes all excluded apps
 * [ ] Resetting excluded apps allows apps previously hidden to be displayed in app list
-* [ ] No more than Max number of results in search is displayed to the user
+* [ ] No more than Max number of history results is displayed in history, and no more than Max number of search results (in Search settings) when searching
 * [ ] Changing the value updates the history dynamically
 * [ ] Freezing history prevents new items from being added to history
 * [ ] Unchecking "Freeze history" ensures history is populated again
@@ -122,7 +122,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Loader circle is properly tinted according to the primary color
 * [ ] Launcher icon is properly tinted according to the primary color
 * [ ] KISS bar background is properly tinted according to the primary color
-* [ ] Notification bar is of the selected color on the main screen theme
+* [ ] Status bar is of the selected color on the main screen theme
 
 #### Icons pack
 * [ ] TODO: theme icon packs
@@ -159,8 +159,8 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When using minimalistic mode with history-touch, display history then press home, history is hidden
 * [ ] When scrolling down on the history, the keyboard disappears
 * [ ] Disable show keyboard on start
-* [ ] When using immersive mode for the notification bar, notification bar disappears when pressing home
-* [ ] When using immersive mode for the notification bar, notification bar appears when searching for a text
+* [ ] When using immersive mode for the status bar, status bar disappears when pressing home
+* [ ] When using immersive mode for the status bar, status bar appears when searching for a text
 * [ ] When using immersive mode for the navigation bar, navigation bar disappears when pressing home
 
 ##### Widgets

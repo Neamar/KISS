@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class CalculatorProviderTest {
-	private static final CalculatorProvider provider = new CalculatorProvider();
+	private static final CalculatorProvider provider = new CalculatorProvider(null);
 	private static final Pattern pattern = provider.computableRegexp;
 
 	@ParameterizedTest

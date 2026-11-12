@@ -19,7 +19,6 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.UserHandle;
-import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
@@ -99,7 +98,7 @@ public class AppProvider extends Provider<AppPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints, false);
 
         Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

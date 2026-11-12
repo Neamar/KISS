@@ -4,17 +4,21 @@
     <SwitchPreference
         app:defaultValue="false"
         app:key="pref-tags-menu"
+        app:summary="@string/pref_tags_menu_summary"
         app:title="@string/pref_tags_menu" />
     <SwitchPreference
         app:defaultValue="false"
+        app:dependency="pref-tags-menu"
         app:key="pref-show-untagged"
         app:title="@string/pref_show_untagged" />
     <SwitchPreference
         app:defaultValue="false"
+        app:dependency="pref-tags-menu"
         app:key="pref-tags-menu-dismiss"
         app:title="@string/pref_tags_menu_dismiss" />
     <fr.neamar.kiss.preference.TagsSelectPreference
         app:defaultValue="@array/toggleTagsDefault"
+        app:dependency="pref-tags-menu"
         app:key="pref-toggle-tags-list"
         app:title="@string/pref_toggle_tags_select" />
 </PreferenceScreen>

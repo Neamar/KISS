@@ -50,5 +50,9 @@ public abstract class CustomSearchProvidersPreference extends MultiSelectListPre
         setEnabled(!availableSearchProviders.isEmpty());
     }
 
+    public void refresh() {
+        setEntries();
+        notifyChanged();
+    }
 
 }

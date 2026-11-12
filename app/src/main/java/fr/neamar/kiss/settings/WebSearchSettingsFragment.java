@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
+import fr.neamar.kiss.preference.CustomSearchProvidersPreference;
 import fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference;
-import fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference;
 
 public class WebSearchSettingsFragment extends BaseSettingsFragment {
 
@@ -38,9 +38,11 @@ public class WebSearchSettingsFragment extends BaseSettingsFragment {
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @Nullable String key) {
         if ("available-search-providers".equals(key)) {
-            SelectCustomSearchProvidersPreference preference = findPreference("selected-search-provider-names");
-            if (preference != null) {
-                preference.refresh();
+            for (String listKey : new String[]{"selected-search-provider-names", "deleting-search-providers-names"}) {
+                CustomSearchProvidersPreference preference = findPreference(listKey);
+                if (preference != null) {
+                    preference.refresh();
+                }
             }
             refreshDefaultSearchProvider();
         } else if ("selected-search-provider-names".equals(key)) {

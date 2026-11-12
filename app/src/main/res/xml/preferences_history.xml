@@ -7,12 +7,12 @@
         app:entries="@array/historyModeEntries"
         app:entryValues="@array/historyModeValues"
         app:key="history-mode"
-        app:summary="@string/history_mode_desc"
+        app:useSimpleSummaryProvider="true"
         app:title="@string/history_mode_name" />
     <fr.neamar.kiss.preference.RangeEditTextPreference
         app:defaultValue="20"
         app:key="number-of-display-elements"
-        app:title="@string/number_of_display_items"
+        app:title="@string/number_of_history_results"
         app:maxValue="150"
         app:minValue="0"
         app:useSimpleSummaryProvider="true" />
@@ -35,10 +35,6 @@
                 android:name="exclusion"
                 android:value="edit-excluded-from-history-apps" />
         </Preference>
-        <fr.neamar.kiss.preference.DialogShowingPreference
-            app:dialogMessage="@string/reset_excluded_from_history_apps_warn"
-            app:key="reset-excluded-from-history-apps"
-            app:title="@string/reset_excluded_from_history_apps_name" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/alternate_history_inputs">
         <SwitchPreference

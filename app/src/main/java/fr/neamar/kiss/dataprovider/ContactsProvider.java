@@ -24,7 +24,6 @@ import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.PhoneUtils;
-import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
@@ -97,13 +96,13 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints, false);
 
         // use different normalization for phone numbers
         FuzzyScore phoneFuzzyScore = null;
         if (PhoneUtils.isPhoneNumber(queryNormalized.toString())) {
             StringNormalizer.Result phoneQueryNormalized = PhoneNormalizer.normalizeWithResult(query);
-            phoneFuzzyScore = FuzzyFactory.createFuzzyScore(this, phoneQueryNormalized.codePoints);
+            phoneFuzzyScore = new FuzzyScore(phoneQueryNormalized.codePoints, false);
         }
 
         for (ContactsPojo pojo : getPojos()) {

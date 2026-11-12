@@ -44,7 +44,7 @@ public class HistorySearcher extends Searcher {
     @Override
     protected Void doInBackground(Void... voids) {
         // Ask for records
-        boolean excludeFavorites = prefs.getBoolean("exclude-favorites-history", false);
+        boolean excludeFavorites = prefs.getBoolean("exclude-favorites-history", true);
 
         MainActivity activity = activityWeakReference.get();
         if (activity == null)

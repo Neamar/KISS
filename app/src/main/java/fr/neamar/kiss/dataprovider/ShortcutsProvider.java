@@ -23,7 +23,6 @@ import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.ShortcutUtil;
-import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
@@ -90,7 +89,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints, false);
 
         Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
 

@@ -1,7 +1,5 @@
 package fr.neamar.kiss.settings;
 
-import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
-
 import android.Manifest;
 import android.app.role.RoleManager;
 import android.content.Intent;
@@ -64,14 +62,6 @@ public class HistorySettingsFragment extends BaseSettingsFragment {
                 phoneHistory.setSummary(R.string.enable_phone_call_screening_summary);
             }
         }
-
-        setOnDialogClosedListener("reset-excluded-from-history-apps", (pref, positiveResult) -> {
-            if (positiveResult) {
-                getPrefs().edit().putStringSet("excluded-apps-from-history", null).apply();
-                getDataHandler().reload(APPS); // reload because it's cached in AppPojo#excludedFromHistory
-                Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
-            }
-        });
 
         setOnDialogClosedListener("reset-history", (pref, positiveResult) -> {
             if (positiveResult) {

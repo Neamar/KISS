@@ -1,13 +1,10 @@
 package fr.neamar.kiss.settings;
 
-import static fr.neamar.kiss.dataprovider.ProviderName.*;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationManagerCompat;
@@ -36,14 +33,6 @@ public class AppsSettingsFragment extends BaseSettingsFragment {
                 return false;
             });
         }
-
-        setOnDialogClosedListener("reset-excluded-apps", (pref, positiveResult) -> {
-            if (positiveResult) {
-                getPrefs().edit().putStringSet("excluded-apps", null).apply();
-                getDataHandler().reload(APPS);
-                Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override
