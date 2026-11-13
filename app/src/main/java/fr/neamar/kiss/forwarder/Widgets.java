@@ -21,7 +21,6 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
@@ -78,12 +77,6 @@ class Widgets extends Forwarder {
      */
     private WidgetScrollView widgetScroll;
     /**
-     * Listener that enables/disables scrolling based on widget overflow.
-     * Stored for removal in {@link #onDestroy()} to prevent memory leaks.
-     */
-    @Nullable
-    private ViewTreeObserver.OnGlobalLayoutListener widgetScrollListener;
-    /**
      * Id of the widget currently being added, to delete it if the user cancels:
      * a cancelled bind request or configuration may not return the id.
      */
@@ -105,38 +98,7 @@ class Widgets extends Forwarder {
         requestAppWidgetPicked = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::appWidgetPicked);
         requestAppWidgetBound = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::appWidgetBound);
 
-        // Automatically enable scrolling when widgets overflow the viewport,
-        // disable when they fit.  The listener fires after every layout pass
-        // (add, remove, resize, rotation) and keeps the touch contract in sync.
-        widgetScrollListener = () -> widgetScroll.setScrollingEnabled(shouldScroll());
-        widgetArea.getViewTreeObserver().addOnGlobalLayoutListener(widgetScrollListener);
-
         restoreWidgets();
-    }
-
-    /**
-     * Whether the total widget height exceeds the visible viewport.
-     * Drives {@link WidgetScrollView#setScrollingEnabled(boolean)} so the
-     * two-finger scroll gesture is only active when needed.
-     */
-    private boolean shouldScroll() {
-        if (widgetArea.getChildCount() == 0) return false;
-        return getTotalWidgetHeight() > widgetScroll.getHeight();
-    }
-
-    /**
-     * Sum of all widget heights including bottom margins.
-     */
-    private int getTotalWidgetHeight() {
-        int total = 0;
-        for (int i = 0; i < widgetArea.getChildCount(); i++) {
-            View child = widgetArea.getChildAt(i);
-            total += child.getLayoutParams().height;
-            if (child.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-                total += ((LinearLayout.LayoutParams) child.getLayoutParams()).bottomMargin;
-            }
-        }
-        return total;
     }
 
     /**
@@ -545,10 +507,6 @@ class Widgets extends Forwarder {
     }
 
     public void onDestroy() {
-        if (widgetScrollListener != null) {
-            widgetArea.getViewTreeObserver().removeOnGlobalLayoutListener(widgetScrollListener);
-            widgetScrollListener = null;
-        }
         mAppWidgetHost.stopListening();
     }
 
