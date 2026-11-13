@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -45,7 +47,7 @@ public abstract class ResultWithTags<T extends PojoWithTags> extends Result<T> {
     }
 
     private void launchEditTagsDialog(final Context context, RecordAdapter parent, final T pojo) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
         // Create the tag dialog
