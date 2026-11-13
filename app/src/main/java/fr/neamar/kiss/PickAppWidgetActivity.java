@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -62,8 +61,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         final WidgetListAdapter adapter = new WidgetListAdapter();
         widgetView.setAdapter(adapter);
         final Context context = getApplicationContext();
-        final List<MenuItem> adapterList = new ArrayList<>();
-        Utilities.runAsync(t -> {
+        Utilities.<List<WidgetInfo>>runAsync(t -> {
             // get widget list
             List<WidgetInfo> widgetList = getWidgetList(context);
 
@@ -71,30 +69,28 @@ public class PickAppWidgetActivity extends AppCompatActivity {
             Collections.sort(widgetList, Comparator.comparing(o -> o.appName));
 
             // assuming the list is sorted by apps, add titles with app name
+            List<WidgetInfo> adapterList = new ArrayList<>();
             String lastApp = null;
             for (WidgetInfo item : widgetList) {
                 if (!item.appName.equals(lastApp)) {
                     lastApp = item.appName;
-                    adapterList.add(new ItemTitle(item.appName));
+                    adapterList.add(new WidgetInfo(item.appName, item.appName, null, null));
                 }
-                adapterList.add(new ItemWidget(item));
+                adapterList.add(item);
             }
-            return null;
-        }, (task, result) -> {
+            return adapterList;
+        }, (task, adapterList) -> {
             progressContainer.setVisibility(View.GONE);
             adapter.setItems(adapterList);
         });
+    }
 
-        adapter.setOnItemClickListener((menuItem) -> {
-            if (menuItem instanceof ItemWidget) {
-                WidgetInfo info = ((ItemWidget) menuItem).getInfo();
-                Intent intent = new Intent();
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.appWidgetInfo.getProfile());
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
+    private void onWidgetSelected(@NonNull AppWidgetProviderInfo appWidgetInfo) {
+        Intent intent = new Intent();
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, appWidgetInfo.provider);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, appWidgetInfo.getProfile());
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @WorkerThread
@@ -153,43 +149,23 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         if (preview != null)
             return preview;
 
-        Resources resources = null;
-        try {
-            resources = context.getPackageManager().getResourcesForApplication(info.provider.getPackageName());
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.w(TAG, "getResourcesForApplication " + info.provider.getPackageName(), e);
-        }
-        if (resources != null) {
-            try {
-                preview = resources.getDrawableForDensity(info.previewImage, density);
-            } catch (Resources.NotFoundException ignored) {
-                //ignored
-            }
-            if (preview != null)
-                return preview;
-
-            try {
-                preview = resources.getDrawableForDensity(info.icon, density);
-            } catch (Resources.NotFoundException ignored) {
-                //ignored
-            }
-            if (preview != null)
-                return preview;
-        }
-
         final UserHandle userHandle = new UserHandle(context, info.getProfile());
         return KissApplication.getApplication(context).getIconsHandler().getDrawableIconForPackage(info.provider, userHandle);
     }
 
+    /**
+     * A row of the picker: either a widget, or the title of an app (without appWidgetInfo)
+     */
     private static class WidgetInfo {
         final String appName;
         final String widgetName;
         final String widgetDesc;
+        @Nullable
         final AppWidgetProviderInfo appWidgetInfo;
         int cachedIconWidth = 0;
         int cachedIconHeight = 0;
 
-        protected WidgetInfo(String app, String name, String description, AppWidgetProviderInfo appWidgetInfo) {
+        protected WidgetInfo(String app, String name, String description, @Nullable AppWidgetProviderInfo appWidgetInfo) {
             this.appName = app;
             this.widgetName = name;
             this.widgetDesc = description;
@@ -197,59 +173,8 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         }
     }
 
-    public interface MenuItem {
-        @NonNull
-        String getName();
-    }
-
-    private static class ItemTitle implements MenuItem {
-        @NonNull
-        private final String name;
-
-        protected ItemTitle(@NonNull String string) {
-            this.name = string;
-        }
-
-        @NonNull
-        @Override
-        public String getName() {
-            return name;
-        }
-    }
-
-    private static class ItemWidget implements MenuItem {
-        private final WidgetInfo info;
-
-        protected ItemWidget(@NonNull WidgetInfo info) {
-            this.info = info;
-        }
-
-        @NonNull
-        @Override
-        public String getName() {
-            return info.widgetName;
-        }
-
-        public WidgetInfo getInfo() {
-            return info;
-        }
-    }
-
-    private static class WidgetListAdapter extends RecyclerView.Adapter<ViewHolder> {
-        private final List<MenuItem> mList = new ArrayList<>(0);
-        private OnItemClickListener mOnItemClickListener = null;
-
-        protected WidgetListAdapter() {
-            super();
-        }
-
-        public interface OnItemClickListener {
-            void onItemClick(MenuItem menuItem);
-        }
-
-        void setOnItemClickListener(OnItemClickListener listener) {
-            mOnItemClickListener = listener;
-        }
+    private class WidgetListAdapter extends RecyclerView.Adapter<ViewHolder> {
+        private final List<WidgetInfo> mList = new ArrayList<>(0);
 
         @NonNull
         @Override
@@ -263,28 +188,19 @@ public class PickAppWidgetActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            MenuItem content = getItem(position);
+            WidgetInfo content = mList.get(position);
             holder.setContent(content);
             holder.textView.setOnClickListener(v -> {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(content);
+                if (content.appWidgetInfo != null) {
+                    onWidgetSelected(content.appWidgetInfo);
                 }
             });
         }
 
-        public void setItems(Collection<MenuItem> list) {
+        public void setItems(Collection<WidgetInfo> list) {
             mList.clear();
             mList.addAll(list);
             notifyDataSetChanged();
-        }
-
-        private MenuItem getItem(int position) {
-            return mList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return getItem(position).hashCode();
         }
 
         @Override
@@ -294,7 +210,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
 
         @Override
         public int getItemViewType(int position) {
-            return getItem(position) instanceof ItemTitle ? 1 : 0;
+            return mList.get(position).appWidgetInfo == null ? 1 : 0;
         }
     }
 
@@ -308,14 +224,13 @@ public class PickAppWidgetActivity extends AppCompatActivity {
             textView = itemView.findViewById(android.R.id.text1);
         }
 
-        public void setContent(MenuItem content) {
+        private void setContent(WidgetInfo widgetInfo) {
             if (task != null) {
                 task.cancel();
                 task = null;
             }
-            CharSequence text = content.getName();
-            if (content instanceof ItemWidget) {
-                final WidgetInfo widgetInfo = ((ItemWidget) content).getInfo();
+            CharSequence text = widgetInfo.widgetName;
+            if (widgetInfo.appWidgetInfo != null) {
                 // set cached icon size to help ListView scrolling
                 {
                     int w = widgetInfo.cachedIconWidth;
@@ -347,9 +262,8 @@ public class PickAppWidgetActivity extends AppCompatActivity {
                     textView.setCompoundDrawables(null, icon, null, null);
                 });
 
-                String description = ((ItemWidget) content).getInfo().widgetDesc;
-                if (!TextUtils.isEmpty(description))
-                    text = content.getName() + "\n" + description;
+                if (!TextUtils.isEmpty(widgetInfo.widgetDesc))
+                    text = widgetInfo.widgetName + "\n" + widgetInfo.widgetDesc;
             }
 
             textView.setText(text);
