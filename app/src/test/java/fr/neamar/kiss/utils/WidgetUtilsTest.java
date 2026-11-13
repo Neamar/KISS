@@ -49,16 +49,4 @@ class WidgetUtilsTest {
         // minHeight of 1.4 lines snaps to 2 lines
         assertThat(WidgetUtils.getMinHeight(210, 0, LINE_HEIGHT_PX), equalTo(300));
     }
-
-    @Test
-    void initialSizeUsesMinHeight() {
-        // 3-line minimum widget starts at 3 lines even though default is smaller
-        assertThat(WidgetUtils.getInitialLineSize(450, LINE_HEIGHT_PX, 2), equalTo(3));
-    }
-
-    @Test
-    void initialSizeUpsizedToDefault() {
-        // tiny 1-line widget is upsized to the 2-line default
-        assertThat(WidgetUtils.getInitialLineSize(150, LINE_HEIGHT_PX, 2), equalTo(2));
-    }
 }

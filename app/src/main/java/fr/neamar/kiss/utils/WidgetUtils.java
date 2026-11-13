@@ -39,24 +39,4 @@ public final class WidgetUtils {
             return (int) (getLineSize(minHeightPx, lineHeightPx) * lineHeightPx);
         }
     }
-
-    /**
-     * Initial size of a newly added widget.
-     *
-     * Since the widget area scrolls vertically, the initial size is not clamped
-     * to the visible viewport: widgets may be taller than one screen and the
-     * user scrolls to reach them.
-     *
-     * @param minHeightPx       effective minimum height of the widget in pixels ({@link #getMinHeight})
-     * @param lineHeightPx      height of a single line in pixels
-     * @param preferredLineSize default size used for small widgets
-     * @return initial size in lines
-     */
-    public static int getInitialLineSize(int minHeightPx, float lineHeightPx, int preferredLineSize) {
-        int initialLineSize = getLineSize(minHeightPx, lineHeightPx);
-        if (initialLineSize < preferredLineSize) {
-            initialLineSize = preferredLineSize;
-        }
-        return Math.max(1, initialLineSize);
-    }
 }

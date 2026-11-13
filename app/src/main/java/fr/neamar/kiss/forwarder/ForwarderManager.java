@@ -34,7 +34,11 @@ public class ForwarderManager extends Forwarder {
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
+    }
 
+    public void onCreate() {
+        favoritesForwarder.onCreate();
+        widgetsForwarder.onCreate();
         // empty areas of the widget scroll area behave as a non-widget area
         widgetsForwarder.setEmptyAreaTouchListener(new View.OnTouchListener() {
             // click semantics are owned by the gesture pipeline the events are forwarded to
@@ -46,11 +50,6 @@ public class ForwarderManager extends Forwarder {
                 return true;
             }
         });
-    }
-
-    public void onCreate() {
-        favoritesForwarder.onCreate();
-        widgetsForwarder.onCreate();
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
