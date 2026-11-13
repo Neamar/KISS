@@ -1,11 +1,13 @@
 package fr.neamar.kiss.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.AsyncTask;
 import android.os.Build;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -39,10 +41,14 @@ public class Utilities {
         return null;
     }
 
+    @AnyThread
     public static <T> Utilities.AsyncRun<T> runAsync(@NonNull Function<AsyncRun<T>, T> background, @Nullable BiConsumer<AsyncRun<T>, T> after) {
         return runAsync(background, after, getDefaultExecutor());
     }
 
+    @AnyThread
+    // AsyncRun has no onPreExecute and onPostExecute is posted to the main looper, so any thread can start it
+    @SuppressLint({"WrongThread", "ThreadConstraint"})
     public static <T> Utilities.AsyncRun<T> runAsync(@NonNull Function<AsyncRun<T>, T> background, @Nullable BiConsumer<AsyncRun<T>, T> after, @NonNull Executor exec) {
         return (AsyncRun<T>) new Utilities.AsyncRun<>(background, after).executeOnExecutor(exec);
     }
