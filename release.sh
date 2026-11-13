@@ -17,10 +17,13 @@ bump=${1:-}
 [[ $bump == patch || $bump == minor ]] || { echo "Usage: $0 patch|minor" >&2; exit 1; }
 : "${KEYSTORE_FILE:?}" "${KEY_ALIAS:?}" "${PLAY_CREDENTIALS:?}"
 
-[[ $(git branch --show-current) == master ]] || { echo "Not on master" >&2; exit 1; }
+branch=$(git branch --show-current)
+[[ -n $branch ]] || { echo "Not on a branch" >&2; exit 1; }
+# Hotfix releases are cut from a branch off the previous tag, everything else from master
+[[ $branch == master ]] || echo "WARNING: releasing from $branch, not master" >&2
 [[ -z $(git status --porcelain) ]] || { echo "Working tree not clean" >&2; exit 1; }
-git fetch -q origin master
-[[ $(git rev-parse HEAD) == $(git rev-parse origin/master) ]] || { echo "master is not in sync with origin/master" >&2; exit 1; }
+git fetch -q origin "$branch"
+[[ $(git rev-parse HEAD) == $(git rev-parse "origin/$branch") ]] || { echo "$branch is not in sync with origin/$branch" >&2; exit 1; }
 
 old_code=$(sed -n 's/^ *versionCode \([0-9]*\)$/\1/p' app/build.gradle)
 old_name=$(sed -n 's/^ *versionName "\(.*\)"$/\1/p' app/build.gradle)
@@ -62,7 +65,7 @@ cp "$notes" app/src/main/play/release-notes/en-US/default.txt
 [[ $promote != y ]] || ./gradlew promoteReleaseArtifact --from-track beta --promote-track production
 ./gradlew publishReleaseBundle --track beta
 
-git push origin master "v$name"
+git push origin "$branch" "v$name"
 
 apk="app/build/outputs/apk/release/KISS-v$name.apk"
 cp app/build/outputs/apk/release/app-release.apk "$apk"
