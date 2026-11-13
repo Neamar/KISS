@@ -64,6 +64,10 @@ cp "$notes" app/src/main/play/release-notes/en-US/default.txt
 # Promote first: afterwards, --from-track beta would pick the new upload
 [[ $promote != y ]] || ./gradlew promoteReleaseArtifact --from-track beta --promote-track production
 ./gradlew publishReleaseBundle --track beta
+# The API can't send changes for review: they wait in the Play Console publishing overview
+overview="https://play.google.com/console/developers/5374610066447948540/app/4974646048372599885/publishing"
+echo "Send the changes for review: $overview"
+xdg-open "$overview" >/dev/null 2>&1 || true
 
 git push origin "$branch" "v$name"
 
