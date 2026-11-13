@@ -277,7 +277,8 @@ public class PackageManagerUtils {
      */
     public static long getLastUpdateTime(@Nullable ApplicationInfo appInfo) {
         // An update replaces the APK, which is shared by all profiles. System updates keep file times, callers must also watch Build.FINGERPRINT.
-        long lastModified = appInfo == null ? 0 : new File(appInfo.sourceDir).lastModified();
+        // Archived apps have no APK, so sourceDir is null (#2734)
+        long lastModified = appInfo == null || appInfo.sourceDir == null ? 0 : new File(appInfo.sourceDir).lastModified();
         return lastModified == 0 ? Long.MAX_VALUE : lastModified;
     }
 
