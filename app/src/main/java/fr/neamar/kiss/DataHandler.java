@@ -54,6 +54,9 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     private TagsHandler tagsHandler;
     final private Context context;
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+    @Nullable
+    private MainActivity mainActivity;
     private final Map<ProviderName, ProviderEntry> providers = new HashMap<>();
 
     /**
@@ -65,8 +68,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         //  to bind to services)
         this.context = context.getApplicationContext();
 
-        Intent startLoad = new Intent(MainActivity.START_LOAD);
-        this.context.sendBroadcast(startLoad);
+        notifyMainActivity(MainActivity.START_LOAD);
 
         // Monitor changes for profiles
         ProfileChangedHandler profileChangedHandler = new ProfileChangedHandler();
@@ -101,8 +103,29 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
 
         // Some basic providers already loaded! We need to fire the LOAD_OVER event.
-        Intent loadOver = new Intent(MainActivity.LOAD_OVER);
-        this.context.sendBroadcast(loadOver);
+        notifyMainActivity(MainActivity.LOAD_OVER);
+    }
+
+    public void setMainActivity(@NonNull MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
+
+    public void removeMainActivity(@NonNull MainActivity mainActivity) {
+        if (this.mainActivity == mainActivity) {
+            this.mainActivity = null;
+        }
+    }
+
+    /**
+     * Notify MainActivity of START_LOAD, LOAD_OVER or REFRESH_FAVORITES.
+     * Always posted, so MainActivity never runs while DataHandler is still being constructed.
+     */
+    public void notifyMainActivity(String action) {
+        mainHandler.post(() -> {
+            if (mainActivity != null) {
+                mainActivity.onDataEvent(action);
+            }
+        });
     }
 
     private Class<? extends IProvider<?>> getProviderClass(ProviderName providerName) {
@@ -283,8 +306,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
 
         // Providers changed! We need to fire the LOAD_OVER event.
-        Intent loadOver = new Intent(MainActivity.LOAD_OVER);
-        this.context.sendBroadcast(loadOver);
+        notifyMainActivity(MainActivity.LOAD_OVER);
     }
 
     public boolean isAllProvidersLoaded() {
@@ -983,8 +1005,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     }
 
     public void refreshFavorites() {
-        Intent startLoad = new Intent(MainActivity.REFRESH_FAVORITES);
-        context.sendBroadcast(startLoad);
+        notifyMainActivity(MainActivity.REFRESH_FAVORITES);
     }
 
     public void resetTagsHandler() {
