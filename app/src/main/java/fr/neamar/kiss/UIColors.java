@@ -91,7 +91,7 @@ public class UIColors {
         OVERLAY_MAP.put(0xFF5D4037, R.style.OverlayAccent5D4037);
         OVERLAY_MAP.put(0xFF616161, R.style.OverlayAccent616161);
         OVERLAY_MAP.put(0xFF455A64, R.style.OverlayAccent455A64);
-        OVERLAY_MAP.put(0xFF000000, R.style.OverlayAccentDefault);
+        OVERLAY_MAP.put(0xFF000000, R.style.OverlayAccent000000);
         OVERLAY_MAP.put(COLOR_TRANSPARENT, R.style.OverlayAccentTransparent);
         OVERLAY_MAP.put(COLOR_LIGHT_TRANSPARENT, R.style.OverlayAccentLightTransparent);
         OVERLAY_MAP.put(COLOR_DARK_TRANSPARENT, R.style.OverlayAccentDarkTransparent);
