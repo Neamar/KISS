@@ -23,7 +23,7 @@ public interface IProvider<T extends Pojo> {
     /**
      * Reload the data stored in this provider
      * <p>
-     * `"fr.neamar.summon.LOAD_OVER"` will be emitted once the reload is complete. The data provider
+     * MainActivity will be notified with LOAD_OVER once the reload is complete. The data provider
      * will stay usable (using it's old data) during the reload.
      */
     void reload();
@@ -31,8 +31,8 @@ public interface IProvider<T extends Pojo> {
     /**
      * Indicate whether this provider has already loaded it's data
      * <p>
-     * If this method returns `false` then the client may listen for the
-     * `"fr.neamar.summon.LOAD_OVER"` intent for notification of when the provider is ready.
+     * If this method returns `false` then MainActivity will be notified with
+     * LOAD_OVER when the provider is ready.
      *
      * @return Is the provider ready to process search results?
      */

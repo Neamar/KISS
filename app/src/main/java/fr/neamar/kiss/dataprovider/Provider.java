@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.loader.LoadPojos;
 import fr.neamar.kiss.pojo.Pojo;
@@ -102,9 +103,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         this.loaded = true;
         this.pojos = results;
 
-        // Broadcast this event
-        Intent i = new Intent(MainActivity.LOAD_OVER);
-        this.sendBroadcast(i);
+        KissApplication.getApplication(this).getDataHandler().notifyMainActivity(MainActivity.LOAD_OVER);
     }
 
     /**

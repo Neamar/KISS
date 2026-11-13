@@ -5,10 +5,7 @@ import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
@@ -80,11 +77,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * Store user preferences
      */
     public SharedPreferences prefs;
-
-    /**
-     * Receive events from providers
-     */
-    private BroadcastReceiver mReceiver;
 
     /**
      * View for the Search text
@@ -195,43 +187,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         forwarderManager = new ForwarderManager(this);
         permissionManager = new Permission(this);
 
-        /*
-         * Initialize data handler and start loading providers
-         */
-        IntentFilter intentFilterLoad = new IntentFilter(START_LOAD);
-        IntentFilter intentFilterLoadOver = new IntentFilter(LOAD_OVER);
-        IntentFilter intentFilterRefresh = new IntentFilter(REFRESH_FAVORITES);
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (REFRESH_FAVORITES.equals(intent.getAction())) {
-                    onFavoriteChange();
-                    if (prefs.getBoolean("exclude-favorites-history", true)) {
-                        // update search to reflect favorite change, if the "exclude favorites" option is active
-                        updateSearchRecords();
-                    }
-                } else if (LOAD_OVER.equalsIgnoreCase(intent.getAction())) {
-                    updateSearchRecords();
-                    if (!KissApplication.getApplication(context).getDataHandler().isAllProvidersLoaded()) {
-                        displayLoader(true);
-                    } else {
-                        Log.v(TAG, "All providers are done loading.");
-
-                        displayLoader(false);
-
-                        // Run GC once to free all the garbage accumulated during provider initialization
-                        System.gc();
-                    }
-                    // New provider might mean new favorites
-                    onFavoriteChange();
-                } else if (START_LOAD.equalsIgnoreCase(intent.getAction())) {
-                    displayLoader(true);
-                    // New provider might mean new favorites
-                    onFavoriteChange();
-                }
-            }
-        };
-
         this.onBackPressedCallback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -240,9 +195,10 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         };
         getOnBackPressedDispatcher().addCallback(onBackPressedCallback);
 
-        ContextCompat.registerReceiver(this, mReceiver, intentFilterLoad, ContextCompat.RECEIVER_EXPORTED);
-        ContextCompat.registerReceiver(this, mReceiver, intentFilterLoadOver, ContextCompat.RECEIVER_EXPORTED);
-        ContextCompat.registerReceiver(this, mReceiver, intentFilterRefresh, ContextCompat.RECEIVER_EXPORTED);
+        /*
+         * Initialize data handler and start loading providers
+         */
+        KissApplication.getApplication(this).getDataHandler().setMainActivity(this);
 
         /*
          * Set the view and store all useful components
@@ -487,8 +443,39 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             return;
         }
         onBackPressedCallback.remove();
-        this.unregisterReceiver(this.mReceiver);
+        KissApplication.getApplication(this).getDataHandler().removeMainActivity(this);
         forwarderManager.onDestroy();
+    }
+
+    /**
+     * Receive events from DataHandler and providers, see {@link DataHandler#notifyMainActivity(String)}
+     */
+    public void onDataEvent(String action) {
+        if (REFRESH_FAVORITES.equals(action)) {
+            onFavoriteChange();
+            if (prefs.getBoolean("exclude-favorites-history", true)) {
+                // update search to reflect favorite change, if the "exclude favorites" option is active
+                updateSearchRecords();
+            }
+        } else if (LOAD_OVER.equals(action)) {
+            updateSearchRecords();
+            if (!KissApplication.getApplication(this).getDataHandler().isAllProvidersLoaded()) {
+                displayLoader(true);
+            } else {
+                Log.v(TAG, "All providers are done loading.");
+
+                displayLoader(false);
+
+                // Run GC once to free all the garbage accumulated during provider initialization
+                System.gc();
+            }
+            // New provider might mean new favorites
+            onFavoriteChange();
+        } else if (START_LOAD.equals(action)) {
+            displayLoader(true);
+            // New provider might mean new favorites
+            onFavoriteChange();
+        }
     }
 
     @Override
