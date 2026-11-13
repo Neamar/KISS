@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -304,14 +303,6 @@ public class ContactsResult extends CallResult<ContactsPojo> {
             }
         }
         return icon;
-    }
-
-    @Override
-    public void inflateFavorite(@NonNull Context context, @NonNull View favoriteView) {
-        Drawable drawable = getDrawable(context);
-        ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
-        favoriteImage.setImageDrawable(drawable);
-        favoriteView.setContentDescription(pojo.getName());
     }
 
     private void launchContactView(Context context, View v) {
