@@ -42,7 +42,6 @@ import fr.neamar.kiss.utils.Utilities;
 
 public class PickAppWidgetActivity extends AppCompatActivity {
     private static final String TAG = PickAppWidgetActivity.class.getSimpleName();
-    public static final String EXTRA_WIDGET_BIND_ALLOWED = "widgetBindAllowed";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,19 +88,10 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         adapter.setOnItemClickListener((menuItem) -> {
             if (menuItem instanceof ItemWidget) {
                 WidgetInfo info = ((ItemWidget) menuItem).getInfo();
-                Intent intent = getIntent();
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
-                if (appWidgetId != 0) {
-                    boolean bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.getProfile(), info.appWidgetInfo.provider, null);
-
-                    intent.putExtra(EXTRA_WIDGET_BIND_ALLOWED, bindAllowed);
-                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
-                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.appWidgetInfo.getProfile());
-                    setResult(RESULT_OK, intent);
-                } else {
-                    setResult(RESULT_CANCELED, intent);
-                }
+                Intent intent = new Intent();
+                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
+                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.appWidgetInfo.getProfile());
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

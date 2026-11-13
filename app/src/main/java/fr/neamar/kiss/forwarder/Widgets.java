@@ -103,6 +103,11 @@ class Widgets extends Forwarder {
                     restoreWidgets();
                 }
             };
+    /**
+     * Id of the widget currently being added, to delete it if the user cancels:
+     * a cancelled bind request or configuration may not return the id.
+     */
+    private int pendingAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private ActivityResultLauncher<Intent> requestAppWidgetPicked;
     private ActivityResultLauncher<Intent> requestAppWidgetBound;
 
@@ -195,7 +200,7 @@ class Widgets extends Forwarder {
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_APPWIDGET_CONFIGURED && resultCode == Activity.RESULT_CANCELED) {
-            removeWidget(data);
+            removePendingWidget();
         }
     }
 
@@ -203,7 +208,13 @@ class Widgets extends Forwarder {
         switch (resultCode) {
             case Activity.RESULT_OK:
                 if (data != null) {
-                    if (!data.getBooleanExtra(PickAppWidgetActivity.EXTRA_WIDGET_BIND_ALLOWED, false)) {
+                    ComponentName provider = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER);
+                    UserHandle profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
+                    // allocate the id only once a widget is picked:
+                    // an id without provider breaks accessibility services on Android 10
+                    pendingAppWidgetId = mAppWidgetHost.allocateAppWidgetId();
+                    data.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, pendingAppWidgetId);
+                    if (!mAppWidgetManager.bindAppWidgetIdIfAllowed(pendingAppWidgetId, profile, provider, null)) {
                         Log.w(TAG, "Widget bind not allowed");
                         requestBindWidget(data);
                         break;
@@ -213,9 +224,6 @@ class Widgets extends Forwarder {
                 } else {
                     Log.i(TAG, "Widget picker failed");
                 }
-                break;
-            case Activity.RESULT_CANCELED:
-                removeWidget(data);
                 break;
         }
     }
@@ -230,41 +238,29 @@ class Widgets extends Forwarder {
                 }
                 break;
             case Activity.RESULT_CANCELED:
-                removeWidget(data);
+                removePendingWidget();
                 break;
         }
     }
 
-    private void removeWidget(Intent data) {
-        if (data != null) {
-            // if widget was not selected, delete it
-            int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-            if (appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
-                // find widget views for appWidgetId
-                List<View> viewsToRemove = new ArrayList<>();
-                for (int i = 0; i < widgetArea.getChildCount(); i++) {
-                    AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
-                    if (view.getAppWidgetId() == appWidgetId) {
-                        viewsToRemove.add(view);
-                    }
-                }
-                // remove view
-                for (View viewToRemove : viewsToRemove) {
-                    widgetArea.removeView(viewToRemove);
-                }
-                // delete widget id
-                mAppWidgetHost.deleteAppWidgetId(appWidgetId);
+    /**
+     * Delete the widget currently being added, and its view if it was already displayed
+     */
+    private void removePendingWidget() {
+        for (int i = 0; i < widgetArea.getChildCount(); i++) {
+            if (((AppWidgetHostView) widgetArea.getChildAt(i)).getAppWidgetId() == pendingAppWidgetId) {
+                widgetArea.removeViewAt(i);
+                break;
             }
         }
+        mAppWidgetHost.deleteAppWidgetId(pendingAppWidgetId);
+        serializeState();
     }
 
     boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.add_widget) {
-            // request widget picker, a selection will lead to a call of onActivityResult
-            int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
-            Intent pickIntent = new Intent(mainActivity, PickAppWidgetActivity.class);
-            pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            requestAppWidgetPicked.launch(pickIntent);
+            // request widget picker, a selection will lead to a call of appWidgetPicked
+            requestAppWidgetPicked.launch(new Intent(mainActivity, PickAppWidgetActivity.class));
             return true;
         }
 
