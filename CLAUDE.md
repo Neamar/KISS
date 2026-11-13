@@ -17,7 +17,7 @@ All commands run from the repo root via the wrapper. CI runs the first two.
 - Debug APK (installable side-by-side, applicationId suffix `.debug`): `./gradlew assembleDebug`
 - Release APK: `./gradlew assembleRelease`
 
-Both `debug` and `release` build types enable `minifyEnabled` + `shrinkResources` with ProGuard, so don't assume reflection-only references survive — check `app/proguard-rules.pro` when adding them.
+The `release` build type enables `minifyEnabled` + `shrinkResources` with R8, so don't assume reflection-only references survive — check `app/proguard-rules.pro` when adding them. Debug builds are not minified, so test such changes on a release build.
 
 ## Architecture: the four-class data-type pattern
 
