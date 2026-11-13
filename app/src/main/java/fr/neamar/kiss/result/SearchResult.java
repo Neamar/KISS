@@ -268,4 +268,12 @@ public class SearchResult extends Result<SearchPojo> {
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
         return pojo.type == SearchPojoType.CALCULATOR_QUERY;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean makeThemedIcon() {
+        return pojo.type == SearchPojoType.CALCULATOR_QUERY;
+    }
 }
