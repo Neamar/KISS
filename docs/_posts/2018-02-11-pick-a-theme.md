@@ -13,7 +13,7 @@ KISS comes with 4 pre-defined themes:
 * Transparent, the theme enabled by default, where you can completely see the wallpaper, but might have issues reading your app names
 * AMOLED dark, almost black theme
 
-The first three exist in a light and a dark version (if you like vampires and low luminosity): this is controlled by a separate `Dark theme` setting, which can be `No` (the default), `Yes` or `System default` to follow your device. AMOLED dark is always dark.
+The first three exist in a light and a dark version (if you like vampires and low luminosity): this is controlled by a separate `Dark theme` setting, which can be `No`, `Yes` or `System default` to follow your device (the default). AMOLED dark is always dark.
 
 Not all themes will work correctly with all wallpapers, make sure you pick a theme that you like, and that doesn't block legibility!
 
