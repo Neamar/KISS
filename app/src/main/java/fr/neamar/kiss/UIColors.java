@@ -3,9 +3,11 @@ package fr.neamar.kiss;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -18,8 +20,13 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.material.color.DynamicColors;
+import com.google.android.material.color.DynamicColorsOptions;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import fr.neamar.kiss.result.TagDummyResult;
 
 public class UIColors {
     public static final int COLOR_DEFAULT = 0xFF4CAF50;
@@ -84,7 +91,7 @@ public class UIColors {
         OVERLAY_MAP.put(0xFF5D4037, R.style.OverlayAccent5D4037);
         OVERLAY_MAP.put(0xFF616161, R.style.OverlayAccent616161);
         OVERLAY_MAP.put(0xFF455A64, R.style.OverlayAccent455A64);
-        OVERLAY_MAP.put(0xFF000000, R.style.OverlayAccentDefault);
+        OVERLAY_MAP.put(0xFF000000, R.style.OverlayAccent000000);
         OVERLAY_MAP.put(COLOR_TRANSPARENT, R.style.OverlayAccentTransparent);
         OVERLAY_MAP.put(COLOR_LIGHT_TRANSPARENT, R.style.OverlayAccentLightTransparent);
         OVERLAY_MAP.put(COLOR_DARK_TRANSPARENT, R.style.OverlayAccentDarkTransparent);
@@ -170,17 +177,54 @@ public class UIColors {
         }
     }
 
-    public static void applyAccentColor(Context context) {
+    public static void applyAccentColor(Activity activity) {
+        if (DynamicColors.isDynamicColorAvailable()) {
+            // use primary color from theme
+            int color = getColorWithoutFallback(activity, "primary-color");
+            if (color == COLOR_TRANSPARENT || color == COLOR_LIGHT_TRANSPARENT || color == COLOR_DARK_TRANSPARENT) {
+                color = COLOR_DEFAULT;
+            }
+
+            DynamicColorsOptions.Builder optionsBuilder = new DynamicColorsOptions.Builder();
+            if (color != COLOR_SYSTEM) {
+                optionsBuilder.setContentBasedSource(color);
+            }
+            DynamicColors.applyToActivityIfAvailable(activity, optionsBuilder.build());
+        }
+
         // We want to update the accent color for the theme.
         // Each possible accent color is defined as a custom overlay, we need to find the matching one and apply it
-        Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(context, "primary-color"));
+        Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(activity, "primary-color"));
         if (overlayAccentResId == null || overlayAccentResId == -1) {
-            overlayAccentResId = OVERLAY_MAP.get(getPrimaryColor(context));
+            overlayAccentResId = OVERLAY_MAP.get(getPrimaryColor(activity));
         }
         if (overlayAccentResId != null && overlayAccentResId != -1) {
-            context.getTheme().applyStyle(overlayAccentResId, true);
+            activity.getTheme().applyStyle(overlayAccentResId, true);
+            Resources.Theme windowDecorViewTheme = getWindowDecorViewTheme(activity);
+            if (windowDecorViewTheme != null) {
+                windowDecorViewTheme.applyStyle(overlayAccentResId, true);
+            }
         }
+
+        clearColorCache();
+        TagDummyResult.resetShape();
     }
+
+    private static Resources.Theme getWindowDecorViewTheme(@NonNull Activity activity) {
+        Window window = activity.getWindow();
+        if (window != null) {
+            View decorView = window.peekDecorView();
+            if (decorView != null) {
+                Context context = decorView.getContext();
+                if (context != null) {
+                    return context.getTheme();
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     public static void updateThemePrimaryColor(Activity activity) {
         @ColorInt
@@ -208,7 +252,7 @@ public class UIColors {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             return COLOR_TRANSPARENT;
         } else {
-            return getColor(KissApplication.getApplication(context), "notification-bar-color", R.color.kiss_notification_bar_color);
+            return getColor(context, "notification-bar-color", R.color.kiss_notification_bar_color);
         }
     }
 
@@ -261,7 +305,7 @@ public class UIColors {
         if (isFavorite && !PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-favorites-bar", true)) {
             return Color.WHITE;
         }
-        return getColor(context, "primary-color", R.color.kiss_notification_dot_color);
+        return getThemedColor(context, "primary-color", R.attr.kiss_notification_dot_color);
     }
 
     /**
@@ -319,15 +363,9 @@ public class UIColors {
     @ColorInt
     public static int[] getIconColors(Context context) {
         int[] colors = new int[2];
-        context = KissApplication.getApplication(context);
-//        int color = getColorWithoutFallback(context, "primary-color");
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && color == COLOR_SYSTEM) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            colors[0] = ContextCompat.getColor(context, R.color.kiss_icon_background); // background
-            colors[1] = ContextCompat.getColor(context, R.color.kiss_icon_foreground); // foreground
-        } else {
-            colors[0] = Color.WHITE; // background
-            colors[1] = getPrimaryColor(context); // foreground
+        try (TypedArray array = context.obtainStyledAttributes(new int[]{R.attr.kiss_icon_background, R.attr.kiss_icon_foreground})) {
+            colors[0] = array.getColor(0, Color.WHITE); // background
+            colors[1] = array.getColor(1, getPrimaryColor(context)); // foreground
         }
         return colors;
     }

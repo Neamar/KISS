@@ -1,12 +1,13 @@
 package fr.neamar.kiss.preference;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.SwitchPreference;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import fr.neamar.kiss.R;
 
@@ -33,7 +34,7 @@ public class FreezeHistorySwitch extends SwitchPreference {
     protected void onClick() {
         if (!isChecked()) {
             //show dialog
-            new AlertDialog.Builder(getContext()).setMessage(R.string.freeze_history_warn)
+            new MaterialAlertDialogBuilder(getContext()).setMessage(R.string.freeze_history_warn)
                     .setPositiveButton(android.R.string.ok, (dialog, which) -> FreezeHistorySwitch.super.onClick())
                     .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
                         // does nothing

@@ -113,4 +113,12 @@ public class PhoneResult extends CallResult<PhonePojo> {
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
         return true;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean makeThemedIcon() {
+        return true;
+    }
 }

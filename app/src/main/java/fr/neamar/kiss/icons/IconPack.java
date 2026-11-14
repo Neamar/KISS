@@ -30,7 +30,7 @@ public interface IconPack {
     Map<ComponentName, Set<DrawableInfo>> getDrawablesByComponent();
 
     @Nullable
-    Drawable getDrawable(@NonNull DrawableInfo drawableInfo);
+    Drawable getDrawable(@NonNull Context context, @NonNull DrawableInfo drawableInfo);
 
     /**
      * @return true if the icon changes over time (calendars showing the date)

@@ -3,7 +3,6 @@ package fr.neamar.kiss.forwarder;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +21,10 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 import java.util.Locale;
@@ -118,7 +120,7 @@ public class ExperienceTweaks extends Forwarder {
                     Intent intent = new Intent(LockAccessibilityService.ACTION_LOCK, null, mainActivity, LockAccessibilityService.class);
                     mainActivity.startService(intent);
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(mainActivity);
                     builder.setMessage(R.string.enable_double_tap_to_lock);
 
                     builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
