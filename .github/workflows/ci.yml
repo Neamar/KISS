@@ -5,8 +5,6 @@ on:
     branches:
       - master
   pull_request:
-    branches:
-      - master
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.sha }}
@@ -50,6 +48,12 @@ jobs:
           arch: x86_64
           disable-animations: true
           script: bash ./gradlew connectedDebugAndroidTest --stacktrace
+      - name: Upload test report
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: instrumented-tests-report
+          path: app/build/reports/androidTests/connected/debug/
   apk:
     name: Generate APK
     runs-on: ubuntu-24.04
