@@ -11,6 +11,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assume.assumeTrue;
+
+import android.content.pm.PackageManager;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.filters.LargeTest;
@@ -75,6 +78,12 @@ public class MainActivityTest extends AbstractMainActivityTest {
 
     @Test
     public void testShortcutAppears() {
+        // Relies on the Google app shortcuts, missing on plain emulator images (e.g. CI)
+        try {
+            ApplicationProvider.getApplicationContext().getPackageManager().getPackageInfo("com.google.android.googlequicksearchbox", 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            assumeTrue("Google app not installed", false);
+        }
         onView(withId(R.id.searchEditText)).perform(typeText("Google Search"));
         onView(allOf(withId(R.id.item_app_name), withText("Google: Search"))).check(matches(isDisplayed()));
         onView(allOf(withId(R.id.item_app_name), withText("Google: Voice search"))).check(matches(isDisplayed()));
