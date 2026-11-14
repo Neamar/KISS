@@ -2,12 +2,18 @@ package fr.neamar.kiss.androidTest;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.anyIntent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 
 import androidx.preference.PreferenceManager;
@@ -15,6 +21,7 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResource;
+import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.GrantPermissionRule;
 
@@ -25,6 +32,7 @@ import org.junit.Rule;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import fr.neamar.kiss.KissApplication;
@@ -36,7 +44,7 @@ import fr.neamar.kiss.searcher.Searcher;
 
 abstract class AbstractMainActivityTest {
     @Rule
-    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(Manifest.permission.READ_CONTACTS);
+    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE);
 
     protected ActivityScenario<MainActivity> scenario;
     private final IdlingResource providersLoaded = new ProvidersLoadedIdlingResource();
@@ -65,6 +73,10 @@ abstract class AbstractMainActivityTest {
 
         IdlingRegistry.getInstance().register(providersLoaded);
         scenario = ActivityScenario.launch(MainActivity.class);
+
+        // Initialized after the launch so it isn't stubbed: clicked results never leave KISS
+        Intents.init();
+        intending(anyIntent()).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
     }
 
     protected void search(String query) {
@@ -85,8 +97,24 @@ abstract class AbstractMainActivityTest {
         }
     }
 
+    /**
+     * Launching a result clears the search after a delay Espresso doesn't wait for:
+     * queue behind it on the main thread, then wait for the history it displays.
+     */
+    protected static void waitForLaunchOccurred() {
+        CountDownLatch latch = new CountDownLatch(1);
+        new Handler(Looper.getMainLooper()).postDelayed(latch::countDown, KissApplication.TOUCH_DELAY * 3);
+        try {
+            assertThat(latch.await(10, TimeUnit.SECONDS), is(true));
+        } catch (InterruptedException e) {
+            throw new AssertionError(e);
+        }
+        waitForSearch();
+    }
+
     @After
     public void tearDown() {
+        Intents.release();
         scenario.close();
         IdlingRegistry.getInstance().unregister(providersLoaded);
     }
