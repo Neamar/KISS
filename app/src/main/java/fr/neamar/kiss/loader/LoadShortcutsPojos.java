@@ -2,6 +2,7 @@
 package fr.neamar.kiss.loader;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.UserManager;
@@ -9,7 +10,9 @@ import android.os.UserManager;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
@@ -65,23 +68,37 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                 return oreoPojos;
             }
 
+            // Many shortcuts share the same profile and the same app: only ask the system once for each
+            Map<android.os.UserHandle, Boolean> hiddenProfiles = new HashMap<>();
+            Map<android.os.UserHandle, Boolean> quietProfiles = new HashMap<>();
+            Map<String, ApplicationInfo> appInfos = new HashMap<>();
+            Map<String, String> appNames = new HashMap<>();
+
             for (ShortcutInfo shortcutInfo : shortcutInfos) {
                 if (isCancelled()) {
                     break;
                 }
 
-                if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps)) {
-                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo,
-                            !shortcutInfo.isPinned());
+                android.os.UserHandle profile = shortcutInfo.getUserHandle();
+                if (ShortcutUtil.isShortcutVisibleInProfile(context, shortcutInfo, excludedApps, excludedShortcutApps)
+                        && !hiddenProfiles.computeIfAbsent(profile, p -> ShortcutUtil.isProfileHidden(context, p))) {
+                    UserHandle user = new UserHandle(context, profile);
+                    String appKey = user.addUserSuffixToString(shortcutInfo.getPackage(), '#');
+                    ApplicationInfo appInfo = appInfos.computeIfAbsent(appKey, k -> PackageManagerUtils.getApplicationInfo(context, shortcutInfo.getPackage(), user));
+                    // Reading a label loads the app's resources, only do it when the name is displayed
+                    String appName = null;
+                    if (!shortcutInfo.isPinned() && appInfo != null) {
+                        appName = appNames.computeIfAbsent(appKey, k -> context.getPackageManager().getApplicationLabel(appInfo).toString());
+                    }
+                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, appName);
 
                     if (shortcutRecord != null) {
-                        boolean isSuspended = PackageManagerUtils.isAppSuspended(context, shortcutInfo.getPackage(),
-                                new UserHandle(context, shortcutInfo.getUserHandle()));
-                        boolean isQuietModeEnabled = userManager.isQuietModeEnabled(shortcutInfo.getUserHandle());
+                        boolean isSuspended = appInfo != null && PackageManagerUtils.isAppSuspended(appInfo);
+                        boolean isQuietModeEnabled = quietProfiles.computeIfAbsent(profile, userManager::isQuietModeEnabled);
                         boolean disabled = isSuspended || isQuietModeEnabled;
 
                         ShortcutPojo pojo = createPojo(
-                                new UserHandle(context, shortcutInfo.getUserHandle()),
+                                user,
                                 shortcutRecord,
                                 dataHandler.getTagsHandler(),
                                 ShortcutUtil.getComponentName(context, shortcutInfo),

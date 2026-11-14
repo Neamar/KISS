@@ -171,6 +171,18 @@ public class ShortcutUtil {
     @RequiresApi(Build.VERSION_CODES.O)
     @Nullable
     public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName) {
+        String appName = includePackageName ? PackageManagerUtils.getLabel(context, shortcutInfo.getPackage(), new UserHandle(context, shortcutInfo.getUserHandle())) : null;
+        return createShortcutRecord(context, shortcutInfo, appName);
+    }
+
+    /**
+     * Create ShortcutPojo from ShortcutInfo
+     *
+     * @param appName name of the app to include in the name of the shortcut, null for none
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    @Nullable
+    public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, @Nullable String appName) {
         if (shortcutInfo.hasKeyFieldsOnly()) {
             // If ShortcutInfo holds only key fields shortcut including data must be fetched
             shortcutInfo = getShortCut(context, shortcutInfo.getUserHandle(), shortcutInfo.getPackage(), shortcutInfo.getId());
@@ -183,16 +195,14 @@ public class ShortcutUtil {
         record.packageName = shortcutInfo.getPackage();
         record.intentUri = ShortcutPojo.OREO_PREFIX + shortcutInfo.getId();
 
-        String appName = PackageManagerUtils.getLabel(context, shortcutInfo.getPackage(), new UserHandle(context, shortcutInfo.getUserHandle()));
-
         if (shortcutInfo.getShortLabel() != null) {
-            if (includePackageName && !TextUtils.isEmpty(appName)) {
+            if (!TextUtils.isEmpty(appName)) {
                 record.name = appName + ": " + shortcutInfo.getShortLabel().toString();
             } else {
                 record.name = shortcutInfo.getShortLabel().toString();
             }
         } else if (shortcutInfo.getLongLabel() != null) {
-            if (includePackageName && !TextUtils.isEmpty(appName)) {
+            if (!TextUtils.isEmpty(appName)) {
                 record.name = appName + ": " + shortcutInfo.getLongLabel().toString();
             } else {
                 record.name = shortcutInfo.getLongLabel().toString();
@@ -222,16 +232,26 @@ public class ShortcutUtil {
 
     @RequiresApi(Build.VERSION_CODES.O)
     public static boolean isShortcutVisible(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps, @NonNull Set<String> excludedShortcutApps) {
-        if (!shortcutInfo.isEnabled()) {
-            return false;
-        }
+        return isShortcutVisibleInProfile(context, shortcutInfo, excludedApps, excludedShortcutApps) && !isProfileHidden(context, shortcutInfo.getUserHandle());
+    }
 
+    /**
+     * @return true if shortcuts of given profile must not be displayed: private space is locked
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static boolean isProfileHidden(@NonNull Context context, @NonNull android.os.UserHandle profile) {
         UserManager userManager = ContextCompat.getSystemService(context, UserManager.class);
         LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
-        if (PackageManagerUtils.isPrivateProfile(launcherApps, shortcutInfo.getUserHandle())) {
-            if (userManager.isQuietModeEnabled(shortcutInfo.getUserHandle())) {
-                return false;
-            }
+        return PackageManagerUtils.isPrivateProfile(launcherApps, profile) && userManager.isQuietModeEnabled(profile);
+    }
+
+    /**
+     * Same as {@link #isShortcutVisible}, for callers that already checked {@link #isProfileHidden} for the profile of the shortcut
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static boolean isShortcutVisibleInProfile(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps, @NonNull Set<String> excludedShortcutApps) {
+        if (!shortcutInfo.isEnabled()) {
+            return false;
         }
 
         String packageName = shortcutInfo.getPackage();
