@@ -11,7 +11,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assume.assumeTrue;
 
+import android.content.pm.PackageManager;
+
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.filters.LargeTest;
 
 import org.junit.Test;
@@ -62,7 +66,8 @@ public class MainActivityTest extends AbstractMainActivityTest {
     public void testSearchResultAppears() {
         onView(withId(R.id.searchEditText)).perform(typeText("blahblah"));
         onView(withId(R.id.item_search_icon)).check(matches(isDisplayed()));
-        onView(withId(R.id.item_search_text)).check(matches(withText("Search Google for “blahblah”")));
+        String expected = ApplicationProvider.getApplicationContext().getString(R.string.ui_item_search, "Google", "blahblah");
+        onView(withId(R.id.item_search_text)).check(matches(withText(expected)));
     }
 
     @Test
@@ -73,6 +78,12 @@ public class MainActivityTest extends AbstractMainActivityTest {
 
     @Test
     public void testShortcutAppears() {
+        // Relies on the Google app shortcuts, missing on plain emulator images (e.g. CI)
+        try {
+            ApplicationProvider.getApplicationContext().getPackageManager().getPackageInfo("com.google.android.googlequicksearchbox", 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            assumeTrue("Google app not installed", false);
+        }
         onView(withId(R.id.searchEditText)).perform(typeText("Google Search"));
         onView(allOf(withId(R.id.item_app_name), withText("Google: Search"))).check(matches(isDisplayed()));
         onView(allOf(withId(R.id.item_app_name), withText("Google: Voice search"))).check(matches(isDisplayed()));
