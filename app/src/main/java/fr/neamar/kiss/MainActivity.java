@@ -465,9 +465,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 Log.v(TAG, "All providers are done loading.");
 
                 displayLoader(false);
-
-                // Run GC once to free all the garbage accumulated during provider initialization
-                System.gc();
             }
             // New provider might mean new favorites
             onFavoriteChange();
