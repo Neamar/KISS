@@ -1,15 +1,20 @@
 package fr.neamar.kiss.androidTest;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assume.assumeTrue;
 
@@ -21,6 +26,7 @@ import androidx.test.filters.LargeTest;
 import org.junit.Test;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.db.DBHelper;
 
 @LargeTest
 public class MainActivityTest extends AbstractMainActivityTest {
@@ -64,7 +70,7 @@ public class MainActivityTest extends AbstractMainActivityTest {
 
     @Test
     public void testSearchResultAppears() {
-        onView(withId(R.id.searchEditText)).perform(typeText("blahblah"));
+        search("blahblah");
         onView(withId(R.id.item_search_icon)).check(matches(isDisplayed()));
         String expected = ApplicationProvider.getApplicationContext().getString(R.string.ui_item_search, "Google", "blahblah");
         onView(withId(R.id.item_search_text)).check(matches(withText(expected)));
@@ -72,7 +78,7 @@ public class MainActivityTest extends AbstractMainActivityTest {
 
     @Test
     public void testCalculatorAppears() {
-        onView(withId(R.id.searchEditText)).perform(typeText("1 + 1"));
+        search("1 + 1");
         onView(allOf(withId(R.id.item_search_text), withText("1+1 = 2"))).check(matches(isDisplayed()));
     }
 
@@ -84,14 +90,14 @@ public class MainActivityTest extends AbstractMainActivityTest {
         } catch (PackageManager.NameNotFoundException e) {
             assumeTrue("Google app not installed", false);
         }
-        onView(withId(R.id.searchEditText)).perform(typeText("Google Search"));
+        search("Google Search");
         onView(allOf(withId(R.id.item_app_name), withText("Google: Search"))).check(matches(isDisplayed()));
         onView(allOf(withId(R.id.item_app_name), withText("Google: Voice search"))).check(matches(isDisplayed()));
     }
 
     @Test
     public void testBatterySettingAppears() {
-        onView(withId(R.id.searchEditText)).perform(typeText("batter"));
+        search("batter");
         onView(withId(R.id.item_setting_icon)).check(matches(isDisplayed()));
         onView(withId(R.id.item_setting_name)).check(matches(withText("Battery")));
     }
@@ -100,11 +106,51 @@ public class MainActivityTest extends AbstractMainActivityTest {
     public void testKissBarDisplayed() {
         // Sanity check
         onView(withId(R.id.mainKissbar)).check(matches(not(isDisplayed())));
-        onView(allOf(withId(R.id.item_app_name), withText("Files"))).check(doesNotExist());
+        onView(withId(R.id.item_app_name)).check(doesNotExist());
 
         onView(withId(R.id.launcherButton)).perform(click());
         onView(withId(R.id.mainKissbar)).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.item_app_name), withText("Files"))).check(matches(isDisplayed()));
+        // Installed apps differ between images, so only check the list starts with an app
+        onData(anything()).inAdapterView(withId(android.R.id.list)).atPosition(0)
+                .onChildView(withId(R.id.item_app_name)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testHistoryDisplayedWhenSearchIsEmpty() {
+        DBHelper.insertHistory(ApplicationProvider.getApplicationContext(), "", "phone://0123456789");
+        scenario.recreate();
+        waitForSearch();
+        onView(withId(R.id.item_phone_text)).check(matches(isDisplayed()));
+
+        search("blahblah");
+        onView(withId(R.id.item_phone_text)).check(doesNotExist());
+
+        onView(withId(R.id.clearButton)).perform(click());
+        waitForSearch();
+        onView(withId(R.id.item_phone_text)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testMenuOpensAndBackDismissesIt() {
+        onView(withId(R.id.menuButton)).perform(click());
+        onView(withText(R.string.menu_settings)).check(matches(isDisplayed()));
+
+        pressBack();
+        onView(withText(R.string.menu_settings)).check(doesNotExist());
+        onView(withId(R.id.menuButton)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testMenuOpensOnLongClick() {
+        onView(withId(R.id.menuButton)).perform(longClick());
+        onView(withText(R.string.menu_settings)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testResultLongClickDisplaysContextMenu() {
+        search("blahblah");
+        onView(withId(R.id.item_search_text)).perform(longClick());
+        onView(withText(R.string.share)).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
     }
 
     @Test
