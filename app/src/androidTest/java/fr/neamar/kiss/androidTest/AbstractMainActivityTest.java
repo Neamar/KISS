@@ -24,6 +24,10 @@ import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.GrantPermissionRule;
+import androidx.test.runner.lifecycle.ActivityLifecycleCallback;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import androidx.test.runner.lifecycle.Stage;
+import androidx.test.uiautomator.UiDevice;
 
 import org.junit.After;
 import org.junit.Before;
@@ -48,6 +52,7 @@ abstract class AbstractMainActivityTest {
 
     protected ActivityScenario<MainActivity> scenario;
     private final IdlingResource providersLoaded = new ProvidersLoadedIdlingResource();
+    protected final UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
     @BeforeClass
     public static void setDefaultLauncher() throws IOException {
@@ -75,8 +80,44 @@ abstract class AbstractMainActivityTest {
         scenario = ActivityScenario.launch(MainActivity.class);
 
         // Initialized after the launch so it isn't stubbed: clicked results never leave KISS
+        stubIntents();
+    }
+
+    private static void stubIntents() {
         Intents.init();
         intending(anyIntent()).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
+    }
+
+    /**
+     * Pressing home doesn't reuse the activity started by the test, but creates a new home one:
+     * close it first, so that the next presses go through onNewIntent() as for users.
+     * {@link #scenario} can't be used anymore.
+     */
+    protected void startAsHome() {
+        // The stub would also catch the activity used by ActivityScenario to close
+        Intents.release();
+        scenario.close();
+        stubIntents();
+        pressHome();
+    }
+
+    protected void pressHome() {
+        CountDownLatch resumed = new CountDownLatch(1);
+        ActivityLifecycleCallback callback = (activity, stage) -> {
+            if (stage == Stage.RESUMED) {
+                resumed.countDown();
+            }
+        };
+        ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback(callback);
+        try {
+            device.pressHome();
+            assertThat(resumed.await(10, TimeUnit.SECONDS), is(true));
+        } catch (InterruptedException e) {
+            throw new AssertionError(e);
+        } finally {
+            ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(callback);
+        }
+        waitForSearch();
     }
 
     protected void search(String query) {
