@@ -12,7 +12,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-
 import android.content.Context;
 import android.content.Intent;
 import android.text.format.DateUtils;
@@ -114,6 +113,13 @@ public class SearchSourcesTest extends AbstractMainActivityTest {
             activity.prefs.edit().putBoolean("enable-settings", enabled).commit();
             KissApplication.getApplication(activity).getDataHandler().reload(ProviderName.SETTINGS);
         });
+    }
+
+    @Test
+    public void testHelpTextDisplayedWithoutResults() {
+        disableSource("enable-search");
+        search("zzzqqq");
+        onView(withId(android.R.id.empty)).check(matches(isDisplayed()));
     }
 
     @Test

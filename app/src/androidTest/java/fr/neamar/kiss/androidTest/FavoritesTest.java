@@ -111,4 +111,73 @@ public class FavoritesTest extends AbstractMainActivityTest {
         onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void testInternalBarFavoriteClickable() {
+        enableInternalBar();
+        useBatterySettingAsOnlyFavorite();
+        onView(withId(R.id.launcherButton)).perform(click());
+        onView(withId(R.id.favorite)).perform(click());
+        intended(hasAction(Intent.ACTION_POWER_USAGE_SUMMARY));
+    }
+
+    @Test
+    public void testInternalBarFavoriteLongClickable() {
+        enableInternalBar();
+        useBatterySettingAsOnlyFavorite();
+        onView(withId(R.id.launcherButton)).perform(click());
+        onView(withId(R.id.favorite)).perform(longClick());
+        onView(withText(R.string.menu_favorites_remove)).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testInternalBarExternalBarHiddenAfterLaunchingResult() {
+        enableInternalBar();
+        search("0123456789");
+        onView(withId(R.id.item_phone_text)).perform(click());
+        waitForLaunchOccurred();
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+    }
+
+    private void enableMinimalisticFavorites() {
+        scenario.onActivity(activity -> activity.prefs.edit().putBoolean("history-hide", true).putBoolean("favorites-hide", true).commit());
+        startAsHome();
+    }
+
+    private void touchEmptyArea() {
+        onView(withId(android.R.id.content)).perform(click());
+        waitForSearch();
+    }
+
+    @Test
+    public void testMinimalisticFavoritesHiddenUntilTouched() {
+        enableMinimalisticFavorites();
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+
+        touchEmptyArea();
+        onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
+
+        pressHome();
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+    }
+
+    @Test
+    public void testMinimalisticFavoritesHiddenOnSearch() {
+        enableMinimalisticFavorites();
+        touchEmptyArea();
+        search("Test");
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.clearButton)).perform(click());
+        waitForSearch();
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+    }
+
+    @Test
+    public void testMinimalisticFavoritesHiddenAfterLaunchingResult() {
+        enableMinimalisticFavorites();
+        search("0123456789");
+        onView(withId(R.id.item_phone_text)).perform(click());
+        waitForLaunchOccurred();
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+    }
 }
