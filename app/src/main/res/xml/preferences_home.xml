@@ -35,7 +35,11 @@
             app:minValue="0"
             app:maxValue="300"
             app:title="@string/widget_spacing_name"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </fr.neamar.kiss.preference.RangeEditTextPreference>
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/system_bars">
         <SwitchPreference

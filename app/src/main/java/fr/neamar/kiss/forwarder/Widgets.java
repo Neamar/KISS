@@ -11,7 +11,6 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Handler;
@@ -26,6 +25,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -63,8 +63,6 @@ class Widgets extends Forwarder {
      */
     private static final String PREF_WIDGET_SPACING = "widget-spacing";
 
-    private static final String DEFAULT_WIDGET_SPACING = "0";
-
     /**
      * Widgets fields
      */
@@ -80,29 +78,11 @@ class Widgets extends Forwarder {
      */
     private WidgetScrollView widgetScroll;
     /**
-     * Touch listener for gestures on empty areas, buffered until {@code widgetScroll} is available
-     */
-    @Nullable
-    private View.OnTouchListener emptyAreaTouchListener;
-    /**
      * Listener that enables/disables scrolling based on widget overflow.
      * Stored for removal in {@link #onDestroy()} to prevent memory leaks.
      */
     @Nullable
     private ViewTreeObserver.OnGlobalLayoutListener widgetScrollListener;
-    /**
-     * Listener that reloads all widgets when the spacing preference changes.
-     * Registered in {@link #onCreate()} and unregistered in {@link #onDestroy()}
-     * so changes made while the launcher is paused (e.g., from the Settings
-     * activity) are still applied: the preference changes exactly while the
-     * launcher is backgrounded, and missed events are not replayed on re-register.
-     */
-    private final SharedPreferences.OnSharedPreferenceChangeListener onWidgetSpacingChanged =
-            (sharedPreferences, key) -> {
-                if (PREF_WIDGET_SPACING.equals(key)) {
-                    restoreWidgets();
-                }
-            };
     /**
      * Id of the widget currently being added, to delete it if the user cancels:
      * a cancelled bind request or configuration may not return the id.
@@ -121,20 +101,15 @@ class Widgets extends Forwarder {
         mAppWidgetHost = new WidgetHost(mainActivity, APPWIDGET_HOST_ID, this::onAppWidgetRemoved);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
         widgetScroll = mainActivity.findViewById(R.id.widgetScroll);
-        if (emptyAreaTouchListener != null) {
-            widgetScroll.setEmptyAreaTouchListener(emptyAreaTouchListener);
-        }
 
-        requestAppWidgetPicked = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> appWidgetPicked(activityResult.getResultCode(), activityResult.getData()));
-        requestAppWidgetBound = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> appWidgetBound(activityResult.getResultCode(), activityResult.getData()));
+        requestAppWidgetPicked = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::appWidgetPicked);
+        requestAppWidgetBound = mainActivity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::appWidgetBound);
 
         // Automatically enable scrolling when widgets overflow the viewport,
         // disable when they fit.  The listener fires after every layout pass
         // (add, remove, resize, rotation) and keeps the touch contract in sync.
         widgetScrollListener = () -> widgetScroll.setScrollingEnabled(shouldScroll());
         widgetArea.getViewTreeObserver().addOnGlobalLayoutListener(widgetScrollListener);
-
-        prefs.registerOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
 
         restoreWidgets();
     }
@@ -167,30 +142,20 @@ class Widgets extends Forwarder {
     /**
      * Forward gestures performed on empty areas of the widget scroll area to
      * the given listener, so they behave exactly as on a non-widget area.
-     *
-     * May be called before the view exists; it is attached in
-     * {@link #onCreate()} once the view is available.
      */
     void setEmptyAreaTouchListener(View.OnTouchListener listener) {
-        emptyAreaTouchListener = listener;
-        if (widgetScroll != null) {
-            widgetScroll.setEmptyAreaTouchListener(listener);
-        }
-    }
-
-    private int getWidgetSpacing() {
-        try {
-            return Integer.parseInt(prefs.getString(PREF_WIDGET_SPACING, DEFAULT_WIDGET_SPACING));
-        } catch (NumberFormatException e) {
-            return Integer.parseInt(DEFAULT_WIDGET_SPACING);
-        }
+        widgetScroll.setEmptyAreaTouchListener(listener);
     }
 
     /**
      * Effective spacing between widgets in pixels.
      */
     private int getWidgetSpacingPx() {
-        return DrawableUtils.dpToPx(mainActivity, getWidgetSpacing());
+        try {
+            return DrawableUtils.dpToPx(mainActivity, Integer.parseInt(prefs.getString(PREF_WIDGET_SPACING, "0")));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     private void onAppWidgetRemoved() {
@@ -204,42 +169,32 @@ class Widgets extends Forwarder {
         }
     }
 
-    private void appWidgetPicked(int resultCode, Intent data) {
-        switch (resultCode) {
-            case Activity.RESULT_OK:
-                if (data != null) {
-                    ComponentName provider = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER);
-                    UserHandle profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
-                    // allocate the id only once a widget is picked:
-                    // an id without provider breaks accessibility services on Android 10
-                    pendingAppWidgetId = mAppWidgetHost.allocateAppWidgetId();
-                    data.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, pendingAppWidgetId);
-                    if (!mAppWidgetManager.bindAppWidgetIdIfAllowed(pendingAppWidgetId, profile, provider, null)) {
-                        Log.w(TAG, "Widget bind not allowed");
-                        requestBindWidget(data);
-                        break;
-                    }
-                    // if binding not required we can continue with adding the widget
-                    addAppWidget(data);
-                } else {
-                    Log.i(TAG, "Widget picker failed");
-                }
-                break;
+    private void appWidgetPicked(ActivityResult result) {
+        Intent data = result.getData();
+        if (result.getResultCode() != Activity.RESULT_OK || data == null) {
+            return;
+        }
+        ComponentName provider = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER);
+        UserHandle profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
+        // allocate the id only once a widget is picked:
+        // an id without provider breaks accessibility services on Android 10
+        pendingAppWidgetId = mAppWidgetHost.allocateAppWidgetId();
+        data.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, pendingAppWidgetId);
+        if (mAppWidgetManager.bindAppWidgetIdIfAllowed(pendingAppWidgetId, profile, provider, null)) {
+            addAppWidget(data);
+        } else {
+            Log.w(TAG, "Widget bind not allowed");
+            requestBindWidget(data);
         }
     }
 
-    private void appWidgetBound(int resultCode, Intent data) {
-        switch (resultCode) {
-            case Activity.RESULT_OK:
-                if (data != null) {
-                    addAppWidget(data);
-                } else {
-                    Log.i(TAG, "Widget bind failed");
-                }
-                break;
-            case Activity.RESULT_CANCELED:
-                removePendingWidget();
-                break;
+    private void appWidgetBound(ActivityResult result) {
+        Intent data = result.getData();
+        if (result.getResultCode() == Activity.RESULT_OK && data != null) {
+            addAppWidget(data);
+        } else {
+            // if bind was not allowed, delete the widget
+            removePendingWidget();
         }
     }
 
@@ -287,7 +242,7 @@ class Widgets extends Forwarder {
             int appWidgetId = view.getAppWidgetId();
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             if (appWidgetInfo != null) {
-                int lineSize = getLineSize(view);
+                int lineSize = getLineSize(view.getLayoutParams().height);
                 builder.add(appWidgetId + "-" + lineSize);
             } else {
                 Log.w(TAG, "Unable to retrieve widget by id " + appWidgetId);
@@ -356,9 +311,8 @@ class Widgets extends Forwarder {
 
         AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity.getApplicationContext(), appWidgetId, appWidgetInfo);
 
-        int height = (int) (lineSize * getLineHeight());
-        hostView.setAppWidget(appWidgetId, appWidgetInfo);
-        setWidgetSize(hostView, height, appWidgetInfo);
+        hostView.setMinimumWidth(Math.min(appWidgetInfo.minWidth, appWidgetInfo.minResizeWidth));
+        setWidgetSize(hostView, lineSize);
 
         hostView.setLongClickable(true);
         hostView.setOnLongClickListener(v -> {
@@ -387,12 +341,11 @@ class Widgets extends Forwarder {
         if (isReconfigurable(currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_widget_settings));
         }
-        int increasedLineHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-        if (!preventIncreaseLineHeight(increasedLineHeight, currentAppWidgetInfo)) {
+        int lineSize = getLineSize(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height);
+        if (canGrowTo(lineSize + 1, currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_size_up));
         }
-        int decreasedLineHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-        if (!preventDecreaseLineHeight(decreasedLineHeight, currentAppWidgetInfo)) {
+        if (canShrinkTo(lineSize - 1, currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_size_down));
         }
         if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != 0) {
@@ -416,12 +369,10 @@ class Widgets extends Forwarder {
             parent.removeView(widgetWithMenuCurrentlyDisplayed);
             mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
             serializeState();
-        } else if (stringId == R.string.menu_size_up) {
-            int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-            resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
-        } else if (stringId == R.string.menu_size_down) {
-            int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-            resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+        } else if (stringId == R.string.menu_size_up || stringId == R.string.menu_size_down) {
+            int lineSize = getLineSize(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height);
+            setWidgetSize(widgetWithMenuCurrentlyDisplayed, stringId == R.string.menu_size_up ? lineSize + 1 : lineSize - 1);
+            serializeState();
         } else if (stringId == R.string.menu_widget_move_up) {
             int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
             if (currentIndex >= 1) {
@@ -440,98 +391,37 @@ class Widgets extends Forwarder {
     }
 
     /**
-     * @param hostView host view of widget
-     * @return decreased line height of host view
-     */
-    private int getDecreasedLineHeight(AppWidgetHostView hostView) {
-        int lineSize = getLineSize(hostView) - 1;
-        return (int) (lineSize * getLineHeight());
-    }
-
-    /**
-     * @param hostView host view of widget
-     * @return increased line height of host view
-     */
-    private int getIncreasedLineHeight(AppWidgetHostView hostView) {
-        int lineSize = getLineSize(hostView) + 1;
-        return (int) (lineSize * getLineHeight());
-    }
-
-    /**
      * Set new height to host view of widget.
      *
      * @param hostView host view for widget
-     * @param height   height of widget
+     * @param lineSize height of widget given in lines
      */
-    private void setWidgetSize(AppWidgetHostView hostView, int height, @NonNull AppWidgetProviderInfo appWidgetInfo) {
+    private void setWidgetSize(AppWidgetHostView hostView, int lineSize) {
+        int height = (int) (lineSize * getLineHeight());
         hostView.setMinimumHeight(height);
-        hostView.setMinimumWidth(Math.min(appWidgetInfo.minWidth, appWidgetInfo.minResizeWidth));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
         params.bottomMargin = getWidgetSpacingPx();
         hostView.setLayoutParams(params);
     }
 
     /**
-     * @param hostView host view of widget
-     * @param height   new height of widget
+     * @return true, if widget can be shrunk to given number of lines
      */
-    private void resizeWidget(AppWidgetHostView hostView, int height) {
-        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(hostView.getAppWidgetId());
-        if (preventDecreaseLineHeight(height, appWidgetInfo) && preventIncreaseLineHeight(height, appWidgetInfo)) {
-            return;
-        }
-        setWidgetSize(hostView, height, appWidgetInfo);
-        serializeState();
+    private boolean canShrinkTo(int lineSize, AppWidgetProviderInfo appWidgetInfo) {
+        return lineSize > 0 && appWidgetInfo != null && (int) (lineSize * getLineHeight()) >= Math.min(getMinHeight(appWidgetInfo), appWidgetInfo.minResizeHeight);
     }
 
     /**
-     * Check if resize of widget is prevented.
-     *
-     * @param height        new height of widget
-     * @param appWidgetInfo
-     * @return true, if widget cannot be resized to given height
+     * @return true, if widget can be grown to given number of lines
      */
-    private boolean preventDecreaseLineHeight(int height, AppWidgetProviderInfo appWidgetInfo) {
-        return height <= 0 || appWidgetInfo == null || height < Math.min(getMinHeight(appWidgetInfo), appWidgetInfo.minResizeHeight);
-    }
-
-    /**
-     * Check if resize of widget is prevented.
-     *
-     * @param height        new height of widget
-     * @param appWidgetInfo
-     * @return true, if widget cannot be resized to given height
-     */
-    private boolean preventIncreaseLineHeight(int height, AppWidgetProviderInfo appWidgetInfo) {
-        if (height <= 0 || appWidgetInfo == null) {
-            return true;
+    private boolean canGrowTo(int lineSize, AppWidgetProviderInfo appWidgetInfo) {
+        if (appWidgetInfo == null) {
+            return false;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            return appWidgetInfo.maxResizeHeight >= appWidgetInfo.minHeight && getLineSize(height) > getLineSize(appWidgetInfo.maxResizeHeight);
+            return appWidgetInfo.maxResizeHeight < appWidgetInfo.minHeight || lineSize <= getLineSize(appWidgetInfo.maxResizeHeight);
         }
-        return false;
-    }
-
-    /**
-     * Adds widget to Activity and persists it in prefs to be able to restore it
-     *
-     * @param appWidgetId id of widget to add
-     * @param appWidgetInfo
-     */
-    private void addAppWidget(int appWidgetId, AppWidgetProviderInfo appWidgetInfo) {
-        // calculate initial size for new widget
-        int initialLineSize = WidgetUtils.getInitialLineSize(getMinHeight(appWidgetInfo), getLineHeight(), INITIAL_WIDGET_LINE_SIZE);
-
-        addWidget(appWidgetId, initialLineSize);
-
-        serializeState();
-
-        // Scroll the new widget into view.  When content fits the viewport
-        // this is a no-op; when it overflows the scroll view shows the widget.
-        scrollIntoView(widgetArea.getChildAt(widgetArea.getChildCount() - 1));
-
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
+        return true;
     }
 
     /**
@@ -570,23 +460,28 @@ class Widgets extends Forwarder {
     }
 
     /**
-     * Check if widget needs configuration and display configuration view if necessary,
-     * otherwise just add the widget
+     * Adds widget to Activity and persists it in prefs to be able to restore it,
+     * then display its configuration view if necessary
      *
-     * @param data Intent holding widget id to configure
+     * @param data Intent holding widget id to add
      */
     private void addAppWidget(Intent data) {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
-        if (appWidgetInfo != null) {
-            // Add the widget
-            addAppWidget(appWidgetId, appWidgetInfo);
-
-            if (!isConfigurationOptional(appWidgetInfo)) {
-                configureAppWidget(appWidgetId, appWidgetInfo, REQUEST_APPWIDGET_CONFIGURED);
-            }
-        } else {
+        if (appWidgetInfo == null) {
             Log.w(TAG, "Add widget not possible");
+            return;
+        }
+
+        addWidget(appWidgetId, Math.max(INITIAL_WIDGET_LINE_SIZE, getLineSize(getMinHeight(appWidgetInfo))));
+        serializeState();
+
+        // Scroll the new widget into view.  When content fits the viewport
+        // this is a no-op; when it overflows the scroll view shows the widget.
+        scrollIntoView(widgetArea.getChildAt(widgetArea.getChildCount() - 1));
+
+        if (!isConfigurationOptional(appWidgetInfo)) {
+            configureAppWidget(appWidgetId, appWidgetInfo, REQUEST_APPWIDGET_CONFIGURED);
         }
     }
 
@@ -609,15 +504,8 @@ class Widgets extends Forwarder {
      * @return true, if configuration is optional
      */
     private boolean isConfigurationOptional(@NonNull AppWidgetProviderInfo appWidgetInfo) {
-        if (!isReconfigurable(appWidgetInfo)) {
-            return false;
-        }
-        if (appWidgetInfo.configure != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            int featureFlags = appWidgetInfo.widgetFeatures;
-            return (featureFlags & WIDGET_FEATURE_CONFIGURATION_OPTIONAL) != 0;
-        } else {
-            return false;
-        }
+        return isReconfigurable(appWidgetInfo) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                && (appWidgetInfo.widgetFeatures & WIDGET_FEATURE_CONFIGURATION_OPTIONAL) != 0;
     }
 
     /**
@@ -631,14 +519,6 @@ class Widgets extends Forwarder {
         } else {
             return false;
         }
-    }
-
-    /**
-     * @param view
-     * @return calculated line size of given view
-     */
-    private int getLineSize(View view) {
-        return getLineSize(view.getLayoutParams().height);
     }
 
     /**
@@ -665,7 +545,6 @@ class Widgets extends Forwarder {
     }
 
     public void onDestroy() {
-        prefs.unregisterOnSharedPreferenceChangeListener(onWidgetSpacingChanged);
         if (widgetScrollListener != null) {
             widgetArea.getViewTreeObserver().removeOnGlobalLayoutListener(widgetScrollListener);
             widgetScrollListener = null;
