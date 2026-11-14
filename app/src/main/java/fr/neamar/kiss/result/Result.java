@@ -569,11 +569,6 @@ public abstract class Result<T extends Pojo> {
         return prefs.getBoolean("tags-visible", true);
     }
 
-    protected boolean isSubIconVisible(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("subicon-visible", true);
-    }
-
     protected void setSourceBounds(@NonNull Intent intent, @Nullable View view) {
         intent.setSourceBounds(getViewBounds(view));
     }

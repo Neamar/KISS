@@ -2,14 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:title="@string/shortcuts_name">
-    <SwitchPreference
-        app:defaultValue="true"
-        app:key="subicon-visible"
-        app:title="@string/show_subicons">
-        <extra
-            android:name="minSdk"
-            android:value="26" />
-    </SwitchPreference>
     <Preference
         app:fragment="fr.neamar.kiss.settings.ExcludeAppSettingsFragment"
         app:key="edit-excluded-app-shortcuts"

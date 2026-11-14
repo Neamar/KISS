@@ -68,12 +68,7 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
             this.setAsyncDrawable(shortcutIcon);
 
             // Prepare
-            if (isSubIconVisible(context)) {
-                appIcon.setVisibility(View.VISIBLE);
-                setAsyncDrawable(appIcon, android.R.color.transparent, false, () -> appDrawable != null, this::getAppDrawable, (drawable) -> appDrawable = drawable);
-            } else {
-                appIcon.setVisibility(View.GONE);
-            }
+            setAsyncDrawable(appIcon, android.R.color.transparent, false, () -> appDrawable != null, this::getAppDrawable, (drawable) -> appDrawable = drawable);
         } else {
             appIcon.setImageDrawable(null);
             shortcutIcon.setImageDrawable(null);
