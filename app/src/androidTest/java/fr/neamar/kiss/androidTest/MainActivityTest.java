@@ -5,9 +5,13 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
+import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
@@ -18,6 +22,7 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assume.assumeTrue;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -100,6 +105,13 @@ public class MainActivityTest extends AbstractMainActivityTest {
         search("batter");
         onView(withId(R.id.item_setting_icon)).check(matches(isDisplayed()));
         onView(withId(R.id.item_setting_name)).check(matches(withText("Battery")));
+    }
+
+    @Test
+    public void testEnterLaunchesFirstResult() {
+        search("0123456789");
+        onView(withId(R.id.searchEditText)).perform(pressImeActionButton());
+        intended(allOf(hasAction(Intent.ACTION_CALL), hasData("tel:0123456789")));
     }
 
     @Test
