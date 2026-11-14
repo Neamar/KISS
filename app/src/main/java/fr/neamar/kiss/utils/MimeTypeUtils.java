@@ -11,6 +11,7 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
@@ -73,9 +74,14 @@ public class MimeTypeUtils {
 
         Set<String> mimeTypes = new HashSet<>();
 
+        // Let the contacts provider skip the rows we don't want: they are most of the table, and it has to go through all of them otherwise
+        List<String> ignoredMimeTypes = new ArrayList<>(UNSUPPORTED_MIME_TYPES);
+        ignoredMimeTypes.add(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        String selection = ContactsContract.Data.MIMETYPE + " NOT IN (" + TextUtils.join(",", Collections.nCopies(ignoredMimeTypes.size(), "?")) + ")";
+
         try (Cursor cursor = context.getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
-                new String[]{ContactsContract.Data.MIMETYPE}, null, null, null)) {
+                new String[]{ContactsContract.Data.MIMETYPE}, selection, ignoredMimeTypes.toArray(new String[0]), null)) {
             if (cursor != null) {
                 if (cursor.getCount() > 0) {
                     int mimeTypeIndex = cursor.getColumnIndex(ContactsContract.Data.MIMETYPE);
