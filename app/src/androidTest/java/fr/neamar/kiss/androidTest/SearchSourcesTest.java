@@ -1,14 +1,20 @@
 package fr.neamar.kiss.androidTest;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -19,6 +25,7 @@ import org.junit.Test;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.ProviderName;
+import fr.neamar.kiss.db.DBHelper;
 
 @LargeTest
 public class SearchSourcesTest extends AbstractMainActivityTest {
@@ -72,6 +79,15 @@ public class SearchSourcesTest extends AbstractMainActivityTest {
     }
 
     @Test
+    public void testPhoneAddedToHistoryOnClick() {
+        search("0123456789");
+        onView(withId(R.id.item_phone_text)).perform(click());
+        intended(allOf(hasAction(Intent.ACTION_CALL), hasData("tel:0123456789")));
+        waitForLaunchOccurred();
+        onView(withId(R.id.item_phone_text)).check(matches(isDisplayed()));
+    }
+
+    @Test
     public void testPhoneDisabled() {
         disableSource("enable-phone");
         search("0123456789");
@@ -102,7 +118,15 @@ public class SearchSourcesTest extends AbstractMainActivityTest {
 
     @Test
     public void testMaxSearchResults() {
+        for (String phone : new String[]{"0123456781", "0123456782", "0123456783"}) {
+            DBHelper.insertHistory(context, "", "phone://" + phone);
+        }
         scenario.onActivity(activity -> activity.prefs.edit().putString("number-of-search-results", "2").commit());
+        scenario.recreate();
+        waitForSearch();
+        // History is not impacted
+        onView(withId(android.R.id.list)).check(matches(hasChildCount(3)));
+
         search("e");
         onView(withId(android.R.id.list)).check(matches(hasChildCount(2)));
     }

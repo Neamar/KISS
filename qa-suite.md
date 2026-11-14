@@ -13,14 +13,14 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Touching the search field displays the keyboard
 - [ ] Searching for text displays results (automated)
 - [ ] Clicking the launcher icon displays the list of apps (automated)
-- [ ] When clicking on a search item, the corresponding intent is triggered
-- [ ] When going back to KISS, search results have been cleared
-- [ ] When going back to KISS, the item has been added to history
+- [ ] When clicking on a search item, the corresponding intent is triggered (automated)
+- [ ] When going back to KISS, search results have been cleared (automated)
+- [ ] When going back to KISS, the item has been added to history (automated)
 - [ ] History is displayed when search box is empty (automated)
 - [ ] Three dots menu is displayed to the right (automated)
 - [ ] Entering a search query replaces the three-dots menu with an "X" (automated)
 - [ ] Clicking the "X" empties the search field, displays three dots menu and displays history (automated)
-- [ ] When searching, pressing enter on the keyboard launches the first result
+- [ ] When searching, pressing enter on the keyboard launches the first result (automated)
 - [ ] When keyboard is displayed, scrolling the list down hides the keyboard
 - [ ] When searching, pressing space as the first character does nothing (left-hand side trimming) (automated)
 - [ ] Press kiss icon. App list is displayed, and kiss bar appears with a circular reveal animation
@@ -51,15 +51,15 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Reset history clears existing history instantly
 - [ ] Reset history summary does not display the old history length after reset
 - [ ] Pressing cancel on reset history does not reset history
-- [ ] Adding an excluded app hides the app from search results
+- [ ] Adding an excluded app hides the app from search results (automated)
 - [ ] Adding an excluded app hides the app from history
-- [ ] Adding an excluded app hides the app from app list
+- [ ] Adding an excluded app hides the app from app list (automated)
 - [ ] Resetting excluded app removes all excluded apps
 - [ ] Resetting excluded apps allows apps previously hidden to be displayed in app list
-- [ ] No more than Max number of history results is displayed in history, and no more than Max number of search results (in Search settings) when searching
+- [ ] No more than Max number of history results is displayed in history, and no more than Max number of search results (in Search settings) when searching (automated)
 - [ ] Changing the value updates the history dynamically
-- [ ] Freezing history prevents new items from being added to history
-- [ ] Unchecking "Freeze history" ensures history is populated again
+- [ ] Freezing history prevents new items from being added to history (automated)
+- [ ] Unchecking "Freeze history" ensures history is populated again (automated)
 - [ ] TODO: history mode
 
 #### Automated history
@@ -72,10 +72,10 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 ### Favorites
 
 - [ ] Favorite bar is displayed automatically at startup
-- [ ] Clicking on a favorite trigger the correct Intent
-- [ ] When going back to KISS, the favorite has been added to history
-- [ ] Long-clicking favorite displays the menu
-- [ ] Long-click menu can be used to remove the favorite
+- [ ] Clicking on a favorite trigger the correct Intent (automated)
+- [ ] When going back to KISS, the favorite has been added to history (automated)
+- [ ] Long-clicking favorite displays the menu (automated)
+- [ ] Long-click menu can be used to remove the favorite (automated)
 - [ ] Empty favorites are not displayed (favorites takes all available space in the bar)
 - [ ] When entering a search query, favorite bar is hidden
 - [ ] When search query is removed, bar appears again
@@ -232,8 +232,8 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 ### Search settings
 
 - [ ] Search for a contact. Make sure it is displayed as a result and appended to history on click
-- [ ] Search for a device setting. Make sure it is displayed as a result and appended to history on click
-- [ ] Search for a phone number. Make sure it is displayed as a result and appended to history on click
+- [ ] Search for a device setting. Make sure it is displayed as a result and appended to history on click (automated)
+- [ ] Search for a phone number. Make sure it is displayed as a result and appended to history on click (automated)
 - [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance, WhatsApp). Make sure it is displayed as a result and appended to history on click
 - [ ] Search for a long text. Make sure a web search option is displayed as a result
 - [ ] From Search sources, disable Contacts. From now on, they are not displayed anymore in search or history
@@ -243,8 +243,8 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] From Search sources, disable Timers. From now on, typing `5m` doesn't display a result (automated)
 - [ ] From Search sources, disable Shortcuts. From now on, they are not displayed anymore in search or history
 - [ ] From Search sources, disable Web Search. From now on, they are not displayed anymore in search (automated)
-- [ ] Set "Max number of search results" to 2. Searching never displays more than 2 results, history is not impacted
-- [ ] Set "Max number of history results" (in History settings) to 2. History never displays more than 2 results, search is not impacted
+- [ ] Set "Max number of search results" to 2. Searching never displays more than 2 results, history is not impacted (automated)
+- [ ] Set "Max number of history results" (in History settings) to 2. History never displays more than 2 results, search is not impacted (automated)
 - [ ] Add a search provider. Ensure it is available in the select search provider setting
 - [ ] Select a search provider. Ensure it is available in search
 - [ ] Reset search providers. Ensure only default providers are visible
