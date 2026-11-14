@@ -177,8 +177,10 @@ public class WidgetView extends AppWidgetHostView {
         switch (uiMode & UI_MODE_NIGHT_MASK) {
             case UI_MODE_NIGHT_NO:
                 setOnLightBackground(true);
+                break;
             case UI_MODE_NIGHT_YES:
                 setOnLightBackground(false);
+                break;
         }
     }
 }
