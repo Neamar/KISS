@@ -77,7 +77,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Long-clicking favorite displays the menu (automated)
 - [ ] Long-click menu can be used to remove the favorite (automated)
 - [ ] Empty favorites are not displayed (favorites takes all available space in the bar)
-- [ ] When entering a search query, favorite bar is hidden
+- [ ] When entering a search query, favorite bar is hidden (automated)
 - [ ] When search query is removed, bar appears again
 - [ ] When coming back from an application launched through search, bar is displayed again
 - [ ] When kiss bar is opened, favorites bar is hidden
@@ -92,24 +92,24 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 #### Minimalistic mode on for favorites
 
 - [ ] In settings, Home screen, enable "Minimalistic UI" and "Favorites bar hidden by default"
-- [ ] Favorites bar is hidden by default
+- [ ] Favorites bar is hidden by default (automated)
 - [ ] Touching the screen on an empty area displays history and the favorites
-- [ ] When entering a search query, favorite bar is hidden
-- [ ] When search query is removed, favorite bar is hidden
+- [ ] When entering a search query, favorite bar is hidden (automated)
+- [ ] When search query is removed, favorite bar is hidden (automated)
 - [ ] When searching and pressing home, favorite bar is hidden
-- [ ] When coming back from an application launched through search, favorite bar is hidden
+- [ ] When coming back from an application launched through search, favorite bar is hidden (automated)
 - [ ] When kiss bar is opened, favorites are displayed
 
 #### When using the internal favorite bar
 
 - [ ] In settings, Favorites & tags, disable "Show favorites above search bar", disable "Minimalistic UI" and "Favorites bar hidden by default"
-- [ ] The external favorite bar is hidden by default
-- [ ] When entering a search query, external favorite bar is hidden
-- [ ] When search query is removed, external favorite bar is still hidden
-- [ ] When coming back from an application launched through search, external favorite bar is hidden
-- [ ] When kiss bar is opened, favorites are visible in the kiss bar
-- [ ] When kiss bar is opened, favorites can be clicked
-- [ ] When kiss bar is opened, favorites can be long-clicked
+- [ ] The external favorite bar is hidden by default (automated)
+- [ ] When entering a search query, external favorite bar is hidden (automated)
+- [ ] When search query is removed, external favorite bar is still hidden (automated)
+- [ ] When coming back from an application launched through search, external favorite bar is hidden (automated)
+- [ ] When kiss bar is opened, favorites are visible in the kiss bar (automated)
+- [ ] When kiss bar is opened, favorites can be clicked (automated)
+- [ ] When kiss bar is opened, favorites can be long-clicked (automated)
 - [ ] When kiss bar is opened, favorites' context menu can be interacted with
 
 #### When using the external favorite bar, with transparent favorite bar
@@ -220,9 +220,9 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] With show app tags enabled, long press an app and add a tag. Tag is displayed
 - [ ] Search for the tag you just added, app is displayed and tag is highlighted
 - [ ] With show app tags disabled, long press an app and add a tag. Tag is not displayed
-- [ ] Search for the tag you just added, the app is displayed with matching tag
-- [ ] With hide app icons disabled, app icons are displayed
-- [ ] With hide app icons enabled, app icons are not displayed (empty space)
+- [ ] Search for the tag you just added, the app is displayed with matching tag (automated)
+- [ ] With hide app icons disabled, app icons are displayed (automated)
+- [ ] With hide app icons enabled, app icons are not displayed (empty space) (automated)
 
 #### Wallpaper
 
@@ -249,7 +249,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Select a search provider. Ensure it is available in search
 - [ ] Reset search providers. Ensure only default providers are visible
 - [ ] Delete a search provider. Ensure it is not available in search anymore
-- [ ] Disable search providers. Disable minimalistic mode. Enter a query with no results. Help text is displayed.
+- [ ] Disable search providers. Disable minimalistic mode. Enter a query with no results. Help text is displayed. (automated)
 - [ ] Disable search providers. Enable minimalistic mode. Enter a query with no results. Nothing is displayed
 
 ### Settings search
@@ -269,5 +269,5 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Misc
 
-- [ ] Rate the app settings appears if history has more than 300 items
+- [ ] Rate the app settings appears if history has more than 300 items (automated)
 - [ ] Help icon opens help website
