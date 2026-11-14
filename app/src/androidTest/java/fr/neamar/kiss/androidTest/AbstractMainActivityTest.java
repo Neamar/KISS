@@ -1,5 +1,8 @@
 package fr.neamar.kiss.androidTest;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -20,10 +23,13 @@ import org.junit.Rule;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.searcher.Searcher;
 
 abstract class AbstractMainActivityTest {
     @Rule
@@ -50,8 +56,28 @@ abstract class AbstractMainActivityTest {
         DBHelper.clearHistory(context);
         assertThat(PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit(), is(true));
         PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
+        // The max result count is cached statically and would otherwise leak between tests
+        QuerySearcher.clearMaxResultCountCache();
 
         scenario = ActivityScenario.launch(MainActivity.class);
+    }
+
+    protected void search(String query) {
+        onView(withId(R.id.searchEditText)).perform(typeText(query));
+        waitForSearch();
+    }
+
+    /**
+     * Searches run on their own executor, which Espresso doesn't track:
+     * wait for it to drain, Espresso then waits for the results to be posted to the UI.
+     */
+    protected static void waitForSearch() {
+        try {
+            Searcher.SEARCH_THREAD.submit(() -> {
+            }).get(10, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            throw new AssertionError("Search did not complete", e);
+        }
     }
 
     @After

@@ -11,23 +11,23 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Help text ("search apps, contacts, ...") appears while app are loading
 - [ ] After some time, loader disappears and is replaced by launcher icon
 - [ ] Touching the search field displays the keyboard
-- [ ] Searching for text displays results
-- [ ] Clicking the launcher icon displays the list of apps
+- [ ] Searching for text displays results (automated)
+- [ ] Clicking the launcher icon displays the list of apps (automated)
 - [ ] When clicking on a search item, the corresponding intent is triggered
 - [ ] When going back to KISS, search results have been cleared
 - [ ] When going back to KISS, the item has been added to history
-- [ ] History is displayed when search box is empty
-- [ ] Three dots menu is displayed to the right
-- [ ] Entering a search query replaces the three-dots menu with an "X"
-- [ ] Clicking the "X" empties the search field, displays three dots menu and displays history
+- [ ] History is displayed when search box is empty (automated)
+- [ ] Three dots menu is displayed to the right (automated)
+- [ ] Entering a search query replaces the three-dots menu with an "X" (automated)
+- [ ] Clicking the "X" empties the search field, displays three dots menu and displays history (automated)
 - [ ] When searching, pressing enter on the keyboard launches the first result
 - [ ] When keyboard is displayed, scrolling the list down hides the keyboard
-- [ ] When searching, pressing space as the first character does nothing (left-hand side trimming)
+- [ ] When searching, pressing space as the first character does nothing (left-hand side trimming) (automated)
 - [ ] Press kiss icon. App list is displayed, and kiss bar appears with a circular reveal animation
 - [ ] Press kiss icon again. App list is hidden, and kiss bar disappears with a circular (un)reveal animation
 - [ ] With keyboard open, press kiss icon. App list is displayed, and keyboard stays there
 - [ ] With keyboard open, press kiss icon. The app list is displayed. When typing something on the keyboard, app list is hidden, and search results start appearing
-- [ ] Search for something, press kiss icon. The app list is displayed. Press kiss icon again, search query has been emptied
+- [ ] Search for something, press kiss icon. The app list is displayed. Press kiss icon again, search query has been emptied (automated)
 - [ ] With KISS set as default launcher, pressing home empties the search field and displays history
 - [ ] With KISS set as default launcher and app list displayed, pressing home hides the app list and displays history
 - [ ] When app bar is displayed, pressing back hides the bar and displays history
@@ -37,11 +37,11 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Menus
 
-- [ ] Clicking the three dots menu open a popup
-- [ ] Long-clicking the three dots menu open a popup
+- [ ] Clicking the three dots menu open a popup (automated)
+- [ ] Long-clicking the three dots menu open a popup (automated)
 - [ ] If device has physical menu button, pressing menu displays the three-dots menu
-- [ ] Long pressing a search result displays contextual menu
-- [ ] When clicking three dots menu, pressing back dismisses the popup
+- [ ] Long pressing a search result displays contextual menu (automated)
+- [ ] When clicking three dots menu, pressing back dismisses the popup (automated)
 
 ### History
 
@@ -238,11 +238,11 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Search for a long text. Make sure a web search option is displayed as a result
 - [ ] From Search sources, disable Contacts. From now on, they are not displayed anymore in search or history
 - [ ] From Search sources, disable Device settings. From now on, they are not displayed anymore in search or history
-- [ ] From Search sources, disable Direct phone calls. From now on, typing a phone number doesn't display a "Call" result
-- [ ] From Search sources, disable Math formulae. From now on, typing `2+2` doesn't display a result
-- [ ] From Search sources, disable Timers. From now on, typing `5m` doesn't display a result
+- [ ] From Search sources, disable Direct phone calls. From now on, typing a phone number doesn't display a "Call" result (automated)
+- [ ] From Search sources, disable Math formulae. From now on, typing `2+2` doesn't display a result (automated)
+- [ ] From Search sources, disable Timers. From now on, typing `5m` doesn't display a result (automated)
 - [ ] From Search sources, disable Shortcuts. From now on, they are not displayed anymore in search or history
-- [ ] From Search sources, disable Web Search. From now on, they are not displayed anymore in search
+- [ ] From Search sources, disable Web Search. From now on, they are not displayed anymore in search (automated)
 - [ ] Set "Max number of search results" to 2. Searching never displays more than 2 results, history is not impacted
 - [ ] Set "Max number of history results" (in History settings) to 2. History never displays more than 2 results, search is not impacted
 - [ ] Add a search provider. Ensure it is available in the select search provider setting
