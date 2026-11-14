@@ -17,14 +17,8 @@ import fr.neamar.kiss.R;
 @LargeTest
 public class FavoritesTest extends AbstractMainActivityTest {
     private void enableInternalBar() {
-        mActivityRule.getScenario().onActivity(activity -> {
-            activity.prefs.edit().putBoolean("enable-favorites-bar", false).apply();
-            try {
-                activity.runOnUiThread(activity::recreate);
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            }
-        });
+        scenario.onActivity(activity -> activity.prefs.edit().putBoolean("enable-favorites-bar", false).commit());
+        scenario.recreate();
     }
 
     @Test
@@ -64,6 +58,7 @@ public class FavoritesTest extends AbstractMainActivityTest {
 
     @Test
     public void testInternalBarHiddenOnSearch() {
+        enableInternalBar();
         onView(withId(R.id.searchEditText)).perform(typeText("Test"));
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
         onView(withId(R.id.clearButton)).perform(click());

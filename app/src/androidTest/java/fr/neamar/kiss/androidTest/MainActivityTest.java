@@ -12,6 +12,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.filters.LargeTest;
 
 import org.junit.Test;
@@ -62,7 +63,8 @@ public class MainActivityTest extends AbstractMainActivityTest {
     public void testSearchResultAppears() {
         onView(withId(R.id.searchEditText)).perform(typeText("blahblah"));
         onView(withId(R.id.item_search_icon)).check(matches(isDisplayed()));
-        onView(withId(R.id.item_search_text)).check(matches(withText("Search Google for “blahblah”")));
+        String expected = ApplicationProvider.getApplicationContext().getString(R.string.ui_item_search, "Google", "blahblah");
+        onView(withId(R.id.item_search_text)).check(matches(withText(expected)));
     }
 
     @Test

@@ -3,7 +3,7 @@ name: App testing
 on:
   push:
     branches:
-      - '**'
+      - master
   pull_request:
     branches:
       - master
@@ -27,6 +27,29 @@ jobs:
         run: bash ./gradlew lint --stacktrace
       - name: Unit tests
         run: bash ./gradlew testDebugUnitTest --stacktrace
+  instrumented:
+    name: Run Instrumented Tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: 21
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Instrumented tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          script: bash ./gradlew connectedDebugAndroidTest --stacktrace
   apk:
     name: Generate APK
     runs-on: ubuntu-24.04
@@ -38,7 +61,7 @@ jobs:
           distribution: 'temurin'
           java-version: 21
       - name: Build APKs
-        run: bash ./gradlew assembleDebug assembleRelease --stacktrace
+        run: bash ./gradlew assembleDebug assembleRelease assembleDebugAndroidTest --stacktrace
       - name: Upload debug APK
         if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-artifact@v7
