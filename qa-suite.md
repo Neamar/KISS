@@ -10,7 +10,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Loader appears when opening the app
 - [ ] Help text ("search apps, contacts, ...") appears while app are loading
 - [ ] After some time, loader disappears and is replaced by launcher icon
-- [ ] Touching the search field displays the keyboard
+- [ ] Touching the search field displays the keyboard (automated)
 - [ ] Searching for text displays results (automated)
 - [ ] Clicking the launcher icon displays the list of apps (automated)
 - [ ] When clicking on a search item, the corresponding intent is triggered (automated)
@@ -28,11 +28,11 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] With keyboard open, press kiss icon. App list is displayed, and keyboard stays there
 - [ ] With keyboard open, press kiss icon. The app list is displayed. When typing something on the keyboard, app list is hidden, and search results start appearing
 - [ ] Search for something, press kiss icon. The app list is displayed. Press kiss icon again, search query has been emptied (automated)
-- [ ] With KISS set as default launcher, pressing home empties the search field and displays history
-- [ ] With KISS set as default launcher and app list displayed, pressing home hides the app list and displays history
-- [ ] When app bar is displayed, pressing back hides the bar and displays history
-- [ ] When search results are displayed, pressing back empties then search field and displays history
-- [ ] When history is displayed, pressing back does not quit KISS
+- [ ] With KISS set as default launcher, pressing home empties the search field and displays history (automated)
+- [ ] With KISS set as default launcher and app list displayed, pressing home hides the app list and displays history (automated)
+- [ ] When app bar is displayed, pressing back hides the bar and displays history (automated)
+- [ ] When search results are displayed, pressing back empties then search field and displays history (automated)
+- [ ] When history is displayed, pressing back does not quit KISS (automated)
 - [ ] When searching for something, touching the edit text moves the cursor
 
 #### Menus
@@ -152,15 +152,15 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Keyboard
 
-- [ ] Disable keyboard on start
-- [ ] Press home. Keyboard is not displayed
-- [ ] Press back. Keyboard is not displayed
-- [ ] Display app list. Hide app list, keyboard is not displayed
-- [ ] Touch search field. Keyboard is displayed
+- [ ] Disable keyboard on start (automated)
+- [ ] Press home. Keyboard is not displayed (automated)
+- [ ] Press back. Keyboard is not displayed (automated)
+- [ ] Display app list. Hide app list, keyboard is not displayed (automated)
+- [ ] Touch search field. Keyboard is displayed (automated)
 - [ ] Open a search result. Press home, keyboard is not displayed
 - [ ] Open a search result. Press back, keyboard is not displayed
-- [ ] Enable keyboard on start
-- [ ] Press home. Keyboard is displayed
+- [ ] Enable keyboard on start (automated)
+- [ ] Press home. Keyboard is displayed (automated)
 - [ ] Display app list. Hide keyboard. Hide app list, keyboard is displayed
 - [ ] Open a search result. Press home, keyboard is displayed
 - [ ] Open a search result. Press back, keyboard is displayed
@@ -169,12 +169,12 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Minimalistic mode
 
-- [ ] When using minimalistic mode and pressing home, history is not displayed
-- [ ] When using minimalistic mode and pressing the search bar, history is not displayed
-- [ ] When using minimalistic mode and pressing anywhere else, history is not displayed
-- [ ] When using minimalistic mode with history-touch and pressing anywhere else (outside of a widget), history is displayed
-- [ ] When using minimalistic mode with history-touch, display history then press back, history is hidden
-- [ ] When using minimalistic mode with history-touch, display history then press home, history is hidden
+- [ ] When using minimalistic mode and pressing home, history is not displayed (automated)
+- [ ] When using minimalistic mode and pressing the search bar, history is not displayed (automated)
+- [ ] When using minimalistic mode and pressing anywhere else, history is not displayed (automated)
+- [ ] When using minimalistic mode with history-touch and pressing anywhere else (outside of a widget), history is displayed (automated)
+- [ ] When using minimalistic mode with history-touch, display history then press back, history is hidden (automated)
+- [ ] When using minimalistic mode with history-touch, display history then press home, history is hidden (automated)
 - [ ] When scrolling down on the history, the keyboard disappears
 - [ ] Disable show keyboard on start
 - [ ] When using immersive mode for the status bar, status bar disappears when pressing home
@@ -208,10 +208,10 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Portrait / landscape
 
-- [ ] When portrait-locked, app can't pivot
-- [ ] When not locked, app can pivot
-- [ ] When not locked and searching, app can pivot and search remains
-- [ ] When not locked and viewing app list, app can pivot and app list remains available
+- [ ] When portrait-locked, app can't pivot (automated)
+- [ ] When not locked, app can pivot (automated)
+- [ ] When not locked and searching, app can pivot and search remains (automated)
+- [ ] When not locked and viewing app list, app can pivot and app list remains available (automated)
 
 #### Apps
 
