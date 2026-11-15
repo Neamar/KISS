@@ -287,11 +287,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         // On validate, launch first record
         searchEditText.setOnEditorActionListener((v, actionId, event) -> {
-            // Hardware keyboards send both key down and key up for Enter: only act once
-            if (event != null && event.getAction() != KeyEvent.ACTION_DOWN) {
-                return true;
-            }
-
+            // Back key, forwarded on key up by SearchEditText
             if (actionId == android.R.id.closeButton) {
                 if (mPopup != null) {
                     mPopup.dismiss();
@@ -299,6 +295,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 }
                 hider.fixScroll();
                 return false;
+            }
+
+            // Hardware keyboards send both key down and key up for Enter: only act once
+            if (event != null && event.getAction() != KeyEvent.ACTION_DOWN) {
+                return true;
             }
 
             if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
