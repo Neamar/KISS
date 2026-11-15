@@ -98,7 +98,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] When search query is removed, favorite bar is hidden (automated)
 - [ ] When searching and pressing home, favorite bar is hidden
 - [ ] When coming back from an application launched through search, favorite bar is hidden (automated)
-- [ ] When kiss bar is opened, favorites are displayed
+- [ ] When kiss bar is opened, favorites are hidden
 
 #### When using the internal favorite bar
 
@@ -215,8 +215,6 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Apps
 
-- [ ] App list is displayed alphabetically when A-Z is selected in "App list sort order"
-- [ ] App list is displayed in reverse order when Z-A is selected in "App list sort order"
 - [ ] With show app tags enabled, long press an app and add a tag. Tag is displayed
 - [ ] Search for the tag you just added, app is displayed and tag is highlighted
 - [ ] With show app tags disabled, long press an app and add a tag. Tag is not displayed
