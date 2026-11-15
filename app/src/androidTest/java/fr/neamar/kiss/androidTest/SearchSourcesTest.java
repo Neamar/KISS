@@ -61,8 +61,10 @@ public class SearchSourcesTest extends AbstractMainActivityTest {
     @Test
     public void testWebSearchDisabled() {
         disableSource("enable-search");
-        search("blahblah");
-        onView(withId(R.id.item_search_text)).check(doesNotExist());
+        search("1+1");
+        // Proves the search did run, so the missing web search is caused by the disabled source
+        onView(withText("1+1 = 2")).check(matches(isDisplayed()));
+        onView(withText(context.getString(R.string.ui_item_search, "Google", "1+1"))).check(doesNotExist());
     }
 
     @Test
