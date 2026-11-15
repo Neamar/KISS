@@ -75,13 +75,21 @@ public class HistoryTest extends AbstractMainActivityTest {
     }
 
     @Test
-    public void testExcludedAppHiddenFromAppListAndSearch() {
+    public void testExcludedAppHiddenFromAppListSearchAndHistory() {
         Context context = ApplicationProvider.getApplicationContext();
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         AppPojo settings = dataHandler.getApplications().stream()
                 .filter(app -> app.packageName.equals("com.android.settings")).findFirst().get();
+        DBHelper.insertHistory(context, "", settings.id);
+        // Keeps history non-empty: an empty list is hidden with its stale rows still in place
+        DBHelper.insertHistory(context, "", "phone://0123456789");
         scenario.onActivity(activity -> dataHandler.addToExcluded(settings));
         try {
+            scenario.recreate();
+            waitForSearch();
+            onView(withId(R.id.item_phone_text)).check(matches(isDisplayed()));
+            onView(allOf(withId(R.id.item_app_name), withText(settings.getName()))).check(doesNotExist());
+
             onView(withId(R.id.launcherButton)).perform(click());
             waitForSearch();
             scenario.onActivity(activity -> {

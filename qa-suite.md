@@ -52,7 +52,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Reset history summary does not display the old history length after reset
 - [ ] Pressing cancel on reset history does not reset history
 - [ ] Adding an excluded app hides the app from search results (automated)
-- [ ] Adding an excluded app hides the app from history
+- [ ] Adding an excluded app hides the app from history (automated)
 - [ ] Adding an excluded app hides the app from app list (automated)
 - [ ] Resetting excluded app removes all excluded apps
 - [ ] Resetting excluded apps allows apps previously hidden to be displayed in app list
