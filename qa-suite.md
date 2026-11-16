@@ -84,10 +84,10 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] When kiss bar is opened, internal favorites bar is hidden (automated)
 - [ ] When kiss bar is opened, you can't click on the menu button behind the kiss bar (not even visible, doesn't respond to touch events either)
 - [ ] When searching and pressing home, query is cleared, and favorites are displayed
-- [ ] When adding a favorite, it appears automatically, and favorites are evenly spaced
-- [ ] When removing a favorite, it disappears automatically, and favorites are evenly spaced
-- [ ] When viewing the search list and adding an application to favorites, the app list remains visible and the favorite appears
-- [ ] When searching and adding a result to favorites, the search remains visible and the favorite appears
+- [ ] When adding a favorite, it appears automatically, and favorites are evenly spaced (automated)
+- [ ] When removing a favorite, it disappears automatically, and favorites are evenly spaced (automated)
+- [ ] When viewing the search list and adding an application to favorites, the app list remains visible and the favorite appears (automated)
+- [ ] When searching and adding a result to favorites, the search remains visible and the favorite appears (automated)
 
 #### Minimalistic mode on for favorites
 
@@ -96,7 +96,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Touching the screen on an empty area displays history and the favorites
 - [ ] When entering a search query, favorite bar is hidden (automated)
 - [ ] When search query is removed, favorite bar is hidden (automated)
-- [ ] When searching and pressing home, favorite bar is hidden
+- [ ] When searching and pressing home, favorite bar is hidden (automated)
 - [ ] When coming back from an application launched through search, favorite bar is hidden (automated)
 - [ ] When kiss bar is opened, favorites are hidden
 
@@ -124,7 +124,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### First run
 
-- [ ] On the first run, favorites are set by default (browser, contact, and phone)
+- [ ] On the first run, favorites are set by default (browser, contact, and phone) (automated)
 
 ### UI
 
@@ -157,13 +157,13 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Press back. Keyboard is not displayed (automated)
 - [ ] Display app list. Hide app list, keyboard is not displayed (automated)
 - [ ] Touch search field. Keyboard is displayed (automated)
-- [ ] Open a search result. Press home, keyboard is not displayed
-- [ ] Open a search result. Press back, keyboard is not displayed
+- [ ] Open a search result. Press home, keyboard is not displayed (automated)
+- [ ] Open a search result. Press back, keyboard is not displayed (automated)
 - [ ] Enable keyboard on start (automated)
 - [ ] Press home. Keyboard is displayed (automated)
 - [ ] Display app list. Hide keyboard. Hide app list, keyboard is displayed
-- [ ] Open a search result. Press home, keyboard is displayed
-- [ ] Open a search result. Press back, keyboard is displayed
+- [ ] Open a search result. Press home, keyboard is displayed (automated)
+- [ ] Open a search result. Press back, keyboard is displayed (automated)
 - [ ] (using Swiftkey keyboard) Disable "keyboard suggestions fix". Keyboard displays suggestions when typing
 - [ ] (using Swiftkey keyboard) Enable "keyboard suggestions fix". Keyboard does not display suggestions when typing
 
@@ -215,9 +215,9 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Apps
 
-- [ ] With show app tags enabled, long press an app and add a tag. Tag is displayed
-- [ ] Search for the tag you just added, app is displayed and tag is highlighted
-- [ ] With show app tags disabled, long press an app and add a tag. Tag is not displayed
+- [ ] With show app tags enabled, long press an app and add a tag. Tag is displayed (automated)
+- [ ] Search for the tag you just added, app is displayed and tag is highlighted (automated)
+- [ ] With show app tags disabled, long press an app and add a tag. Tag is not displayed (automated)
 - [ ] Search for the tag you just added, the app is displayed with matching tag (automated)
 - [ ] With hide app icons disabled, app icons are displayed (automated)
 - [ ] With hide app icons enabled, app icons are not displayed (empty space) (automated)

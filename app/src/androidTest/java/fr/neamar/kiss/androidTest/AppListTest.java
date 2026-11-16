@@ -3,19 +3,26 @@ package fr.neamar.kiss.androidTest;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.longClick;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.isDialog;
+import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.emptyArray;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
 import android.content.Context;
+import android.text.Spanned;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.test.filters.LargeTest;
 
@@ -66,18 +73,20 @@ public class AppListTest extends AbstractMainActivityTest {
     }
 
     /**
-     * Tags the first app of the list, then runs the test with the app list closed.
+     * Tags the first app of the list through its menu, then runs the test with the app list closed.
      * Tags live in memory and in the database, which outlive the activity: remove it afterwards.
      */
     private void withTagOnFirstApp(boolean tagsVisible, Runnable test) {
         setPref("tags-visible", tagsVisible);
         openAppList();
         AtomicReference<PojoWithTags> app = new AtomicReference<>();
-        scenario.onActivity(activity -> {
-            app.set((PojoWithTags) activity.adapter.getItem(0).getPojo());
-            setTags(activity, app.get(), TAG);
-        });
+        scenario.onActivity(activity -> app.set((PojoWithTags) activity.adapter.getItem(0).getPojo()));
         try {
+            onData(anything()).inAdapterView(withId(android.R.id.list)).atPosition(0).perform(longClick());
+            onView(withText(R.string.menu_tags_edit)).inRoot(isPlatformPopup()).perform(click());
+            // Typing would show the keyboard, which may cover the dialog buttons or dismiss the dialog
+            onView(withId(R.id.tag_input)).perform(replaceText(TAG));
+            onView(withId(android.R.id.button1)).inRoot(isDialog()).perform(click());
             onView(withId(R.id.whiteLauncherButton)).perform(click());
             test.run();
         } finally {
@@ -97,7 +106,8 @@ public class AppListTest extends AbstractMainActivityTest {
             openAppList();
             checkFirstAppTagDisplayed(true);
             search(TAG);
-            onView(allOf(withId(R.id.item_app_tag), withText(TAG))).check(matches(isDisplayed()));
+            onView(allOf(withId(R.id.item_app_tag), withText(TAG))).check(matches(isDisplayed()))
+                    .check((view, noViewFoundException) -> assertThat(((Spanned) ((TextView) view).getText()).getSpans(0, TAG.length(), Object.class), not(emptyArray())));
         });
     }
 
