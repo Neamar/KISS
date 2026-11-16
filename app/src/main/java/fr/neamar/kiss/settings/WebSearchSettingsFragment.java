@@ -15,8 +15,6 @@ public class WebSearchSettingsFragment extends BaseSettingsFragment {
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences_search_web, rootKey);
-
         if (getPrefs().getStringSet("selected-search-provider-names", null) == null) {
             // If null, it means this setting has never been accessed before
             // In this case, null != [] ([] happens when the user manually unselected every single option)
@@ -25,6 +23,8 @@ public class WebSearchSettingsFragment extends BaseSettingsFragment {
             // but this preference isn't defined in the XML so can't be initialized that easily.
             getPrefs().edit().putStringSet("selected-search-provider-names", SearchProvider.getSelectedSearchProviders(getPrefs())).apply();
         }
+        // After writing the default value, so the selection preference loads it
+        setPreferencesFromResource(R.xml.preferences_search_web, rootKey);
 
         setOnDialogClosedListener("reset-search-providers", (pref, positiveResult) -> {
             if (positiveResult) {
