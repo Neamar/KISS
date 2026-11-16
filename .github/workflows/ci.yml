@@ -21,6 +21,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
+          cache: gradle
       - name: Lint code
         run: bash ./gradlew lint --stacktrace
       - name: Unit tests
@@ -35,17 +36,39 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
+          cache: gradle
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
+      - name: AVD cache
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-36-google_apis-x86_64
+      - name: Create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
+          script: echo "Generated AVD snapshot for caching."
       - name: Instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
           target: google_apis
           arch: x86_64
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: bash ./gradlew connectedDebugAndroidTest --stacktrace
       - name: Upload test report
@@ -64,6 +87,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
+          cache: gradle
       - name: Build APKs
         run: bash ./gradlew assembleDebug assembleRelease assembleDebugAndroidTest --stacktrace
       - name: Upload debug APK
