@@ -51,6 +51,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.SettingsActivity;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
 
 abstract class AbstractMainActivityTest {
@@ -129,7 +130,15 @@ abstract class AbstractMainActivityTest {
 
     protected void search(String query) {
         onView(withId(R.id.searchEditText)).perform(typeText(query));
+        // The keyboard sends the typed text asynchronously: it may reach KISS after Espresso is idle
+        assertThat(device.wait(d -> query.trim().equals(getLastSearchQuery()), 5000), is(true));
         waitForSearch();
+    }
+
+    private static String getLastSearchQuery() {
+        AtomicReference<String> query = new AtomicReference<>();
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> query.set(SearchHandler.getInstance().getLastSearchQuery()));
+        return query.get();
     }
 
     /**
