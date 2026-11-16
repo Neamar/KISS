@@ -1,0 +1,141 @@
+package fr.neamar.kiss.androidTest;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
+import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import android.content.Context;
+import android.content.Intent;
+import android.text.format.DateUtils;
+
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.filters.LargeTest;
+
+import org.junit.Test;
+
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
+import fr.neamar.kiss.dataprovider.ProviderName;
+import fr.neamar.kiss.db.DBHelper;
+
+@LargeTest
+public class SearchSourcesTest extends AbstractMainActivityTest {
+    private final Context context = ApplicationProvider.getApplicationContext();
+
+    // Simple providers read their preference on every query, so no recreate is needed
+    private void disableSource(String key) {
+        scenario.onActivity(activity -> activity.prefs.edit().putBoolean(key, false).commit());
+    }
+
+    // Proves the search did run, so a missing result is caused by the disabled source
+    private void checkWebSearchDisplayed(String query) {
+        onView(withText(context.getString(R.string.ui_item_search, "Google", query))).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testCalculatorDisabled() {
+        disableSource("enable-calculator");
+        search("2+2");
+        checkWebSearchDisplayed("2+2");
+        onView(withText("2+2 = 4")).check(doesNotExist());
+    }
+
+    @Test
+    public void testTimerAppears() {
+        search("5m");
+        String timer = context.getString(R.string.ui_item_timer, DateUtils.formatElapsedTime(300));
+        onView(withText(timer)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testTimerDisabled() {
+        disableSource("enable-timer");
+        search("5m");
+        checkWebSearchDisplayed("5m");
+        String timer = context.getString(R.string.ui_item_timer, DateUtils.formatElapsedTime(300));
+        onView(withText(timer)).check(doesNotExist());
+    }
+
+    @Test
+    public void testWebSearchDisabled() {
+        disableSource("enable-search");
+        search("1+1");
+        // Proves the search did run, so the missing web search is caused by the disabled source
+        onView(withText("1+1 = 2")).check(matches(isDisplayed()));
+        onView(withText(context.getString(R.string.ui_item_search, "Google", "1+1"))).check(doesNotExist());
+    }
+
+    @Test
+    public void testPhoneAppears() {
+        search("0123456789");
+        onView(withId(R.id.item_phone_text)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testPhoneAddedToHistoryOnClick() {
+        search("0123456789");
+        onView(withId(R.id.item_phone_text)).perform(click());
+        intended(allOf(hasAction(Intent.ACTION_CALL), hasData("tel:0123456789")));
+        waitForLaunchOccurred();
+        onView(withId(R.id.item_phone_text)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testPhoneDisabled() {
+        disableSource("enable-phone");
+        search("0123456789");
+        checkWebSearchDisplayed("0123456789");
+        onView(withId(R.id.item_phone_text)).check(doesNotExist());
+    }
+
+    @Test
+    public void testSettingsDisabled() {
+        // The settings provider caches its items, the settings screen reloads it on change
+        setSettingsEnabled(false);
+        try {
+            search("batter");
+            checkWebSearchDisplayed("batter");
+            onView(withId(R.id.item_setting_name)).check(doesNotExist());
+        } finally {
+            // The provider outlives the activity, restore it for the next tests
+            setSettingsEnabled(true);
+        }
+    }
+
+    private void setSettingsEnabled(boolean enabled) {
+        scenario.onActivity(activity -> {
+            activity.prefs.edit().putBoolean("enable-settings", enabled).commit();
+            KissApplication.getApplication(activity).getDataHandler().reload(ProviderName.SETTINGS);
+        });
+    }
+
+    @Test
+    public void testHelpTextDisplayedWithoutResults() {
+        disableSource("enable-search");
+        search("zzzqqq");
+        onView(withId(android.R.id.empty)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testMaxSearchResults() {
+        for (String phone : new String[]{"0123456781", "0123456782", "0123456783"}) {
+            DBHelper.insertHistory(context, "", "phone://" + phone);
+        }
+        scenario.onActivity(activity -> activity.prefs.edit().putString("number-of-search-results", "2").commit());
+        scenario.recreate();
+        waitForSearch();
+        // History is not impacted
+        onView(withId(android.R.id.list)).check(matches(hasChildCount(3)));
+
+        search("e");
+        onView(withId(android.R.id.list)).check(matches(hasChildCount(2)));
+    }
+}

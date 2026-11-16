@@ -56,6 +56,16 @@ public class HistorySearcher extends Searcher {
         Set<String> excludedFromHistory = dataHandler.getExcludedFromHistory();
         Set<String> excludedPojoById = new HashSet<>(excludedFromHistory);
 
+        // Excluded apps are hidden from history too, unless they are shown in search
+        List<AppPojo> apps = dataHandler.getApplications();
+        if (apps != null && !prefs.getBoolean("enable-excluded-apps", false)) {
+            for (AppPojo app : apps) {
+                if (app.isExcluded()) {
+                    excludedPojoById.add(app.id);
+                }
+            }
+        }
+
         // add ids of shortcuts for excluded apps
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             for (String id : excludedFromHistory) {
