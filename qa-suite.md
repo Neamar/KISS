@@ -91,7 +91,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Minimalistic mode on for favorites
 
-- [ ] In settings, Home screen, enable "Minimalistic UI" and "Favorites bar hidden by default"
+- [ ] In settings, Home screen, enable "Minimalistic UI", "Favorites bar hidden by default" and "Show history when touching the home screen"
 - [ ] Favorites bar is hidden by default (automated)
 - [ ] Touching the screen on an empty area displays history and the favorites
 - [ ] When entering a search query, favorite bar is hidden (automated)
@@ -161,7 +161,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Open a search result. Press back, keyboard is not displayed (automated)
 - [ ] Enable keyboard on start (automated)
 - [ ] Press home. Keyboard is displayed (automated)
-- [ ] Display app list. Hide keyboard. Hide app list, keyboard is displayed
+- [ ] Display app list. Hide keyboard. Hide app list, keyboard is not displayed
 - [ ] Open a search result. Press home, keyboard is displayed (automated)
 - [ ] Open a search result. Press back, keyboard is displayed (automated)
 - [ ] (using Swiftkey keyboard) Disable "keyboard suggestions fix". Keyboard displays suggestions when typing
