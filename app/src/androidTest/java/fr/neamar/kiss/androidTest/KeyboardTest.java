@@ -129,6 +129,8 @@ public class KeyboardTest extends AbstractMainActivityTest {
     public void testKeyboardOnStartEnabled() {
         enableKeyboardOnStart();
         startAsHome();
+        // The keyboard is shown asynchronously: closing it earlier would let it reappear
+        assertKeyboardVisible(true);
         closeSoftKeyboard();
         assertKeyboardVisible(false);
 
