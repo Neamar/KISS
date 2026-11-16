@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
@@ -30,8 +31,16 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
 
     private static final String TAG = LoadShortcutsPojos.class.getSimpleName();
 
-    public LoadShortcutsPojos(Context context) {
+    private final Map<String, ShortcutPojo> previousPojos = new HashMap<>();
+
+    /**
+     * @param previousPojos pojos from the last load, reused when unchanged so displayed results keep their icons
+     */
+    public LoadShortcutsPojos(Context context, List<ShortcutPojo> previousPojos) {
         super(context, ShortcutPojo.SCHEME);
+        for (ShortcutPojo pojo : previousPojos) {
+            this.previousPojos.put(pojo.id, pojo);
+        }
     }
 
     @Override
@@ -107,7 +116,8 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                                 ShortcutUtil.getComponentName(context, shortcutInfo),
                                 shortcutInfo.isPinned(),
                                 shortcutInfo.isDynamic(),
-                                disabled
+                                disabled,
+                                shortcutInfo.getLastChangedTimestamp()
                         );
 
                         oreoPojos.add(pojo);
@@ -129,7 +139,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             if (isCancelled()) {
                 break;
             }
-            ShortcutPojo pojo = createPojo(null, shortcutRecord, tagsHandler, null, true, false, false);
+            ShortcutPojo pojo = createPojo(null, shortcutRecord, tagsHandler, null, true, false, false, 0);
             if (!pojo.isOreoShortcut()) {
                 // add older shortcuts from DB
                 pojos.add(pojo);
@@ -139,10 +149,18 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         return pojos;
     }
 
-    private ShortcutPojo createPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, TagsHandler tagsHandler, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
-        ShortcutPojo pojo = new ShortcutPojo(userHandle, shortcutRecord, componentName, pinned, dynamic, disabled);
+    private ShortcutPojo createPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, TagsHandler tagsHandler, String componentName, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
+        ShortcutPojo pojo = new ShortcutPojo(userHandle, shortcutRecord, componentName, pinned, dynamic, disabled, lastChanged);
         pojo.setName(shortcutRecord.name);
         pojo.setTags(tagsHandler.getTags(pojo.id));
+
+        ShortcutPojo previous = previousPojos.get(pojo.id);
+        if (previous != null && previous.lastChanged == lastChanged
+                && previous.isPinned() == pinned && previous.isDynamic() == dynamic && previous.isDisabled() == disabled
+                && Objects.equals(previous.getComponentName(), componentName)
+                && previous.getName().equals(pojo.getName()) && Objects.equals(previous.getTags(), pojo.getTags())) {
+            return previous;
+        }
         return pojo;
     }
 }
