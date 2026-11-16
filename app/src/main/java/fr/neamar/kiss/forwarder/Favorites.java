@@ -8,12 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Pair;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -161,6 +163,8 @@ public class Favorites extends Forwarder {
 
     private class ItemMoveCallback extends ItemTouchHelper.Callback {
 
+        private static final float DRAG_SCALE = 1.2f;
+
         private final FavoriteAdapter mAdapter;
         private boolean moved;
 
@@ -181,8 +185,6 @@ public class Favorites extends Forwarder {
 
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            Favorites.this.mainActivity.dismissPopup();
-            Favorites.this.mainActivity.closeContextMenu();
             return mAdapter.moveItem(viewHolder.getAbsoluteAdapterPosition(), target.getAbsoluteAdapterPosition());
         }
 
@@ -193,6 +195,22 @@ public class Favorites extends Forwarder {
         }
 
         @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            // as soon as the finger moves, the user is dragging: close the menu opened by the long press
+            if (isCurrentlyActive && Math.hypot(dX, dY) > ViewConfiguration.get(recyclerView.getContext()).getScaledTouchSlop()) {
+                Favorites.this.mainActivity.dismissPopup();
+                Favorites.this.mainActivity.closeContextMenu();
+            }
+        }
+
+        @Override
+        public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            super.clearView(recyclerView, viewHolder);
+            viewHolder.itemView.animate().scaleX(1f).scaleY(1f);
+        }
+
+        @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         }
 
@@ -200,8 +218,11 @@ public class Favorites extends Forwarder {
         public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
             super.onSelectedChanged(viewHolder, actionState);
             if (actionState == ACTION_STATE_DRAG) {
-                if (viewHolder != null && viewHolder.itemView.isLongClickable()) {
-                    viewHolder.itemView.performLongClick();
+                if (viewHolder != null) {
+                    viewHolder.itemView.animate().scaleX(DRAG_SCALE).scaleY(DRAG_SCALE);
+                    if (viewHolder.itemView.isLongClickable()) {
+                        viewHolder.itemView.performLongClick();
+                    }
                 }
             } else if (actionState == ACTION_STATE_IDLE) {
                 if (moved) {
