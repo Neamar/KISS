@@ -47,15 +47,15 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Standard history manipulation
 
-- [ ] Reset history preference displays number of items in history if history length > 5
-- [ ] Reset history clears existing history instantly
-- [ ] Reset history summary does not display the old history length after reset
-- [ ] Pressing cancel on reset history does not reset history
+- [ ] Reset history preference displays number of items in history if history length > 5 (automated)
+- [ ] Reset history clears existing history instantly (automated)
+- [ ] Reset history summary does not display the old history length after reset (automated)
+- [ ] Pressing cancel on reset history does not reset history (automated)
 - [ ] Adding an excluded app hides the app from search results (automated)
 - [ ] Adding an excluded app hides the app from history (automated)
 - [ ] Adding an excluded app hides the app from app list (automated)
-- [ ] Resetting excluded app removes all excluded apps
-- [ ] Resetting excluded apps allows apps previously hidden to be displayed in app list
+- [ ] Resetting excluded app removes all excluded apps (automated)
+- [ ] Resetting excluded apps allows apps previously hidden to be displayed in app list (automated)
 - [ ] No more than Max number of history results is displayed in history, and no more than Max number of search results (in Search settings) when searching (automated)
 - [ ] Changing the value updates the history dynamically
 - [ ] Freezing history prevents new items from being added to history (automated)
@@ -243,21 +243,21 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] From Search sources, disable Web Search. From now on, they are not displayed anymore in search (automated)
 - [ ] Set "Max number of search results" to 2. Searching never displays more than 2 results, history is not impacted (automated)
 - [ ] Set "Max number of history results" (in History settings) to 2. History never displays more than 2 results, search is not impacted (automated)
-- [ ] Add a search provider. Ensure it is available in the select search provider setting
-- [ ] Select a search provider. Ensure it is available in search
-- [ ] Reset search providers. Ensure only default providers are visible
-- [ ] Delete a search provider. Ensure it is not available in search anymore
+- [ ] Add a search provider. Ensure it is available in the select search provider setting (automated)
+- [ ] Select a search provider. Ensure it is available in search (automated)
+- [ ] Reset search providers. Ensure only default providers are visible (automated)
+- [ ] Delete a search provider. Ensure it is not available in search anymore (automated)
 - [ ] Disable search providers. Disable minimalistic mode. Enter a query with no results. Help text is displayed. (automated)
 - [ ] Disable search providers. Enable minimalistic mode. Enter a query with no results. Nothing is displayed
 
 ### Settings search
 
-- [ ] Pressing the search icon in settings displays a search field, with an empty list
-- [ ] Typing part of a setting title, summary or choice (e.g. "hexagon") lists matching settings, with the name of their screen
-- [ ] Selecting a result opens its screen, scrolled to the setting
-- [ ] Selecting a result linking to another screen (e.g. "Apps excluded from history") opens that screen with the right content
-- [ ] From a search result, pressing back goes back to the main settings screen, and search is closed
-- [ ] Rotating the device while searching doesn't crash (search is closed)
+- [ ] Pressing the search icon in settings displays a search field, with an empty list (automated)
+- [ ] Typing part of a setting title, summary or choice (e.g. "hexagon") lists matching settings, with the name of their screen (automated)
+- [ ] Selecting a result opens its screen, scrolled to the setting (automated)
+- [ ] Selecting a result linking to another screen (e.g. "Apps excluded from history") opens that screen with the right content (automated)
+- [ ] From a search result, pressing back goes back to the main settings screen, and search is closed (automated)
+- [ ] Rotating the device while searching doesn't crash (search is closed) (automated)
 
 ### Advanced settings
 
