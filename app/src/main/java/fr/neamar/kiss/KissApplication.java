@@ -8,11 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.utils.IconPackCache;
-import fr.neamar.kiss.utils.Log;
 
 public class KissApplication extends Application {
-
-    private static final String TAG = KissApplication.class.getSimpleName();
 
     /**
      * Number of ms to wait, after a click occurred, to record a launch
@@ -61,13 +58,6 @@ public class KissApplication extends Application {
 
     public void resetRootHandler(Context ctx) {
         rootHandler.resetRootHandler(ctx);
-    }
-
-    public void initDataHandler() {
-        if (dataHandler != null) {
-            Log.w(TAG, "dataHandler already instantiated");
-        }
-        getDataHandler();
     }
 
     public IconsHandler getIconsHandler() {

@@ -220,11 +220,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         /*
          * Initialize components behavior
          * Note that a lot of behaviors are also initialized through the forwarderManager.onCreate() call.
-         * {@code initDataHandler} must be called after {@link MainActivity#displayLoader(boolean)} and after {@link MainActivity#mReceiver} is registered.
-         * If {@code dataHandler} is already existing at this point this may result in undefined behaviour.
          */
         displayLoader(true);
-        KissApplication.getApplication(this).initDataHandler();
 
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
