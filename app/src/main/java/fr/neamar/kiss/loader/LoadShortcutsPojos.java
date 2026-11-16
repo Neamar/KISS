@@ -85,10 +85,13 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                     UserHandle user = new UserHandle(context, profile);
                     String appKey = user.addUserSuffixToString(shortcutInfo.getPackage(), '#');
                     ApplicationInfo appInfo = appInfos.computeIfAbsent(appKey, k -> PackageManagerUtils.getApplicationInfo(context, shortcutInfo.getPackage(), user));
-                    // Reading a label loads the app's resources, only do it when the name is displayed
+                    // Reading a label loads the app's resources, only do it when the name is displayed and apps did not load it yet
                     String appName = null;
                     if (!shortcutInfo.isPinned() && appInfo != null) {
-                        appName = appNames.computeIfAbsent(appKey, k -> context.getPackageManager().getApplicationLabel(appInfo).toString());
+                        appName = appNames.computeIfAbsent(appKey, k -> {
+                            String cachedAppName = LoadAppPojos.getCachedAppName(context, appInfo, user);
+                            return cachedAppName != null ? cachedAppName : context.getPackageManager().getApplicationLabel(appInfo).toString();
+                        });
                     }
                     ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, appName);
 

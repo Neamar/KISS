@@ -8,6 +8,7 @@ import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.UserManager;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.os.ConfigurationCompat;
 
@@ -29,6 +30,7 @@ import fr.neamar.kiss.utils.UserHandle;
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     private static final String TAG = LoadAppPojos.class.getSimpleName();
+    private static final String LABEL_CACHE = "app-labels";
     private final TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
@@ -53,8 +55,8 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         // Reading a label loads the app's resources: slow, and it blocks the main thread on Android 10-11 (#2715).
         // Only do it for new or updated apps, or when the system or its languages changed.
-        SharedPreferences labelCache = ctx.getSharedPreferences("app-labels", Context.MODE_PRIVATE);
-        String stamp = Build.FINGERPRINT + "|" + ConfigurationCompat.getLocales(ctx.getResources().getConfiguration()).toLanguageTags();
+        SharedPreferences labelCache = ctx.getSharedPreferences(LABEL_CACHE, Context.MODE_PRIVATE);
+        String stamp = getLabelCacheStamp(ctx);
         boolean isLabelCacheValid = stamp.equals(labelCache.getString("stamp", null));
         // replaces the cache after the load, to forget removed apps
         Map<String, String> newLabelCache = new HashMap<>();
@@ -85,6 +87,15 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     }
                     if (lastUpdateTime != Long.MAX_VALUE) {
                         newLabelCache.put(labelKey, label);
+                        // Also keep the name of the app, displayed on its shortcuts
+                        String appNameKey = getAppNameKey(appInfo.packageName, user, lastUpdateTime);
+                        if (!newLabelCache.containsKey(appNameKey)) {
+                            String appName = isLabelCacheValid ? labelCache.getString(appNameKey, null) : null;
+                            if (appName == null) {
+                                appName = ctx.getPackageManager().getApplicationLabel(appInfo).toString();
+                            }
+                            newLabelCache.put(appNameKey, appName);
+                        }
                     }
                     final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), label, disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                     apps.add(app);
@@ -113,6 +124,26 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Log.i(TAG, (end - start) + " milliseconds to list apps");
 
         return apps;
+    }
+
+    private static String getLabelCacheStamp(Context ctx) {
+        return Build.FINGERPRINT + "|" + ConfigurationCompat.getLocales(ctx.getResources().getConfiguration()).toLanguageTags();
+    }
+
+    private static String getAppNameKey(String packageName, UserHandle user, long lastUpdateTime) {
+        return user.addUserSuffixToString(packageName, '#') + "@" + lastUpdateTime;
+    }
+
+    /**
+     * @return name of given app as read by the last load of apps, null if unknown
+     */
+    @Nullable
+    public static String getCachedAppName(Context ctx, ApplicationInfo appInfo, UserHandle user) {
+        SharedPreferences labelCache = ctx.getSharedPreferences(LABEL_CACHE, Context.MODE_PRIVATE);
+        if (!getLabelCacheStamp(ctx).equals(labelCache.getString("stamp", null))) {
+            return null;
+        }
+        return labelCache.getString(getAppNameKey(appInfo.packageName, user, PackageManagerUtils.getLastUpdateTime(appInfo)), null);
     }
 
     private boolean isQuietModeEnabled(UserManager manager, android.os.UserHandle profile) {
