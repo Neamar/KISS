@@ -223,7 +223,10 @@ public class FavoritesTest extends AbstractMainActivityTest {
     }
 
     private void enableMinimalisticFavorites() {
-        scenario.onActivity(activity -> activity.prefs.edit().putBoolean("history-hide", true).putBoolean("favorites-hide", true).commit());
+        scenario.onActivity(activity -> activity.prefs.edit()
+                .putBoolean("history-hide", true)
+                .putBoolean("history-onclick", true)
+                .putBoolean("favorites-hide", true).commit());
         startAsHome();
     }
 
@@ -234,11 +237,14 @@ public class FavoritesTest extends AbstractMainActivityTest {
 
     @Test
     public void testMinimalisticFavoritesHiddenUntilTouched() {
+        DBHelper.insertHistory(ApplicationProvider.getApplicationContext(), "", "phone://0123456789");
         enableMinimalisticFavorites();
         onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+        onView(withId(android.R.id.list)).check(matches(not(isDisplayed())));
 
         touchEmptyArea();
         onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
+        onView(withId(R.id.item_phone_text)).check(matches(isDisplayed()));
 
         pressHome();
         onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));

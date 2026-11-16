@@ -98,6 +98,16 @@ public class KeyboardTest extends AbstractMainActivityTest {
     }
 
     @Test
+    public void testKeyboardOnStartEnabledAfterAppList() {
+        enableKeyboardOnStart();
+        startAsHome();
+        onView(withId(R.id.launcherButton)).perform(click());
+        closeSoftKeyboard();
+        onView(withId(R.id.whiteLauncherButton)).perform(click());
+        assertKeyboardVisible(false);
+    }
+
+    @Test
     public void testKeyboardOnStartEnabledAfterResultThenHome() {
         enableKeyboardOnStart();
         startAsHome();
