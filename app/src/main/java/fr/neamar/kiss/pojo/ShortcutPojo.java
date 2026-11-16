@@ -16,8 +16,9 @@ public final class ShortcutPojo extends PojoWithTags {
     private final boolean dynamic; // dynamic shortcut
     private final boolean disabled;
     private final UserHandle userHandle;
+    public final long lastChanged; // last change of oreo shortcut, 0 otherwise
 
-    public ShortcutPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
+    public ShortcutPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
         super(ShortcutUtil.generateShortcutId(userHandle, shortcutRecord));
         this.packageName = shortcutRecord.packageName;
         this.intentUri = shortcutRecord.intentUri;
@@ -26,6 +27,7 @@ public final class ShortcutPojo extends PojoWithTags {
         this.dynamic = dynamic;
         this.disabled = disabled;
         this.userHandle = userHandle;
+        this.lastChanged = lastChanged;
     }
 
     /**
