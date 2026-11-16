@@ -12,10 +12,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 
+import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
@@ -27,7 +29,9 @@ import androidx.test.rule.GrantPermissionRule;
 import androidx.test.runner.lifecycle.ActivityLifecycleCallback;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
+import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.Until;
 
 import org.junit.After;
 import org.junit.Before;
@@ -38,10 +42,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.SettingsActivity;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
@@ -151,6 +158,49 @@ abstract class AbstractMainActivityTest {
             throw new AssertionError(e);
         }
         waitForSearch();
+    }
+
+    /**
+     * Opens the settings from KISS, as users do, runs the test, then comes back to KISS.
+     * ActivityScenario can't be used: it would clear the task, destroying KISS.
+     */
+    protected void inSettings(Runnable test) {
+        // The stub would also catch the settings activity: it must not be active while launching it
+        Intents.release();
+        try {
+            scenario.onActivity(activity -> activity.startActivity(new Intent(activity, SettingsActivity.class)));
+            // Espresso would look for views in KISS until the settings are focused
+            assertThat(device.wait(Until.hasObject(By.res(ApplicationProvider.getApplicationContext().getPackageName(), "content_container")), 10_000), is(true));
+            test.run();
+        } finally {
+            fromSettings(activity -> {
+                activity.finish();
+                return null;
+            });
+            // Released again by tearDown()
+            Intents.init();
+        }
+        // Espresso could pick the closing settings window
+        assertThat(device.wait(Until.hasObject(By.res(ApplicationProvider.getApplicationContext().getPackageName(), "searchEditText")), 10_000), is(true));
+    }
+
+    /**
+     * Runs on the main thread with the displayed settings, which may have been recreated
+     */
+    protected static <T> T fromSettings(Function<SettingsActivity, T> function) {
+        AtomicReference<T> result = new AtomicReference<>();
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+            for (Activity activity : ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED)) {
+                if (activity instanceof SettingsActivity) {
+                    result.set(function.apply((SettingsActivity) activity));
+                }
+            }
+        });
+        return result.get();
+    }
+
+    protected static PreferenceFragmentCompat getScreen(SettingsActivity activity) {
+        return (PreferenceFragmentCompat) activity.getSupportFragmentManager().findFragmentById(R.id.content_container);
     }
 
     @After
