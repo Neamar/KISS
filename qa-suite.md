@@ -71,17 +71,17 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Favorites
 
-- [ ] Favorite bar is displayed automatically at startup
+- [ ] Favorite bar is displayed automatically at startup (automated)
 - [ ] Clicking on a favorite trigger the correct Intent (automated)
 - [ ] When going back to KISS, the favorite has been added to history (automated)
 - [ ] Long-clicking favorite displays the menu (automated)
 - [ ] Long-click menu can be used to remove the favorite (automated)
 - [ ] Empty favorites are not displayed (favorites takes all available space in the bar)
 - [ ] When entering a search query, favorite bar is hidden (automated)
-- [ ] When search query is removed, bar appears again
+- [ ] When search query is removed, bar appears again (automated)
 - [ ] When coming back from an application launched through search, bar is displayed again
-- [ ] When kiss bar is opened, favorites bar is hidden
-- [ ] When kiss bar is opened, internal favorites bar is hidden
+- [ ] When kiss bar is opened, favorites bar is hidden (automated)
+- [ ] When kiss bar is opened, internal favorites bar is hidden (automated)
 - [ ] When kiss bar is opened, you can't click on the menu button behind the kiss bar (not even visible, doesn't respond to touch events either)
 - [ ] When searching and pressing home, query is cleared, and favorites are displayed
 - [ ] When adding a favorite, it appears automatically, and favorites are evenly spaced
