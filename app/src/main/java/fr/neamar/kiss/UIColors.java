@@ -3,11 +3,9 @@ package fr.neamar.kiss;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -25,8 +23,6 @@ import com.google.android.material.color.DynamicColorsOptions;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import fr.neamar.kiss.result.TagDummyResult;
 
 public class UIColors {
     public static final int COLOR_DEFAULT = 0xFF4CAF50;
@@ -200,31 +196,8 @@ public class UIColors {
         }
         if (overlayAccentResId != null && overlayAccentResId != -1) {
             activity.getTheme().applyStyle(overlayAccentResId, true);
-            Resources.Theme windowDecorViewTheme = getWindowDecorViewTheme(activity);
-            if (windowDecorViewTheme != null) {
-                windowDecorViewTheme.applyStyle(overlayAccentResId, true);
-            }
         }
-
-        clearColorCache();
-        TagDummyResult.resetShape();
     }
-
-    private static Resources.Theme getWindowDecorViewTheme(@NonNull Activity activity) {
-        Window window = activity.getWindow();
-        if (window != null) {
-            View decorView = window.peekDecorView();
-            if (decorView != null) {
-                Context context = decorView.getContext();
-                if (context != null) {
-                    return context.getTheme();
-                }
-            }
-        }
-
-        return null;
-    }
-
 
     public static void updateThemePrimaryColor(Activity activity) {
         @ColorInt

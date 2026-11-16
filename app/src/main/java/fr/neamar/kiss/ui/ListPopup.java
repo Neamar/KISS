@@ -26,7 +26,7 @@ public class ListPopup extends PopupWindow {
     private boolean dismissOnClick = true;
 
     public ListPopup(Context context) {
-        super(context, null, android.R.attr.popupMenuStyle);
+        super(context, null, androidx.appcompat.R.attr.popupMenuStyle);
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
         ScrollView scrollView = new ScrollView(context);
