@@ -47,7 +47,21 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     public void onCreate() {
         super.onCreate();
 
+        if (isRestrictedMode()) {
+            Log.w(TAG, "Not running in KissApplication, process is likely in restricted mode (backup/restore)");
+            stopSelf();
+            return;
+        }
+
         this.reload();
+    }
+
+    /**
+     * During a full backup or restore, Android may start the process in restricted mode with a plain Application,
+     * and restart sticky providers in it. Providers can't work there.
+     */
+    boolean isRestrictedMode() {
+        return !(getApplication() instanceof KissApplication);
     }
 
     @Override

@@ -32,7 +32,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
 
     @Override
     public void onCreate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !isRestrictedMode()) {
             final LauncherApps launcher = ContextCompat.getSystemService(this, LauncherApps.class);
             assert launcher != null;
 

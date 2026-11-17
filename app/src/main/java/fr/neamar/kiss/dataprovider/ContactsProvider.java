@@ -63,6 +63,9 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (isRestrictedMode()) {
+            return;
+        }
         // register content observer if we have permission
         if (Permission.checkPermission(this, Permission.PERMISSION_READ_CONTACTS)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {

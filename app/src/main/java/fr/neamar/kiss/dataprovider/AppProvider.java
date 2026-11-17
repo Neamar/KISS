@@ -26,6 +26,11 @@ public class AppProvider extends Provider<AppPojo> {
 
     @Override
     public void onCreate() {
+        if (isRestrictedMode()) {
+            super.onCreate();
+            return;
+        }
+
         final LauncherApps launcher = ContextCompat.getSystemService(this, LauncherApps.class);
         assert launcher != null;
 
