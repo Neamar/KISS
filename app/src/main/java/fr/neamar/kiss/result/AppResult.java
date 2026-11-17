@@ -11,12 +11,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.ShortcutInfo;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.UserManager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,18 +34,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class AppResult extends ResultWithTags<AppPojo> {
@@ -50,8 +63,11 @@ public class AppResult extends ResultWithTags<AppPojo> {
     private static final String TAG = AppResult.class.getSimpleName();
     private volatile Drawable icon = null;
 
-    AppResult(@NonNull AppPojo pojo) {
+    private final QueryInterface queryInterface;
+
+    AppResult(QueryInterface queryInterface, @NonNull AppPojo pojo) {
         super(pojo);
+        this.queryInterface = queryInterface;
     }
 
     @NonNull
@@ -76,8 +92,106 @@ public class AppResult extends ResultWithTags<AppPojo> {
         }
 
         displayNotificationDot(context, view, false);
+        displayShortcutsButton(context, view);
 
         return view;
+    }
+
+    private void displayShortcutsButton(Context context, View view) {
+        View button = view.findViewById(R.id.item_app_action_shortcuts);
+        List<ShortcutPojo> shortcuts = getShortcuts(context);
+        if (shortcuts.isEmpty()) {
+            button.setVisibility(View.GONE);
+            button.setOnClickListener(null);
+            return;
+        }
+
+        button.setVisibility(View.VISIBLE);
+        button.setOnClickListener(v -> showShortcutsPopup(context, v, shortcuts));
+    }
+
+    private void showShortcutsPopup(Context context, View anchor, List<ShortcutPojo> shortcuts) {
+        Map<String, Integer> ranks = getShortcutRanks(context);
+        List<ShortcutPojo> sorted = new ArrayList<>(shortcuts);
+        // Static shortcuts last, and best rank last within each group: the menu opens upward, so the bottom is closest to the finger
+        sorted.sort(Comparator.comparing((ShortcutPojo shortcut) -> !shortcut.isDynamic())
+                .thenComparing(shortcut -> ranks.getOrDefault(shortcut.getOreoId(), 0), Comparator.reverseOrder()));
+
+        // null entry is the divider between dynamic and static shortcuts
+        List<ShortcutsResult> items = new ArrayList<>();
+        for (ShortcutPojo shortcut : sorted) {
+            if (!shortcut.isDynamic() && !items.isEmpty() && items.get(items.size() - 1).pojo.isDynamic()) {
+                items.add(null);
+            }
+            items.add(new ShortcutsResult(shortcut));
+        }
+
+        // Shortcuts are named "App: Shortcut" for search, the app is redundant here
+        String prefix = PackageManagerUtils.getLabel(context, pojo.packageName, pojo.userHandle) + ": ";
+
+        ArrayAdapter<ShortcutsResult> adapter = new ArrayAdapter<ShortcutsResult>(context, R.layout.popup_shortcut_item, android.R.id.text1, items) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                ShortcutsResult item = getItem(position);
+                if (item == null) {
+                    return LayoutInflater.from(context).inflate(R.layout.popup_divider, parent, false);
+                }
+                View view = LayoutInflater.from(context).inflate(R.layout.popup_shortcut_item, parent, false);
+                String name = item.pojo.getName();
+                ((TextView) view.findViewById(android.R.id.text1)).setText(name.startsWith(prefix) ? name.substring(prefix.length()) : name);
+                item.setAsyncDrawable(view.findViewById(android.R.id.icon));
+                return view;
+            }
+
+            @Override
+            public boolean isEnabled(int position) {
+                return getItem(position) != null;
+            }
+        };
+
+        ListPopup menu = new ListPopup(context);
+        menu.setAdapter(adapter);
+        // Launching through the shortcut's own Result keeps history consistent with shortcuts found via search
+        menu.setOnItemClickListener((a, itemView, position) -> items.get(position).launch(context, itemView, queryInterface));
+        queryInterface.registerPopup(menu);
+        menu.show(anchor);
+        // Long menus scroll: start from the bottom, where the best shortcuts are
+        menu.getContentView().post(() -> ((ScrollView) menu.getContentView()).fullScroll(View.FOCUS_DOWN));
+    }
+
+    /**
+     * @return rank by shortcut id, lower is more important
+     */
+    private Map<String, Integer> getShortcutRanks(Context context) {
+        Map<String, Integer> ranks = new HashMap<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                for (ShortcutInfo info : ShortcutUtil.getShortcuts(context, pojo.packageName)) {
+                    if (info.getUserHandle().equals(pojo.userHandle.getRealHandle())) {
+                        ranks.put(info.getId(), info.getRank());
+                    }
+                }
+            } catch (SecurityException e) {
+                Log.w(TAG, "Unable to get shortcut ranks", e);
+            }
+        }
+        return ranks;
+    }
+
+    private List<ShortcutPojo> getShortcuts(Context context) {
+        List<ShortcutPojo> shortcuts = new ArrayList<>();
+        ShortcutsProvider provider = KissApplication.getApplication(context).getDataHandler().getShortcutsProvider();
+        if (provider == null) {
+            return shortcuts;
+        }
+        // ponytail: linear scan of every shortcut for each displayed row, index by package in the provider if it shows up in profiles
+        for (ShortcutPojo shortcut : provider.getPojos()) {
+            if (shortcut.packageName.equals(pojo.packageName) && shortcut.getUserHandle().getRealHandle().equals(pojo.userHandle.getRealHandle())) {
+                shortcuts.add(shortcut);
+            }
+        }
+        return shortcuts;
     }
 
     @Override
