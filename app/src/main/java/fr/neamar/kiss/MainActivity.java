@@ -34,6 +34,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -153,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * The system may drop a keyboard request made while a window transition runs (e.g. when coming back to KISS):
      * ask again a few times until the keyboard is visible.
      */
-    private static final int KEYBOARD_RETRY_DELAY = 500;
-    private static final int KEYBOARD_RETRIES = 4;
+    private static final int KEYBOARD_RETRY_DELAY = 1000;
+    private static final int KEYBOARD_RETRIES = 2;
     private int keyboardRetries = 0;
     private final Runnable retryShowKeyboard = this::retryShowKeyboard;
 
@@ -989,7 +990,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     private void retryShowKeyboard() {
         if (keyboardRetries-- > 0 && hasWindowFocus() && searchEditText.hasFocus() && !isKeyboardVisible()) {
-            WindowCompat.getInsetsController(getWindow(), searchEditText).show(WindowInsetsCompat.Type.ime());
+            WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(getWindow(), searchEditText);
+            // The system may still consider the keyboard requested although it dropped the request: showing it again
+            // would do nothing, hide it first so that a new request is sent
+            controller.hide(WindowInsetsCompat.Type.ime());
+            controller.show(WindowInsetsCompat.Type.ime());
             searchEditText.postDelayed(retryShowKeyboard, KEYBOARD_RETRY_DELAY);
         }
     }
