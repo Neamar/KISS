@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -50,6 +52,11 @@ public class TagsHandler {
         DBHelper.insertTagsForId(this.context, tags, id);
         // add to cache
         tagsCache.put(id, tags);
+        // A reload may have replaced the pojo being edited: update the one that is displayed
+        Pojo pojo = KissApplication.getApplication(context).getDataHandler().getPojo(id);
+        if (pojo instanceof PojoWithTags) {
+            ((PojoWithTags) pojo).setTags(tags);
+        }
     }
 
     public String getTags(String id) {
