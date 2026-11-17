@@ -979,9 +979,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             searchEditText.setCursorVisible(true);
             WindowCompat.getInsetsController(getWindow(), searchEditText).show(WindowInsetsCompat.Type.ime());
             showHistoryWithKeyboard(true);
-            keyboardRetries = KEYBOARD_RETRIES;
             searchEditText.removeCallbacks(retryShowKeyboard);
-            searchEditText.postDelayed(retryShowKeyboard, KEYBOARD_RETRY_DELAY);
+            if (!isKeyboardVisible()) {
+                keyboardRetries = KEYBOARD_RETRIES;
+                searchEditText.postDelayed(retryShowKeyboard, KEYBOARD_RETRY_DELAY);
+            }
         }
     }
 
@@ -1094,10 +1096,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     public void onKeyboardVisibilityChanged(boolean keyboardIsVisible) {
-        if (keyboardIsVisible) {
-            // Don't show it again if the user hides it
-            searchEditText.removeCallbacks(retryShowKeyboard);
-        }
+        // The system handled the request: don't show the keyboard again if the user hides it
+        searchEditText.removeCallbacks(retryShowKeyboard);
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(keyboardIsVisible);
         showHistoryWithKeyboard(keyboardIsVisible);
     }
