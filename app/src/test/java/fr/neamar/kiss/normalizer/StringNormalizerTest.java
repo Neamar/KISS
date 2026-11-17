@@ -21,6 +21,29 @@ public class StringNormalizerTest {
         assertThat(queryNormalized.toString(), equalTo(normalizedQuery));
     }
 
+    @ParameterizedTest
+    @MethodSource("mapPositionProvider")
+    public void testMapPosition(String input, int[] expectedPositions) {
+        StringNormalizer.Result result = StringNormalizer.normalizeWithResult(input, true);
+        for (int i = 0; i < expectedPositions.length; i++) {
+            assertThat(result.mapPosition(i), equalTo(expectedPositions[i]));
+        }
+    }
+
+    private static Stream<Arguments> mapPositionProvider() {
+        return Stream.of(
+                // same positions: no map is kept, past the end maps to the input length
+                Arguments.of("Kiss", new int[]{0, 1, 2, 3, 4, 4}),
+                // accents are stripped without changing positions
+                Arguments.of("Café", new int[]{0, 1, 2, 3, 4}),
+                // dash is removed, following characters shift
+                Arguments.of("e-mail", new int[]{0, 2, 3, 4, 5, 6, 6}),
+                // ligature is decomposed into two characters
+                Arguments.of("ﬁle", new int[]{0, 0, 1, 2, 3}),
+                Arguments.of("", new int[]{0, 0})
+        );
+    }
+
     private static Stream<Arguments> testProvider() {
         return Stream.of(
                 Arguments.of("è", "e"),
