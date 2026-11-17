@@ -814,13 +814,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      */
     protected void updateSearchRecords(boolean isRefresh, String query) {
         cancelSearch();
-        dismissPopup();
 
         if (isRefresh) {
             // Refreshing (for instance app installed or uninstalled in the background, profile unlocked, ...)
+            // Keep the menu the user may have opened: other apps can change their shortcuts at any time
             search(Searcher.Type.APPLICATION, query, true);
             return;
         }
+
+        dismissPopup();
 
         forwarderManager.updateSearchRecords(query);
 
