@@ -26,6 +26,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
 public class DrawableUtils {
@@ -174,7 +175,8 @@ public class DrawableUtils {
     }
 
     private static int getMaxIconSize(Context ctx) {
-        return dpToPx(ctx, 96);
+        // Largest size an icon is displayed at: bigger bitmaps only waste memory
+        return ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size_largest);
     }
 
     private static Rect getIconBounds(Drawable icon, int maxIconSize, float marginPercent) {
