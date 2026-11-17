@@ -1,5 +1,7 @@
 package fr.neamar.kiss.searcher;
 
+import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -70,6 +72,14 @@ public class SearchHandler {
 
     private void resetRunningSearch() {
         runningSearch = null;
+    }
+
+    /**
+     * @return true until the running search has displayed its results
+     */
+    public boolean isSearchRunning() {
+        // A search whose activity is gone finishes without calling back
+        return runningSearch != null && runningSearch.getStatus() != AsyncTask.Status.FINISHED;
     }
 
     @NonNull

@@ -222,6 +222,7 @@ abstract class AbstractMainActivityTest {
     /**
      * Providers load through service binding and can reload at any time (e.g. shortcuts changed),
      * which Espresso can't see. Meanwhile the launcher button is hidden behind the loader.
+     * A finished reload then refreshes the results on the search thread, which Espresso doesn't track either.
      */
     private static class ProvidersLoadedIdlingResource implements IdlingResource {
         private ResourceCallback callback;
@@ -234,7 +235,8 @@ abstract class AbstractMainActivityTest {
         @Override
         public boolean isIdleNow() {
             Context context = ApplicationProvider.getApplicationContext();
-            boolean idle = KissApplication.getApplication(context).getDataHandler().isAllProvidersLoaded();
+            boolean idle = KissApplication.getApplication(context).getDataHandler().isAllProvidersLoaded()
+                    && !SearchHandler.getInstance().isSearchRunning();
             if (idle && callback != null) {
                 callback.onTransitionToIdle();
             }
