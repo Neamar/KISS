@@ -2,6 +2,16 @@
 <resources>
 
     <style name="BaseTheme" parent="@style/Theme.Material3.DayNight.NoActionBar">
+        <item name="colorSurface">@color/theme_solid_list_background_color</item>
+        <item name="colorSurfaceBright">@color/theme_solid_list_background_color</item>
+        <item name="colorSurfaceContainerLowest">@color/theme_solid_list_background_color</item>
+        <item name="colorSurfaceContainerLow">@color/theme_solid_list_background_color</item>
+        <item name="colorSurfaceContainer">@color/theme_solid_list_background_color</item>
+        <item name="colorSurfaceContainerHigh">@color/theme_solid_list_background_color</item>
+        <item name="colorSurfaceContainerHighest">@color/theme_solid_list_background_color</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseTheme">
         <item name="colorPrimary">@color/kiss_green</item>
         <item name="colorPrimaryDark">@color/kiss_green_dark</item>
         <item name="colorAccent">@color/kiss_green</item>
@@ -16,9 +26,6 @@
         <item name="popupMenuBackground">?attr/colorSurfaceContainerHigh</item>
         <item name="dialogTheme">@style/AppTheme.Dialog</item>
         <item name="android:dialogTheme">@style/AppTheme.Dialog</item>
-    </style>
-
-    <style name="AppTheme" parent="BaseTheme">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator</item>
