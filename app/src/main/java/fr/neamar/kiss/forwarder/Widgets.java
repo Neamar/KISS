@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -81,6 +82,11 @@ class Widgets extends Forwarder {
      * a cancelled bind request or configuration may not return the id.
      */
     private int pendingAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    /**
+     * All MainActivity instances share the same host id, and a finished one is destroyed
+     * after its replacement started listening: only the latest one may stop listening.
+     */
+    private static WeakReference<Widgets> listeningInstance = new WeakReference<>(null);
     private ActivityResultLauncher<Intent> requestAppWidgetPicked;
     private ActivityResultLauncher<Intent> requestAppWidgetBound;
 
@@ -255,6 +261,7 @@ class Widgets extends Forwarder {
 
         // Start listening for widget update
         mAppWidgetHost.startListening();
+        listeningInstance = new WeakReference<>(this);
     }
 
     /**
@@ -507,7 +514,10 @@ class Widgets extends Forwarder {
     }
 
     public void onDestroy() {
-        mAppWidgetHost.stopListening();
+        if (listeningInstance.get() == this) {
+            listeningInstance.clear();
+            mAppWidgetHost.stopListening();
+        }
     }
 
     public void onConfigurationChanged(Configuration newConfig) {
