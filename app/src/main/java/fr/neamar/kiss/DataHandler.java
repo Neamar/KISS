@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import fr.neamar.kiss.broadcast.ProfileChangedHandler;
@@ -654,25 +655,37 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
     }
 
+    /**
+     * Settings screens and menus keep the app they were opened with, which a reload may have replaced since:
+     * apply the change to the app currently loaded too.
+     */
+    public void updateApp(@NonNull AppPojo app, @NonNull Consumer<AppPojo> update) {
+        update.accept(app);
+        Pojo current = getPojo(app.id);
+        if (current instanceof AppPojo && current != app) {
+            update.accept((AppPojo) current);
+        }
+    }
+
     public void addToExcludedFromHistory(AppPojo app) {
         Set<String> excluded = getExcludedFromHistory();
         excluded.add(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
-        app.setExcludedFromHistory(true);
+        updateApp(app, a -> a.setExcludedFromHistory(true));
     }
 
     public void removeFromExcludedFromHistory(AppPojo app) {
         Set<String> excluded = getExcludedFromHistory();
         excluded.remove(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
-        app.setExcludedFromHistory(false);
+        updateApp(app, a -> a.setExcludedFromHistory(false));
     }
 
     public void addToExcluded(AppPojo app) {
         Set<String> excluded = getExcluded();
         excluded.add(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
-        app.setExcluded(true);
+        updateApp(app, a -> a.setExcluded(true));
 
         // Ensure it's removed from favorites too
         removeFromFavorites(app.id);
@@ -688,7 +701,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excluded = getExcludedShortcutApps();
         excluded.add(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
-        app.setExcludedShortcuts(true);
+        updateApp(app, a -> a.setExcludedShortcuts(true));
         reload(SHORTCUTS);
     }
 
@@ -696,7 +709,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excluded = getExcluded();
         excluded.remove(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
-        app.setExcluded(false);
+        updateApp(app, a -> a.setExcluded(false));
 
         // Add shortcuts for this app
         reload(SHORTCUTS);
@@ -739,7 +752,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excluded = getExcludedShortcutApps();
         excluded.remove(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
-        app.setExcludedShortcuts(false);
+        updateApp(app, a -> a.setExcludedShortcuts(false));
         reload(SHORTCUTS);
     }
 

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.AppRecord;
@@ -36,6 +37,24 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     public LoadAppPojos(Context context) {
         super(context, "app://");
         tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
+    }
+
+    @Override
+    protected void onPostExecute(List<AppPojo> apps) {
+        // Exclusions were read in the background: they may have been changed since
+        Context ctx = context.get();
+        if (ctx != null) {
+            DataHandler dataHandler = KissApplication.getApplication(ctx).getDataHandler();
+            Set<String> excludedAppList = dataHandler.getExcluded();
+            Set<String> excludedFromHistoryAppList = dataHandler.getExcludedFromHistory();
+            Set<String> excludedShortcutsAppList = dataHandler.getExcludedShortcutApps();
+            for (AppPojo app : apps) {
+                app.setExcluded(excludedAppList.contains(app.getComponentName()));
+                app.setExcludedFromHistory(excludedFromHistoryAppList.contains(app.id));
+                app.setExcludedShortcuts(excludedShortcutsAppList.contains(app.packageName));
+            }
+        }
+        super.onPostExecute(apps);
     }
 
     @Override
