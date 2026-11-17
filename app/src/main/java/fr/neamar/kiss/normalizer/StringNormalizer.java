@@ -3,6 +3,7 @@ package fr.neamar.kiss.normalizer;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.nio.CharBuffer;
 import java.text.Normalizer;
@@ -104,18 +105,29 @@ public class StringNormalizer {
             i += Character.charCount(codepoint);
         }
 
-        return new Result(input.length(), codePoints.toArray(), resultMap.toArray());
+        int[] mapPositions = resultMap.toArray();
+        return new Result(input.length(), codePoints.toArray(), isIdentity(mapPositions) ? null : mapPositions);
+    }
+
+    private static boolean isIdentity(int[] mapPositions) {
+        for (int i = 0; i < mapPositions.length; i++) {
+            if (mapPositions[i] != i)
+                return false;
+        }
+        return true;
     }
 
     public static class Result implements Comparable<Result> {
-        public static final Result EMPTY = new Result(0, new int[]{}, new int[]{});
+        public static final Result EMPTY = new Result(0, new int[]{}, null);
         private final int originalInputLastCharPosition;
         public final int[] codePoints;
+        // null when each codepoint is at the same position in the original string, as for most names: saves memory
+        @Nullable
         private final int[] mapPositions;
 
         Result(final int originalInputLastCharPosition,
-               final int[] codePoints, final int[] mapPositions) {
-            if (codePoints.length != mapPositions.length)
+               final int[] codePoints, @Nullable final int[] mapPositions) {
+            if (mapPositions != null && codePoints.length != mapPositions.length)
                 throw new IllegalStateException("Each codepoint needs a mapped position");
             this.originalInputLastCharPosition = originalInputLastCharPosition;
             this.codePoints = codePoints;
@@ -133,8 +145,8 @@ public class StringNormalizer {
          * @return Position in non-normalized string
          */
         public int mapPosition(int position) {
-            if (position < mapPositions.length)
-                return mapPositions[position];
+            if (position < codePoints.length)
+                return mapPositions == null ? position : mapPositions[position];
             // We are behind the last character, return the position of the end of the original input
             return originalInputLastCharPosition;
         }
