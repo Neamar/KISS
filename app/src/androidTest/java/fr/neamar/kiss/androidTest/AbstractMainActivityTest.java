@@ -83,7 +83,7 @@ abstract class AbstractMainActivityTest {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // After boot, the system keeps changing packages and their shortcuts for minutes, which reloads providers.
             // Start once it has caught up, so tests are less likely to run in the middle of these reloads.
-            runShellCommand("am wait-for-broadcast-idle");
+            runShellCommand("timeout 60 am wait-for-broadcast-idle");
         }
         // Reset to default preferences before launching, so every test starts from the same state
         Context context = ApplicationProvider.getApplicationContext();

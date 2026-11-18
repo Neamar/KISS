@@ -17,6 +17,14 @@ public class BlockableListView extends ListView {
     private boolean touched = false;
     @Nullable
     private Runnable afterTouch = null;
+    // Runs afterTouch once the touch ended, unless it was cancelled or a new touch started meanwhile
+    private final Runnable runAfterTouch = () -> {
+        if (!touched && afterTouch != null) {
+            Runnable runnable = afterTouch;
+            afterTouch = null;
+            runnable.run();
+        }
+    };
 
     public BlockableListView(Context context) {
         super(context);
@@ -77,10 +85,9 @@ public class BlockableListView extends ListView {
         if ((action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) && touched) {
             touched = false;
             if (afterTouch != null) {
-                Runnable runnable = afterTouch;
-                afterTouch = null;
                 // A tap is only clicked once its pressed state was displayed: run after it
-                postDelayed(runnable, ViewConfiguration.getPressedStateDuration() + 1);
+                removeCallbacks(runAfterTouch);
+                postDelayed(runAfterTouch, ViewConfiguration.getPressedStateDuration() + 1);
             }
         }
         return handled;

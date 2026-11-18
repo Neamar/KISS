@@ -657,12 +657,11 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     /**
      * Settings screens and menus keep the app they were opened with, which a reload may have replaced since:
-     * apply the change to the app currently loaded too.
+     * apply the change to the app currently loaded.
      */
     public void updateApp(@NonNull AppPojo app, @NonNull Consumer<AppPojo> update) {
-        update.accept(app);
         Pojo current = getPojo(app.id);
-        if (current instanceof AppPojo && current != app) {
+        if (current instanceof AppPojo) {
             update.accept((AppPojo) current);
         }
     }

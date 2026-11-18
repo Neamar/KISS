@@ -18,7 +18,6 @@ import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.ShortcutPojo;
@@ -112,7 +111,6 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                         ShortcutPojo pojo = createPojo(
                                 user,
                                 shortcutRecord,
-                                dataHandler.getTagsHandler(),
                                 ShortcutUtil.getComponentName(context, shortcutInfo),
                                 shortcutInfo.isPinned(),
                                 shortcutInfo.isDynamic(),
@@ -130,8 +128,6 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
     }
 
     private List<ShortcutPojo> fetchNonOreoPojos(Context context) {
-        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
-        TagsHandler tagsHandler = dataHandler.getTagsHandler();
         List<ShortcutPojo> pojos = new ArrayList<>();
         List<ShortcutRecord> records = DBHelper.getShortcuts(context);
 
@@ -139,7 +135,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             if (isCancelled()) {
                 break;
             }
-            ShortcutPojo pojo = createPojo(null, shortcutRecord, tagsHandler, null, true, false, false, 0);
+            ShortcutPojo pojo = createPojo(null, shortcutRecord, null, true, false, false, 0);
             if (!pojo.isOreoShortcut()) {
                 // add older shortcuts from DB
                 pojos.add(pojo);
@@ -149,16 +145,16 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         return pojos;
     }
 
-    private ShortcutPojo createPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, TagsHandler tagsHandler, String componentName, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
+    private ShortcutPojo createPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
+        // Tags are applied once the load completes, as they may change in the meantime
         ShortcutPojo pojo = new ShortcutPojo(userHandle, shortcutRecord, componentName, pinned, dynamic, disabled, lastChanged);
         pojo.setName(shortcutRecord.name);
-        pojo.setTags(tagsHandler.getTags(pojo.id));
 
         ShortcutPojo previous = previousPojos.get(pojo.id);
         if (previous != null && previous.lastChanged == lastChanged
                 && previous.isPinned() == pinned && previous.isDynamic() == dynamic && previous.isDisabled() == disabled
                 && Objects.equals(previous.getComponentName(), componentName)
-                && previous.getName().equals(pojo.getName()) && Objects.equals(previous.getTags(), pojo.getTags())) {
+                && previous.getName().equals(pojo.getName())) {
             return previous;
         }
         return pojo;

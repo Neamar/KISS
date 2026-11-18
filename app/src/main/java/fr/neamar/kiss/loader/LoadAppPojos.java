@@ -38,14 +38,19 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     @Override
     protected void onPostExecute(List<AppPojo> apps) {
-        // Applied here rather than in the background: they may have been changed during the load
+        // Custom names and exclusions are applied here rather than in the background: they may have been changed during the load
         Context ctx = context.get();
         if (ctx != null) {
             DataHandler dataHandler = KissApplication.getApplication(ctx).getDataHandler();
             Set<String> excludedAppList = dataHandler.getExcluded();
             Set<String> excludedFromHistoryAppList = dataHandler.getExcludedFromHistory();
             Set<String> excludedShortcutsAppList = dataHandler.getExcludedShortcutApps();
+            Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
             for (AppPojo app : apps) {
+                AppRecord customApp = customApps.get(app.getComponentName());
+                if (customApp != null && customApp.hasCustomName()) {
+                    app.setName(customApp.name);
+                }
                 app.setExcluded(excludedAppList.contains(app.getComponentName()));
                 app.setExcludedFromHistory(excludedFromHistoryAppList.contains(app.id));
                 app.setExcludedShortcuts(excludedShortcutsAppList.contains(app.packageName));
@@ -123,15 +128,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             editor.apply();
         }
 
-        Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
-        for (AppPojo app : apps) {
-            AppRecord customApp = customApps.get(app.getComponentName());
-            if (customApp == null)
-                continue;
-            if (customApp.hasCustomName())
-                app.setName(customApp.name);
-        }
-
         long end = System.currentTimeMillis();
         Log.i(TAG, (end - start) + " milliseconds to list apps");
 
@@ -168,7 +164,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, boolean disabled) {
         String id = userHandle.addUserSuffixToString(pojoScheme + packageName + "/" + activityName, '/');
 
-        // Exclusions and tags are applied once the load completes, as they may change in the meantime
+        // Custom names, exclusions and tags are applied once the load completes, as they may change in the meantime
         AppPojo app = new AppPojo(id, packageName, activityName, userHandle, disabled);
 
         app.setName(label.toString());

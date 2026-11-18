@@ -1001,7 +1001,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     private boolean isKeyboardVisible() {
         WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(searchEditText);
-        return insets != null && insets.isVisible(WindowInsetsCompat.Type.ime());
+        // Unknown before Android 6: assume it is, rather than hiding and showing it again for nothing
+        return insets == null || insets.isVisible(WindowInsetsCompat.Type.ime());
     }
 
     @Override
