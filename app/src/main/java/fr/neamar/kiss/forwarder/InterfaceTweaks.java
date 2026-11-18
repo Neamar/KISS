@@ -15,7 +15,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -31,7 +30,6 @@ import java.util.List;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
-import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.ViewGroupUtils;
 
 // Deals with any settings in the "User Interface" setting sub-screen
@@ -133,7 +131,7 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     private static String getTheme(SharedPreferences prefs) {
-        return prefs.getString("theme", "transparent");
+        return prefs.getString("theme", "amoled-dark");
     }
 
     private static void applySystemBarInsets(View view) {
@@ -162,7 +160,7 @@ public class InterfaceTweaks extends Forwarder {
         swapKissButtonWithMenu(mainActivity);
 
         // Transparent Search and Favorites bar
-        if (prefs.getBoolean("transparent-favorites", true) && isExternalFavoriteBarEnabled()) {
+        if (prefs.getBoolean("transparent-favorites", true)) {
             mainActivity.favoritesBar.setBackgroundResource(android.R.color.transparent);
         }
         if (prefs.getBoolean("transparent-search", false)) {
@@ -209,18 +207,15 @@ public class InterfaceTweaks extends Forwarder {
         }
 
         mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
-        mainActivity.kissBar.getLayoutParams().height = searchHeight;
-        mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
 
         // Large favorite bar
-        if (prefs.getBoolean("large-favorites-bar", false) && isExternalFavoriteBarEnabled()) {
+        if (prefs.getBoolean("large-favorites-bar", false)) {
             mainActivity.favoritesBar.getLayoutParams().height = res.getDimensionPixelSize(R.dimen.large_favorite_height);
         }
     }
 
     private void applyRoundedCorners(MainActivity mainActivity) {
         if (prefs.getBoolean("pref-rounded-bars", true)) {
-            mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
             mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
             mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
         }
@@ -240,18 +235,6 @@ public class InterfaceTweaks extends Forwarder {
             List<View> rightHandSideViews = ViewGroupUtils.removeAndGetDirectChildren(mainActivity.leftHandSideButtonsWrapper);
             ViewGroupUtils.addAllViews(mainActivity.rightHandSideButtonsWrapper, rightHandSideViews);
             ViewGroupUtils.addAllViews(mainActivity.leftHandSideButtonsWrapper, leftHandSideViews);
-            // align whiteLauncherButton to the right
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mainActivity.whiteLauncherButton.getLayoutParams();
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 1);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, 1);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START, 0);
-            // align embeddedFavoritesBar to the left of whiteLauncherButton
-            layoutParams = (RelativeLayout.LayoutParams) mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams();
-            layoutParams.addRule(RelativeLayout.RIGHT_OF, 0);
-            layoutParams.addRule(RelativeLayout.LEFT_OF, mainActivity.whiteLauncherButton.getId());
-            layoutParams.addRule(RelativeLayout.END_OF, 0);
-            layoutParams.addRule(RelativeLayout.START_OF, mainActivity.whiteLauncherButton.getId());
         }
     }
 
@@ -275,13 +258,9 @@ public class InterfaceTweaks extends Forwarder {
             return ta.getFloat(0, 0);
         }
     }
-    private boolean isExternalFavoriteBarEnabled() {
-        return prefs.getBoolean("enable-favorites-bar", true);
-    }
 
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         UIColors.clearColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
-        TagDummyResult.resetShape();
     }
 }

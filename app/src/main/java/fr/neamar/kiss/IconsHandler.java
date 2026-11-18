@@ -18,6 +18,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.util.LruCache;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -44,7 +45,6 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.Result;
-import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.IconShape;
 import fr.neamar.kiss.utils.Log;
@@ -73,6 +73,16 @@ public class IconsHandler {
     private boolean mForceShape = false;
     private volatile Map<String, Long> customIconIds = null;
     private volatile Map<String, ComponentName> customComponents = null;
+    /**
+     * In-memory icon cache: coming back from a game must not read every icon again from disk.
+     * Sized in KB, 1/8 of the heap available to the app.
+     */
+    private final LruCache<String, Bitmap> memoryCache = new LruCache<String, Bitmap>((int) (Runtime.getRuntime().maxMemory() / 1024 / 8)) {
+        @Override
+        protected int sizeOf(@NonNull String key, @NonNull Bitmap bitmap) {
+            return bitmap.getAllocationByteCount() / 1024;
+        }
+    };
 
     public IconsHandler(Context baseContext) {
         super();
@@ -213,10 +223,19 @@ public class IconsHandler {
             useCache = false;
         }
 
-        // Search in cache
+        // Search in cache: memory first, then disk
+        String memoryKey = null;
         if (useCache) {
-            Drawable cacheIcon = cacheGetDrawable(cacheKey, PackageManagerUtils.getLastUpdateTime(ctx, componentName.getPackageName(), userHandle));
-            if (cacheIcon != null) {
+            long lastUpdateTime = PackageManagerUtils.getLastUpdateTime(ctx, componentName.getPackageName(), userHandle);
+            // an updated app gets a new key, its old icon is evicted with time
+            memoryKey = getIconPack().getPackPackageName() + "|" + cacheKey + "|" + lastUpdateTime;
+            Bitmap memoryIcon = memoryCache.get(memoryKey);
+            if (memoryIcon != null) {
+                return new BitmapDrawable(this.baseContext.getResources(), memoryIcon);
+            }
+            Drawable cacheIcon = cacheGetDrawable(cacheKey, lastUpdateTime);
+            if (cacheIcon instanceof BitmapDrawable) {
+                memoryCache.put(memoryKey, ((BitmapDrawable) cacheIcon).getBitmap());
                 return cacheIcon;
             }
         }
@@ -259,7 +278,10 @@ public class IconsHandler {
 
         drawable = applyBadge(drawable, userHandle);
         if (useCache) {
-            storeDrawable(cacheGetFileName(cacheKey), drawable);
+            Bitmap bitmap = storeDrawable(cacheGetFileName(cacheKey), drawable);
+            if (bitmap != null) {
+                memoryCache.put(memoryKey, bitmap);
+            }
         }
         return drawable;
     }
@@ -453,7 +475,11 @@ public class IconsHandler {
         return cacheGetFileName(key).lastModified() > appLastUpdateTime;
     }
 
-    private void storeDrawable(File drawableFile, Drawable drawable) {
+    /**
+     * @return the bitmap that was stored, null if the drawable can't be converted
+     */
+    @Nullable
+    private Bitmap storeDrawable(File drawableFile, Drawable drawable) {
         // convert any drawable to bitmap that can be stored
         Bitmap bitmap = DrawableUtils.drawableToBitmap(drawable);
         if (bitmap != null) {
@@ -464,6 +490,15 @@ public class IconsHandler {
                 Log.e(TAG, "Unable to store drawable in cache ", e);
             }
         }
+        return bitmap;
+    }
+
+    /**
+     * Drop the in-memory icons, called when the system is short of memory.
+     * Icons are then read again from the disk cache.
+     */
+    public void trimMemoryCache() {
+        memoryCache.evictAll();
     }
 
     private Drawable cacheGetDrawable(String key, long appLastUpdateTime) {
@@ -544,7 +579,7 @@ public class IconsHandler {
      */
     private void cacheClear() {
         synchronized (this) {
-            TagDummyResult.resetShape();
+            memoryCache.evictAll();
             customIconIds = null;
             customComponents = null;
 

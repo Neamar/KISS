@@ -24,7 +24,7 @@ public class ApplicationsSearcher extends Searcher {
 
     @Override
     PriorityQueue<Pojo> getPojoProcessor(Context context) {
-        // Sort from A to Z, so reverse (last item needs to be A, listview starts at the bottom)
+        // Reversed order: the queue is emptied from Z to A, then reversed by Searcher so that the grid starts with A
         return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new ReversedNameComparator());
     }
 

@@ -47,8 +47,6 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
             }
         }
 
-        KissApplication.getMimeTypeCache(ctx).clearCache();
-
         if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
             if (!replacing) {
                 KissApplication.getApplication(ctx).resetIconsHandler();

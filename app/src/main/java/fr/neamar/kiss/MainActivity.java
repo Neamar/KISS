@@ -3,8 +3,6 @@ package fr.neamar.kiss;
 import static android.content.res.Configuration.UI_MODE_NIGHT_MASK;
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
@@ -21,14 +19,12 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -43,17 +39,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
-import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.settings.SettingsFragment;
-import fr.neamar.kiss.ui.AnimatedListView;
-import fr.neamar.kiss.ui.KeyboardScrollHider;
+import fr.neamar.kiss.ui.BlockableGridView;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.Log;
@@ -62,7 +53,7 @@ import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 import fr.neamar.kiss.utils.TrimmingTextChangedListener;
 
-public class MainActivity extends AppCompatActivity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
+public class MainActivity extends AppCompatActivity implements QueryInterface, View.OnTouchListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -86,19 +77,14 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public SearchEditText searchEditText;
 
     /**
-     * Main list view
+     * Main grid of results (apps when the search is empty)
      */
-    public AnimatedListView list;
+    public BlockableGridView list;
     public View listContainer;
     /**
      * View to display when list is empty
      */
     public View emptyListView;
-    /**
-     * Utility for automatically hiding the keyboard when scrolling down
-     */
-    public KeyboardScrollHider hider;
-
     /**
      * The ViewGroup that wraps the buttons at the right hand side of the searchEditText
      */
@@ -108,12 +94,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      */
     public ImageView menuButton;
     /**
-     * Kiss bar
-     */
-    public View kissBar;
-    /**
-     * Favorites bar. Can be either the favorites within the KISS bar,
-     * or the external favorites bar (default)
+     * Favorites bar, docked at the bottom of the screen
      */
     public RecyclerView favoritesBar;
     /**
@@ -126,15 +107,10 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      */
     public ViewGroup leftHandSideButtonsWrapper;
     /**
-     * Launcher button, can be clicked to display all apps
+     * Launcher button, can be clicked to go back to the app grid
      */
     // TODO: Check what's wrong with launcherButton. It is an ImageView, but it's not visible anymore if declared as ImageView here.
     public View launcherButton;
-
-    /**
-     * Launcher button's white counterpart, which appears when launcher button is clicked
-     */
-    public View whiteLauncherButton;
     /**
      * "X" button to empty the search field
      */
@@ -159,17 +135,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     private int keyboardRetries = 0;
     private final Runnable retryShowKeyboard = this::retryShowKeyboard;
 
-    /**
-     * Is the KISS bar currently displayed?
-     * (flag updated before animation is over)
-     */
-    private boolean isDisplayingKissBar = false;
-
     private PopupWindow mPopup;
 
     private ForwarderManager forwarderManager;
     private Permission permissionManager;
     private OnBackPressedCallback onBackPressedCallback;
+    /**
+     * Night mode the UI was built with
+     */
+    private int nightMode;
 
     /**
      * Called when the activity is first created.
@@ -191,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
          */
         SettingsFragment.setDefaultValues(this, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        nightMode = getResources().getConfiguration().uiMode & UI_MODE_NIGHT_MASK;
 
         /*
          * Initialize all forwarders
@@ -218,14 +193,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         this.list = this.findViewById(android.R.id.list);
         this.listContainer = (View) this.list.getParent();
         this.emptyListView = this.findViewById(android.R.id.empty);
-        this.kissBar = findViewById(R.id.mainKissbar);
         this.rightHandSideButtonsWrapper = findViewById(R.id.rightHandSideButtonsWrapper);
         this.menuButton = findViewById(R.id.menuButton);
         this.searchEditText = findViewById(R.id.searchEditText);
         this.loaderSpinner = findViewById(R.id.loaderBar);
         this.leftHandSideButtonsWrapper = findViewById(R.id.leftHandSideButtonsWrapper);
         this.launcherButton = findViewById(R.id.launcherButton);
-        this.whiteLauncherButton = findViewById(R.id.whiteLauncherButton);
         this.clearButton = findViewById(R.id.clearButton);
 
         /*
@@ -256,9 +229,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // Display menu
         menuButton.setOnClickListener(this::onMenuButtonClicked);
 
-        // Display KISS menu
-        launcherButton.setOnClickListener(this::onLauncherButtonClicked);
-        whiteLauncherButton.setOnClickListener(this::onLauncherButtonClicked);
+        // Go back to the app grid
+        launcherButton.setOnClickListener(v -> clearSearchText());
 
         // Display empty list view when having no results
         this.adapter.registerDataSetObserver(new DataSetObserver() {
@@ -275,18 +247,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                     emptyListView.setVisibility(View.GONE);
                 }
 
-                forwarderManager.onDataSetChanged();
-
             }
         });
 
         // Listen to changes
-        searchEditText.addTextChangedListener(new TrimmingTextChangedListener(true, (changedText) -> {
-            if (isViewingAllApps()) {
-                displayKissBar(false, false);
-            }
-            updateSearchRecords(false, changedText);
-        }));
+        searchEditText.addTextChangedListener(new TrimmingTextChangedListener(true, (changedText) -> updateSearchRecords(false, changedText)));
 
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
@@ -301,7 +266,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                     mPopup.dismiss();
                     return true;
                 }
-                hider.fixScroll();
                 return false;
             }
 
@@ -310,13 +274,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 return true;
             }
 
-            if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
-                SearchPojo pojo = SearchProvider.getDefaultSearch(v.getText().toString(), MainActivity.this, prefs);
-                if (pojo != null) {
-                    Result.fromPojo(MainActivity.this, pojo).fastLaunch(MainActivity.this, null);
-                }
-            } else {
-                adapter.onClick(adapter.getCount() - 1, v);
+            // Launch the most relevant result, displayed first in the grid
+            if (!adapter.isEmpty()) {
+                adapter.onClick(0, v);
             }
 
             return true;
@@ -324,23 +284,14 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         registerForContextMenu(menuButton);
 
-        // When scrolling down on the list,
-        // Hide the keyboard.
-        this.hider = new KeyboardScrollHider(this,
-                this.list,
-                this.findViewById(R.id.listEdgeEffect)
-        );
-        this.hider.start();
-
-        // Enable/disable phone broadcast receiver
-        IncomingCallHandler.setEnabled(this, prefs.getBoolean("enable-phone-history", false));
-
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this, false);
 
-        requestSearchFocusIfNeeded();
+        // Never give the focus to the search field on start: the grid gets it instead,
+        // so that the soft keyboard doesn't show up and arrow keys / Enter navigate between apps.
+        list.requestFocus();
 
         /*
          * Defer everything else to the forwarders
@@ -365,8 +316,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 privateSpaceItem.setTitle(R.string.unlock_private_space);
             }
         }
-
-        forwarderManager.onCreateContextMenu(menu);
     }
 
     @Override
@@ -374,15 +323,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         return onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        forwarderManager.onStart();
-    }
-
     /**
-     * Restart if required,
-     * Hide the kissbar by default
+     * Restart if required
      */
     protected void onResume() {
         if (prefs.getBoolean("require-layout-update", false)) {
@@ -403,12 +345,10 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             onFavoriteChange();
         }
 
-        // We need to update the history in case an external event created new items
-        // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
-        updateSearchRecords(false, searchEditText.getText().toString());
-
-        if (isViewingAllApps()) {
-            displayKissBar(false);
+        // No full refresh here: apps are only reloaded when a package is added / removed / changed
+        // (see PackageAddedRemovedHandler and LauncherAppsCallback), the grid is already up to date.
+        if (adapter.isEmpty() && !SearchHandler.getInstance().isSearchRunning()) {
+            updateSearchRecords(false, searchEditText.getText().toString());
         }
 
         forwarderManager.onResume();
@@ -439,12 +379,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        forwarderManager.onStop();
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (forwarderManager == null) {
@@ -453,7 +387,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         }
         onBackPressedCallback.remove();
         KissApplication.getApplication(this).getDataHandler().removeMainActivity(this);
-        forwarderManager.onDestroy();
     }
 
     /**
@@ -496,7 +429,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         setIntent(intent);
 
         // This is called when the user press Home again while already browsing MainActivity
-        // onResume() will be called right after, hiding the kissbar if any.
+        // onResume() will be called right after.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
         // Animation can't happen in this method, since the activity is not resumed yet, so they'll happen in the onResume()
         // https://github.com/Neamar/KISS/issues/569
@@ -505,10 +438,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             clearSearchText();
         }
 
-        // Hide kissbar when coming back to kiss
-        if (isViewingAllApps()) {
-            displayKissBar(false);
-        }
+        // Back to the first apps when coming back home
+        scrollToTop();
 
         // Close the backButton context menu
         closeContextMenu();
@@ -522,8 +453,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     private void handleOnBackPressed() {
         if (mPopup != null) {
             mPopup.dismiss();
-        } else if (isViewingAllApps()) {
-            displayKissBar(false);
         } else if (!TextUtils.isEmpty(searchEditText.getText()) || isKissDefaultLauncher()) {
             // If no kissmenu, empty the search bar
             // (this will trigger a new event if the search bar was already empty)
@@ -544,27 +473,22 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-        if (!e.isSystem()) {
+        // Type-to-search with a physical keyboard: only printable characters go to the search field,
+        // arrows / Enter / Escape keep navigating the grid.
+        if (!e.isSystem() && e.isPrintingKey() && !e.isCtrlPressed() && !e.isAltPressed() && !searchEditText.hasFocus()) {
             searchEditText.requestFocus();
+            searchEditText.setCursorVisible(true);
             searchEditText.dispatchKeyEvent(e);
+            return true;
         }
         return super.onKeyDown(keycode, e);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (forwarderManager.onOptionsItemSelected(item)) {
-            return true;
-        }
-
         int itemId = item.getItemId();
         if (itemId == R.id.settings) {
             startActivity(new Intent(Settings.ACTION_SETTINGS));
-            return true;
-        } else if (itemId == R.id.wallpaper) {
-            hideKeyboard();
-            Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
-            startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
             return true;
         } else if (itemId == R.id.preferences) {
             startActivity(new Intent(this, SettingsActivity.class));
@@ -590,21 +514,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * @param menuButton "kebab" menu (3 dots)
      */
     private void onMenuButtonClicked(View menuButton) {
-        // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
-        // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (!isViewingSearchResults()) {
-            return;
-        }
-        if (!forwarderManager.onMenuButtonClicked(menuButton)) {
-            menuButton.showContextMenu();
-            menuButton.performHapticFeedback(LONG_PRESS);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        forwarderManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
+        menuButton.showContextMenu();
+        menuButton.performHapticFeedback(LONG_PRESS);
     }
 
     @Override
@@ -623,14 +534,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             searchEditText.performClick();
         }
         return true;
-    }
-
-    /**
-     * Display KISS menu
-     */
-    private void onLauncherButtonClicked(View launcherButton) {
-        // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
-        displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
     @Override
@@ -657,11 +560,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     private void displayClearOnInput() {
-        Searcher.Type lastSearchType = SearchHandler.getInstance().getLastSearchType();
-        if (!TextUtils.isEmpty(searchEditText.getText()) ||
-                (isMinimalisticModeEnabled() && lastSearchType == Searcher.Type.HISTORY) ||
-                (lastSearchType == Searcher.Type.TAGGED) ||
-                (lastSearchType == Searcher.Type.UNTAGGED)) {
+        if (!TextUtils.isEmpty(searchEditText.getText())) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
         } else {
@@ -671,37 +570,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     public void displayLoader(boolean display) {
-        if (!display) {
-            // Do not display animation if launcher button is already visible
-            if (launcherButton.getVisibility() != View.VISIBLE) {
-                launcherButton.setVisibility(View.VISIBLE);
-
-                int animationDuration = getResources().getInteger(android.R.integer.config_longAnimTime);
-
-                // Animate transition from loader to launch button
-                launcherButton.animate()
-                        .alpha(1f)
-                        .setDuration(animationDuration)
-                        .setListener(null);
-                loaderSpinner.animate()
-                        .alpha(0f)
-                        .setDuration(animationDuration)
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                loaderSpinner.setVisibility(View.GONE);
-                            }
-                        });
-            }
-        } else {
-            launcherButton.animate().cancel();
-            launcherButton.setAlpha(0);
-            launcherButton.setVisibility(View.INVISIBLE);
-
-            loaderSpinner.animate().cancel();
-            loaderSpinner.setAlpha(1);
-            loaderSpinner.setVisibility(View.VISIBLE);
-        }
+        // No fade animation: switch instantly between the loader and the launcher button
+        launcherButton.setVisibility(display ? View.INVISIBLE : View.VISIBLE);
+        loaderSpinner.setVisibility(display ? View.VISIBLE : View.GONE);
     }
 
     private UserHandle getPrivateUser() {
@@ -742,75 +613,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         forwarderManager.onFavoriteChange();
     }
 
-    public void displayKissBar(boolean display) {
-        this.displayKissBar(display, true);
-    }
-
-    protected void displayKissBar(boolean display, boolean clearSearchText) {
-        dismissPopup();
-        // get the center for the clipping circle
-        ViewGroup launcherButtonWrapper = (ViewGroup) launcherButton.getParent();
-        int cx = (launcherButtonWrapper.getLeft() + launcherButtonWrapper.getRight()) / 2;
-        int cy = (launcherButtonWrapper.getTop() + launcherButtonWrapper.getBottom()) / 2;
-
-        // get the final radius for the clipping circle
-        int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
-
-        if (display) {
-            // Display the app list
-            if (!TextUtils.isEmpty(searchEditText.getText())) {
-                clearSearchText();
-            }
-            cancelSearch();
-
-            // Needs to be done after setting the text content to empty
-            isDisplayingKissBar = true;
-
-            updateSearchRecords(false, searchEditText.getText().toString());
-
-            // Reveal the bar
-            int animationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
-            anim.setDuration(animationDuration);
-            anim.start();
-            kissBar.setVisibility(View.VISIBLE);
-
-            // Display the alphabet on the scrollbar (#926)
-            list.setFastScrollEnabled(true);
-        } else {
-            isDisplayingKissBar = false;
-            // Hide the bar
-            int animationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            try {
-                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        kissBar.setVisibility(View.GONE);
-                        super.onAnimationEnd(animation);
-                    }
-                });
-                anim.setDuration(animationDuration);
-                anim.start();
-            } catch (IllegalStateException e) {
-                // If the view hasn't been laid out yet, we can't animate it
-                kissBar.setVisibility(View.GONE);
-            }
-
-            if (clearSearchText) {
-                clearSearchText();
-            }
-
-            // Do not display the alphabetical scrollbar (#926)
-            // They only make sense when displaying apps alphabetically, not for searching
-            list.setFastScrollEnabled(false);
-        }
-
-        forwarderManager.onDisplayKissBar(display);
-    }
-
     public void updateSearchRecords() {
         updateSearchRecords(true, searchEditText.getText().toString());
     }
@@ -829,6 +631,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         if (isRefresh) {
             // Refreshing (for instance app installed or uninstalled in the background, profile unlocked, ...)
             // Keep the menu the user may have opened: other apps can change their shortcuts at any time
+            // (the type and query of the last search are reused)
             search(Searcher.Type.APPLICATION, query, true);
             return;
         }
@@ -854,44 +657,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         SearchHandler.getInstance().cancelSearch();
     }
 
-    /**
-     * transcriptMode on the listView decides when to scroll back to the first item.
-     * The value we have by default, TRANSCRIPT_MODE_ALWAYS_SCROLL, means that on every new search,
-     * (actually, on any change to the listview's adapter items)
-     * scroll is reset to the bottom, which makes sense as we want the most relevant search results
-     * to be visible first (searching for "ab" after "a" should reset the scroll).
-     * However, when updating an existing result set (for instance to remove a record, add a tag,
-     * etc.), we don't want the scroll to be reset. When this happens, we temporarily disable
-     * the scroll mode.
-     * However, we need to be careful here: the PullView system we use actually relies on
-     * TRANSCRIPT_MODE_ALWAYS_SCROLL being active. So we add a new message in the queue to change
-     * back the transcript mode once we've rendered the change.
-     * <p>
-     * (why is PullView dependent on this? When you show the keyboard, no event is being dispatched
-     * to our application, but if we don't reset the scroll when the keyboard appears then you
-     * could be looking at an element that isn't the latest one as you start scrolling down
-     * [which will hide the keyboard] and start a very ugly animation revealing items currently
-     * hidden. Fairly easy to test, remove the transcript mode from the XML and the .post() here,
-     * then scroll in your history, display the keyboard and scroll again on your history)
-     */
     @Override
-    public void temporarilyDisableTranscriptMode() {
-        updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
-        // Add a message to be processed after all current messages, to reset transcript mode to default
-        list.post(() -> updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
-    }
-
-    /**
-     * Force  set transcript mode.
-     * Be careful when using this, it's almost always better to use temporarilyDisableTranscriptMode()
-     * unless you need to deal with the keyboard appearing for something else than a search.
-     * Always make sure you call this function twice, once to disable, and once to re-enable
-     *
-     * @param transcriptMode new transcript mode to set on the list
-     */
-    @Override
-    public void updateTranscriptMode(int transcriptMode) {
-        list.setTranscriptMode(transcriptMode);
+    public void scrollToTop() {
+        if (list != null && !list.getAdapter().isEmpty()) {
+            list.setSelection(0);
+        }
     }
 
     /**
@@ -907,8 +677,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             clearSearchText();
             displayClearOnInput();
             hideKeyboard();
-        } else if (isViewingAllApps()) {
-            displayKissBar(false);
         }
     }
 
@@ -919,7 +687,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         mPopup = popup;
         popup.setVisibilityHelper(systemUiVisibilityHelper);
         popup.setOnDismissListener(() -> MainActivity.this.mPopup = null);
-        hider.fixScroll();
     }
 
     @Override
@@ -948,19 +715,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 hideKeyboard();
             }
         }
-
-        if (hasFocus) {
-            requestSearchFocusIfNeeded();
-        }
-    }
-
-
-    private void requestSearchFocusIfNeeded() {
-        int keyboard = getResources().getConfiguration().keyboard;
-        if (keyboard == Configuration.KEYBOARD_QWERTY
-                || keyboard == Configuration.KEYBOARD_12KEY) {
-            searchEditText.requestFocus();
-        }
     }
 
     /**
@@ -979,7 +733,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         if (searchEditText.requestFocus()) {
             searchEditText.setCursorVisible(true);
             WindowCompat.getInsetsController(getWindow(), searchEditText).show(WindowInsetsCompat.Type.ime());
-            showHistoryWithKeyboard(true);
             searchEditText.removeCallbacks(retryShowKeyboard);
             if (!isKeyboardVisible()) {
                 keyboardRetries = KEYBOARD_RETRIES;
@@ -1005,7 +758,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         return insets == null || insets.isVisible(WindowInsetsCompat.Type.ime());
     }
 
-    @Override
     public void hideKeyboard() {
         showKeyboardOnFocus = null;
         searchEditText.removeCallbacks(retryShowKeyboard);
@@ -1023,51 +775,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         if (view == searchEditText) {
             searchEditText.setCursorVisible(false);
             searchEditText.clearFocus();
+            // Give the focus back to the grid (keyboard / gamepad navigation)
+            list.requestFocus();
         }
-    }
-
-    @Override
-    public void applyScrollSystemUi() {
-        systemUiVisibilityHelper.applyScrollSystemUi();
-    }
-
-    /**
-     * Check if history / search or app list is visible
-     *
-     * @return true of history, false on app list
-     */
-    public boolean isViewingSearchResults() {
-        return !isDisplayingKissBar;
-    }
-
-    public boolean isViewingAllApps() {
-        return isDisplayingKissBar;
-    }
-
-    public void beforeListChange() {
-        list.prepareChangeAnim();
-    }
-
-    public void afterListChange() {
-        list.animateChange();
     }
 
     public void dismissPopup() {
         if (mPopup != null) {
             mPopup.dismiss();
         }
-    }
-
-    public void showMatchingTags(String tag) {
-        search(Searcher.Type.TAGGED, tag, false);
-    }
-
-    public void showUntagged() {
-        search(Searcher.Type.UNTAGGED, null, false);
-    }
-
-    public void showHistory() {
-        search(Searcher.Type.HISTORY, null, false);
     }
 
     public boolean isKissDefaultLauncher() {
@@ -1089,8 +805,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         forwarderManager.onConfigurationChanged(newConfig);
-        recreate();
-        Log.d(TAG, "onConfigurationChanged, uiMode = " + (newConfig.uiMode & UI_MODE_NIGHT_MASK));
+        int nightMode = newConfig.uiMode & UI_MODE_NIGHT_MASK;
+        Log.d(TAG, "onConfigurationChanged, uiMode = " + nightMode);
+        // Only a theme change needs a new UI: plugging a keyboard / mouse must not reload the grid
+        if (nightMode != this.nightMode) {
+            recreate();
+        }
     }
 
     public void setFavoritesBarVisible(boolean isVisible) {
@@ -1105,27 +825,5 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // The system handled the request: don't show the keyboard again if the user hides it
         searchEditText.removeCallbacks(retryShowKeyboard);
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(keyboardIsVisible);
-        showHistoryWithKeyboard(keyboardIsVisible);
-    }
-
-    private void showHistoryWithKeyboard(boolean keyboardIsVisible) {
-        if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
-                isViewingSearchResults() && TextUtils.isEmpty(searchEditText.getText())) {
-            if (keyboardIsVisible) {
-                if (adapter == null || adapter.isEmpty()) {
-                    showHistory();
-                }
-            } else {
-                // we never want this triggered because the keyboard scroller did it
-                if (adapter != null && !adapter.isEmpty() && !hider.isScrolled()) {
-                    // reset edittext (hide history)
-                    clearSearchText();
-                }
-            }
-        }
-    }
-
-    private boolean isMinimalisticModeEnabled() {
-        return prefs.getBoolean("history-hide", false);
     }
 }

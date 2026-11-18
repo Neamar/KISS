@@ -99,12 +99,6 @@ public class SearchHandler {
                 return new QuerySearcher(activity, query, isRefresh);
             case NULL:
                 return new NullSearcher(activity);
-            case HISTORY:
-                return new HistorySearcher(activity, isRefresh);
-            case TAGGED:
-                return new TagsSearcher(activity, query);
-            case UNTAGGED:
-                return new UntaggedSearcher(activity);
             default:
                 throw new UnsupportedOperationException();
         }

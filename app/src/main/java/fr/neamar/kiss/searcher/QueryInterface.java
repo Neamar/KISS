@@ -5,13 +5,10 @@ import androidx.fragment.app.DialogFragment;
 import fr.neamar.kiss.ui.ListPopup;
 
 public interface QueryInterface {
-    void temporarilyDisableTranscriptMode();
-
-    void updateTranscriptMode(int transcriptMode);
-
-    void beforeListChange();
-
-    void afterListChange();
+    /**
+     * Called when a new result set is displayed (not on a refresh): the most relevant results are at the top
+     */
+    void scrollToTop();
 
     void launchOccurred();
 

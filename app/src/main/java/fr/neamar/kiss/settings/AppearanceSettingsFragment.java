@@ -28,7 +28,7 @@ public class AppearanceSettingsFragment extends BaseSettingsFragment {
      * Night mode can't be changed with the AMOLED theme, which is always dark
      */
     private void updateNightMode() {
-        boolean isAmoledTheme = "amoled-dark".equals(getPrefs().getString("theme", "transparent"));
+        boolean isAmoledTheme = "amoled-dark".equals(getPrefs().getString("theme", "amoled-dark"));
 
         Preference darkMode = findPreference("night-mode");
         if (darkMode != null) {

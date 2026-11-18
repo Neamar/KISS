@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.settings.SettingsFragment;
@@ -79,14 +78,6 @@ public class ExportSettingsPreference {
                         Log.w(TAG, "Unknown type: " + key + ":" + value);
                     }
                 }
-
-                // Export tags
-                Map<String, String> tags = ((KissApplication) context.getApplicationContext()).getDataHandler().getTagsHandler().getTags();
-                JSONObject jsonTags = new JSONObject();
-                for (Map.Entry<String, String> entry : tags.entrySet()) {
-                    jsonTags.put(entry.getKey(), entry.getValue());
-                }
-                out.put("__tags", jsonTags);
 
                 // Export custom components
                 Map<String, ComponentName> components = DBHelper.getCustomComponents(context);

@@ -553,62 +553,6 @@ public class DBHelper {
         db.delete("shortcuts", null, null);
     }
 
-    /**
-     * Insert new tags for given id
-     *
-     * @param context android context
-     * @param tag     tag to insert
-     * @param record  record to insert
-     */
-    public static void insertTagsForId(Context context, String tag, String record) {
-        SQLiteDatabase db = getDatabase(context);
-        ContentValues values = new ContentValues();
-        values.put("tag", tag);
-        values.put("record", record);
-        db.insert("tags", null, values);
-    }
-
-
-    /**
-     * Delete
-     *
-     * @param context android context
-     * @param record  record to delete
-     */
-    public static void deleteTagsForId(Context context, String record) {
-        SQLiteDatabase db = getDatabase(context);
-
-        db.delete("tags", "record = ?", new String[]{record});
-    }
-
-    /**
-     * Delete all tags
-     *
-     * @param context android context
-     */
-    public static void deleteTags(Context context) {
-        SQLiteDatabase db = getDatabase(context);
-
-        db.execSQL("DELETE FROM tags;");
-    }
-
-    public static Map<String, String> loadTags(Context context) {
-        Map<String, String> records = new HashMap<>();
-        SQLiteDatabase db = getDatabase(context);
-
-        Cursor cursor = db.query("tags", new String[]{"record", "tag"}, null, null, null, null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            String id = cursor.getString(0);
-            String tags = cursor.getString(1);
-            records.put(id, tags);
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return records;
-    }
-
     public static void initDatabase(Context context) {
         getDatabase(context);
     }

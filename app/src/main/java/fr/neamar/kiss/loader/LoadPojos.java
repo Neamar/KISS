@@ -6,11 +6,8 @@ import android.os.AsyncTask;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.utils.Log;
 
 public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, List<T>> {
@@ -49,13 +46,6 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
         if (providerReference != null) {
             Provider<T> provider = providerReference.get();
             if (provider != null && !isCancelled()) {
-                // Applied here rather than in the background, so that tags edited during the load are kept
-                TagsHandler tagsHandler = KissApplication.getApplication(provider).getDataHandler().getTagsHandler();
-                for (T pojo : result) {
-                    if (pojo instanceof PojoWithTags) {
-                        ((PojoWithTags) pojo).setTags(tagsHandler.getTags(pojo.id));
-                    }
-                }
                 provider.loadOver(result);
             }
         }

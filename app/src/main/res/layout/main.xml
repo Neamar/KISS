@@ -6,36 +6,13 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <fr.neamar.kiss.ui.WidgetScrollView
-        android:id="@+id/widgetScroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/resultLayout"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:fillViewport="true">
-
-        <!-- Vertically scrolling widget area: hosts an unlimited number of widgets in minimalistic mode -->
-        <LinearLayout
-            android:id="@+id/widgetLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" />
-    </fr.neamar.kiss.ui.WidgetScrollView>
-
     <FrameLayout
         android:id="@+id/resultLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/externalFavoriteBar"
+        android:layout_below="@id/searchEditLayout"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="false"
         android:layout_marginStart="@dimen/list_margin_horizontal"
         android:layout_marginLeft="@dimen/list_margin_horizontal"
         android:layout_marginEnd="@dimen/list_margin_horizontal"
@@ -46,23 +23,27 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <fr.neamar.kiss.ui.AnimatedListView
+        <!-- App grid: icon + one-line name, centered, sized for a landscape monitor -->
+        <fr.neamar.kiss.ui.BlockableGridView
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top|center_horizontal"
             android:cacheColorHint="@android:color/transparent"
-            android:divider="?attr/dividerDrawable"
-            android:dividerHeight="1dp"
-            android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll"
+            android:clipToPadding="false"
+            android:columnWidth="@dimen/grid_column_width"
+            android:drawSelectorOnTop="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/grid_spacing"
+            android:listSelector="@drawable/grid_item_selector"
+            android:numColumns="auto_fit"
+            android:padding="@dimen/grid_spacing"
+            android:scrollbarStyle="outsideOverlay"
+            android:stretchMode="spacingWidthUniform"
+            android:verticalSpacing="@dimen/grid_spacing"
             tools:listitem="@layout/item_app" />
-
-        <fr.neamar.kiss.ui.BottomPullEffectView
-            android:id="@+id/listEdgeEffect"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal|bottom" />
 
     </FrameLayout>
 
@@ -70,7 +51,7 @@
         android:id="@+id/externalFavoriteBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/favorite_height"
-        android:layout_above="@id/searchEditLayout"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginEnd="10dp"
@@ -89,14 +70,11 @@
 
     <RelativeLayout
         android:id="@+id/searchEditLayout"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/search_bar_width"
         android:layout_height="@dimen/bar_height"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
@@ -122,7 +100,6 @@
                 android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
                 android:src="@drawable/ic_launcher_white"
-                android:tag="showMenu"
                 app:tint="?attr/colorPrimary" />
 
             <ProgressBar
@@ -202,7 +179,7 @@
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/externalFavoriteBar"
+        android:layout_below="@id/searchEditLayout"
         android:paddingBottom="10dp"
         android:visibility="visible"
         tools:visibility="gone">
@@ -211,17 +188,5 @@
             android:id="@+id/main_empty"
             layout="@layout/main_empty" />
     </ScrollView>
-
-    <include
-        android:id="@+id/mainKissbar"
-        layout="@layout/main_kissbar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@android:id/list"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:visibility="gone"
-        tools:ignore="DuplicateIncludedIds" />
 
 </RelativeLayout>

@@ -19,7 +19,6 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,8 +47,6 @@ import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.*;
 import fr.neamar.kiss.searcher.QueryInterface;
-import fr.neamar.kiss.searcher.SearchHandler;
-import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -76,18 +73,12 @@ public abstract class Result<T extends Pojo> {
     public static Result<?> fromPojo(QueryInterface parent, @NonNull Pojo pojo) {
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
-        else if (pojo instanceof ContactsPojo)
-            return new ContactsResult(parent, (ContactsPojo) pojo);
-        else if (pojo instanceof SearchPojo)
-            return new SearchResult((SearchPojo) pojo);
+        else if (pojo instanceof CalculatorPojo)
+            return new CalculatorResult((CalculatorPojo) pojo);
         else if (pojo instanceof SettingPojo)
             return new SettingsResult((SettingPojo) pojo);
-        else if (pojo instanceof PhonePojo)
-            return new PhoneResult((PhonePojo) pojo);
         else if (pojo instanceof ShortcutPojo)
             return new ShortcutsResult((ShortcutPojo) pojo);
-        else if (pojo instanceof TagDummyPojo)
-            return new TagDummyResult((TagDummyPojo) pojo);
 
         throw new UnsupportedOperationException("Unable to create a result from POJO");
     }
@@ -95,18 +86,12 @@ public abstract class Result<T extends Pojo> {
     public static int getItemViewType(Result<?> result) {
         if (result instanceof AppResult)
             return 0;
-        else if (result instanceof SearchResult)
+        else if (result instanceof CalculatorResult)
             return 1;
-        else if (result instanceof ContactsResult)
-            return 2;
         else if (result instanceof SettingsResult)
-            return 3;
-        else if (result instanceof PhoneResult)
-            return 4;
+            return 2;
         else if (result instanceof ShortcutsResult)
-            return 5;
-        else if (result instanceof TagDummyResult)
-            return 6;
+            return 3;
         else
             return -1;
     }
@@ -269,9 +254,6 @@ public abstract class Result<T extends Pojo> {
      * Default popup menu implementation, can be overridden by children class to display a more specific menu
      */
     protected void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
-        if (canRemoveFromHistory(context) && isShowingHistory()) {
-            adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        }
         if (isAllowedAsFavorite()) {
             // If app already pinned, do not display the "add to favorite" option
             // otherwise don't show the "remove favorite button"
@@ -288,10 +270,6 @@ public abstract class Result<T extends Pojo> {
                 adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
             }
         }
-    }
-
-    private boolean isShowingHistory() {
-        return SearchHandler.getInstance().getLastSearchType() == Searcher.Type.HISTORY;
     }
 
     private ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
@@ -312,10 +290,7 @@ public abstract class Result<T extends Pojo> {
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId, View parentView) {
-        if (stringId == R.string.menu_remove) {
-            removeFromResultsAndHistory(context, parent);
-            return true;
-        } else if (stringId == R.string.menu_favorites_add) {
+        if (stringId == R.string.menu_favorites_add) {
             launchAddToFavorites(context, pojo);
             return true;
         } else if (stringId == R.string.menu_favorites_remove) {
@@ -350,18 +325,6 @@ public abstract class Result<T extends Pojo> {
 
     private void setCustomIcon(Context context, ComponentName componentName) {
         KissApplication.getApplication(context).getIconsHandler().setCustomComponent(this, componentName);
-    }
-
-    /**
-     * Remove the current result from the list
-     *
-     * @param context android context
-     * @param parent  adapter on which to remove the item
-     */
-    private void removeFromResultsAndHistory(Context context, RecordAdapter parent) {
-        removeFromHistory(context);
-        Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
-        parent.removeResult(this);
     }
 
     public final void launch(Context context, View v, @Nullable QueryInterface queryInterface) {
@@ -564,11 +527,6 @@ public abstract class Result<T extends Pojo> {
         return prefs.getBoolean("icons-hide", false);
     }
 
-    protected boolean isTagsVisible(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("tags-visible", true);
-    }
-
     protected void setSourceBounds(@NonNull Intent intent, @Nullable View view) {
         intent.setSourceBounds(getViewBounds(view));
     }
@@ -581,21 +539,7 @@ public abstract class Result<T extends Pojo> {
         return null;
     }
 
-    protected void setTranscriptModeAlwaysScroll(RecordAdapter adapter) {
-        // We'll need to reset the list view to its previous transcript mode,
-        // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
-        // Let's wait for half a second, that's ugly but we don't have any other option :(
-        final Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(() -> adapter.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
-    }
-
-    protected void setTranscriptModeDisabled(RecordAdapter adapter) {
-        adapter.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
-    }
-
     protected abstract boolean isAllowedAsFavorite();
-
-    protected abstract boolean canRemoveFromHistory(Context context);
 
     protected abstract boolean canHaveCustomIcon(Context context, IconPack iconPack);
 

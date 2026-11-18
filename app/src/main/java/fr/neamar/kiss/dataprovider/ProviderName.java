@@ -2,14 +2,9 @@ package fr.neamar.kiss.dataprovider;
 
 public enum ProviderName {
     APPS(true, "app"),
-    CONTACTS(true, "contacts"),
     SHORTCUTS(true, "shortcuts"),
     CALCULATOR(false, "calculator"),
-    TIMER(false, "timer"),
-    PHONE(false, "phone"),
-    SEARCH(false, "search"),
-    SETTINGS(false, "settings"),
-    TAGS(false, "tags");
+    SETTINGS(false, "settings");
 
     final boolean isService;
     final String settingName;

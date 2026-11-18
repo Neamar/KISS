@@ -20,7 +20,6 @@ public class KissApplication extends Application {
     private volatile RootHandler rootHandler;
     private volatile IconsHandler iconsPackHandler;
     private final IconPackCache mIconPackCache = new IconPackCache();
-    private final MimeTypeCache mimeTypeCache = new MimeTypeCache();
 
     public static KissApplication getApplication(Context context) {
         if (context instanceof KissApplication) {
@@ -76,12 +75,11 @@ public class KissApplication extends Application {
         iconsPackHandler = new IconsHandler(this);
     }
 
-    public static MimeTypeCache getMimeTypeCache(Context ctx) {
-        return getApplication(ctx).mimeTypeCache;
-    }
-
     /**
      * Release memory when the UI becomes hidden or when system resources become low.
+     * <p>
+     * Icons are kept in memory when a game is simply started (UI hidden): coming back to the launcher must not
+     * read them again from disk. They are only dropped when the system is really short of memory.
      *
      * @param level the memory-related event that was raised.
      */
@@ -90,10 +88,11 @@ public class KissApplication extends Application {
         super.onTrimMemory(level);
 
         if (level >= ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
-            // this is called every time the screen is off
             SQLiteDatabase.releaseMemory();
+        }
+        if (level >= ComponentCallbacks2.TRIM_MEMORY_MODERATE || level == ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL) {
             mIconPackCache.clearCache(this);
-            mimeTypeCache.clearCache();
+            getIconsHandler().trimMemoryCache();
         }
     }
 

@@ -58,4 +58,28 @@
         <item name="searchViewStyle">@style/Widget.Material3.SearchView.Toolbar</item>
     </style>
 
+    <!-- App grid (MSI App Player) -->
+    <style name="GridItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/grid_item_padding</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+    </style>
+
+    <style name="GridItemLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">?attr/resultColor</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:textSize">@dimen/grid_title_size</item>
+    </style>
+
 </resources>

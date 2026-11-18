@@ -49,7 +49,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     @Override
     public int getViewTypeCount() {
-        return 7;
+        return 4;
     }
 
     @Override
@@ -105,12 +105,9 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     public void removeResult(Result<?> result) {
-        parent.beforeListChange();
         results.remove(result);
-        notifyDataSetChanged();
         // Do not reset scroll, we want the remaining items to still be in view
-        parent.temporarilyDisableTranscriptMode();
-        parent.afterListChange();
+        notifyDataSetChanged();
     }
 
     public void updateWithPojos(@NonNull Context context, @NonNull List<Pojo> pojos, boolean isRefresh, String query) {
@@ -125,8 +122,6 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     public void updateResults(@NonNull Context context, List<Result<?>> updatedResults, boolean isRefresh, String query) {
-        parent.beforeListChange();
-
         this.results.clear();
         this.results.addAll(updatedResults);
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
@@ -134,28 +129,17 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         fuzzyScore = new FuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
 
-        if (isRefresh) {
-            // We're refreshing an existing dataset, do not reset scroll!
-            parent.temporarilyDisableTranscriptMode();
+        if (!isRefresh) {
+            // New search: show the best results, at the top of the grid.
+            // When refreshing an existing dataset, do not reset scroll!
+            parent.scrollToTop();
         }
-
-        parent.afterListChange();
-    }
-
-    /**
-     * Force set transcript mode on the list.
-     * Prefer to use `parent.temporarilyDisableTranscriptMode();`
-     */
-    public void updateTranscriptMode(int transcriptMode) {
-        parent.updateTranscriptMode(transcriptMode);
     }
 
 
     public void clear() {
-        parent.beforeListChange();
         this.results.clear();
         notifyDataSetChanged();
-        parent.afterListChange();
     }
 
     /**

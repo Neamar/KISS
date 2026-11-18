@@ -6,11 +6,10 @@ import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_IDLE;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.net.Uri;
-import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -20,7 +19,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -122,13 +120,6 @@ public class Favorites extends Forwarder {
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             int layout = R.layout.favorite_item;
-            if (viewType == 6) {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(parent.getContext());
-                if (!sharedPreferences.getBoolean("pref-fav-tags-drawable", false)) {
-                    layout = R.layout.favorite_tag;
-                }
-            }
-
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
             return new ViewHolder(view);
         }
@@ -238,15 +229,7 @@ public class Favorites extends Forwarder {
     }
 
     void onCreate() {
-        if (isExternalFavoriteBarEnabled()) {
-            mainActivity.favoritesBar = mainActivity.findViewById(R.id.externalFavoriteBar);
-            // Hide the embedded bar
-            mainActivity.findViewById(R.id.embeddedFavoritesBar).setVisibility(View.INVISIBLE);
-        } else {
-            mainActivity.favoritesBar = mainActivity.findViewById(R.id.embeddedFavoritesBar);
-            // Hide the external bar
-            mainActivity.findViewById(R.id.externalFavoriteBar).setVisibility(View.GONE);
-        }
+        mainActivity.favoritesBar = mainActivity.findViewById(R.id.externalFavoriteBar);
         favoriteAdapter = new FavoriteAdapter();
 
         favoriteAdapter.setOnItemClickListener(this::onClick);
@@ -294,39 +277,23 @@ public class Favorites extends Forwarder {
         return true;
     }
 
-    private boolean isExternalFavoriteBarEnabled() {
-        return prefs.getBoolean("enable-favorites-bar", true);
-    }
-
     /**
-     * On first run, fill the favorite bar with sensible defaults
+     * On first run, fill the favorite bar (dock) with sensible defaults for an emulator:
+     * Play Store, browser and Android settings
      */
     private void addDefaultAppsToFavs() {
-        {
-            // Default phone call app
-            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
-            phoneIntent.setData(Uri.parse("tel:0000"));
-            ComponentName componentName = getLaunchingComponent(phoneIntent);
+        Intent[] defaultIntents = new Intent[]{
+                // Default app store
+                new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + mainActivity.getPackageName())),
+                // Default browser
+                new Intent(Intent.ACTION_VIEW, Uri.parse("https://")),
+                // Android settings: clear cache, storage, display...
+                new Intent(Settings.ACTION_SETTINGS)
+        };
+        for (Intent intent : defaultIntents) {
+            ComponentName componentName = getLaunchingComponent(intent);
             if (componentName != null) {
-                Log.i(TAG, "Dialer resolves to: " + componentName);
-                KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + componentName.getPackageName() + "/" + componentName.getClassName());
-            }
-        }
-        {
-            // Default contacts app
-            Intent contactsIntent = new Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI);
-            ComponentName componentName = getLaunchingComponent(contactsIntent);
-            if (componentName != null) {
-                Log.i(TAG, "Contacts resolves to: " + componentName);
-                KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + componentName.getPackageName() + "/" + componentName.getClassName());
-            }
-        }
-        {
-            // Default browser
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"));
-            ComponentName componentName = getLaunchingComponent(browserIntent);
-            if (componentName != null) {
-                Log.i(TAG, "Browser resolves to: " + componentName);
+                Log.i(TAG, intent.getAction() + " resolves to: " + componentName);
                 KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + componentName.getPackageName() + "/" + componentName.getClassName());
             }
         }

@@ -22,12 +22,10 @@ import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.dataprovider.ProviderName;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.settings.SettingsFragment;
 import fr.neamar.kiss.utils.Log;
-import fr.neamar.kiss.utils.MimeTypeUtils;
 
 public class ImportSettingsPreference {
 
@@ -96,26 +94,7 @@ public class ImportSettingsPreference {
                 if (!editor.commit()) {
                     Toast.makeText(context, R.string.import_settings_save_not_possible, Toast.LENGTH_SHORT).show();
                 }
-                // Settings exported before contact actions
-                if (prefs.contains(MimeTypeUtils.SELECTED_MIME_TYPES_KEY)) {
-                    SharedPreferences.Editor convertEditor = prefs.edit();
-                    MimeTypeUtils.convertSelectedMimeTypes(context, prefs, convertEditor);
-                    convertEditor.commit();
-                }
-
                 DataHandler dataHandler = ((KissApplication) context.getApplicationContext()).getDataHandler();
-
-                // Import tags
-                if (jsonObject.has("__tags")) {
-                    TagsHandler tagHandler = dataHandler.getTagsHandler();
-                    tagHandler.clearTags();
-                    JSONObject tags = jsonObject.getJSONObject("__tags");
-                    Iterator<?> tagKeys = tags.keys();
-                    while (tagKeys.hasNext()) {
-                        String id = (String) tagKeys.next();
-                        tagHandler.setTags(id, tags.getString(id));
-                    }
-                }
 
                 // Import custom components
                 if (jsonObject.has("__custom_components")) {

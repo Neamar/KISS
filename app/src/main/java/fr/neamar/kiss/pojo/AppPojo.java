@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.utils.UserHandle;
 
-public final class AppPojo extends PojoWithTags {
+public final class AppPojo extends Pojo {
 
     public static String getComponentName(String packageName, String activityName,
                                           UserHandle userHandle) {

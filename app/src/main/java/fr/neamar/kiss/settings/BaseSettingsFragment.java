@@ -18,8 +18,6 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.SettingsActivity;
-import fr.neamar.kiss.preference.AddSearchProviderPreference;
-import fr.neamar.kiss.preference.AddSearchProviderPreferenceDialogFragment;
 import fr.neamar.kiss.preference.ColorPreference;
 import fr.neamar.kiss.preference.ColorPreferenceDialogFragment;
 import fr.neamar.kiss.preference.DialogShowingPreference;
@@ -160,8 +158,6 @@ public abstract class BaseSettingsFragment extends PreferenceFragmentCompat impl
             dialogFragment = DialogShowingPreferenceDialogFragment.newInstance(preference.getKey());
         } else if (preference instanceof ColorPreference) {
             dialogFragment = ColorPreferenceDialogFragment.newInstance(preference.getKey());
-        } else if (preference instanceof AddSearchProviderPreference) {
-            dialogFragment = AddSearchProviderPreferenceDialogFragment.newInstance(preference.getKey());
         }
 
         if (dialogFragment == null) {

@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!--
+    Phone apps that are useless on MSI App Player / emulators: hidden from the app grid on first launch.
+    They can be displayed again from Settings > Search > Applications > Excluded apps.
+    Edit this list to adapt it to your emulator image.
+    -->
+    <string-array name="msi_hidden_packages" translatable="false">
+        <item>com.android.contacts</item>
+        <item>com.android.dialer</item>
+        <item>com.google.android.dialer</item>
+        <item>com.android.camera</item>
+        <item>com.android.camera2</item>
+        <item>com.android.gallery3d</item>
+        <item>com.android.messaging</item>
+        <item>com.android.mms</item>
+        <item>com.android.calendar</item>
+        <item>com.android.music</item>
+        <item>com.android.email</item>
+        <item>com.android.quicksearchbox</item>
+        <item>com.android.soundrecorder</item>
+        <item>com.android.stk</item>
+    </string-array>
     <string-array name="themesEntries">
         <item>@string/theme_opaque</item>
         <item>@string/theme_semi_transparent</item>
@@ -77,7 +98,6 @@
         <item>@string/gesture_notifications</item>
         <item>@string/gesture_quicksettings</item>
         <item>@string/gesture_apps</item>
-        <item>@string/gesture_history</item>
         <item>@string/gesture_menu</item>
         <item>@string/gesture_homescreen</item>
         <item>@string/gesture_launch_pojo</item>
@@ -89,7 +109,6 @@
         <item>display-notifications</item>
         <item>display-quicksettings</item>
         <item>display-apps</item>
-        <item>display-history</item>
         <item>display-menu</item>
         <item>go-to-homescreen</item>
         <item>launch-pojo</item>

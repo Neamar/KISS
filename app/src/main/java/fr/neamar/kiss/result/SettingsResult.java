@@ -96,11 +96,6 @@ public class SettingsResult extends Result<SettingPojo> {
     }
 
     @Override
-    protected boolean canRemoveFromHistory(Context context) {
-        return true;
-    }
-
-    @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
         return true;
     }

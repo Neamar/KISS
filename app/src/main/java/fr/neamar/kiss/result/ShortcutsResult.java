@@ -36,7 +36,7 @@ import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
-public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
+public class ShortcutsResult extends Result<ShortcutPojo> {
 
     private static final String TAG = ShortcutsResult.class.getSimpleName();
 
@@ -57,8 +57,6 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
         displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, shortcutName, context);
 
-        TextView tagsView = view.findViewById(R.id.item_shortcut_tag);
-        displayTags(context, fuzzyScore, tagsView);
 
         final ImageView shortcutIcon = view.findViewById(R.id.item_shortcut_icon);
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
@@ -248,11 +246,6 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
     @Override
     protected boolean isAllowedAsFavorite() {
         return !this.pojo.isDynamic() || this.pojo.isPinned();
-    }
-
-    @Override
-    protected boolean canRemoveFromHistory(Context context) {
-        return true;
     }
 
     /**

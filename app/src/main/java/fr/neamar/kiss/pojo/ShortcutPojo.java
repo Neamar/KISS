@@ -4,7 +4,7 @@ import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
-public final class ShortcutPojo extends PojoWithTags {
+public final class ShortcutPojo extends Pojo {
 
     public static final String SCHEME = "shortcut://";
     public static final String OREO_PREFIX = "oreo-shortcut/";

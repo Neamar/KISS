@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.AbsListView;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -20,7 +20,7 @@ class Notification extends Forwarder {
 
     private final SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = (sharedPreferences, packageKey) -> {
         if (packageKey != null) {
-            final ListView list = mainActivity.list;
+            final AbsListView list = mainActivity.list;
 
             // A new notification was received, iterate over the currently displayed results
             // if one of them is for the package that just received a notification,

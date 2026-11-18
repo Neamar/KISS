@@ -1,69 +1,43 @@
 package fr.neamar.kiss.forwarder;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
-    private final Widgets widgetsForwarder;
     private final LiveWallpaper liveWallpaperForwarder;
     private final InterfaceTweaks interfaceTweaks;
     private final ExperienceTweaks experienceTweaks;
     private final Favorites favoritesForwarder;
     private final OreoShortcuts shortcutsForwarder;
-    private final TagsMenu tagsMenu;
     private final Notification notificationForwarder;
 
     public ForwarderManager(MainActivity mainActivity) {
         super(mainActivity);
 
-        this.widgetsForwarder = new Widgets(mainActivity);
         this.interfaceTweaks = new InterfaceTweaks(mainActivity);
         this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
         this.experienceTweaks = new ExperienceTweaks(mainActivity);
         this.favoritesForwarder = new Favorites(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
-        this.tagsMenu = new TagsMenu(mainActivity);
     }
 
     public void onCreate() {
         favoritesForwarder.onCreate();
-        widgetsForwarder.onCreate();
-        // empty areas of the widget scroll area behave as a non-widget area
-        widgetsForwarder.setEmptyAreaTouchListener(new View.OnTouchListener() {
-            // click semantics are owned by the gesture pipeline the events are forwarded to
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                experienceTweaks.onTouch(event);
-                liveWallpaperForwarder.onTouch(v, event);
-                return true;
-            }
-        });
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
-        tagsMenu.onCreate();
-    }
-
-    public void onStart() {
     }
 
     public void onResume() {
         interfaceTweaks.onResume();
         experienceTweaks.onResume();
         notificationForwarder.onResume();
-        tagsMenu.onResume();
     }
 
     public void onPause() {
@@ -71,32 +45,10 @@ public class ForwarderManager extends Forwarder {
         notificationForwarder.onPause();
     }
 
-    public void onStop() {
-    }
-
-    public void onDestroy() {
-        widgetsForwarder.onDestroy();
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        widgetsForwarder.onActivityResult(requestCode, resultCode, data);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return widgetsForwarder.onOptionsItemSelected(item);
-    }
-
-    public void onCreateContextMenu(ContextMenu menu) {
-        widgetsForwarder.onCreateContextMenu(menu);
-    }
 
     public boolean onTouch(View view, MotionEvent event) {
         experienceTweaks.onTouch(event);
         return liveWallpaperForwarder.onTouch(view, event);
-    }
-
-    public void onDataSetChanged() {
-        widgetsForwarder.onDataSetChanged();
     }
 
     public void updateSearchRecords(String query) {
@@ -108,17 +60,9 @@ public class ForwarderManager extends Forwarder {
         experienceTweaks.onFavoriteChange();
     }
 
-    public void onDisplayKissBar(boolean display) {
-        experienceTweaks.onDisplayKissBar(display);
-    }
-
-    public boolean onMenuButtonClicked(View menuButton) {
-        return tagsMenu.onMenuButtonClicked(menuButton);
-    }
 
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         interfaceTweaks.onConfigurationChanged(newConfig);
         favoritesForwarder.onConfigurationChanged(newConfig);
-        widgetsForwarder.onConfigurationChanged(newConfig);
     }
 }

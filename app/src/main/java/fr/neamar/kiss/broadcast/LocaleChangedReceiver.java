@@ -7,11 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.utils.Log;
 
 public class LocaleChangedReceiver extends BroadcastReceiver {
-
-    private static final String TAG = LocaleChangedReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
@@ -20,16 +17,7 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
             return;
         }
 
-        try {
-            // If new locale, then reset tags to load the correct aliases
-            KissApplication.getApplication(ctx).getDataHandler().resetTagsHandler();
-        }
-        catch(IllegalStateException e) {
-            // Since Android 8.1, we're not allowed to create a new service
-            // when the app is not running
-            Log.w(TAG, "Unable to reset tags", e);
-        }
-        // Reload application list
+        // Reload application list (labels are localized)
         KissApplication.getApplication(ctx).getDataHandler().reload(APPS);
     }
 }

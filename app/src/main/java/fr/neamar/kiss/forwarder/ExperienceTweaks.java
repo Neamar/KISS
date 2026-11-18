@@ -68,38 +68,11 @@ public class ExperienceTweaks extends Forwarder {
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
 
-        // Lock launcher into portrait mode
+        // Lock launcher into landscape mode (desktop emulator)
         // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible
         setRequestedOrientation(mainActivity, prefs);
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onSingleTapUp(@NonNull MotionEvent e) {
-                // Double tap disabled: display history directly
-                if (!prefs.getBoolean("double-tap", false)) {
-                    if (prefs.getBoolean("history-onclick", false)) {
-                        doAction("single-tap", "display-history");
-                    } else if (isMinimalisticModeEnabledForFavorites()) {
-                        doAction("single-tap", "display-favorites");
-                    }
-                }
-                return super.onSingleTapUp(e);
-            }
-
-            @Override
-            public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
-                // Double tap enabled: wait to confirm this is indeed a single tap, not a double tap
-                if (prefs.getBoolean("double-tap", false)) {
-                    if (prefs.getBoolean("history-onclick", false)) {
-                        doAction("single-tap", "display-history");
-                    } else if (isMinimalisticModeEnabledForFavorites()) {
-                        doAction("single-tap", "display-favorites");
-                    }
-                }
-
-                return super.onSingleTapConfirmed(e);
-            }
-
             @Override
             public void onLongPress(@NonNull MotionEvent e) {
                 doAction("gesture-long-press", prefs.getString("gesture-long-press", "display-apps"));
@@ -154,7 +127,7 @@ public class ExperienceTweaks extends Forwarder {
                     if (directionY > 0) {
                         doAction("gesture-down", prefs.getString("gesture-down", "display-notifications"));
                     } else {
-                        doAction("gesture-up", prefs.getString("gesture-up", "display-keyboard"));
+                        doAction("gesture-up", prefs.getString("gesture-up", "do-nothing"));
                     }
                 }
                 return true;
@@ -175,30 +148,8 @@ public class ExperienceTweaks extends Forwarder {
                         mainActivity.hideKeyboard();
                         break;
                     case "display-apps":
-                        if (mainActivity.isViewingSearchResults()) {
-                            mainActivity.displayKissBar(true);
-                        }
-                        break;
-                    case "display-history":
-                        // if minimalistic mode is enabled,
-                        if (isMinimalisticModeEnabled()) {
-                            // and we're currently in minimalistic mode with no results,
-                            // and we're not looking at the app list
-                            if (mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
-                                if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
-                                    mainActivity.showHistory();
-                                }
-                            }
-                        }
-
-                        if (isMinimalisticModeEnabledForFavorites()) {
-                            mainActivity.setFavoritesBarVisible(true);
-                        }
-                        break;
-                    case "display-favorites":
-                        // Not provided as an option for the gestures, but useful if you only want to display favorites on tap,
-                        // not history.
-                        mainActivity.setFavoritesBarVisible(true);
+                        // The app grid is the home screen: go back to it
+                        mainActivity.clearSearchText();
                         break;
                     case "display-menu":
                         mainActivity.openContextMenu(mainActivity.menuButton);
@@ -253,32 +204,16 @@ public class ExperienceTweaks extends Forwarder {
     void onResume() {
         keyboardManager.registerKeyboardListener(
                 mainActivity.findViewById(android.R.id.content),
-                shouldShowKeyboard(),
+                false,
                 mainActivity::onKeyboardVisibilityChanged);
 
         adjustInputType();
 
-        // set matching softInputMode for main window of activity depending on settings
-        // see https://developer.android.com/develop/ui/views/touch-and-input/keyboard-input/visibility#ShowOnStart
-        if (shouldShowKeyboard()) {
-            // Display keyboard by default for main window of activity
-            mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-            // Display keyboard
-            mainActivity.showKeyboard();
-        } else {
-            // Hide keyboard by default for main window of activity
-            mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-            // Not used (thanks windowSoftInputMode)
-            // unless coming back from KISS settings
-            mainActivity.hideKeyboard();
-        }
-
-        if (isMinimalisticModeEnabled()) {
-            mainEmptyView.setVisibility(View.GONE);
-
-            mainActivity.list.setVerticalScrollBarEnabled(false);
-            mainActivity.searchEditText.setHint("");
-        }
+        // Never show the soft keyboard on its own: on MSI App Player it fights with the key mapping (WASD, shortcuts...).
+        // It only shows when the user clicks the search field.
+        mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        // Also drops the focus of the search field when coming back home
+        mainActivity.hideKeyboard();
         if (prefs.getBoolean("pref-hide-circle", false)) {
             ((ImageView) mainActivity.launcherButton).setImageBitmap(null);
             mainActivity.menuButton.setImageBitmap(null);
@@ -290,36 +225,17 @@ public class ExperienceTweaks extends Forwarder {
         gd.onTouchEvent(event);
     }
 
-    void onDisplayKissBar(boolean display) {
-        setFavoritesBarVisible(mainActivity.searchEditText.getText());
-    }
-
-    private boolean isExternalFavoriteBarEnabled() {
-        return prefs.getBoolean("enable-favorites-bar", true);
-    }
-
     void updateSearchRecords(String query) {
-        if (mainActivity.isViewingAllApps()) {
-            mainActivity.search(Searcher.Type.APPLICATION, query, false);
-        } else if (TextUtils.isEmpty(query)) {
-            if (isMinimalisticModeEnabled()) {
-                mainActivity.search(Searcher.Type.NULL, query, false);
-                // By default, help text is displayed -- not in minimalistic mode.
-                mainEmptyView.setVisibility(View.GONE);
-            } else {
-                mainActivity.showHistory();
-            }
+        if (TextUtils.isEmpty(query)) {
+            // Home screen: grid of all installed apps
+            mainActivity.search(Searcher.Type.APPLICATION, null, false);
         }
 
         setFavoritesBarVisible(query);
     }
 
     private void setFavoritesBarVisible(CharSequence query) {
-        if (isExternalFavoriteBarEnabled()) {
-            mainActivity.setFavoritesBarVisible(!mainActivity.isViewingAllApps() && TextUtils.isEmpty(query) && !isMinimalisticModeEnabledForFavorites());
-        } else {
-            mainActivity.setFavoritesBarVisible(mainActivity.isViewingAllApps());
-        }
+        mainActivity.setFavoritesBarVisible(TextUtils.isEmpty(query));
     }
 
     // Ensure the keyboard uses the right input method
@@ -367,14 +283,6 @@ public class ExperienceTweaks extends Forwarder {
         }
     }
 
-    protected boolean isMinimalisticModeEnabled() {
-        return prefs.getBoolean("history-hide", false);
-    }
-
-    protected boolean isMinimalisticModeEnabledForFavorites() {
-        return isMinimalisticModeEnabled() && prefs.getBoolean("favorites-hide", false) && prefs.getBoolean("enable-favorites-bar", true);
-    }
-
     /**
      * Should we force the keyboard not to display suggestions?
      * (swiftkey is broken, see <a href="https://github.com/Neamar/KISS/issues/44">https://github.com/Neamar/KISS/issues/44</a>)
@@ -386,34 +294,15 @@ public class ExperienceTweaks extends Forwarder {
     }
 
     /**
-     * Should the keyboard be displayed by default?
-     */
-    private boolean isKeyboardOnStartEnabled() {
-        return prefs.getBoolean("display-keyboard", false);
-    }
-
-    /**
-     * Should the keyboard be displayed?
-     */
-    protected boolean shouldShowKeyboard() {
-        boolean isAssistant = "android.intent.action.ASSIST".equalsIgnoreCase(mainActivity.getIntent().getAction());
-        return (isAssistant || isKeyboardOnStartEnabled());
-    }
-
-    /**
      * Should the keyboard autocomplete and suggest options
      */
     private boolean isSuggestionsEnabled() {
         return prefs.getBoolean("enable-suggestions-keyboard", false);
     }
 
-    @SuppressLint("SourceLockedOrientationActivity")
     public static void setRequestedOrientation(Activity activity, SharedPreferences prefs) {
-        if (prefs.getBoolean("force-portrait", true)) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-        } else {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-        }
+        // MSI App Player runs on a PC monitor: always landscape (16:9 or stretched 4:3)
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE);
     }
 
     public void onPause() {

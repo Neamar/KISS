@@ -11,15 +11,14 @@ import java.util.ArrayDeque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.pojo.SearchPojoType;
+import fr.neamar.kiss.pojo.CalculatorPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.calculator.Calculator;
 import fr.neamar.kiss.utils.calculator.Result;
 import fr.neamar.kiss.utils.calculator.ShuntingYard;
 import fr.neamar.kiss.utils.calculator.Tokenizer;
 
-public class CalculatorProvider extends SimpleProvider<SearchPojo> {
+public class CalculatorProvider extends SimpleProvider<CalculatorPojo> {
     @VisibleForTesting()
     final Pattern computableRegexp;
     // A regexp to detect plain numbers (including phone numbers)
@@ -61,7 +60,7 @@ public class CalculatorProvider extends SimpleProvider<SearchPojo> {
             }
 
             String queryProcessed = operation + " = " + LOCALIZED_NUMBER_FORMATTER.format(value);
-            SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojoType.CALCULATOR_QUERY);
+            CalculatorPojo pojo = new CalculatorPojo("calculator://", queryProcessed);
 
             pojo.relevance = 19;
             searcher.addResult(pojo);

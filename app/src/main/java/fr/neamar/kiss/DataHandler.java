@@ -1,8 +1,6 @@
 package fr.neamar.kiss;
 
 import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
-import static fr.neamar.kiss.dataprovider.ProviderName.CONTACTS;
-import static fr.neamar.kiss.dataprovider.ProviderName.PHONE;
 import static fr.neamar.kiss.dataprovider.ProviderName.SHORTCUTS;
 
 import android.app.KeyguardManager;
@@ -32,9 +30,7 @@ import fr.neamar.kiss.dataprovider.simpleprovider.*;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.HistoryMode;
 import fr.neamar.kiss.db.ShortcutRecord;
-import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.SearchHandler;
@@ -52,8 +48,8 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * Each string in the set is the packageName of an app which may not show shortcuts.
      */
     public final static String PREF_KEY_EXCLUDED_SHORTCUT_APPS = "excluded-shortcut-apps";
+    private final static String PREF_KEY_DEFAULT_HIDDEN_HANDLED = "msi-default-hidden-handled";
 
-    private TagsHandler tagsHandler;
     final private Context context;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     @Nullable
@@ -133,8 +129,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         switch (providerName) {
             case APPS:
                 return AppProvider.class;
-            case CONTACTS:
-                return ContactsProvider.class;
             case SHORTCUTS:
                 return ShortcutsProvider.class;
             default:
@@ -146,16 +140,8 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         switch (providerName) {
             case CALCULATOR:
                 return new CalculatorProvider(PreferenceManager.getDefaultSharedPreferences(context));
-            case TIMER:
-                return new TimerProvider(context);
-            case PHONE:
-                return new PhoneProvider(context);
-            case SEARCH:
-                return new SearchProvider(context);
             case SETTINGS:
                 return new SettingsProvider(context);
-            case TAGS:
-                return new TagsProvider();
             default:
                 throw new UnsupportedOperationException("Provider for " + providerName + " is not implemented.");
         }
@@ -194,7 +180,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     /**
      * Require the data handler to be connected to the data provider with the given name
      *
-     * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
+     * @param name Data provider name (i.e.: `ShortcutsProvider` → `"shortcuts"`)
      */
     protected void connectToProvider(final ProviderName name, final int counter) {
         // Do not continue if this provider has already been connected to
@@ -355,84 +341,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             }
         }
         searcher.addResults(collectedPojos);
-    }
-
-    /**
-     * Return previously selected items.<br />
-     * May return null if no items were ever selected (app first use)<br />
-     * May return an empty set if the providers are not done building records,
-     * in this case it is probably a good idea to call this function 500ms after
-     *
-     * @param context            android context
-     * @param itemCount          max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param itemsToExcludeById Items to exclude from history by their id
-     * @return pojos in recent history
-     */
-    public List<Pojo> getHistory(Context context, int itemCount, Set<String> itemsToExcludeById) {
-        // Pre-allocate array slots that are likely to be used based on the current maximum item
-        // count
-        List<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
-
-        // Max sure that we get enough items, regardless of how many may be excluded
-        int extendedItemCount = itemCount + itemsToExcludeById.size();
-
-        // Read history
-        HistoryMode historyMode = getHistoryMode();
-        List<ValuedHistoryRecord> historyRecords = DBHelper.getHistory(context, extendedItemCount, historyMode);
-
-        // Find associated items
-        for (ValuedHistoryRecord historyRecord : historyRecords) {
-            // Ask all providers if they know this id
-            Pojo pojo = getPojo(historyRecord.record);
-
-            if (pojo == null || history.contains(pojo)) {
-                continue;
-            }
-
-            if (itemsToExcludeById.contains(pojo.id)) {
-                continue;
-            }
-
-            pojo.relevance = historyRecord.relevance;
-            history.add(pojo);
-        }
-
-        if (historyMode == HistoryMode.ALPHABETICALLY) {
-            Collections.sort(history, new NameComparator());
-        }
-
-        // return only needed items
-        return history.subList(0, Math.min(itemCount, history.size()));
-    }
-
-    /**
-     * Apply relevance from history to given pojos.
-     *
-     * @param pojos       which needs to have relevance set
-     * @param historyMode
-     */
-    public void applyRelevanceFromHistory(List<? extends Pojo> pojos, HistoryMode historyMode) {
-        if (HistoryMode.ALPHABETICALLY == historyMode) {
-            // "alphabetically" is special case because relevance needs to be set for all pojos instead of these from history.
-            // This is done by setting all relevance to zero which results in order by name from used comparator.
-            for (Pojo pojo : pojos) {
-                pojo.relevance = 0;
-            }
-        } else {
-            // Get length of history, this is needed so there are no entries missed.
-            // If only number of displayed elements is used, this will result in more entries to be sorted by name.
-            int historyLength = getHistoryLength();
-
-            Map<String, Integer> relevance = DBHelper.getHistory(context, historyLength, historyMode)
-                    .stream()
-                    .collect(Collectors.toMap(historyRecord -> historyRecord.record,
-                            historyRecord -> historyRecord.relevance));
-
-            for (Pojo pojo : pojos) {
-                Integer calculated = relevance.get(pojo.id);
-                pojo.relevance = calculated != null ? calculated : 0;
-            }
-        }
     }
 
     /**
@@ -680,6 +588,38 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         updateApp(app, a -> a.setExcludedFromHistory(false));
     }
 
+    /**
+     * Hide the phone apps listed in {@code R.array.msi_hidden_packages} (contacts, camera, gallery, dialer...).
+     * Each package is only hidden once: when the user shows it again from the settings, it stays visible.
+     *
+     * @param apps the apps that were just loaded
+     */
+    public void hideDefaultExcludedApps(@NonNull List<AppPojo> apps) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Set<String> alreadyHandled = new HashSet<>(prefs.getStringSet(PREF_KEY_DEFAULT_HIDDEN_HANDLED, Collections.emptySet()));
+        Set<String> toHide = new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.msi_hidden_packages)));
+        toHide.removeAll(alreadyHandled);
+        if (toHide.isEmpty()) {
+            return;
+        }
+
+        Set<String> excluded = getExcluded();
+        boolean changed = false;
+        for (AppPojo app : apps) {
+            if (toHide.contains(app.packageName)) {
+                excluded.add(app.getComponentName());
+                alreadyHandled.add(app.packageName);
+                changed = true;
+            }
+        }
+        if (changed) {
+            prefs.edit()
+                    .putStringSet("excluded-apps", excluded)
+                    .putStringSet(PREF_KEY_DEFAULT_HIDDEN_HANDLED, alreadyHandled)
+                    .apply();
+        }
+    }
+
     public void addToExcluded(AppPojo app) {
         Set<String> excluded = getExcluded();
         excluded.add(app.getComponentName());
@@ -799,11 +739,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
                 .map(this::getProvider)
                 .filter(Objects::nonNull)
                 .forEach(IProvider::reload);
-    }
-
-    @Nullable
-    public ContactsProvider getContactsProvider() {
-        return (ContactsProvider) getProvider(CONTACTS);
     }
 
     @Nullable
@@ -979,25 +914,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
     }
 
-    /**
-     * Insert specified pojo with given phone number into history
-     *
-     * @param phoneNumber phone number to record
-     */
-    public void addPhoneNumberToHistory(String phoneNumber) {
-        if (TextUtils.isEmpty(phoneNumber)) {
-            return;
-        }
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-phone-history", false)) {
-            return;
-        }
-        PhoneProvider phoneProvider = (PhoneProvider) getProvider(PHONE);
-        if (phoneProvider != null) {
-            List<Pojo> pojos = phoneProvider.findByPhone(phoneNumber);
-            pojos.forEach(pojo -> addToHistory(pojo.getHistoryId()));
-        }
-    }
-
     public Pojo getPojo(String id) {
         // Ask all providers if they know this id
         for (ProviderEntry entry : this.providers.values()) {
@@ -1009,19 +925,8 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         return null;
     }
 
-    public TagsHandler getTagsHandler() {
-        if (tagsHandler == null) {
-            tagsHandler = new TagsHandler(context);
-        }
-        return tagsHandler;
-    }
-
     public void refreshFavorites() {
         notifyMainActivity(MainActivity.REFRESH_FAVORITES);
-    }
-
-    public void resetTagsHandler() {
-        tagsHandler = new TagsHandler(this.context);
     }
 
     public void renameApp(String componentName, String newName) {

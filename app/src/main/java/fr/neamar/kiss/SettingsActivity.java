@@ -1,10 +1,7 @@
 package fr.neamar.kiss;
 
 import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
-import static fr.neamar.kiss.dataprovider.ProviderName.CONTACTS;
-import static fr.neamar.kiss.dataprovider.ProviderName.SEARCH;
 import static fr.neamar.kiss.dataprovider.ProviderName.SETTINGS;
-import static fr.neamar.kiss.dataprovider.ProviderName.TAGS;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,17 +29,10 @@ import androidx.preference.PreferenceManager;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
-import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
-import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.TagDummyPojo;
-import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.settings.BaseSettingsFragment;
 import fr.neamar.kiss.settings.SettingsFragment;
@@ -211,45 +201,18 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     private void onSettingChanged(SharedPreferences sharedPreferences, @NonNull String key) {
         KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences, key);
 
-        if (key.startsWith("contact-action-")) {
-            getDataHandler().reload(CONTACTS);
-        }
-
         switch (key) {
-            case "available-search-providers":
-            case "selected-search-provider-names":
-            case "default-search-provider":
-                getDataHandler().reload(SEARCH);
-                break;
             case "primary-color":
                 UIColors.clearColorCache();
-                TagDummyResult.resetShape();
                 break;
             case "number-of-search-results":
                 QuerySearcher.clearMaxResultCountCache();
-                break;
-            case "pref-fav-tags-list":
-                getDataHandler().reload(TAGS);
-
-                // after we edit the fav tags list update DataHandler
-                Set<String> favTags = sharedPreferences.getStringSet(key, Collections.emptySet());
-                DataHandler dh = getDataHandler();
-                List<Pojo> favoritesPojo = dh.getFavorites();
-                for (Pojo pojo : favoritesPojo)
-                    if (pojo instanceof TagDummyPojo && !favTags.contains(pojo.getName()))
-                        dh.removeFromFavorites(pojo.id);
-                for (String tagName : favTags)
-                    dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
                 break;
             case "exclude-favorites-apps":
                 getDataHandler().reload(APPS);
                 break;
             case "enable-settings":
                 getDataHandler().reload(SETTINGS);
-                break;
-            case "enable-phone-history":
-                // The permission is requested from the history screen
-                IncomingCallHandler.setEnabled(this, sharedPreferences.getBoolean(key, false));
                 break;
             case "theme":
             case "night-mode":

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Grid cell: icon on top, short one-line name below -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/GridItem">
+
+    <ImageView
+        android:id="@+id/item_search_icon"
+        android:layout_width="@dimen/grid_icon_size"
+        android:layout_height="@dimen/grid_icon_size"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_functions" />
+
+    <TextView
+        android:id="@+id/item_search_text"
+        style="@style/GridItemLabel"
+        tools:text="1+1 = 2" />
+
+</LinearLayout>

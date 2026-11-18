@@ -5,6 +5,28 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 > This document assumes all settings are at their default value when you start
 
+### MSI 5 Lite Launcher edition (run first, on MSI App Player 5 with Android 7.1, 9 and 11)
+
+> In this fork, the sections below about contacts, phone, web search, timers, tags, widgets,
+> history display and the KISS bar do not apply anymore: those features were removed.
+
+- [ ] The launcher is displayed in landscape, with a dark `#0D0D0F` background and no wallpaper
+- [ ] Home shows a centered grid of all apps (icon + one-line name), sorted A to Z, search bar at the top
+- [ ] Contacts, Dialer, Camera, Gallery, Messaging are not in the grid on first launch; Settings is
+- [ ] The dock (favorites) holds Play Store, Browser and Settings on first launch
+- [ ] The soft keyboard does not open on start, nor when coming back home from a game
+- [ ] Clicking the search field focuses it (the soft keyboard may open, as requested by the user)
+- [ ] Typing letters on the physical keyboard from home starts a search; best result is first, Enter launches it
+- [ ] Arrow keys move the selection in the grid, Enter launches the selected app
+- [ ] Right click on an app opens the menu with only: App info, Hide app, Uninstall (Uninstall missing for system apps)
+- [ ] Long click opens the same menu
+- [ ] "App info" opens the Android application details page (force stop / clear cache)
+- [ ] "Hide app" removes the app from the grid; it can be shown again from Settings > Search > Applications
+- [ ] Installing / uninstalling an app updates the grid without restarting the launcher
+- [ ] Coming back from a heavy game: grid is displayed instantly, icons do not flicker or reload
+- [ ] Pressing home while searching clears the search and goes back to the top of the grid
+- [ ] Resizing the emulator window (16:9, 4:3 stretched such as 1440x1080) keeps the grid centered
+
 ### Get started...
 
 - [ ] Loader appears when opening the app

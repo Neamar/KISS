@@ -42,6 +42,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Context ctx = context.get();
         if (ctx != null) {
             DataHandler dataHandler = KissApplication.getApplication(ctx).getDataHandler();
+            dataHandler.hideDefaultExcludedApps(apps);
             Set<String> excludedAppList = dataHandler.getExcluded();
             Set<String> excludedFromHistoryAppList = dataHandler.getExcludedFromHistory();
             Set<String> excludedShortcutsAppList = dataHandler.getExcludedShortcutApps();

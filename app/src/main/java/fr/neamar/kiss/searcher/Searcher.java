@@ -31,10 +31,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
     public enum Type {
         APPLICATION,
         QUERY,
-        NULL,
-        HISTORY,
-        TAGGED,
-        UNTAGGED
+        NULL
     }
 
     /**
@@ -148,6 +145,8 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
                     pojos.add(pojo);
                 }
             }
+            // The queue gives the least relevant item first: the grid displays the most relevant one first
+            Collections.reverse(pojos);
 
             displayResults = () -> activity.adapter.updateWithPojos(activity, pojos, isRefresh, query);
         }
