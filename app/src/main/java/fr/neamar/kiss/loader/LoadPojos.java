@@ -38,7 +38,7 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
         if (providerReference != null) {
             Provider<T> provider = providerReference.get();
             if (provider != null && !isCancelled()) {
-                // Tags were read in the background: they may have been edited since
+                // Applied here rather than in the background, so that tags edited during the load are kept
                 TagsHandler tagsHandler = KissApplication.getApplication(provider).getDataHandler().getTagsHandler();
                 for (T pojo : result) {
                     if (pojo instanceof PojoWithTags) {
