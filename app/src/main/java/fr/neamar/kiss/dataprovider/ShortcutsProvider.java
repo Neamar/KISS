@@ -71,7 +71,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
         // spawn a new service on Android 8.1+.
 
         try {
-            this.initialize(new LoadShortcutsPojos(this, getPojos()));
+            this.initialize(new LoadShortcutsPojos(this));
         } catch (IllegalStateException e) {
             if (!notifiedKissNotDefaultLauncher) {
                 // Only display this message once per process
