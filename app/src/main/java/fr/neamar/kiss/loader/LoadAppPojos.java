@@ -20,7 +20,6 @@ import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -32,16 +31,14 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     private static final String TAG = LoadAppPojos.class.getSimpleName();
     private static final String LABEL_CACHE = "app-labels";
-    private final TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
-        tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
     }
 
     @Override
     protected void onPostExecute(List<AppPojo> apps) {
-        // Exclusions were read in the background: they may have been changed since
+        // Applied here rather than in the background: they may have been changed during the load
         Context ctx = context.get();
         if (ctx != null) {
             DataHandler dataHandler = KissApplication.getApplication(ctx).getDataHandler();
@@ -67,10 +64,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         if (ctx == null) {
             return apps;
         }
-
-        Set<String> excludedAppList = KissApplication.getApplication(ctx).getDataHandler().getExcluded();
-        Set<String> excludedFromHistoryAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedFromHistory();
-        Set<String> excludedShortcutsAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedShortcutApps();
 
         // Reading a label loads the app's resources: slow, and it blocks the main thread on Android 10-11 (#2715).
         // Only do it for new or updated apps, or when the system or its languages changed.
@@ -116,7 +109,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                             newLabelCache.put(appNameKey, appName);
                         }
                     }
-                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), label, disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
+                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), label, disabled);
                     apps.add(app);
                 }
             }
@@ -172,18 +165,13 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         return false;
     }
 
-    private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, boolean disabled, Set<String> excludedAppList, Set<String> excludedFromHistoryAppList, Set<String> excludedShortcutsAppList) {
+    private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, boolean disabled) {
         String id = userHandle.addUserSuffixToString(pojoScheme + packageName + "/" + activityName, '/');
 
-        boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(packageName, activityName, userHandle));
-        boolean isExcludedFromHistory = excludedFromHistoryAppList.contains(id);
-        boolean isExcludedShortcuts = excludedShortcutsAppList.contains(packageName);
-
-        AppPojo app = new AppPojo(id, packageName, activityName, userHandle, isExcluded, isExcludedFromHistory, isExcludedShortcuts, disabled);
+        // Exclusions and tags are applied once the load completes, as they may change in the meantime
+        AppPojo app = new AppPojo(id, packageName, activityName, userHandle, disabled);
 
         app.setName(label.toString());
-
-        app.setTags(tagsHandler.getTags(app.id));
 
         return app;
     }
