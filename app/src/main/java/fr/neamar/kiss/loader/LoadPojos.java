@@ -11,12 +11,16 @@ import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
+import fr.neamar.kiss.utils.Log;
 
 public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, List<T>> {
 
-    final WeakReference<Context> context;
-    final String pojoScheme;
+    private static final String TAG = LoadPojos.class.getSimpleName();
+
+    protected final WeakReference<Context> context;
+    protected final String pojoScheme;
     private WeakReference<Provider<T>> providerReference;
+    private long start;
 
     LoadPojos(Context context, String pojoScheme) {
         super();
@@ -30,6 +34,13 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
 
     public String getPojoScheme() {
         return pojoScheme;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        start = System.currentTimeMillis();
+        Log.i(TAG, "Starting " + this.getClass().getSimpleName());
     }
 
     @Override
@@ -48,6 +59,15 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
                 provider.loadOver(result);
             }
         }
+        long time = System.currentTimeMillis() - start;
+        Log.d(TAG, "Time to run " + this.getClass().getSimpleName() + ": " + time + "ms");
+    }
+
+    @Override
+    protected void onCancelled() {
+        super.onCancelled();
+        long time = System.currentTimeMillis() - start;
+        Log.d(TAG, "Cancelled " + this.getClass().getSimpleName() + " after " + time + "ms");
     }
 
 }

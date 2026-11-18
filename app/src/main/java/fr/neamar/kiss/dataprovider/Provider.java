@@ -35,7 +35,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      */
     private String pojoScheme = "(none)://";
 
-    private long start;
     private LoadPojos<T> loader;
     private boolean loaded = false;
 
@@ -72,9 +71,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
     void initialize(LoadPojos<T> loader) {
         cancelInitialize();
-        start = System.currentTimeMillis();
-
-        Log.i(TAG, "Starting provider: " + this.getClass().getSimpleName());
 
         loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
@@ -90,7 +86,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
             this.loader.setProvider(null);
             this.loader = null;
             this.loaded = false;
-            Log.i(TAG, "Cancelling provider: " + this.getClass().getSimpleName());
         }
     }
 
@@ -108,9 +103,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     }
 
     public void loadOver(List<T> results) {
-        long time = System.currentTimeMillis() - start;
-
-        Log.d(TAG, "Time to load " + this.getClass().getSimpleName() + ": " + time + "ms");
         // Store results
         this.loader.setProvider(null);
         this.loader = null;
