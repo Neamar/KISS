@@ -22,6 +22,18 @@
                 android:name="restart"
                 android:value="launcher" />
         </SwitchPreference>
+        <fr.neamar.kiss.preference.RangeEditTextPreference
+            app:defaultValue="6"
+            app:dependency="enable-favorites-bar"
+            app:key="favorites-per-row"
+            app:minValue="1"
+            app:maxValue="100"
+            app:summary="@string/favorites_per_row_desc"
+            app:title="@string/favorites_per_row">
+            <extra
+                android:name="restart"
+                android:value="launcher" />
+        </fr.neamar.kiss.preference.RangeEditTextPreference>
         <SwitchPreference
             app:defaultValue="true"
             app:key="transparent-favorites"

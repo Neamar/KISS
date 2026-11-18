@@ -62,6 +62,7 @@ public class Favorites extends Forwarder {
         private final List<Result<?>> results = new ArrayList<>();
         private OnItemClickListener mOnItemClickListener = null;
         private OnItemLongClickListener mOnItemLongClickListener = null;
+        private int itemHeight = ViewGroup.LayoutParams.MATCH_PARENT;
 
         public FavoriteAdapter() {
             super();
@@ -136,6 +137,7 @@ public class Favorites extends Forwarder {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Result<?> result = getItem(position);
+            holder.itemView.getLayoutParams().height = itemHeight;
             holder.inflateFavorite(result);
             holder.itemView.setOnClickListener(v -> {
                 if (mOnItemClickListener != null) {
@@ -180,6 +182,10 @@ public class Favorites extends Forwarder {
         @Override
         public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
             int dragFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+            if (((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount() < mAdapter.getItemCount()) {
+                // more than one row
+                dragFlags |= ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+            }
             return makeMovementFlags(dragFlags, 0);
         }
 
@@ -275,9 +281,18 @@ public class Favorites extends Forwarder {
         List<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
         int favSize = favoritesPojo.size();
 
+        int rows = 1;
         RecyclerView favoritesBar = mainActivity.favoritesBar;
+        if (isExternalFavoriteBarEnabled()) {
+            int perRow = Integer.parseInt(prefs.getString("favorites-per-row", "6"));
+            rows = Math.max((favSize + perRow - 1) / perRow, 1);
+            int rowHeight = mainActivity.getResources().getDimensionPixelSize(prefs.getBoolean("large-favorites-bar", false) ? R.dimen.large_favorite_height : R.dimen.favorite_height);
+            favoritesBar.getLayoutParams().height = rowHeight * rows;
+            favoritesBar.requestLayout();
+            favoriteAdapter.itemHeight = rows > 1 ? rowHeight : ViewGroup.LayoutParams.MATCH_PARENT;
+        }
         if (favoritesBar.getLayoutManager() instanceof GridLayoutManager) {
-            ((GridLayoutManager) favoritesBar.getLayoutManager()).setSpanCount(Math.max(favSize, 1));
+            ((GridLayoutManager) favoritesBar.getLayoutManager()).setSpanCount(Math.max((favSize + rows - 1) / rows, 1));
         }
         favoriteAdapter.setFavorites(favoritesPojo.stream().map(pojo -> Result.fromPojo(mainActivity, pojo)).collect(Collectors.toList()));
     }
