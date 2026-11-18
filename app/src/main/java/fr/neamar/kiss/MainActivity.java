@@ -31,8 +31,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -147,6 +149,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * Should keyboard be shown on focus of window?
      */
     Boolean showKeyboardOnFocus = null;
+
+    /**
+     * The system may drop a keyboard request made while a window transition runs (e.g. when coming back to KISS):
+     * ask again a few times until the keyboard is visible.
+     */
+    private static final int KEYBOARD_RETRY_DELAY = 1000;
+    private static final int KEYBOARD_RETRIES = 2;
+    private int keyboardRetries = 0;
+    private final Runnable retryShowKeyboard = this::retryShowKeyboard;
 
     /**
      * Is the KISS bar currently displayed?
@@ -969,12 +980,35 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             searchEditText.setCursorVisible(true);
             WindowCompat.getInsetsController(getWindow(), searchEditText).show(WindowInsetsCompat.Type.ime());
             showHistoryWithKeyboard(true);
+            searchEditText.removeCallbacks(retryShowKeyboard);
+            if (!isKeyboardVisible()) {
+                keyboardRetries = KEYBOARD_RETRIES;
+                searchEditText.postDelayed(retryShowKeyboard, KEYBOARD_RETRY_DELAY);
+            }
         }
+    }
+
+    private void retryShowKeyboard() {
+        if (keyboardRetries-- > 0 && hasWindowFocus() && searchEditText.hasFocus() && !isKeyboardVisible()) {
+            WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(getWindow(), searchEditText);
+            // The system may still consider the keyboard requested although it dropped the request: showing it again
+            // would do nothing, hide it first so that a new request is sent
+            controller.hide(WindowInsetsCompat.Type.ime());
+            controller.show(WindowInsetsCompat.Type.ime());
+            searchEditText.postDelayed(retryShowKeyboard, KEYBOARD_RETRY_DELAY);
+        }
+    }
+
+    private boolean isKeyboardVisible() {
+        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(searchEditText);
+        // Unknown before Android 6: assume it is, rather than hiding and showing it again for nothing
+        return insets == null || insets.isVisible(WindowInsetsCompat.Type.ime());
     }
 
     @Override
     public void hideKeyboard() {
         showKeyboardOnFocus = null;
+        searchEditText.removeCallbacks(retryShowKeyboard);
 
         // Check if no view has focus:
         View view = this.getCurrentFocus();
@@ -1068,6 +1102,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     public void onKeyboardVisibilityChanged(boolean keyboardIsVisible) {
+        // The system handled the request: don't show the keyboard again if the user hides it
+        searchEditText.removeCallbacks(retryShowKeyboard);
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(keyboardIsVisible);
         showHistoryWithKeyboard(keyboardIsVisible);
     }

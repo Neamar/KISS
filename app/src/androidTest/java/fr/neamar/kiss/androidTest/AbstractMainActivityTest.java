@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
@@ -66,8 +67,11 @@ abstract class AbstractMainActivityTest {
     public static void setDefaultLauncher() throws IOException {
         // Only the default launcher can read other apps shortcuts
         Context context = ApplicationProvider.getApplicationContext();
-        ParcelFileDescriptor output = InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(
-                "cmd package set-home-activity " + context.getPackageName() + "/" + MainActivity.class.getName());
+        runShellCommand("cmd package set-home-activity " + context.getPackageName() + "/" + MainActivity.class.getName());
+    }
+
+    private static void runShellCommand(String command) throws IOException {
+        ParcelFileDescriptor output = InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(command);
         // Wait for the command to complete
         try (InputStream in = new ParcelFileDescriptor.AutoCloseInputStream(output)) {
             while (in.read() != -1) ;
@@ -75,7 +79,12 @@ abstract class AbstractMainActivityTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // After boot, the system keeps changing packages and their shortcuts for minutes, which reloads providers.
+            // Start once it has caught up, so tests are less likely to run in the middle of these reloads.
+            runShellCommand("timeout 60 am wait-for-broadcast-idle");
+        }
         // Reset to default preferences before launching, so every test starts from the same state
         Context context = ApplicationProvider.getApplicationContext();
         DBHelper.clearHistory(context);

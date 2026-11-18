@@ -27,16 +27,13 @@ public final class AppPojo extends PojoWithTags {
     private final boolean disabled;
 
     public AppPojo(String id, @NonNull String packageName, @NonNull String activityName, @NonNull UserHandle userHandle,
-                   boolean isExcluded, boolean isExcludedFromHistory, boolean isExcludedShortcuts, boolean disabled) {
+                   boolean disabled) {
         super(id);
 
         this.packageName = packageName;
         this.activityName = activityName;
         this.userHandle = userHandle;
 
-        this.excluded = isExcluded;
-        this.excludedFromHistory = isExcludedFromHistory;
-        this.excludedShortcuts = isExcludedShortcuts;
         this.disabled = disabled;
         this.componentName = new ComponentName(packageName, activityName);
     }

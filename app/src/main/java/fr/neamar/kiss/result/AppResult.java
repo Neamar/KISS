@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -211,11 +212,12 @@ public class AppResult extends ResultWithTags<AppPojo> {
 
             // Set new name
             String newName = input.getText().toString().trim();
-            app.setName(newName);
-            KissApplication.getApplication(context).getDataHandler().renameApp(app.getComponentName(), newName);
+            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+            dataHandler.updateApp(app, a -> a.setName(newName));
+            dataHandler.renameApp(app.getComponentName(), newName);
 
             // Show toast message
-            String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
+            String msg = context.getResources().getString(R.string.app_rename_confirmation, newName);
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             setTranscriptModeAlwaysScroll(parent);
         });
@@ -227,10 +229,10 @@ public class AppResult extends ResultWithTags<AppPojo> {
             // Set initial name
             String name = PackageManagerUtils.getLabel(context, new ComponentName(app.packageName, app.activityName), app.userHandle);
             if (name != null) {
-                app.setName(name);
+                KissApplication.getApplication(context).getDataHandler().updateApp(app, a -> a.setName(name));
 
                 // Show toast message
-                String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
+                String msg = context.getResources().getString(R.string.app_rename_confirmation, name);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             }
             setTranscriptModeAlwaysScroll(parent);

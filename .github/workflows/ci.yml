@@ -49,13 +49,17 @@ jobs:
           target: google_apis
           arch: x86_64
           disable-animations: true
-          script: bash ./gradlew connectedDebugAndroidTest --stacktrace
+          # Each script line runs in its own shell: logcat must be started on the same line as the tests
+          script: mkdir -p app/build && (adb logcat -v time > app/build/logcat.txt 2>&1 &) && bash ./gradlew connectedDebugAndroidTest --stacktrace
       - name: Upload test report
         if: ${{ failure() }}
         uses: actions/upload-artifact@v7
         with:
-          name: instrumented-tests-report
-          path: app/build/reports/androidTests/connected/debug/
+          # One per attempt: a rerun would otherwise replace the report of the failed attempt
+          name: instrumented-tests-report-${{ github.run_attempt }}
+          path: |
+            app/build/reports/androidTests/connected/debug/
+            app/build/logcat.txt
   apk:
     name: Generate APK
     runs-on: ubuntu-24.04
