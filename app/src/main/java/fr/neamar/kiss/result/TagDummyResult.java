@@ -35,7 +35,7 @@ public class TagDummyResult extends Result<TagDummyPojo> {
             synchronized (TagDummyResult.class) {
                 if (gBackground == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    gBackground = iconsHandler.getBackgroundDrawable(getBackgroundColor(context));
+                    gBackground = iconsHandler.getBackgroundDrawable(context, getBackgroundColor(context));
                 }
             }
         }
@@ -100,7 +100,7 @@ public class TagDummyResult extends Result<TagDummyPojo> {
             synchronized (this) {
                 if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    icon = iconsHandler.getDrawableIconForCodepoint(pojo, getTextColor(context), getBackgroundColor(context));
+                    icon = iconsHandler.getDrawableIconForCodepoint(context, pojo, getTextColor(context), getBackgroundColor(context));
                 }
             }
         }

@@ -27,12 +27,12 @@ import fr.neamar.kiss.utils.UserHandle;
 public class SystemIconPack implements IconPack {
 
     private final String packageName;
-    private final Context ctx;
+    private final Context baseContext;
     private IconShape mAdaptiveShape = IconShape.SHAPE_SYSTEM;
 
-    public SystemIconPack(Context ctx) {
+    public SystemIconPack(Context baseContext) {
         this.packageName = "default";
-        this.ctx = ctx;
+        this.baseContext = baseContext;
     }
 
     @NonNull
@@ -96,7 +96,7 @@ public class SystemIconPack implements IconPack {
 
     @Nullable
     @Override
-    public Drawable getDrawable(@NonNull DrawableInfo drawableInfo) {
+    public Drawable getDrawable(@NonNull Context ctx, @NonNull DrawableInfo drawableInfo) {
         return drawableInfo.getDrawable(ctx, ctx.getResources(), getPackPackageName());
     }
 
@@ -121,7 +121,7 @@ public class SystemIconPack implements IconPack {
     }
 
     private DataHandler getDataHandler() {
-        return KissApplication.getApplication(ctx).getDataHandler();
+        return KissApplication.getApplication(baseContext).getDataHandler();
     }
 
     public static class SystemDrawableInfo implements DrawableInfo {
@@ -134,7 +134,7 @@ public class SystemIconPack implements IconPack {
 
         @Nullable
         @Override
-        public Drawable getDrawable(Context context, @NonNull Resources resources, @NonNull String iconPackPackageName) {
+        public Drawable getDrawable(@NonNull Context context, @NonNull Resources resources, @NonNull String iconPackPackageName) {
             return PackageManagerUtils.getActivityIcon(context, componentName, UserHandle.OWNER);
         }
 

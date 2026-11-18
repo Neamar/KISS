@@ -1,6 +1,10 @@
 package fr.neamar.kiss;
 
-import static fr.neamar.kiss.dataprovider.ProviderName.*;
+import static fr.neamar.kiss.dataprovider.ProviderName.APPS;
+import static fr.neamar.kiss.dataprovider.ProviderName.CONTACTS;
+import static fr.neamar.kiss.dataprovider.ProviderName.SEARCH;
+import static fr.neamar.kiss.dataprovider.ProviderName.SETTINGS;
+import static fr.neamar.kiss.dataprovider.ProviderName.TAGS;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,13 +23,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +42,7 @@ import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
+import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.settings.BaseSettingsFragment;
 import fr.neamar.kiss.settings.SettingsFragment;
@@ -81,7 +87,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         setContentView(R.layout.activity_toolbar_content);
 
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setTitleTextColor(toolbarTextColor);
         setSupportActionBar(toolbar);
         InterfaceTweaks.applySystemBarInsets(findViewById(R.id.settings_root), toolbar);
@@ -217,6 +223,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 break;
             case "primary-color":
                 UIColors.clearColorCache();
+                TagDummyResult.resetShape();
                 break;
             case "number-of-search-results":
                 QuerySearcher.clearMaxResultCountCache();

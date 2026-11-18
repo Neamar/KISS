@@ -58,7 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/icon_margin_right"
-            android:text="@string/custom_icon_preview" />
+            android:text="@string/custom_icon_preview"
+            android:textColor="?android:attr/textColorPrimary" />
 
         <ImageView
             android:id="@+id/preview"
@@ -79,6 +80,7 @@
             android:ellipsize="end"
             android:hyphenationFrequency="none"
             android:maxLines="2"
+            android:textColor="?android:attr/textColorSecondary"
             tools:text="@string/app_name"
             tools:ignore="UnusedAttribute" />
 
@@ -105,7 +107,8 @@
             android:layout_marginEnd="@dimen/icon_margin_right"
             android:layout_weight="1"
             android:text="@string/default_icon"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="?android:attr/textColorPrimary" />
 
         <Button
             android:id="@android:id/button2"
@@ -116,7 +119,8 @@
             android:layout_marginEnd="@dimen/icon_margin_right"
             android:layout_weight="1"
             android:text="@android:string/cancel"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="?android:attr/textColorPrimary" />
 
         <Button
             android:id="@android:id/button1"
@@ -127,7 +131,8 @@
             android:layout_marginEnd="@dimen/icon_margin_right"
             android:layout_weight="1"
             android:text="@android:string/ok"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="?android:attr/textColorPrimary" />
 
     </LinearLayout>
 

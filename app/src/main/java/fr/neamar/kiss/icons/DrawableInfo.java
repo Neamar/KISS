@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public interface DrawableInfo {
 
     @Nullable
-    Drawable getDrawable(Context context, @NonNull Resources resources, @NonNull String iconPackPackageName);
+    Drawable getDrawable(@NonNull Context context, @NonNull Resources resources, @NonNull String iconPackPackageName);
 
     @Nullable
     String getTextForSearch();

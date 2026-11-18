@@ -173,7 +173,7 @@ public class SearchResult extends Result<SearchPojo> {
         ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
         if (componentName != null) {
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            return iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
+            return iconsHandler.getDrawableIconForPackage(context, PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
         }
         return null;
     }
@@ -266,6 +266,14 @@ public class SearchResult extends Result<SearchPojo> {
 
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
+        return pojo.type == SearchPojoType.CALCULATOR_QUERY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean makeThemedIcon() {
         return pojo.type == SearchPojoType.CALCULATOR_QUERY;
     }
 }
