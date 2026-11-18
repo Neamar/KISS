@@ -132,8 +132,9 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         if (activity == null)
             return;
 
+        Runnable displayResults;
         if (this.processedPojos.isEmpty()) {
-            activity.adapter.clear();
+            displayResults = activity.adapter::clear;
         } else {
             PriorityQueue<Pojo> queue = this.processedPojos;
             int maxResults = getMaxResultCount();
@@ -148,7 +149,14 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
                 }
             }
 
-            activity.adapter.updateWithPojos(activity, pojos, isRefresh, query);
+            displayResults = () -> activity.adapter.updateWithPojos(activity, pojos, isRefresh, query);
+        }
+        if (isRefresh) {
+            // Refreshes happen in the background, e.g. when an app is updated: don't disturb a result being pressed
+            activity.list.runWhenNotTouched(displayResults);
+        } else {
+            activity.list.cancelRunWhenNotTouched();
+            displayResults.run();
         }
 
         searchDone(false);
