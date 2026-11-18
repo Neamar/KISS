@@ -4,7 +4,6 @@ import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
-import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
@@ -164,7 +163,7 @@ public class FavoritesTest extends AbstractMainActivityTest {
 
     @Test
     public void testExternalBarHiddenOnSearch() {
-        onView(withId(R.id.searchEditText)).perform(typeText("Test"));
+        search("Test");
         onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
         onView(withId(R.id.clearButton)).perform(click());
         onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
@@ -181,7 +180,7 @@ public class FavoritesTest extends AbstractMainActivityTest {
     @Test
     public void testInternalBarHiddenOnSearch() {
         enableInternalBar();
-        onView(withId(R.id.searchEditText)).perform(typeText("Test"));
+        search("Test");
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
         onView(withId(R.id.clearButton)).perform(click());
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));

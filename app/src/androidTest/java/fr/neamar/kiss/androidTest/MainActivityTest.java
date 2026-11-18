@@ -42,7 +42,7 @@ public class MainActivityTest extends AbstractMainActivityTest {
 
     @Test
     public void testCanTypeTextIntoSearchBox() {
-        onView(withId(R.id.searchEditText)).perform(typeText("Test"));
+        search("Test");
         onView(withId(R.id.searchEditText)).check(matches(withText("Test")));
     }
 
@@ -60,7 +60,7 @@ public class MainActivityTest extends AbstractMainActivityTest {
         onView(withId(R.id.clearButton)).check(matches(not(isDisplayed())));
 
         // X when search isn't empty, no menu
-        onView(withId(R.id.searchEditText)).perform(typeText("Test"));
+        search("Test");
 
         onView(withId(R.id.menuButton)).check(matches(not(isDisplayed())));
         onView(withId(R.id.clearButton)).check(matches(isDisplayed()));
@@ -180,7 +180,7 @@ public class MainActivityTest extends AbstractMainActivityTest {
     @Test
     public void testKissBarEmptiesSearch() {
         // Sanity check
-        onView(withId(R.id.searchEditText)).perform(typeText("Test"));
+        search("Test");
         onView(withId(R.id.searchEditText)).check(matches(withText("Test")));
 
         onView(withId(R.id.launcherButton)).perform(click());
