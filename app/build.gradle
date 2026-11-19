@@ -39,7 +39,7 @@ android {
     buildTypes {
         release {
             if (System.getenv('KEYSTORE_FILE')) {
-                signingConfig signingConfigs.release
+                signingConfig = signingConfigs.release
             }
             minifyEnabled true
             shrinkResources = true
