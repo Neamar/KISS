@@ -2,6 +2,8 @@ package fr.neamar.kiss.searcher;
 
 import android.content.Context;
 
+import androidx.preference.PreferenceManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -10,6 +12,7 @@ import java.util.Set;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ReversedNameComparator;
 import fr.neamar.kiss.pojo.ShortcutPojo;
@@ -24,6 +27,9 @@ public class ApplicationsSearcher extends Searcher {
 
     @Override
     PriorityQueue<Pojo> getPojoProcessor(Context context) {
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("apps-a-on-top", false)) {
+            return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new NameComparator());
+        }
         // Sort from A to Z, so reverse (last item needs to be A, listview starts at the bottom)
         return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new ReversedNameComparator());
     }
