@@ -15,7 +15,6 @@ import androidx.core.os.ConfigurationCompat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -170,23 +169,17 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
      */
     static Map<String, String> getReplacedActivities(Collection<String> storedKeys, Collection<String> installedKeys, int prefixLength, char userSeparator) {
         Map<String, String> installedByPackage = new HashMap<>();
-        Set<String> ambiguousPackages = new HashSet<>();
         for (String key : installedKeys) {
             String packageKey = getPackageKey(key, prefixLength, userSeparator);
-            if (installedByPackage.put(packageKey, key) != null) {
-                ambiguousPackages.add(packageKey);
-            }
+            // null when the package has several activities: can't tell which one replaced the old one
+            installedByPackage.put(packageKey, installedByPackage.containsKey(packageKey) ? null : key);
         }
 
-        Set<String> installed = new HashSet<>(installedKeys);
         Map<String, String> moves = new HashMap<>();
         for (String key : storedKeys) {
-            if (installed.contains(key)) {
-                continue;
-            }
-            String packageKey = getPackageKey(key, prefixLength, userSeparator);
-            String newKey = installedByPackage.get(packageKey);
-            if (newKey != null && !ambiguousPackages.contains(packageKey) && !storedKeys.contains(newKey) && !moves.containsValue(newKey)) {
+            // an installed key maps to itself or to null, and is skipped below
+            String newKey = installedByPackage.get(getPackageKey(key, prefixLength, userSeparator));
+            if (newKey != null && !storedKeys.contains(newKey) && !moves.containsValue(newKey)) {
                 moves.put(key, newKey);
             }
         }
