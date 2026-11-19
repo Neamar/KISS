@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.database.DataSetObserver;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -158,6 +159,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     private static final int KEYBOARD_RETRIES = 2;
     private int keyboardRetries = 0;
     private final Runnable retryShowKeyboard = this::retryShowKeyboard;
+
+    /**
+     * Where the touch that should hide the keyboard once it moves started, null when no hide is pending.
+     * Hiding on touch down would resize the list under a long press, and misplace its popup.
+     */
+    private PointF hideKeyboardTouchStart = null;
 
     /**
      * Is the KISS bar currently displayed?
@@ -636,6 +643,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            hideKeyboardTouchStart = null;
             View v = getCurrentFocus();
             if (v instanceof SearchEditText) {
                 SearchEditText edit = ((SearchEditText) v);
@@ -643,11 +651,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 edit.getGlobalVisibleRect(outR);
                 boolean isKeyboardOpen = !outR.contains((int) ev.getRawX(), (int) ev.getRawY());
                 if (prefs.getBoolean("hide-keyboard", false) && isKeyboardOpen) {
-                    edit.postDelayed(this::hideKeyboard, 100);
+                    hideKeyboardTouchStart = new PointF(ev.getRawX(), ev.getRawY());
                 } else {
                     edit.setCursorVisible(!isKeyboardOpen);
                 }
             }
+        } else if (ev.getAction() == MotionEvent.ACTION_MOVE && hideKeyboardTouchStart != null
+                && PointF.length(ev.getRawX() - hideKeyboardTouchStart.x, ev.getRawY() - hideKeyboardTouchStart.y) > ViewConfiguration.get(this).getScaledTouchSlop()) {
+            hideKeyboardTouchStart = null;
+            hideKeyboard();
         }
         if (mPopup != null && ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
             dismissPopup();
