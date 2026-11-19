@@ -57,7 +57,8 @@ public class KeyboardScrollHider implements View.OnTouchListener {
 
     private int getWindowPadding() {
         ViewGroup rootView = (ViewGroup) this.list.getRootView();
-        return rootView.getChildAt(0).getPaddingBottom();
+        // Edge-to-edge (API 35+) pads the decor view itself, older versions pad its child
+        return rootView.getPaddingBottom() + rootView.getChildAt(0).getPaddingBottom();
     }
 
     private int getWindowWidth() {
