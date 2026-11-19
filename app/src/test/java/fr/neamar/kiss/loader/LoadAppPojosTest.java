@@ -12,10 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 class LoadAppPojosTest {
-    private static final int SCHEME = "app://".length();
-
     private static Map<String, String> replaced(List<String> stored, List<String> installed) {
-        return LoadAppPojos.getReplacedActivities(stored, installed, SCHEME, '/');
+        return LoadAppPojos.getReplacedActivities(stored, installed);
     }
 
     @Test
@@ -28,12 +26,6 @@ class LoadAppPojosTest {
     void keepsUserProfile() {
         assertThat(replaced(List.of("app://org.mozilla/Old/10"), List.of("app://org.mozilla/New", "app://org.mozilla/New/10")),
                 equalTo(Map.of("app://org.mozilla/Old/10", "app://org.mozilla/New/10")));
-    }
-
-    @Test
-    void customNameKeys() {
-        assertThat(LoadAppPojos.getReplacedActivities(List.of("org.mozilla/Old#10"), List.of("org.mozilla/New", "org.mozilla/New#10"), 0, '#'),
-                equalTo(Map.of("org.mozilla/Old#10", "org.mozilla/New#10")));
     }
 
     @Test

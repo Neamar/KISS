@@ -218,14 +218,14 @@ public class ShortcutUtil {
     /**
      * @param context
      * @param shortcutInfo
-     * @return component name related to {@link ShortcutInfo}.
+     * @return id of the app related to {@link ShortcutInfo}.
      */
     @RequiresApi(Build.VERSION_CODES.O)
     @Nullable
-    public static String getComponentName(@NonNull Context context, @Nullable ShortcutInfo shortcutInfo) {
+    public static String getAppId(@NonNull Context context, @Nullable ShortcutInfo shortcutInfo) {
         if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
             UserHandle user = new UserHandle(context, shortcutInfo.getUserHandle());
-            return AppPojo.getComponentName(shortcutInfo.getPackage(), shortcutInfo.getActivity().getClassName(), user);
+            return AppPojo.getId(shortcutInfo.getPackage(), shortcutInfo.getActivity().getClassName(), user);
         }
         return null;
     }
@@ -255,10 +255,10 @@ public class ShortcutUtil {
         }
 
         String packageName = shortcutInfo.getPackage();
-        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
+        String appId = ShortcutUtil.getAppId(context, shortcutInfo);
 
         // if related package is excluded from KISS then the shortcut must be excluded too
-        boolean isExcluded = excludedApps.contains(componentName) || excludedShortcutApps.contains(packageName);
+        boolean isExcluded = excludedApps.contains(appId) || excludedShortcutApps.contains(packageName);
         return !isExcluded;
     }
 }

@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.utils.PackageManagerUtils;
@@ -194,7 +195,7 @@ public class TagsHandler {
             UserHandle userHandle = new UserHandle(manager.getSerialNumberForUser(profile), profile);
             for (String packageName : packageNames) {
                 for (LauncherActivityInfo activityInfo : PackageManagerUtils.getActivityList(launcherApps, packageName, profile)) {
-                    String app = userHandle.addUserSuffixToString("app://" + activityInfo.getComponentName().getPackageName() + "/" + activityInfo.getComponentName().getClassName(), '/');
+                    String app = AppPojo.getId(activityInfo.getComponentName().getPackageName(), activityInfo.getComponentName().getClassName(), userHandle);
                     apps.add(app);
                 }
             }

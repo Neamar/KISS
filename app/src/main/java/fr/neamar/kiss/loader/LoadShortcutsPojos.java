@@ -111,7 +111,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                         ShortcutPojo pojo = createPojo(
                                 user,
                                 shortcutRecord,
-                                ShortcutUtil.getComponentName(context, shortcutInfo),
+                                ShortcutUtil.getAppId(context, shortcutInfo),
                                 shortcutInfo.isPinned(),
                                 shortcutInfo.isDynamic(),
                                 disabled,
@@ -145,15 +145,15 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         return pojos;
     }
 
-    private ShortcutPojo createPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
+    private ShortcutPojo createPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String appId, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
         // Tags are applied once the load completes, as they may change in the meantime
-        ShortcutPojo pojo = new ShortcutPojo(userHandle, shortcutRecord, componentName, pinned, dynamic, disabled, lastChanged);
+        ShortcutPojo pojo = new ShortcutPojo(userHandle, shortcutRecord, appId, pinned, dynamic, disabled, lastChanged);
         pojo.setName(shortcutRecord.name);
 
         ShortcutPojo previous = previousPojos.get(pojo.id);
         if (previous != null && previous.lastChanged == lastChanged
                 && previous.isPinned() == pinned && previous.isDynamic() == dynamic && previous.isDisabled() == disabled
-                && Objects.equals(previous.getComponentName(), componentName)
+                && Objects.equals(previous.getAppId(), appId)
                 && previous.getName().equals(pojo.getName())) {
             return previous;
         }

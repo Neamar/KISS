@@ -102,6 +102,8 @@ public class ImportSettingsPreference {
                     MimeTypeUtils.convertSelectedMimeTypes(context, prefs, convertEditor);
                     convertEditor.commit();
                 }
+                // Settings exported before excluded apps used app ids
+                DataHandler.convertExcludedApps(prefs);
 
                 DataHandler dataHandler = ((KissApplication) context.getApplicationContext()).getDataHandler();
 

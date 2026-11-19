@@ -11,18 +11,18 @@ public final class ShortcutPojo extends PojoWithTags {
 
     public final String packageName;
     public final String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts
-    private final String componentName; // related component including user, for check of excluded apps
+    private final String appId; // related app, for check of excluded apps
     private final boolean pinned; // pinned shortcut
     private final boolean dynamic; // dynamic shortcut
     private final boolean disabled;
     private final UserHandle userHandle;
     public final long lastChanged; // last change of oreo shortcut, 0 otherwise
 
-    public ShortcutPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
+    public ShortcutPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String appId, boolean pinned, boolean dynamic, boolean disabled, long lastChanged) {
         super(ShortcutUtil.generateShortcutId(userHandle, shortcutRecord));
         this.packageName = shortcutRecord.packageName;
         this.intentUri = shortcutRecord.intentUri;
-        this.componentName = componentName;
+        this.appId = appId;
         this.pinned = pinned;
         this.dynamic = dynamic;
         this.disabled = disabled;
@@ -43,8 +43,8 @@ public final class ShortcutPojo extends PojoWithTags {
         return intentUri.replace(ShortcutPojo.OREO_PREFIX, "");
     }
 
-    public String getComponentName() {
-        return componentName;
+    public String getAppId() {
+        return appId;
     }
 
     public boolean isPinned() {

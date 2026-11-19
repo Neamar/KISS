@@ -8,9 +8,10 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public final class AppPojo extends PojoWithTags {
 
-    public static String getComponentName(String packageName, String activityName,
-                                          UserHandle userHandle) {
-        return userHandle.addUserSuffixToString(packageName + "/" + activityName, '#');
+    public static final String SCHEME = "app://";
+
+    public static String getId(String packageName, String activityName, UserHandle userHandle) {
+        return userHandle.addUserSuffixToString(SCHEME + packageName + "/" + activityName, '/');
     }
 
     public final String packageName;
@@ -36,10 +37,6 @@ public final class AppPojo extends PojoWithTags {
 
         this.disabled = disabled;
         this.componentName = new ComponentName(packageName, activityName);
-    }
-
-    public String getComponentName() {
-        return getComponentName(packageName, activityName, userHandle);
     }
 
     public boolean isExcluded() {

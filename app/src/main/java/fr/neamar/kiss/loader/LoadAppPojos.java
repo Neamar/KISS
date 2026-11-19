@@ -33,7 +33,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     private static final String LABEL_CACHE = "app-labels";
 
     public LoadAppPojos(Context context) {
-        super(context, "app://");
+        super(context, AppPojo.SCHEME);
     }
 
     @Override
@@ -48,11 +48,11 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             Map<String, String> customNames = DBHelper.getCustomAppNames(ctx);
             moveDataOfReplacedActivities(ctx, dataHandler, apps, customNames);
             for (AppPojo app : apps) {
-                String customName = customNames.get(app.getComponentName());
+                String customName = customNames.get(app.id);
                 if (customName != null) {
                     app.setName(customName);
                 }
-                app.setExcluded(excludedAppList.contains(app.getComponentName()));
+                app.setExcluded(excludedAppList.contains(app.id));
                 app.setExcludedFromHistory(excludedFromHistoryAppList.contains(app.id));
                 app.setExcludedShortcuts(excludedShortcutsAppList.contains(app.packageName));
             }
@@ -96,7 +96,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 if (!disabled || !isPrivateProfile) {
                     String label = null;
                     long lastUpdateTime = PackageManagerUtils.getLastUpdateTime(appInfo);
-                    String labelKey = AppPojo.getComponentName(appInfo.packageName, activityInfo.getName(), user) + "@" + lastUpdateTime;
+                    String labelKey = AppPojo.getId(appInfo.packageName, activityInfo.getName(), user) + "@" + lastUpdateTime;
                     if (isLabelCacheValid) {
                         label = labelCache.getString(labelKey, null);
                     }
@@ -141,19 +141,17 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
      */
     private static void moveDataOfReplacedActivities(Context ctx, DataHandler dataHandler, List<AppPojo> apps, Map<String, String> customNames) {
         List<String> ids = new ArrayList<>(apps.size());
-        List<String> componentNames = new ArrayList<>(apps.size());
         for (AppPojo app : apps) {
             ids.add(app.id);
-            componentNames.add(app.getComponentName());
         }
 
         // read from db, as the cache also holds default tags
-        Map<String, String> moves = getReplacedActivities(DBHelper.loadTags(ctx).keySet(), ids, "app://".length(), '/');
+        Map<String, String> moves = getReplacedActivities(DBHelper.loadTags(ctx).keySet(), ids);
         for (Map.Entry<String, String> move : moves.entrySet()) {
             dataHandler.getTagsHandler().moveTags(move.getKey(), move.getValue());
         }
 
-        moves = getReplacedActivities(customNames.keySet(), componentNames, 0, '#');
+        moves = getReplacedActivities(customNames.keySet(), ids);
         for (Map.Entry<String, String> move : moves.entrySet()) {
             DBHelper.moveCustomApp(ctx, move.getKey(), move.getValue());
             customNames.put(move.getValue(), customNames.remove(move.getKey()));
@@ -161,24 +159,23 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     }
 
     /**
-     * @param storedKeys     keys data is stored for, as "pkg/activity", followed by userSeparator and user serial for other profiles
-     * @param installedKeys  keys of installed activities, same format
-     * @param prefixLength   length of a scheme preceding the package, if any
+     * @param storedIds    app ids data is stored for
+     * @param installedIds ids of installed apps
      * @return stored key -> installed key, for stored activities no longer installed whose package now has a single activity without data
      */
-    static Map<String, String> getReplacedActivities(Collection<String> storedKeys, Collection<String> installedKeys, int prefixLength, char userSeparator) {
+    static Map<String, String> getReplacedActivities(Collection<String> storedIds, Collection<String> installedIds) {
         Map<String, String> installedByPackage = new HashMap<>();
-        for (String key : installedKeys) {
-            String packageKey = getPackageKey(key, prefixLength, userSeparator);
+        for (String key : installedIds) {
+            String packageKey = getPackageKey(key);
             // null when the package has several activities: can't tell which one replaced the old one
             installedByPackage.put(packageKey, installedByPackage.containsKey(packageKey) ? null : key);
         }
 
         Map<String, String> moves = new HashMap<>();
-        for (String key : storedKeys) {
+        for (String key : storedIds) {
             // an installed key maps to itself or to null, and is skipped below
-            String newKey = installedByPackage.get(getPackageKey(key, prefixLength, userSeparator));
-            if (newKey != null && !storedKeys.contains(newKey) && !moves.containsValue(newKey)) {
+            String newKey = installedByPackage.get(getPackageKey(key));
+            if (newKey != null && !storedIds.contains(newKey) && !moves.containsValue(newKey)) {
                 moves.put(key, newKey);
             }
         }
@@ -188,10 +185,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     /**
      * @return key without its activity, e.g. "app://pkg//12" for "app://pkg/activity/12"
      */
-    private static String getPackageKey(String key, int prefixLength, char userSeparator) {
-        int activityStart = key.indexOf('/', prefixLength) + 1;
-        int userStart = key.indexOf(userSeparator, activityStart);
-        return key.substring(0, activityStart) + (userStart == -1 ? "" : key.substring(userStart));
+    private static String getPackageKey(String id) {
+        int activityStart = id.indexOf('/', AppPojo.SCHEME.length()) + 1;
+        int userStart = id.indexOf('/', activityStart);
+        return id.substring(0, activityStart) + (userStart == -1 ? "" : id.substring(userStart));
     }
 
     private static String getLabelCacheStamp(Context ctx) {
@@ -222,7 +219,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     }
 
     private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, boolean disabled) {
-        String id = userHandle.addUserSuffixToString(pojoScheme + packageName + "/" + activityName, '/');
+        String id = AppPojo.getId(packageName, activityName, userHandle);
 
         // Custom names, exclusions and tags are applied once the load completes, as they may change in the meantime
         AppPojo app = new AppPojo(id, packageName, activityName, userHandle, disabled);

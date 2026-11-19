@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
@@ -25,7 +26,7 @@ import fr.neamar.kiss.utils.UserHandle;
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 13;
+    private final static int DB_VERSION = 14;
     private static final String TAG = DB.class.getSimpleName();
 
     private final Context mContext;
@@ -103,6 +104,9 @@ class DB extends SQLiteOpenHelper {
                     // fall through
                 case 12:
                     removeLegacyCustomIcons(database);
+                    // fall through
+                case 13:
+                    convertAppKeys(database);
                     // fall through
                 default:
                     break;
@@ -244,6 +248,15 @@ class DB extends SQLiteOpenHelper {
                 file.delete();
             }
         }
+    }
+
+    /**
+     * Custom names and excluded apps used "pkg/activity#serial" keys, use app ids like everything else
+     */
+    private void convertAppKeys(SQLiteDatabase database) {
+        // class names can't contain '#'
+        database.execSQL("UPDATE custom_apps SET component_name = 'app://' || replace(component_name, '#', '/')");
+        DataHandler.convertExcludedApps(PreferenceManager.getDefaultSharedPreferences(mContext));
     }
 
     private void commit(SharedPreferences.Editor prefsEditor, String key) {

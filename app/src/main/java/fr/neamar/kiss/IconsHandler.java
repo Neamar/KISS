@@ -198,7 +198,7 @@ public class IconsHandler {
      * @return drawable
      */
     private Drawable getDrawableIconForPackage(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache) {
-        final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
+        final String cacheKey = AppPojo.getId(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         if (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx)) {
             // don't cache icon if themed with system colors which can change

@@ -62,7 +62,7 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
                 app -> getDataHandler().removeFromExcluded(app),
                 AppPojo::isExcluded,
                 "excluded-apps",
-                app -> getDataHandler().getExcluded().contains(app.getComponentName()),
+                app -> getDataHandler().getExcluded().contains(app.id),
                 AppPojo::setExcluded
         );
     }
@@ -153,7 +153,7 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
         });
 
         switchPreference.setTitle(app.getName());
-        switchPreference.setSummary(app.getComponentName());
+        switchPreference.setSummary(app.id);
 
         switchPreference.setChecked(isExcludedCallback.apply(app));
         switchPreference.setOnPreferenceChangeListener(

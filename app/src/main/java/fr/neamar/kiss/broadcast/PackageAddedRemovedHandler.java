@@ -81,7 +81,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
         for (String packageName : packageNames) {
             ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(ctx, packageName, userHandle);
             if (launchingComponent != null) {
-                boolean isExcluded = excludedApps.contains(AppPojo.getComponentName(launchingComponent.getPackageName(), launchingComponent.getClassName(), userHandle));
+                boolean isExcluded = excludedApps.contains(AppPojo.getId(launchingComponent.getPackageName(), launchingComponent.getClassName(), userHandle));
                 if (!isExcluded) {
                     return true;
                 }

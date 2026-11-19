@@ -613,7 +613,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return new HashSet<>(excluded);
         } else {
             Set<String> defaultExcluded = new HashSet<>(1);
-            defaultExcluded.add("app://" + AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
+            defaultExcluded.add(AppPojo.getId(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
             return defaultExcluded;
         }
     }
@@ -625,7 +625,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return new HashSet<>(excluded);
         } else {
             Set<String> defaultExcluded = new HashSet<>(1);
-            defaultExcluded.add(AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
+            defaultExcluded.add(AppPojo.getId(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
             return defaultExcluded;
         }
     }
@@ -682,7 +682,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     public void addToExcluded(AppPojo app) {
         Set<String> excluded = getExcluded();
-        excluded.add(app.getComponentName());
+        excluded.add(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
         updateApp(app, a -> a.setExcluded(true));
 
@@ -706,7 +706,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
     public void removeFromExcluded(AppPojo app) {
         Set<String> excluded = getExcluded();
-        excluded.remove(app.getComponentName());
+        excluded.remove(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
         updateApp(app, a -> a.setExcluded(false));
 
@@ -735,7 +735,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excluded = getExcluded();
         Set<String> newExcluded = new HashSet<>(excluded.size());
         for (String excludedItem : excluded) {
-            if (!user.hasStringUserSuffix(excludedItem, '#')) {
+            if (!user.hasStringUserSuffix(excludedItem, '/')) {
                 newExcluded.add(excludedItem);
             }
         }
@@ -1024,12 +1024,27 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         tagsHandler = new TagsHandler(this.context);
     }
 
-    public void renameApp(String componentName, String newName) {
-        DBHelper.addCustomAppName(context, componentName, newName);
+    public void renameApp(String id, String newName) {
+        DBHelper.addCustomAppName(context, id, newName);
     }
 
-    public void removeRenameApp(String componentName) {
-        DBHelper.removeCustomAppName(context, componentName);
+    public void removeRenameApp(String id) {
+        DBHelper.removeCustomAppName(context, id);
+    }
+
+    /**
+     * Excluded apps used to be stored as "pkg/activity#serial": convert them to app ids
+     */
+    public static void convertExcludedApps(SharedPreferences prefs) {
+        Set<String> excluded = prefs.getStringSet("excluded-apps", null);
+        if (excluded == null) {
+            return;
+        }
+        Set<String> converted = new HashSet<>(excluded.size());
+        for (String app : excluded) {
+            converted.add(app.startsWith(AppPojo.SCHEME) ? app : AppPojo.SCHEME + app.replace('#', '/'));
+        }
+        prefs.edit().putStringSet("excluded-apps", converted).commit();
     }
 
     static final class ProviderEntry {

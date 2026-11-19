@@ -216,7 +216,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
             String newName = input.getText().toString().trim();
             DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
             dataHandler.updateApp(app, a -> a.setName(newName));
-            dataHandler.renameApp(app.getComponentName(), newName);
+            dataHandler.renameApp(app.id, newName);
 
             // Show toast message
             String msg = context.getResources().getString(R.string.app_rename_confirmation, newName);
@@ -226,7 +226,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         builder.setNegativeButton(R.string.custom_name_set_default, (dialog, which) -> {
             dialog.dismiss();
 
-            KissApplication.getApplication(context).getDataHandler().removeRenameApp(getComponentName());
+            KissApplication.getApplication(context).getDataHandler().removeRenameApp(app.id);
 
             // Set initial name
             String name = PackageManagerUtils.getLabel(context, new ComponentName(app.packageName, app.activityName), app.userHandle);
@@ -358,9 +358,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
         return new Rect(location[0], location[1], location[0] + view.getWidth(), location[1] + view.getHeight());
     }
 
-    public String getComponentName() {
-        return pojo.getComponentName();
-    }
 
     public ComponentName getClassName() {
         return pojo.getComponent();
