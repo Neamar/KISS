@@ -66,7 +66,6 @@ cp "$notes" app/src/main/play/release-notes/en-US/default.txt
 ./gradlew publishReleaseBundle --track beta
 # The API can't send changes for review: they wait in the Play Console publishing overview
 overview="https://play.google.com/console/developers/5374610066447948540/app/4974646048372599885/publishing"
-echo "Send the changes for review: $overview"
 xdg-open "$overview" >/dev/null 2>&1 || true
 
 git push origin "$branch" "v$name"
@@ -77,7 +76,7 @@ gh release create "v$name" --title "v$name" --notes-file "$notes" "$apk"
 
 if [[ -n ${TELEGRAM_BOT_TOKEN:-} ]]; then
     # Strip @ from GitHub handles, Telegram would link them to unrelated Telegram users
-    curl -fsS "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+    curl -fsS -m 30 "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
         --data-urlencode chat_id="${TELEGRAM_CHAT_ID:?}" \
         --data-urlencode text="KISS $name is out on GitHub: https://github.com/Neamar/KISS/releases/tag/v$name
 Play Store and F-Droid will follow in the coming days.
@@ -85,3 +84,5 @@ Play Store and F-Droid will follow in the coming days.
 $(sed 's/@//g' "$notes")" \
         --data-urlencode link_preview_options='{"is_disabled":true}' >/dev/null
 fi
+
+echo "WARNING! To finish the release, send the changes for review: $overview"
