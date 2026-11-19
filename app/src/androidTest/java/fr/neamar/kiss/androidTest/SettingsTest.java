@@ -114,7 +114,7 @@ public class SettingsTest extends AbstractMainActivityTest {
                 clickPreference("reset-excluded-list");
                 clickDialogButton(android.R.id.button1);
             });
-            assertThat(dataHandler.getExcluded(), not(hasItem(settingsApp.getComponentName())));
+            assertThat(dataHandler.getExcluded(), not(hasItem(settingsApp.id)));
 
             onView(withId(R.id.launcherButton)).perform(click());
             waitForSearch();
