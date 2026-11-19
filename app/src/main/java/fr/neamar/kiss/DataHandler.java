@@ -1032,11 +1032,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         DBHelper.removeCustomAppName(context, componentName);
     }
 
-    @Deprecated
-    public long removeCustomAppIcon(String componentName) {
-        return DBHelper.removeCustomAppIcon(context, componentName);
-    }
-
     static final class ProviderEntry {
         public IProvider<?> provider = null;
         ServiceConnection connection = null;

@@ -21,7 +21,6 @@ import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.Log;
@@ -46,12 +45,12 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             Set<String> excludedAppList = dataHandler.getExcluded();
             Set<String> excludedFromHistoryAppList = dataHandler.getExcludedFromHistory();
             Set<String> excludedShortcutsAppList = dataHandler.getExcludedShortcutApps();
-            Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
-            moveDataOfReplacedActivities(ctx, dataHandler, apps, customApps);
+            Map<String, String> customNames = DBHelper.getCustomAppNames(ctx);
+            moveDataOfReplacedActivities(ctx, dataHandler, apps, customNames);
             for (AppPojo app : apps) {
-                AppRecord customApp = customApps.get(app.getComponentName());
-                if (customApp != null && customApp.hasCustomName()) {
-                    app.setName(customApp.name);
+                String customName = customNames.get(app.getComponentName());
+                if (customName != null) {
+                    app.setName(customName);
                 }
                 app.setExcluded(excludedAppList.contains(app.getComponentName()));
                 app.setExcludedFromHistory(excludedFromHistoryAppList.contains(app.id));
@@ -140,7 +139,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
      * Apps letting users pick their icon (Firefox, Signal...) do it by switching to another launcher activity (#2603).
      * Keep tags and custom name of the previous activity.
      */
-    private static void moveDataOfReplacedActivities(Context ctx, DataHandler dataHandler, List<AppPojo> apps, Map<String, AppRecord> customApps) {
+    private static void moveDataOfReplacedActivities(Context ctx, DataHandler dataHandler, List<AppPojo> apps, Map<String, String> customNames) {
         List<String> ids = new ArrayList<>(apps.size());
         List<String> componentNames = new ArrayList<>(apps.size());
         for (AppPojo app : apps) {
@@ -154,10 +153,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             dataHandler.getTagsHandler().moveTags(move.getKey(), move.getValue());
         }
 
-        moves = getReplacedActivities(customApps.keySet(), componentNames, 0, '#');
+        moves = getReplacedActivities(customNames.keySet(), componentNames, 0, '#');
         for (Map.Entry<String, String> move : moves.entrySet()) {
             DBHelper.moveCustomApp(ctx, move.getKey(), move.getValue());
-            customApps.put(move.getValue(), customApps.remove(move.getKey()));
+            customNames.put(move.getValue(), customNames.remove(move.getKey()));
         }
     }
 
