@@ -7,8 +7,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
@@ -20,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.widget.ImageViewCompat;
 import androidx.preference.PreferenceManager;
@@ -32,6 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ContactData;
@@ -240,13 +244,44 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         menu.show(button);
     }
 
+    /**
+     * Themed icons put the app glyph on a disc of nearly the same color, unreadable at this size:
+     * show the glyph alone in the primary color instead, like the SMS and call icons
+     *
+     * @return null if themed icons are disabled or the app has no monochrome icon
+     */
+    @Nullable
+    private static Drawable getMonochromeIcon(Context context, ComponentName componentName) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || !DrawableUtils.isThemedIconEnabled(context)) {
+            return null;
+        }
+        try {
+            Drawable icon = context.getPackageManager().getActivityIcon(componentName);
+            if (icon instanceof AdaptiveIconDrawable) {
+                Drawable monochrome = ((AdaptiveIconDrawable) icon).getMonochrome();
+                if (monochrome != null) {
+                    monochrome = monochrome.mutate();
+                    monochrome.setTint(UIColors.getPrimaryColor(context));
+                    // Glyphs fit in the center 44dp of the 108dp layer: keep the center 54dp, to match the padding of material icons
+                    return new InsetDrawable(monochrome, -0.5f);
+                }
+            }
+        } catch (PackageManager.NameNotFoundException ignored) {
+        }
+        return null;
+    }
+
     private Drawable getAppDrawable(Context context, String mimeType) {
         Drawable appDrawable = appDrawables.get(mimeType);
         if (appDrawable == null) {
             ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, mimeType);
             if (componentName != null) {
-                IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                appDrawable = iconsHandler.getDrawableIconForPackage(context, PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
+                ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle());
+                appDrawable = getMonochromeIcon(context, launchingComponent);
+                if (appDrawable == null) {
+                    IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                    appDrawable = iconsHandler.getDrawableIconForPackage(context, launchingComponent, pojo.getUserHandle());
+                }
             }
             if (appDrawable == null) {
                 // This should never happen, let's just return the generic activity icon
