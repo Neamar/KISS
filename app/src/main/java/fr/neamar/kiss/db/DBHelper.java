@@ -459,6 +459,12 @@ public class DBHelper {
         }
     }
 
+    public static void moveCustomApp(Context context, String oldComponentName, String newComponentName) {
+        ContentValues values = new ContentValues();
+        values.put("component_name", newComponentName);
+        getDatabase(context).update("custom_apps", values, "component_name = ?", new String[]{oldComponentName});
+    }
+
     public static Map<String, AppRecord> getCustomAppData(Context context) {
         Map<String, AppRecord> records;
         SQLiteDatabase db = getDatabase(context);
@@ -582,6 +588,12 @@ public class DBHelper {
         SQLiteDatabase db = getDatabase(context);
 
         db.delete("tags", "record = ?", new String[]{record});
+    }
+
+    public static void moveTags(Context context, String oldRecord, String newRecord) {
+        ContentValues values = new ContentValues();
+        values.put("record", newRecord);
+        getDatabase(context).update("tags", values, "record = ?", new String[]{oldRecord});
     }
 
     /**
