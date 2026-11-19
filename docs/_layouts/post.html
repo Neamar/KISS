@@ -5,9 +5,11 @@ layout: default
 <section class="tutorial">
 	<section class="sidebar sticky">
 		<ul>
-			{% assign sub_navigation = content | extract_element: 'h2' %}
-			{% for item in sub_navigation %}
-				<li><a href="#{{ item.id }}">{{ item.text }}</a></li>
+			{% assign sub_navigation = content | split: '<h2 id="' %}
+			{% for item in sub_navigation offset: 1 %}
+				{% assign id = item | split: '"' | first %}
+				{% assign text = item | split: '</h2>' | first | remove_first: id | remove_first: '">' | strip_html %}
+				<li><a href="#{{ id }}">{{ text }}</a></li>
 			{% endfor %}
 		</ul>
 	</section>
