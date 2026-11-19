@@ -102,7 +102,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
         }
 
         String componentName = AppPojo.getComponentName(packageName, activityName, user);
-        String oldComponentName = getReplacedKey(DBHelper.getCustomAppData(ctx).keySet(), componentName, 0, '#');
+        String oldComponentName = getReplacedKey(DBHelper.getCustomAppNames(ctx).keySet(), componentName, 0, '#');
         if (oldComponentName != null) {
             DBHelper.moveCustomApp(ctx, oldComponentName, componentName);
         }

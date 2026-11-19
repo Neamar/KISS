@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +25,7 @@ import fr.neamar.kiss.utils.UserHandle;
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 12;
+    private final static int DB_VERSION = 13;
     private static final String TAG = DB.class.getSimpleName();
 
     private final Context mContext;
@@ -99,6 +100,9 @@ class DB extends SQLiteOpenHelper {
                     // fall through
                 case 11:
                     convertContactMimeTypes();
+                    // fall through
+                case 12:
+                    removeLegacyCustomIcons(database);
                     // fall through
                 default:
                     break;
@@ -225,6 +229,21 @@ class DB extends SQLiteOpenHelper {
         SharedPreferences.Editor prefsEditor = prefs.edit();
         MimeTypeUtils.convertSelectedMimeTypes(mContext, prefs, prefsEditor);
         commit(prefsEditor, MimeTypeUtils.SELECTED_MIME_TYPES_KEY);
+    }
+
+    /**
+     * Custom icons used to be stored as images, they are now references to icon pack entries
+     */
+    private void removeLegacyCustomIcons(SQLiteDatabase database) {
+        // rows without a custom name only held a custom icon
+        database.execSQL("DELETE FROM custom_apps WHERE custom_flags & 2 = 0");
+        File[] files = new File(mContext.getCacheDir(), "custom_icons").listFiles();
+        if (files != null) {
+            for (File file : files) {
+                //noinspection ResultOfMethodCallIgnored
+                file.delete();
+            }
+        }
     }
 
     private void commit(SharedPreferences.Editor prefsEditor, String key) {
