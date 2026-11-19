@@ -19,6 +19,9 @@ import fr.neamar.kiss.utils.Log;
 
 public class DBHelper {
     private static final String TAG = DBHelper.class.getSimpleName();
+    // Match history entries whose query extends the current one, but also entries whose query is a prefix of it:
+    // an item picked for "m" must still be boosted when typing "ma", otherwise results swap places as the user types.
+    private static final String QUERY_FILTER = " (query LIKE ?1 || '%' OR (query != '' AND ?1 LIKE query || '%')) ";
     private static volatile SQLiteDatabase database = null;
 
     private DBHelper() {
@@ -117,13 +120,13 @@ public class DBHelper {
                     "   SELECT * FROM history ORDER BY _id DESC " +
                     "   LIMIT " + historyWindowSize +
                     " ) small_history " +
-                    " WHERE query LIKE ? " +
+                    " WHERE " + QUERY_FILTER +
                     " GROUP BY record " +
                     " ORDER BY " +
                     "   count(*) * 1.0 / (select count(*) from history LIMIT " + historyWindowSize + ") / ((SELECT _id FROM history ORDER BY _id DESC LIMIT 1) - max(_id) + 0.001) " +
                     " DESC " +
                     " LIMIT " + limit;
-            return db.rawQuery(sql, new String[]{query + "%"});
+            return db.rawQuery(sql, new String[]{query});
         }
     }
 
@@ -138,11 +141,11 @@ public class DBHelper {
         } else {
             // order history based on frequency
             String sql = "SELECT record, count(*) AS value FROM history" +
-                    " WHERE query LIKE ? " +
+                    " WHERE " + QUERY_FILTER +
                     " GROUP BY record " +
                     " ORDER BY value DESC " +
                     " LIMIT " + limit;
-            return db.rawQuery(sql, new String[]{query + "%"});
+            return db.rawQuery(sql, new String[]{query});
         }
     }
 
@@ -151,7 +154,7 @@ public class DBHelper {
             return db.query(true, "history", new String[]{"record", "MAX(_id) AS value"}, null, null,
                     "record", null, "value DESC", Integer.toString(limit));
         } else {
-            return db.query(true, "history", new String[]{"record", "MAX(_id) AS value"}, "query LIKE ?", new String[]{query + "%"},
+            return db.query(true, "history", new String[]{"record", "MAX(_id) AS value"}, QUERY_FILTER, new String[]{query},
                     "record", null, "value DESC", Integer.toString(limit));
         }
     }
@@ -180,11 +183,11 @@ public class DBHelper {
             String sql = "SELECT record, count(*) AS value FROM history " +
                     " WHERE timeStamp >= 0 " +
                     " AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000L)) +
-                    " AND query LIKE ? " +
+                    " AND " + QUERY_FILTER +
                     " GROUP BY record " +
                     " ORDER BY value DESC " +
                     " LIMIT " + limit;
-            return db.rawQuery(sql, new String[]{query + "%"});
+            return db.rawQuery(sql, new String[]{query});
         }
     }
 
@@ -217,11 +220,11 @@ public class DBHelper {
             String sql = "SELECT record, MAX(ABS((" + now + " - timestamp) % 86400000 - 43200000) - (" + now + " - timestamp) / 48 ) AS value" +
                     " FROM history" +
                     " WHERE timestamp > " + MS_24_DAYS_AGO +
-                    " AND query LIKE ? " +
+                    " AND " + QUERY_FILTER +
                     " GROUP BY record " +
                     " ORDER BY value DESC " +
                     " LIMIT " + limit;
-            return db.rawQuery(sql, new String[]{query + "%"});
+            return db.rawQuery(sql, new String[]{query});
         }
     }
 
