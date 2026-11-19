@@ -32,6 +32,7 @@ public class SettingsFragment extends BaseSettingsFragment {
         PREFERENCES_XML.put(R.xml.preferences_home, HomeScreenSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_home_wallpaper, WallpaperSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_search_bar, SearchBarSettingsFragment.class);
+        PREFERENCES_XML.put(R.xml.preferences_app_list, AppListSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_search, SearchSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_search_apps, AppsSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_search_contacts, ContactsSettingsFragment.class);
