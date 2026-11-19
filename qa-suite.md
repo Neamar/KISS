@@ -89,6 +89,18 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] When viewing the search list and adding an application to favorites, the app list remains visible and the favorite appears (automated)
 - [ ] When searching and adding a result to favorites, the search remains visible and the favorite appears (automated)
 
+#### Favorites on several rows
+
+- [ ] With 6 favorites or less, favorites are displayed on one row
+- [ ] Adding a 7th favorite splits the bar in two rows (4 on the bottom row, 3 on the top row)
+- [ ] With 13 favorites, favorites are displayed on three rows (5 + 5 + 3)
+- [ ] A favorite can be dragged from one row to another, and the new order is kept after restarting KISS
+- [ ] In settings, Favorites & tags, changing "Favorites per row" changes the number of rows
+- [ ] With "Bigger favorites bar" enabled, each row is bigger
+- [ ] Rows are displayed correctly in landscape, and the result list remains usable
+- [ ] Tag favorites (with and without "Display tags as icons") are displayed correctly on several rows
+- [ ] Notification dots are displayed on favorites of every row
+
 #### Minimalistic mode on for favorites
 
 - [ ] In settings, Home screen, enable "Minimalistic UI", "Favorites bar hidden by default" and "Show history when touching the home screen"
