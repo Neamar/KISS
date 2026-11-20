@@ -36,13 +36,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -71,7 +69,6 @@ public class IconsHandler {
     private boolean mContactPackMask = false;
     private IconShape mContactsShape = IconShape.SHAPE_SYSTEM;
     private boolean mForceShape = false;
-    private volatile Map<String, Long> customIconIds = null;
     private volatile Map<String, ComponentName> customComponents = null;
 
     public IconsHandler(Context baseContext) {
@@ -153,7 +150,7 @@ public class IconsHandler {
         if (getIconPack().allowForCustomIcons()) {
             componentName = getCustomComponentName(componentName.flattenToString(), componentName);
         }
-        return getDrawableIconForPackage(ctx, componentName, userHandle, true, mIconPack != null);
+        return getDrawableIconForPackage(ctx, componentName, userHandle, true);
     }
 
     /**
@@ -198,10 +195,9 @@ public class IconsHandler {
      * @param componentName  component name
      * @param userHandle     user handle
      * @param useCache       use icon cache
-     * @param useCustomIcons use custom icons
      * @return drawable
      */
-    private Drawable getDrawableIconForPackage(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
+    private Drawable getDrawableIconForPackage(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache) {
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         if (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx)) {
@@ -223,20 +219,8 @@ public class IconsHandler {
 
         Drawable drawable = null;
 
-        // search for custom icon
-        if (useCustomIcons) {
-            Map<String, Long> customIconIds = getCustomIconIds();
-            if (customIconIds == null)
-                return null;
-
-            Long customIconId = customIconIds.get(cacheKey);
-            if (customIconId != null) {
-                drawable = getCustomIcon(cacheKey, customIconId);
-            }
-        }
-
         // check the icon pack for a resource
-        if (drawable == null && mIconPack != null) {
+        if (mIconPack != null) {
             // just checking will make this thread wait for the icon pack to load
             if (!mIconPack.isLoaded()) {
                 return null;
@@ -506,17 +490,6 @@ public class IconsHandler {
         return dir;
     }
 
-    @Deprecated
-    private File customIconFileName(String componentName, long customIcon) {
-        return new File(getCustomIconsDir(), customIcon + "_" + componentName.hashCode() + ".png");
-    }
-
-    private File getCustomIconsDir() {
-        File dir = new File(this.baseContext.getCacheDir(), "custom_icons");
-        dir.mkdirs(); // no-op when the directory already exists
-        return dir;
-    }
-
     /**
      * The cache survives restarts: loading an icon from its APK is slow and blocks the main thread on Android 10-11 (#2715).
      * Clear it when what the icons were rendered from changes: KISS, the system (build, density, icon shape) or the icon pack.
@@ -545,7 +518,6 @@ public class IconsHandler {
     private void cacheClear() {
         synchronized (this) {
             TagDummyResult.resetShape();
-            customIconIds = null;
             customComponents = null;
 
             File cacheDir = this.getIconsCacheDir();
@@ -579,73 +551,11 @@ public class IconsHandler {
         }
     }
 
-    @Deprecated
-    public Drawable getCustomIcon(String componentName, long customIcon) {
-        if (customIcon == 0)
-            return null;
-
-        try (FileInputStream fis = new FileInputStream(customIconFileName(componentName, customIcon))) {
-            Bitmap bitmap = BitmapFactory.decodeStream(fis);
-            if (bitmap != null) {
-                return new BitmapDrawable(this.baseContext.getResources(), bitmap);
-            } else {
-                Log.w(TAG, "Unable to get custom icon for " + componentName);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Unable to get custom icon for " + componentName, e);
-        }
-
-        return null;
-    }
-
-    private void removeStoredDrawable(@NonNull File drawableFile) {
-        try {
-            if (drawableFile.exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                drawableFile.delete();
-            }
-        } catch (Exception e) {
-            Log.d(TAG, "stored drawable " + drawableFile + " can't be deleted!", e);
-        }
-    }
-
     public void setCustomComponent(Result<?> result, ComponentName componentName) {
-        if (result instanceof AppResult) {
-            // cleanup deprecated custom icons
-            AppResult appResult = (AppResult) result;
-            long customIconId = getDataHandler().removeCustomAppIcon(appResult.getComponentName());
-            removeStoredDrawable(customIconFileName(appResult.getComponentName(), customIconId));
-        }
-
-        // set component for custom icon
         DBHelper.setCustomComponent(baseContext, result.getCustomIconId(), componentName);
         result.clearIcon();
         cacheClear();
         getDataHandler().refreshFavorites();
-    }
-
-    /**
-     * Thread-safe cache for custom icon ids, maps from component name to custom icon id.
-     * Cache is built only if null.
-     *
-     * @return cache for custom icon ids
-     */
-    @Deprecated
-    private Map<String, Long> getCustomIconIds() {
-        if (customIconIds == null) {
-            synchronized (this) {
-                if (customIconIds == null) {
-                    customIconIds = new HashMap<>();
-                    Map<String, AppRecord> appData = DBHelper.getCustomAppData(baseContext);
-                    for (Map.Entry<String, AppRecord> entry : appData.entrySet()) {
-                        if (entry.getValue().hasCustomIcon()) {
-                            customIconIds.put(entry.getKey(), entry.getValue().dbId);
-                        }
-                    }
-                }
-            }
-        }
-        return customIconIds;
     }
 
     /**

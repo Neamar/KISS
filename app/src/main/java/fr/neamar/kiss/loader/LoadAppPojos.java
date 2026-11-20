@@ -20,7 +20,6 @@ import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.Log;
@@ -45,11 +44,11 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             Set<String> excludedAppList = dataHandler.getExcluded();
             Set<String> excludedFromHistoryAppList = dataHandler.getExcludedFromHistory();
             Set<String> excludedShortcutsAppList = dataHandler.getExcludedShortcutApps();
-            Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
+            Map<String, String> customNames = DBHelper.getCustomAppNames(ctx);
             for (AppPojo app : apps) {
-                AppRecord customApp = customApps.get(app.getComponentName());
-                if (customApp != null && customApp.hasCustomName()) {
-                    app.setName(customApp.name);
+                String customName = customNames.get(app.getComponentName());
+                if (customName != null) {
+                    app.setName(customName);
                 }
                 app.setExcluded(excludedAppList.contains(app.getComponentName()));
                 app.setExcludedFromHistory(excludedFromHistoryAppList.contains(app.id));

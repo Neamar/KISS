@@ -59,6 +59,11 @@ public class TagsHandler {
         }
     }
 
+    public void moveTags(String oldId, String newId) {
+        DBHelper.moveTags(this.context, oldId, newId);
+        tagsCache.put(newId, tagsCache.remove(oldId));
+    }
+
     public String getTags(String id) {
         String tag = tagsCache.get(id);
         if (tag == null) {

@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -349,135 +348,36 @@ public class DBHelper {
     }
 
     public static void addCustomAppName(Context context, String componentName, String newName) {
-        SQLiteDatabase db = getDatabase(context);
-
-        long id;
-        String sql = "INSERT OR ABORT INTO custom_apps(\"name\", \"component_name\", \"custom_flags\") VALUES (?,?,?)";
-        try {
-            SQLiteStatement statement = db.compileStatement(sql);
-            statement.bindString(1, newName);
-            statement.bindString(2, componentName);
-            statement.bindLong(3, AppRecord.FLAG_CUSTOM_NAME);
-            id = statement.executeInsert();
-            statement.close();
-        } catch (Exception e) {
-            id = -1;
-        }
-        if (id == -1) {
-            sql = "UPDATE custom_apps SET name=?,custom_flags=custom_flags|? WHERE component_name=?";
-            try {
-                SQLiteStatement statement = db.compileStatement(sql);
-                statement.bindString(1, newName);
-                statement.bindLong(2, AppRecord.FLAG_CUSTOM_NAME);
-                statement.bindString(3, componentName);
-                int count = statement.executeUpdateDelete();
-                if (count != 1) {
-                    Log.e(TAG, "Update name count = " + count);
-                }
-                statement.close();
-            } catch (Exception e) {
-                Log.e(TAG, "Insert or Update custom app name", e);
-            }
-        }
-    }
-
-
-    @Nullable
-    private static AppRecord getAppRecord(SQLiteDatabase db, String componentName) {
-        String[] selArgs = new String[]{componentName};
-        String[] columns = new String[]{"_id", "name", "component_name", "custom_flags"};
-        try (Cursor cursor = db.query("custom_apps", columns,
-                "component_name=?", selArgs, null, null, null)) {
-            if (cursor.moveToNext()) {
-                AppRecord entry = new AppRecord();
-
-                entry.dbId = cursor.getLong(0);
-                entry.name = cursor.getString(1);
-                entry.componentName = cursor.getString(2);
-                entry.flags = cursor.getInt(3);
-
-                return entry;
-            }
-        }
-        return null;
-    }
-
-    @Deprecated
-    public static long removeCustomAppIcon(Context context, String componentName) {
-        SQLiteDatabase db = getDatabase(context);
-        AppRecord app = getAppRecord(db, componentName);
-        if (app == null)
-            return 0;
-
-        if (app.hasCustomName()) {
-            // app has a custom name, just remove the custom icon
-            String sql = "UPDATE custom_apps SET custom_flags=custom_flags&~? WHERE component_name=?";
-            try {
-                SQLiteStatement statement = db.compileStatement(sql);
-                statement.bindLong(1, AppRecord.FLAG_CUSTOM_ICON);
-                statement.bindString(2, componentName);
-                int count = statement.executeUpdateDelete();
-                if (count != 1) {
-                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
-                }
-                statement.close();
-            } catch (Exception e) {
-                Log.e(TAG, "remove custom app icon", e);
-            }
-        } else {
-            // nothing custom about this app anymore, remove entry
-            db.delete("custom_apps", "_id=?", new String[]{String.valueOf(app.dbId)});
-        }
-
-        return app.dbId;
+        ContentValues values = new ContentValues();
+        values.put("component_name", componentName);
+        values.put("name", newName);
+        // flag read by older versions of KISS, should the user downgrade
+        values.put("custom_flags", 2);
+        getDatabase(context).insertWithOnConflict("custom_apps", null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
     public static void removeCustomAppName(Context context, String componentName) {
-        SQLiteDatabase db = getDatabase(context);
-        AppRecord app = getAppRecord(db, componentName);
-        if (app == null)
-            return;
-
-        if (app.hasCustomIcon()) {
-            // app has a custom icon, just remove the custom name
-            String sql = "UPDATE custom_apps SET custom_flags=custom_flags&~? WHERE component_name=?";
-            try {
-                SQLiteStatement statement = db.compileStatement(sql);
-                statement.bindLong(1, AppRecord.FLAG_CUSTOM_NAME);
-                statement.bindString(2, componentName);
-                int count = statement.executeUpdateDelete();
-                if (count != 1) {
-                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
-                }
-                statement.close();
-            } catch (Exception e) {
-                Log.e(TAG, "remove custom app icon", e);
-            }
-        } else {
-            // nothing custom about this app anymore, remove entry
-            db.delete("custom_apps", "_id=?", new String[]{String.valueOf(app.dbId)});
-        }
+        getDatabase(context).delete("custom_apps", "component_name = ?", new String[]{componentName});
     }
 
-    public static Map<String, AppRecord> getCustomAppData(Context context) {
-        Map<String, AppRecord> records;
-        SQLiteDatabase db = getDatabase(context);
-        try (Cursor cursor = db.query("custom_apps", new String[]{"_id", "name", "component_name", "custom_flags"},
+    public static void moveCustomApp(Context context, String oldComponentName, String newComponentName) {
+        ContentValues values = new ContentValues();
+        values.put("component_name", newComponentName);
+        getDatabase(context).update("custom_apps", values, "component_name = ?", new String[]{oldComponentName});
+    }
+
+    /**
+     * @return custom name by component name
+     */
+    public static Map<String, String> getCustomAppNames(Context context) {
+        Map<String, String> names = new HashMap<>();
+        try (Cursor cursor = getDatabase(context).query("custom_apps", new String[]{"component_name", "name"},
                 null, null, null, null, null)) {
-            records = new HashMap<>(cursor.getCount());
             while (cursor.moveToNext()) {
-                AppRecord entry = new AppRecord();
-
-                entry.dbId = cursor.getInt(0);
-                entry.name = cursor.getString(1);
-                entry.componentName = cursor.getString(2);
-                entry.flags = cursor.getInt(3);
-
-                records.put(entry.componentName, entry);
+                names.put(cursor.getString(0), cursor.getString(1));
             }
         }
-
-        return records;
+        return names;
     }
 
     /**
@@ -582,6 +482,12 @@ public class DBHelper {
         SQLiteDatabase db = getDatabase(context);
 
         db.delete("tags", "record = ?", new String[]{record});
+    }
+
+    public static void moveTags(Context context, String oldRecord, String newRecord) {
+        ContentValues values = new ContentValues();
+        values.put("record", newRecord);
+        getDatabase(context).update("tags", values, "record = ?", new String[]{oldRecord});
     }
 
     /**
