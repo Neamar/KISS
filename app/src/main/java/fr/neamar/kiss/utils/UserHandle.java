@@ -115,7 +115,7 @@ public class UserHandle implements Parcelable, Comparable<UserHandle> {
 
         int index = string.lastIndexOf(separator);
         if (index > -1) {
-            String serialText = string.substring(index);
+            String serialText = string.substring(index + 1);
             try {
                 serial = Long.parseLong(serialText);
             } catch (NumberFormatException e) {
