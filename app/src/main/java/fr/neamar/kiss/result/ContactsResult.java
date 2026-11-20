@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -35,7 +36,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ContactData;
@@ -201,7 +201,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         } else {
             ImageViewCompat.setImageTintList(button, null);
             button.setContentDescription(KissApplication.getMimeTypeCache(context).getLabel(context, action));
-            setAsyncDrawable(button, 0, false, () -> appDrawables.containsKey(action), ctx -> getAppDrawable(ctx, action), drawable -> appDrawables.put(action, drawable));
+            setAsyncDrawable(button, 0, false, () -> appDrawables.containsKey(action), ctx -> getAppDrawable(ctx, action, ((ColorStateList) button.getTag()).getDefaultColor()), drawable -> appDrawables.put(action, drawable));
             button.setOnClickListener(v -> {
                 launchIm(v.getContext(), v, pojo.getContactData(action));
                 recordLaunch(context, queryInterface);
@@ -246,13 +246,15 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
     /**
      * Themed icons put the app glyph on a disc of nearly the same color, unreadable at this size:
-     * show the glyph alone in the primary color instead, like the SMS and call icons
+     * show the glyph alone instead, like the SMS and call icons
      *
-     * @return null if themed icons are disabled or the app has no monochrome icon
+     * @param color tint of the SMS and call icons
+     * @return null if themed icons are disabled, an icon pack is used (custom icons need one too) or the app has no monochrome icon
      */
     @Nullable
-    private static Drawable getMonochromeIcon(Context context, ComponentName componentName) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || !DrawableUtils.isThemedIconEnabled(context)) {
+    private static Drawable getMonochromeIcon(Context context, ComponentName componentName, @ColorInt int color) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || !DrawableUtils.isThemedIconEnabled(context)
+                || !KissApplication.getApplication(context).getIconsHandler().getIconPack().isSystemIconPack()) {
             return null;
         }
         try {
@@ -261,7 +263,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
                 Drawable monochrome = ((AdaptiveIconDrawable) icon).getMonochrome();
                 if (monochrome != null) {
                     monochrome = monochrome.mutate();
-                    monochrome.setTint(UIColors.getPrimaryColor(context));
+                    monochrome.setTint(color);
                     // Glyphs fit in the center 44dp of the 108dp layer: keep the center 54dp, to match the padding of material icons
                     return new InsetDrawable(monochrome, -0.5f);
                 }
@@ -271,13 +273,13 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         return null;
     }
 
-    private Drawable getAppDrawable(Context context, String mimeType) {
+    private Drawable getAppDrawable(Context context, String mimeType, @ColorInt int monochromeColor) {
         Drawable appDrawable = appDrawables.get(mimeType);
         if (appDrawable == null) {
             ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, mimeType);
             if (componentName != null) {
                 ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle());
-                appDrawable = getMonochromeIcon(context, launchingComponent);
+                appDrawable = getMonochromeIcon(context, launchingComponent, monochromeColor);
                 if (appDrawable == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
                     appDrawable = iconsHandler.getDrawableIconForPackage(context, launchingComponent, pojo.getUserHandle());
