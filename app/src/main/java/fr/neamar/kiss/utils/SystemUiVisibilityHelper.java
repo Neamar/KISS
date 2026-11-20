@@ -7,6 +7,7 @@ import static android.content.res.Configuration.UI_MODE_NIGHT_YES;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
+
+import fr.neamar.kiss.UIColors;
 
 public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChangeListener {
     private static final String TAG = SystemUiVisibilityHelper.class.getSimpleName();
@@ -124,6 +127,10 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 
     private boolean hasBlackNotificationIcons() {
         if (hasBlackNotificationIconsForTheme) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                // Edge-to-edge: the toolbar is drawn behind the status bar, so match its text color
+                return UIColors.getTextColorOnPrimary(mActivity) == Color.BLACK;
+            }
             Resources res = mActivity.getResources();
             switch ((res.getConfiguration().uiMode & UI_MODE_NIGHT_MASK)) {
                 case UI_MODE_NIGHT_NO:
