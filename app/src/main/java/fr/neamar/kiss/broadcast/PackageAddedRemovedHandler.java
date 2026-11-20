@@ -7,14 +7,20 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.LauncherActivityInfo;
+import android.content.pm.LauncherApps;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
@@ -61,6 +67,11 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                 }
             }
         } else {
+            if (Intent.ACTION_PACKAGE_CHANGED.equals(action)) {
+                for (String packageName : packageNames) {
+                    moveDataOfReplacedActivity(ctx, packageName, user);
+                }
+            }
             KissApplication.getApplication(ctx).resetIconsHandler();
 
             boolean isAnyPackageVisible = isAnyPackageVisible(ctx, packageNames, user);
@@ -68,6 +79,61 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                 KissApplication.getApplication(ctx).getDataHandler().reload(APPS, SHORTCUTS);
             }
         }
+    }
+
+    /**
+     * Apps letting users pick their icon (Firefox, Signal...) do it by switching to another launcher activity (#2603).
+     * Keep tags and custom name of the previous activity.
+     */
+    private static void moveDataOfReplacedActivity(Context ctx, String packageName, UserHandle user) {
+        LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
+        List<LauncherActivityInfo> activities = PackageManagerUtils.getActivityList(launcherApps, packageName, user.getRealHandle());
+        if (activities.size() != 1) {
+            // can't tell which activity replaced the old one
+            return;
+        }
+        String activityName = activities.get(0).getName();
+
+        String id = user.addUserSuffixToString("app://" + packageName + "/" + activityName, '/');
+        // read from db, as the cache also holds default tags
+        String oldId = getReplacedKey(DBHelper.loadTags(ctx).keySet(), id, "app://".length(), '/');
+        if (oldId != null) {
+            KissApplication.getApplication(ctx).getDataHandler().getTagsHandler().moveTags(oldId, id);
+        }
+
+        String componentName = AppPojo.getComponentName(packageName, activityName, user);
+        String oldComponentName = getReplacedKey(DBHelper.getCustomAppData(ctx).keySet(), componentName, 0, '#');
+        if (oldComponentName != null) {
+            DBHelper.moveCustomApp(ctx, oldComponentName, componentName);
+        }
+    }
+
+    /**
+     * @param storedKeys    keys data is stored for, as "pkg/activity", followed by userSeparator and user serial for other profiles
+     * @param newKey        key of the only activity of its package, same format
+     * @param prefixLength  length of a scheme preceding the package, if any
+     * @return stored key of another activity of the same package and user, null if there is none or newKey already has data
+     */
+    static String getReplacedKey(Collection<String> storedKeys, String newKey, int prefixLength, char userSeparator) {
+        if (storedKeys.contains(newKey)) {
+            return null;
+        }
+        String packageKey = getPackageKey(newKey, prefixLength, userSeparator);
+        for (String key : storedKeys) {
+            if (getPackageKey(key, prefixLength, userSeparator).equals(packageKey)) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @return key without its activity, e.g. "app://pkg//12" for "app://pkg/activity/12"
+     */
+    private static String getPackageKey(String key, int prefixLength, char userSeparator) {
+        int activityStart = key.indexOf('/', prefixLength) + 1;
+        int userStart = key.indexOf(userSeparator, activityStart);
+        return key.substring(0, activityStart) + (userStart == -1 ? "" : key.substring(userStart));
     }
 
     /**

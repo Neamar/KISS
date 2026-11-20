@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.os.ConfigurationCompat;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +46,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             Set<String> excludedFromHistoryAppList = dataHandler.getExcludedFromHistory();
             Set<String> excludedShortcutsAppList = dataHandler.getExcludedShortcutApps();
             Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
-            moveDataOfReplacedActivities(ctx, dataHandler, apps, customApps);
             for (AppPojo app : apps) {
                 AppRecord customApp = customApps.get(app.getComponentName());
                 if (customApp != null && customApp.hasCustomName()) {
@@ -134,65 +132,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Log.i(TAG, (end - start) + " milliseconds to list apps");
 
         return apps;
-    }
-
-    /**
-     * Apps letting users pick their icon (Firefox, Signal...) do it by switching to another launcher activity (#2603).
-     * Keep tags and custom name of the previous activity.
-     */
-    private static void moveDataOfReplacedActivities(Context ctx, DataHandler dataHandler, List<AppPojo> apps, Map<String, AppRecord> customApps) {
-        List<String> ids = new ArrayList<>(apps.size());
-        List<String> componentNames = new ArrayList<>(apps.size());
-        for (AppPojo app : apps) {
-            ids.add(app.id);
-            componentNames.add(app.getComponentName());
-        }
-
-        // read from db, as the cache also holds default tags
-        Map<String, String> moves = getReplacedActivities(DBHelper.loadTags(ctx).keySet(), ids, "app://".length(), '/');
-        for (Map.Entry<String, String> move : moves.entrySet()) {
-            dataHandler.getTagsHandler().moveTags(move.getKey(), move.getValue());
-        }
-
-        moves = getReplacedActivities(customApps.keySet(), componentNames, 0, '#');
-        for (Map.Entry<String, String> move : moves.entrySet()) {
-            DBHelper.moveCustomApp(ctx, move.getKey(), move.getValue());
-            customApps.put(move.getValue(), customApps.remove(move.getKey()));
-        }
-    }
-
-    /**
-     * @param storedKeys     keys data is stored for, as "pkg/activity", followed by userSeparator and user serial for other profiles
-     * @param installedKeys  keys of installed activities, same format
-     * @param prefixLength   length of a scheme preceding the package, if any
-     * @return stored key -> installed key, for stored activities no longer installed whose package now has a single activity without data
-     */
-    static Map<String, String> getReplacedActivities(Collection<String> storedKeys, Collection<String> installedKeys, int prefixLength, char userSeparator) {
-        Map<String, String> installedByPackage = new HashMap<>();
-        for (String key : installedKeys) {
-            String packageKey = getPackageKey(key, prefixLength, userSeparator);
-            // null when the package has several activities: can't tell which one replaced the old one
-            installedByPackage.put(packageKey, installedByPackage.containsKey(packageKey) ? null : key);
-        }
-
-        Map<String, String> moves = new HashMap<>();
-        for (String key : storedKeys) {
-            // an installed key maps to itself or to null, and is skipped below
-            String newKey = installedByPackage.get(getPackageKey(key, prefixLength, userSeparator));
-            if (newKey != null && !storedKeys.contains(newKey) && !moves.containsValue(newKey)) {
-                moves.put(key, newKey);
-            }
-        }
-        return moves;
-    }
-
-    /**
-     * @return key without its activity, e.g. "app://pkg//12" for "app://pkg/activity/12"
-     */
-    private static String getPackageKey(String key, int prefixLength, char userSeparator) {
-        int activityStart = key.indexOf('/', prefixLength) + 1;
-        int userStart = key.indexOf(userSeparator, activityStart);
-        return key.substring(0, activityStart) + (userStart == -1 ? "" : key.substring(userStart));
     }
 
     private static String getLabelCacheStamp(Context ctx) {
