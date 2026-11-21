@@ -31,5 +31,7 @@ public class TipPreference extends Preference {
         summary.setTypeface(summary.getTypeface(), Typeface.ITALIC);
         // The drawable is tinted white for the toolbar, match the text instead
         ((ImageView) holder.findViewById(android.R.id.icon)).setColorFilter(summary.getCurrentTextColor());
+        // The default 56dp icon frame leaves a large gap next to a 24dp icon: keep 24dp icon + 16dp gap
+        holder.findViewById(androidx.preference.R.id.icon_frame).setMinimumWidth(Math.round(40 * getContext().getResources().getDisplayMetrics().density));
     }
 }
