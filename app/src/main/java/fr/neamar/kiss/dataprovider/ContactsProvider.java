@@ -68,10 +68,15 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         }
         // register content observer if we have permission
         if (Permission.checkPermission(this, Permission.PERMISSION_READ_CONTACTS)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                getContentResolver().registerContentObserver(ContactsContract.Contacts.ENTERPRISE_CONTENT_URI, false, cObserver);
-            } else {
-                getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    getContentResolver().registerContentObserver(ContactsContract.Contacts.ENTERPRISE_CONTENT_URI, false, cObserver);
+                } else {
+                    getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+                }
+            } catch (SecurityException e) {
+                // contacts ContentProvider missing or disabled on this device
+                Log.w(TAG, "Unable to register contacts observer", e);
             }
         } else {
             Permission.askPermission(Permission.PERMISSION_READ_CONTACTS, new Permission.PermissionResultListener() {
