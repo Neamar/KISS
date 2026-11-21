@@ -5,6 +5,7 @@ import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
@@ -566,7 +567,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         int itemId = item.getItemId();
         if (itemId == R.id.settings) {
-            startActivity(new Intent(Settings.ACTION_SETTINGS));
+            try {
+                startActivity(new Intent(Settings.ACTION_SETTINGS));
+            } catch (ActivityNotFoundException e) {
+                // Settings app can be disabled (parental control, MDM, restricted user)
+                Toast.makeText(this, R.string.application_not_found, Toast.LENGTH_LONG).show();
+            }
             return true;
         } else if (itemId == R.id.wallpaper) {
             hideKeyboard();
