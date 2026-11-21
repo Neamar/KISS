@@ -71,14 +71,23 @@ public class TagDummyResult extends Result<TagDummyPojo> {
     public void inflateFavorite(@NonNull Context context, @NonNull View favoriteView) {
         super.inflateFavorite(context, favoriteView);
 
+        boolean customIcon = KissApplication.getApplication(context).getIconsHandler().hasCustomIcon(pojo);
+
         ImageView favoriteBackground = favoriteView.findViewById(android.R.id.background);
         if (favoriteBackground != null) {
-            setAsyncDrawable(favoriteBackground, R.drawable.ic_launcher_white, true, this::isShapeCached, this::getShape, drawable -> {
-            });
+            if (customIcon) {
+                // getDrawable() returns the custom icon when one is set
+                setAsyncDrawable(favoriteBackground, R.drawable.ic_launcher_white);
+            } else {
+                setAsyncDrawable(favoriteBackground, R.drawable.ic_launcher_white, true, this::isShapeCached, this::getShape, drawable -> {
+                });
+            }
         }
 
         TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
-        if (favoriteText != null) {
+        if (favoriteText != null && customIcon) {
+            favoriteText.setVisibility(View.GONE);
+        } else if (favoriteText != null) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             boolean largeSearchBar = sharedPreferences.getBoolean("large-search-bar", false);
             int barSize = context.getResources().getDimensionPixelSize(largeSearchBar ? R.dimen.large_bar_height : R.dimen.bar_height);
@@ -99,8 +108,8 @@ public class TagDummyResult extends Result<TagDummyPojo> {
         if (icon == null) {
             synchronized (this) {
                 if (icon == null) {
-                    IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                    icon = iconsHandler.getDrawableIconForCodepoint(context, pojo, getTextColor(context), getBackgroundColor(context));
+                    Drawable customIcon = KissApplication.getApplication(context).getIconsHandler().getCustomIcon(context, pojo);
+                    icon = customIcon != null ? customIcon : getShape(context);
                 }
             }
         }
@@ -136,7 +145,6 @@ public class TagDummyResult extends Result<TagDummyPojo> {
 
     @Override
     protected boolean canHaveCustomIcon(Context context, IconPack iconPack) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("pref-fav-tags-drawable", false);
+        return true;
     }
 }

@@ -10,8 +10,6 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.AdaptiveIconDrawable;
@@ -19,7 +17,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.text.TextPaint;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
@@ -35,7 +32,6 @@ public class DrawableUtils {
     private static final Path SHAPE_PATH = new Path();
     private static final RectF RECT_F = new RectF();
     public static final String KEY_THEMED_ICONS = "themed-icons";
-    private static final String TAG = DrawableUtils.class.getSimpleName();
     private static final IconShape[] TEARDROP_SHAPES = {IconShape.SHAPE_TEARDROP_BR, IconShape.SHAPE_TEARDROP_BL, IconShape.SHAPE_TEARDROP_TL, IconShape.SHAPE_TEARDROP_TR};
     private static final ColorFilter DISABLED_COLOR_FILTER;
 
@@ -377,73 +373,6 @@ public class DrawableUtils {
     public static Drawable generateBackgroundDrawable(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape) {
         int iconSize = getMaxIconSize(ctx);
         Bitmap bitmap = generateBackgroundBitmap(iconSize, backgroundColor, shape, backgroundColor);
-        return new BitmapDrawable(ctx.getResources(), bitmap);
-    }
-
-    @NonNull
-    public static Drawable generateCodepointDrawable(@NonNull Context ctx, int codepoint, @ColorInt int textColor, @ColorInt int backgroundColor, @NonNull IconShape shape) {
-        int iconSize = getMaxIconSize(ctx);
-        Bitmap bitmap = generateBackgroundBitmap(iconSize, backgroundColor, shape, codepoint);
-        // create a canvas from a bitmap
-        Canvas canvas = new Canvas(bitmap);
-
-        // use StaticLayout to draw the text centered
-        TextPaint paint = new TextPaint();
-        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        paint.setTextSize(.6f * iconSize);
-
-        RectF rectF = new RectF(0, 0, iconSize, iconSize);
-
-        String glyph = new String(Character.toChars(codepoint));
-        // If the codepoint glyph is an image we can't use SRC_IN to draw it.
-        boolean drawAsHole = true;
-        Character.UnicodeBlock block = null;
-        try {
-            block = Character.UnicodeBlock.of(codepoint);
-        } catch (IllegalArgumentException ignored) {
-        }
-        if (block == null)
-            drawAsHole = false;
-        else {
-            String blockString = block.toString();
-            if (Character.UnicodeBlock.DINGBATS.toString().equals(blockString) ||
-                    "EMOTICONS".equals(blockString) ||
-                    Character.UnicodeBlock.MISCELLANEOUS_SYMBOLS.toString().equals(blockString) ||
-                    "MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS".equals(blockString) ||
-                    "SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS".equals(blockString) ||
-                    "TRANSPORT_AND_MAP_SYMBOLS".equals(blockString))
-                drawAsHole = false;
-            else if (!Character.UnicodeBlock.BASIC_LATIN.toString().equals(blockString)) {
-                // log untested glyphs
-                Log.d(TAG, "Codepoint " + codepoint + " with glyph " + glyph + " is in block " + block);
-            }
-        }
-        // we can't draw images (emoticons and symbols) using SRC_IN with transparent color, the result is a square
-        if (drawAsHole) {
-            // write text with "transparent" (create a hole in the background)
-            paint.setColor(Color.TRANSPARENT);
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        } else {
-            paint.setColor(textColor);
-        }
-
-        // draw the letter in the center
-        Rect b = new Rect();
-        paint.getTextBounds(glyph, 0, glyph.length(), b);
-        canvas.drawText(glyph, 0, glyph.length(), iconSize / 2.f - b.centerX(), iconSize / 2.f - b.centerY(), paint);
-
-        rectF.set(b);
-        rectF.offset(iconSize / 2.f - rectF.centerX(), iconSize / 2.f - rectF.centerY());
-        // pad the rectF so we don't touch the letter
-        rectF.inset(rectF.width() * -.3f, rectF.height() * -.4f);
-
-        // stroke a rect with the bounding of the letter
-        if (drawAsHole) {
-            paint.setColor(Color.TRANSPARENT);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(ctx.getResources().getDisplayMetrics().density);
-            canvas.drawRoundRect(rectF, rectF.width() / 2.4f, rectF.height() / 2.4f, paint);
-        }
         return new BitmapDrawable(ctx.getResources(), bitmap);
     }
 
