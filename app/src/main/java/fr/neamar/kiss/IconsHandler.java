@@ -254,18 +254,6 @@ public class IconsHandler {
         return forceIconMask(drawable, shape);
     }
 
-    public Drawable getDrawableIconForCodepoint(@NonNull Context ctx, @NonNull Pojo pojo, @ColorInt int textColor, @ColorInt int backgroundColor) {
-        Drawable icon = getCustomIcon(ctx, pojo);
-        if (icon != null) {
-            return icon;
-        }
-
-        int codePoint = pojo.getName().codePointAt(0);
-        final IconShape shape = getShapeForGeneratingDrawable();
-        Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
-        return forceIconMask(drawable, shape);
-    }
-
     public Drawable getDrawableForContact(@NonNull Context ctx, @NonNull Pojo pojo, @Nullable Uri iconUri, @ColorInt int backgroundColor, @ColorInt int textColor, @ColorInt int themeFillColor) {
         Drawable icon = getCustomIcon(ctx, pojo);
         if (icon != null) {
@@ -579,7 +567,11 @@ public class IconsHandler {
         return getCustomComponents().getOrDefault(id, defaultComponentName);
     }
 
-    private Drawable getCustomIcon(@NonNull Context ctx, @NonNull Pojo pojo) {
+    public boolean hasCustomIcon(@NonNull Pojo pojo) {
+        return getIconPack().allowForCustomIcons() && getCustomComponents().containsKey(pojo.getCustomIconId());
+    }
+
+    public Drawable getCustomIcon(@NonNull Context ctx, @NonNull Pojo pojo) {
         if (getIconPack().allowForCustomIcons()) {
             ComponentName componentName = getCustomComponentName(pojo.getCustomIconId(), null);
             if (componentName != null) {

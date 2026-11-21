@@ -6,7 +6,6 @@ import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_IDLE;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -20,7 +19,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -122,13 +120,7 @@ public class Favorites extends Forwarder {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            int layout = R.layout.favorite_item;
-            if (viewType == 6) {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(parent.getContext());
-                if (!sharedPreferences.getBoolean("pref-fav-tags-drawable", false)) {
-                    layout = R.layout.favorite_tag;
-                }
-            }
+            int layout = viewType == 6 ? R.layout.favorite_tag : R.layout.favorite_item;
 
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
             return new ViewHolder(view);
