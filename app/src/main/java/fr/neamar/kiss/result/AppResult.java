@@ -135,7 +135,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         }
 
         // append root menu if available
-        if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
+        if (KissApplication.getApplication(context).getRootHandler().isRootActivated()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
     }
