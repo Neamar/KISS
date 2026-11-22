@@ -24,7 +24,7 @@ Join the [beta program](https://play.google.com/apps/testing/fr.neamar.kiss/) to
 
 Join the [Hosted Weblate](https://hosted.weblate.org/engage/kiss/) translation platform to help translate the app.
 
-Public Telegram chat: https://t.me/joinchat/_eDeAIQJU1FlNjM0
+Public Telegram chat: https://t.me/kiss_launcher
 
 | ![Less interface](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Search anything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Customize everything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png) | ![Settings](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
 | :-----------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
