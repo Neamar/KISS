@@ -7,7 +7,6 @@ import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
@@ -236,17 +235,6 @@ public class ShortcutUtil {
         return isShortcutVisibleInProfile(context, shortcutInfo, excludedApps, excludedShortcutApps) && !isProfileHidden(context, shortcutInfo.getUserHandle());
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private static boolean isLauncherActivity(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo) {
-        LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
-        for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(shortcutInfo.getPackage(), shortcutInfo.getUserHandle())) {
-            if (activityInfo.getComponentName().equals(shortcutInfo.getActivity())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * @return true if shortcuts of given profile must not be displayed: private space is locked
      */
@@ -267,7 +255,7 @@ public class ShortcutUtil {
         }
 
         // Apps with switchable icons (e.g. YouTube) declare manifest shortcuts on every icon alias, only the one shown in the launcher counts
-        if (shortcutInfo.isDeclaredInManifest() && !isLauncherActivity(context, shortcutInfo)) {
+        if (shortcutInfo.isDeclaredInManifest() && PackageManagerUtils.getLauncherActivityInfo(context, shortcutInfo.getActivity(), new UserHandle(context, shortcutInfo.getUserHandle())) == null) {
             return false;
         }
 
