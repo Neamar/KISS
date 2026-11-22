@@ -32,13 +32,8 @@ public class RootModeSwitch extends SwitchPreference {
 
     @Override
     protected void onSetInitialValue(Object defaultValue) {
-        if (KissApplication.getApplication(getContext()).getRootHandler().isRootAvailable()) {
-            super.onSetInitialValue(defaultValue);
-            setEnabled(true);
-        } else {
-            super.onSetInitialValue(false);
-            setEnabled(false);
-        }
+        // No root check here: it runs su and can block the main thread (ANR). onClick checks instead.
+        super.onSetInitialValue(defaultValue);
     }
 
     @Override
