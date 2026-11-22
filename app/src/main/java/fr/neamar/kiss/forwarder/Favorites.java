@@ -276,7 +276,7 @@ public class Favorites extends Forwarder {
         int rows = 1;
         RecyclerView favoritesBar = mainActivity.favoritesBar;
         if (isExternalFavoriteBarEnabled()) {
-            int perRow = Integer.parseInt(prefs.getString("favorites-per-row", "6"));
+            int perRow = Integer.parseInt(prefs.getString("favorites-per-row", "10"));
             rows = Math.max((favSize + perRow - 1) / perRow, 1);
             int rowHeight = mainActivity.getResources().getDimensionPixelSize(prefs.getBoolean("large-favorites-bar", false) ? R.dimen.large_favorite_height : R.dimen.favorite_height);
             favoritesBar.getLayoutParams().height = rowHeight * rows;
@@ -358,4 +358,3 @@ public class Favorites extends Forwarder {
     }
 
 }
-
