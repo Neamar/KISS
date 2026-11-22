@@ -197,8 +197,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         /*
          * Initialize preferences
          */
-        SettingsFragment.setDefaultValues(this, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // Migrate the former "bigger favorites bar" toggle (also arrives through imports of old exports)
+        if (prefs.contains("large-favorites-bar")) {
+            prefs.edit()
+                    .putString("favorites-bar-size", prefs.getBoolean("large-favorites-bar", false) ? "large" : "medium")
+                    .remove("large-favorites-bar")
+                    .apply();
+        }
+        SettingsFragment.setDefaultValues(this, false);
 
         /*
          * Initialize all forwarders
