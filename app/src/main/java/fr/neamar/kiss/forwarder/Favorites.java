@@ -278,7 +278,7 @@ public class Favorites extends Forwarder {
         if (isExternalFavoriteBarEnabled()) {
             int perRow = Integer.parseInt(prefs.getString("favorites-per-row", "10"));
             rows = Math.max((favSize + perRow - 1) / perRow, 1);
-            int rowHeight = mainActivity.getResources().getDimensionPixelSize(prefs.getBoolean("large-favorites-bar", false) ? R.dimen.large_favorite_height : R.dimen.favorite_height);
+            int rowHeight = mainActivity.getResources().getDimensionPixelSize(getRowHeightDimen());
             favoritesBar.getLayoutParams().height = rowHeight * rows;
             favoritesBar.requestLayout();
             favoriteAdapter.itemHeight = rows > 1 ? rowHeight : ViewGroup.LayoutParams.MATCH_PARENT;
@@ -299,6 +299,17 @@ public class Favorites extends Forwarder {
         mainActivity.registerPopup(popup);
         popup.show(v);
         return true;
+    }
+
+    private int getRowHeightDimen() {
+        switch (prefs.getString("favorites-bar-size", "medium")) {
+            case "small":
+                return R.dimen.small_favorite_height;
+            case "large":
+                return R.dimen.large_favorite_height;
+            default:
+                return R.dimen.favorite_height;
+        }
     }
 
     private boolean isExternalFavoriteBarEnabled() {

@@ -13,15 +13,18 @@
                 android:name="restart"
                 android:value="launcher" />
         </SwitchPreference>
-        <SwitchPreference
-            app:defaultValue="false"
+        <ListPreference
+            app:defaultValue="medium"
             app:dependency="enable-favorites-bar"
-            app:key="large-favorites-bar"
-            app:title="@string/large_favorites_bar">
+            app:entries="@array/favoritesBarSizeEntries"
+            app:entryValues="@array/favoritesBarSizeValues"
+            app:key="favorites-bar-size"
+            app:title="@string/favorites_bar_size"
+            app:useSimpleSummaryProvider="true">
             <extra
                 android:name="restart"
                 android:value="launcher" />
-        </SwitchPreference>
+        </ListPreference>
         <fr.neamar.kiss.preference.RangeEditTextPreference
             app:defaultValue="10"
             app:dependency="enable-favorites-bar"
