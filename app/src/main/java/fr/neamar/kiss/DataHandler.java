@@ -779,17 +779,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         return appProvider != null ? appProvider.getAllAppsWithoutExcluded() : null;
     }
 
-    /**
-     * Return all pinned shortcuts
-     *
-     * @return pojos for all pinned shortcuts
-     */
-    @Nullable
-    public List<ShortcutPojo> getPinnedShortcuts() {
-        ShortcutsProvider shortcutsProvider = getShortcutsProvider();
-        return shortcutsProvider != null ? shortcutsProvider.getPinnedShortcuts() : null;
-    }
-
     @Nullable
     public IProvider<?> getProvider(ProviderName providerName) {
         ProviderEntry entry = this.providers.get(providerName);

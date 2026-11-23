@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -114,18 +113,5 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                 return;
             }
         }
-    }
-
-    public List<ShortcutPojo> getPinnedShortcuts() {
-        List<ShortcutPojo> pojos = getPojos();
-        List<ShortcutPojo> records = new ArrayList<>(pojos.size());
-
-        for (ShortcutPojo pojo : pojos) {
-            if (!pojo.isPinned()) continue;
-
-            pojo.relevance = 0;
-            records.add(pojo);
-        }
-        return records;
     }
 }
