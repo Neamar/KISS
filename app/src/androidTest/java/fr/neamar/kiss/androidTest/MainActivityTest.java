@@ -120,6 +120,13 @@ public class MainActivityTest extends AbstractMainActivityTest {
             onView(withText(appName + ": Test shortcut")).check(doesNotExist());
             onView(allOf(withId(R.id.item_app_action_shortcuts), hasSibling(hasDescendant(allOf(withId(R.id.item_app_name), withText(appName)))))).perform(click());
             onView(withText("Test shortcut")).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
+            pressBack();
+
+            // Long press shows the shortcuts too, with the usual app menu behind "App options"
+            onView(allOf(withId(R.id.item_app_name), withText(appName))).perform(longClick());
+            onView(withText("Test shortcut")).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
+            onView(withText(R.string.menu_app_options)).inRoot(isPlatformPopup()).perform(click());
+            onView(withText(R.string.menu_app_details)).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
         } finally {
             // Providers outlive the test: don't leave KISS and its shortcut in them
             shortcutManager.removeAllDynamicShortcuts();
