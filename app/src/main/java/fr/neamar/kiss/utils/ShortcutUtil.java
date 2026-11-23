@@ -254,6 +254,11 @@ public class ShortcutUtil {
             return false;
         }
 
+        // Apps with switchable icons (e.g. YouTube) declare manifest shortcuts on every icon alias, only the one shown in the launcher counts
+        if (shortcutInfo.isDeclaredInManifest() && PackageManagerUtils.getLauncherActivityInfo(context, shortcutInfo.getActivity(), new UserHandle(context, shortcutInfo.getUserHandle())) == null) {
+            return false;
+        }
+
         String packageName = shortcutInfo.getPackage();
         String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
 

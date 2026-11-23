@@ -193,7 +193,7 @@ public class PackageManagerUtils {
     }
 
     @Nullable
-    private static LauncherActivityInfo getLauncherActivityInfo(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
+    public static LauncherActivityInfo getLauncherActivityInfo(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
         LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
         List<LauncherActivityInfo> activities = getActivityList(launcherApps, componentName.getPackageName(), user.getRealHandle());
         for (LauncherActivityInfo activity : activities) {
