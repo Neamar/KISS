@@ -20,10 +20,6 @@ public final class AppPojo extends PojoWithTags implements PojoWithPackageName {
 
     private boolean excluded;
     private boolean excludedFromHistory;
-    /**
-     * Whether shortcuts are excluded for this app
-     */
-    private boolean excludedShortcuts;
     private final boolean disabled;
 
     public AppPojo(String id, @NonNull String packageName, @NonNull String activityName, @NonNull UserHandle userHandle,
@@ -56,14 +52,6 @@ public final class AppPojo extends PojoWithTags implements PojoWithPackageName {
 
     public void setExcludedFromHistory(boolean excludedFromHistory) {
         this.excludedFromHistory = excludedFromHistory;
-    }
-
-    public boolean isExcludedShortcuts() {
-        return excludedShortcuts;
-    }
-
-    public void setExcludedShortcuts(boolean excludedShortcuts) {
-        this.excludedShortcuts = excludedShortcuts;
     }
 
     public String getPackageKey() {

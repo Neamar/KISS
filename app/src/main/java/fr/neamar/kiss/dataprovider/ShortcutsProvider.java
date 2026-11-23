@@ -48,10 +48,9 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                 private boolean isAnyShortcutVisible(List<ShortcutInfo> shortcuts) {
                     DataHandler dataHandler = KissApplication.getApplication(ShortcutsProvider.this).getDataHandler();
                     Set<String> excludedApps = dataHandler.getExcluded();
-                    Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
 
                     for (ShortcutInfo shortcutInfo : shortcuts) {
-                        if (ShortcutUtil.isShortcutVisible(ShortcutsProvider.this, shortcutInfo, excludedApps, excludedShortcutApps)) {
+                        if (ShortcutUtil.isShortcutVisible(ShortcutsProvider.this, shortcutInfo, excludedApps)) {
                             return true;
                         }
                     }

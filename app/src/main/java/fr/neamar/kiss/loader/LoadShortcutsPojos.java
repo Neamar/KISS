@@ -54,7 +54,6 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
             Set<String> excludedApps = dataHandler.getExcluded();
-            Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
             UserManager userManager = ContextCompat.getSystemService(context, UserManager.class);
             List<ShortcutInfo> shortcutInfos;
             try {
@@ -80,7 +79,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                 }
 
                 android.os.UserHandle profile = shortcutInfo.getUserHandle();
-                if (ShortcutUtil.isShortcutVisibleInProfile(context, shortcutInfo, excludedApps, excludedShortcutApps)
+                if (ShortcutUtil.isShortcutVisibleInProfile(context, shortcutInfo, excludedApps)
                         && !hiddenProfiles.computeIfAbsent(profile, p -> ShortcutUtil.isProfileHidden(context, p))) {
                     UserHandle user = new UserHandle(context, profile);
                     String appKey = user.addUserSuffixToString(shortcutInfo.getPackage(), '#');

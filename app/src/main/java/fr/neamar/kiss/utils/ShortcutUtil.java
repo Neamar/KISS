@@ -48,14 +48,6 @@ public class ShortcutUtil {
     }
 
     /**
-     * @return true if this device supports shortcuts, and shortcuts are enabled in settings
-     */
-    public static boolean areShortcutsEnabled(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return canDeviceShowShortcuts() && prefs.getBoolean("enable-shortcuts", true);
-    }
-
-    /**
      * @return whether this device is running Android 8 (API 26) or higher.
      * Officially shortcuts were first supported by Android 7.1 (API 25),
      * but we use shortcut APIs only available in Android 8.
@@ -78,13 +70,6 @@ public class ShortcutUtil {
     @RequiresApi(Build.VERSION_CODES.O)
     public static void addShortcut(Context context, Intent intent) {
         new SaveSingleOreoShortcutAsync(context, intent).execute();
-    }
-
-    /**
-     * Remove all shortcuts saved in the database
-     */
-    public static void removeAllShortcuts(Context context) {
-        DBHelper.removeAllShortcuts(context);
     }
 
     /**
@@ -231,8 +216,8 @@ public class ShortcutUtil {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean isShortcutVisible(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps, @NonNull Set<String> excludedShortcutApps) {
-        return isShortcutVisibleInProfile(context, shortcutInfo, excludedApps, excludedShortcutApps) && !isProfileHidden(context, shortcutInfo.getUserHandle());
+    public static boolean isShortcutVisible(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps) {
+        return isShortcutVisibleInProfile(context, shortcutInfo, excludedApps) && !isProfileHidden(context, shortcutInfo.getUserHandle());
     }
 
     /**
@@ -249,7 +234,7 @@ public class ShortcutUtil {
      * Same as {@link #isShortcutVisible}, for callers that already checked {@link #isProfileHidden} for the profile of the shortcut
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean isShortcutVisibleInProfile(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps, @NonNull Set<String> excludedShortcutApps) {
+    public static boolean isShortcutVisibleInProfile(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps) {
         if (!shortcutInfo.isEnabled()) {
             return false;
         }
@@ -263,7 +248,6 @@ public class ShortcutUtil {
         String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
 
         // if related package is excluded from KISS then the shortcut must be excluded too
-        boolean isExcluded = excludedApps.contains(componentName) || excludedShortcutApps.contains(packageName);
-        return !isExcluded;
+        return !excludedApps.contains(componentName);
     }
 }

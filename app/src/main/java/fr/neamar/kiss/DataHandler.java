@@ -79,6 +79,8 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
         // Monitor changes for service preferences (to automatically start and stop services)
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        // Former shortcut settings, also arriving through imports of old exports: shortcuts can't be turned off anymore
+        prefs.edit().remove("enable-shortcuts").remove(PREF_KEY_EXCLUDED_SHORTCUT_APPS).apply();
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         for (ProviderName providerName : ProviderName.values()) {
@@ -647,16 +649,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         return excludedFavorites;
     }
 
-    @NonNull
-    public Set<String> getExcludedShortcutApps() {
-        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, null);
-        if (excluded != null) {
-            return new HashSet<>(excluded);
-        } else {
-            return new HashSet<>();
-        }
-    }
-
     /**
      * Settings screens and menus keep the app they were opened with, which a reload may have replaced since:
      * apply the change to the app currently loaded.
@@ -693,17 +685,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
 
         // Exclude shortcuts for this app
         removeShortcuts(app.packageName);
-    }
-
-    /**
-     * Add app as an app which is not allowed to show shortcuts
-     */
-    public void addToExcludedShortcutApps(AppPojo app) {
-        Set<String> excluded = getExcludedShortcutApps();
-        excluded.add(app.packageName);
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
-        updateApp(app, a -> a.setExcludedShortcuts(true));
-        reload(new PackageNameFilter(app.packageName), SHORTCUTS);
     }
 
     public void removeFromExcluded(AppPojo app) {
@@ -743,18 +724,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", newExcluded).apply();
-    }
-
-    /**
-     * Remove app from the apps which are not allowed to show shortcuts -
-     * that is to say, this app may show shortcuts
-     */
-    public void removeFromExcludedShortcutApps(AppPojo app) {
-        Set<String> excluded = getExcludedShortcutApps();
-        excluded.remove(app.packageName);
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
-        updateApp(app, a -> a.setExcludedShortcuts(false));
-        reload(new PackageNameFilter(app.getPackageName()), SHORTCUTS);
     }
 
     /**
