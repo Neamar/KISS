@@ -95,8 +95,9 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
         Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
 
         for (ShortcutPojo pojo : getPojos()) {
+            // only pinned shortcuts are searchable, others are listed in the menu of their app
             // exclude favorites from results
-            if (excludedFavoriteIds.contains(pojo.getFavoriteId())) {
+            if (!pojo.isPinned() || excludedFavoriteIds.contains(pojo.getFavoriteId())) {
                 continue;
             }
 

@@ -13,6 +13,8 @@ import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static androidx.test.espresso.matcher.ViewMatchers.hasSibling;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -89,16 +91,18 @@ public class MainActivityTest extends AbstractMainActivityTest {
     }
 
     @Test
-    public void testShortcutAppears() {
+    public void testShortcutsInAppMenu() {
         // Relies on the Google app shortcuts, missing on plain emulator images (e.g. CI)
         try {
             ApplicationProvider.getApplicationContext().getPackageManager().getPackageInfo("com.google.android.googlequicksearchbox", 0);
         } catch (PackageManager.NameNotFoundException e) {
             assumeTrue("Google app not installed", false);
         }
-        search("Google Search");
-        onView(allOf(withId(R.id.item_app_name), withText("Google: Search"))).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.item_app_name), withText("Google: Voice search"))).check(matches(isDisplayed()));
+        search("Google");
+        // Unpinned shortcuts are not searchable, they are listed in the menu of their app
+        onView(allOf(withId(R.id.item_app_name), withText("Google: Voice search"))).check(doesNotExist());
+        onView(allOf(withId(R.id.item_app_action_shortcuts), hasSibling(hasDescendant(allOf(withId(R.id.item_app_name), withText("Google")))))).perform(click());
+        onView(withText("Voice search")).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
     }
 
     @Test

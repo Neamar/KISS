@@ -128,7 +128,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
             if (!items.isEmpty() && getShortcutGroup(items.get(items.size() - 1).pojo) != getShortcutGroup(shortcut)) {
                 items.add(null);
             }
-            items.add(new ShortcutsResult(shortcut));
+            items.add(new ShortcutsResult(shortcut, pojo));
         }
 
         ListPopup menu = new ListPopup(context);

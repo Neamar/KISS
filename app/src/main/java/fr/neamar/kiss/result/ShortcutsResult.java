@@ -27,6 +27,8 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
+import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -42,9 +44,25 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
     private volatile Drawable icon = null;
     private volatile Drawable appDrawable = null;
+    @Nullable
+    private final AppPojo app;
 
     ShortcutsResult(@NonNull ShortcutPojo pojo) {
+        this(pojo, null);
+    }
+
+    /**
+     * @param app app recorded in history when this shortcut is launched while unpinned, as unpinned shortcuts are not searchable
+     */
+    ShortcutsResult(@NonNull ShortcutPojo pojo, @Nullable AppPojo app) {
         super(pojo);
+        this.app = app;
+    }
+
+    @NonNull
+    @Override
+    protected Pojo getPojoForRecordLaunch(Context context) {
+        return app != null && !pojo.isPinned() ? app : pojo;
     }
 
     @NonNull
