@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeightSmall"
     android:background="?android:attr/listChoiceBackgroundIndicator"
@@ -17,10 +18,19 @@
 
     <TextView
         android:id="@android:id/text1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceSmallPopupMenu"
         android:textIsSelectable="false" />
+
+    <ImageButton
+        android:id="@+id/popup_shortcut_pin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dip"
+        android:background="?attr/appSelectableItemBackground"
+        app:tint="?attr/colorPrimary" />
 </LinearLayout>

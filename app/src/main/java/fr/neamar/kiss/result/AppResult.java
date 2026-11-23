@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -117,18 +118,22 @@ public class AppResult extends ResultWithTags<AppPojo> {
     private void showShortcutsPopup(Context context, View anchor, List<ShortcutPojo> shortcuts) {
         Map<String, Integer> ranks = getShortcutRanks(context);
         List<ShortcutPojo> sorted = new ArrayList<>(shortcuts);
-        // Static shortcuts last, and best rank last within each group: the menu opens upward, so the bottom is closest to the finger
-        sorted.sort(Comparator.comparing((ShortcutPojo shortcut) -> !shortcut.isDynamic())
+        // Dynamic, then static, then pinned shortcuts, and best rank last within each group: the menu opens upward, so the bottom is closest to the finger
+        sorted.sort(Comparator.comparing(AppResult::getShortcutGroup)
                 .thenComparing(shortcut -> ranks.getOrDefault(shortcut.getOreoId(), 0), Comparator.reverseOrder()));
 
-        // null entry is the divider between dynamic and static shortcuts
+        // null entry is the divider between groups
         List<ShortcutsResult> items = new ArrayList<>();
         for (ShortcutPojo shortcut : sorted) {
-            if (!shortcut.isDynamic() && !items.isEmpty() && items.get(items.size() - 1).pojo.isDynamic()) {
+            if (!items.isEmpty() && getShortcutGroup(items.get(items.size() - 1).pojo) != getShortcutGroup(shortcut)) {
                 items.add(null);
             }
             items.add(new ShortcutsResult(shortcut));
         }
+
+        ListPopup menu = new ListPopup(context);
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        boolean canPin = !PackageManagerUtils.isPrivateProfile(context, pojo.userHandle);
 
         // Shortcuts are named "App: Shortcut" for search, the app is redundant here
         String prefix = PackageManagerUtils.getLabel(context, pojo.packageName, pojo.userHandle) + ": ";
@@ -145,6 +150,23 @@ public class AppResult extends ResultWithTags<AppPojo> {
                 String name = item.pojo.getName();
                 ((TextView) view.findViewById(android.R.id.text1)).setText(name.startsWith(prefix) ? name.substring(prefix.length()) : name);
                 item.setAsyncDrawable(view.findViewById(android.R.id.icon));
+
+                ImageButton pinButton = view.findViewById(R.id.popup_shortcut_pin);
+                boolean pinned = item.pojo.isPinned();
+                if (canPin && (pinned || item.pojo.isOreoShortcut())) {
+                    pinButton.setImageResource(pinned ? R.drawable.ic_shortcut_unpin : R.drawable.ic_shortcut_pin);
+                    pinButton.setContentDescription(context.getString(pinned ? R.string.menu_shortcut_remove : R.string.menu_shortcut_pin));
+                    pinButton.setOnClickListener(v -> {
+                        if (pinned) {
+                            dataHandler.unpinShortcut(item.pojo);
+                        } else {
+                            dataHandler.pinShortcut(item.pojo);
+                        }
+                        menu.dismiss();
+                    });
+                } else {
+                    pinButton.setVisibility(View.GONE);
+                }
                 return view;
             }
 
@@ -154,7 +176,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
             }
         };
 
-        ListPopup menu = new ListPopup(context);
         menu.setAdapter(adapter);
         // Launching through the shortcut's own Result keeps history consistent with shortcuts found via search
         menu.setOnItemClickListener((a, itemView, position) -> items.get(position).launch(context, itemView, queryInterface));
@@ -162,6 +183,10 @@ public class AppResult extends ResultWithTags<AppPojo> {
         menu.show(anchor);
         // Long menus scroll: start from the bottom, where the best shortcuts are
         menu.getContentView().post(() -> ((ScrollView) menu.getContentView()).fullScroll(View.FOCUS_DOWN));
+    }
+
+    private static int getShortcutGroup(ShortcutPojo shortcut) {
+        return shortcut.isPinned() ? 2 : shortcut.isDynamic() ? 0 : 1;
     }
 
     /**
