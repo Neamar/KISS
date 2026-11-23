@@ -19,10 +19,11 @@ import java.util.Objects;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.loader.PackageNameFilter;
 import fr.neamar.kiss.utils.Log;
 
 @RequiresApi(Build.VERSION_CODES.O)
-public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
+public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, ShortcutInfo> {
 
     private static final String TAG = SaveSingleOreoShortcutAsync.class.getSimpleName();
     private final WeakReference<Context> context;
@@ -34,7 +35,7 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
     }
 
     @Override
-    protected Boolean doInBackground(Void... voids) {
+    protected ShortcutInfo doInBackground(Void... voids) {
         final LauncherApps.PinItemRequest pinItemRequest = Objects.requireNonNull(intent.getParcelableExtra(LauncherApps.EXTRA_PIN_ITEM_REQUEST));
         final ShortcutInfo shortcutInfo = pinItemRequest.getShortcutInfo();
 
@@ -44,10 +45,10 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         }
 
         if (!pinItemRequest.isValid()) {
-            return false;
+            return null;
         }
         if (!pinItemRequest.accept()) {
-            return false;
+            return null;
         }
 
         Context context = this.context.get();
@@ -59,7 +60,10 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         final DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
 
         // Add shortcut to the DataHandler
-        return dataHandler.updateShortcut(shortcutInfo, false);
+        if (!dataHandler.updateShortcut(shortcutInfo, false)) {
+            return null;
+        }
+        return shortcutInfo;
     }
 
     @Override
@@ -73,13 +77,13 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
     }
 
     @Override
-    protected void onPostExecute(@NonNull Boolean success) {
-        if (success) {
+    protected void onPostExecute(ShortcutInfo shortcutInfo) {
+        if (shortcutInfo != null) {
             Log.i(TAG, "Shortcut added to KISS");
 
             Context context = this.context.get();
             if (context != null) {
-                KissApplication.getApplication(context).getDataHandler().reload(SHORTCUTS);
+                KissApplication.getApplication(context).getDataHandler().reload(new PackageNameFilter(shortcutInfo.getPackage()), SHORTCUTS);
             }
         }
     }

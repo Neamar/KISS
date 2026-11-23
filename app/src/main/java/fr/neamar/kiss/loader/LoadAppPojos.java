@@ -68,7 +68,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         List<AppPojo> apps = filter
                 .map(packageNameFilter -> packageNameFilter
                         .execute(packageName -> getApps(ctx, packageName)))
-                .orElse(getApps(ctx, null));
+                .orElseGet(() -> getApps(ctx, null));
 
         long end = System.currentTimeMillis();
         Log.i(TAG, (end - start) + " milliseconds to list apps");
@@ -130,7 +130,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         }
 
         if (!isCancelled() && !newLabelCache.equals(labelCache.getAll())) {
-            SharedPreferences.Editor editor = labelCache.edit().clear();
+            SharedPreferences.Editor editor = labelCache.edit();
+            if (packageName == null) {
+                editor.clear();
+            }
             for (Map.Entry<String, String> entry : newLabelCache.entrySet()) {
                 editor.putString(entry.getKey(), entry.getValue());
             }

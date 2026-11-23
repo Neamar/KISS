@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -36,8 +37,9 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      */
     private String pojoScheme = "(none)://";
 
-    private final ExecutorService LOAD_THREAD = Executors.newSingleThreadExecutor();
+    private ExecutorService executorService;
     private final List<LoadPojos<T>> runningLoaders = new ArrayList<>();
+    private boolean loaded = false;
 
     /**
      * (Re-)load the providers resources when the provider has been completely initialized
@@ -52,6 +54,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
             stopSelf();
             return;
         }
+        this.executorService = Executors.newSingleThreadExecutor();
 
         this.reload();
     }
@@ -67,6 +70,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     @Override
     public void onDestroy() {
         super.onDestroy();
+        this.executorService.shutdown();
         cancelInitialize(null);
     }
 
@@ -75,18 +79,21 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
         loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
-        this.runningLoaders.add((LoadPojos<T>) loader.executeOnExecutor(LOAD_THREAD));
+        this.runningLoaders.add((LoadPojos<T>) loader.executeOnExecutor(executorService));
     }
 
     /**
      * Cancel running {@link LoadPojos<T>} tasks and set to null.
      */
     private void cancelInitialize(LoadPojos<T> newLoader) {
-        List<LoadPojos<T>> loadersToCancel = this.runningLoaders.stream().filter(loader -> loader.isCancellableBy(newLoader)).toList();
+        List<LoadPojos<T>> loadersToCancel = this.runningLoaders.stream()
+                .filter(loader -> loader.isCancellableBy(newLoader))
+                .collect(Collectors.toList());
         loadersToCancel.forEach(loader -> {
             loader.cancel(false);
             loader.setProvider(null);
             this.runningLoaders.remove(loader);
+            this.loaded = false;
         });
     }
 
@@ -100,7 +107,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
     @Override
     public boolean isLoaded() {
-        return this.runningLoaders.isEmpty();
+        return this.loaded;
     }
 
     public void loadOver(LoadPojos<T> finishedLoader, List<T> results, ReloadFilter filter) {
@@ -112,6 +119,9 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
             } else {
                 this.pojos = filter.merge(this.pojos, results);
             }
+        }
+        if (this.runningLoaders.isEmpty()) {
+            this.loaded = true;
         }
         if (isLoaded()) {
             KissApplication.getApplication(this).getDataHandler().notifyMainActivity(MainActivity.LOAD_OVER);

@@ -2,10 +2,7 @@ package fr.neamar.kiss.loader;
 
 import androidx.annotation.NonNull;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,12 +18,12 @@ public class PackageNameFilter implements ReloadFilter {
 
     private final Set<String> packageNames;
 
-    public PackageNameFilter(String[] packageNames) {
-        this(Set.of(packageNames));
+    public PackageNameFilter(@NonNull String[] packageNames) {
+        this(new HashSet<>(Arrays.asList(packageNames)));
     }
 
-    public PackageNameFilter(String packageName) {
-        this(Set.of(packageName));
+    public PackageNameFilter(@NonNull String packageName) {
+        this(new HashSet<>(Collections.singletonList(packageName)));
     }
 
     private PackageNameFilter(@NonNull Set<String> packageNames) {
@@ -64,7 +61,7 @@ public class PackageNameFilter implements ReloadFilter {
         if (pojo instanceof PojoWithPackageName) {
             return !packageNames.contains(((PojoWithPackageName) pojo).getPackageName());
         } else {
-            return true;
+            return false;
         }
     }
 

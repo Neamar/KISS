@@ -62,7 +62,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                 shortcutInfos = filter
                         .map(packageNameFilter -> packageNameFilter
                                 .execute(packageName -> ShortcutUtil.getShortcuts(context, packageName)))
-                        .orElse(ShortcutUtil.getAllShortcuts(context));
+                        .orElseGet(() -> ShortcutUtil.getAllShortcuts(context));
             } catch (SecurityException e) {
                 // shortcut host permission lost (e.g. KISS no longer default launcher)
                 Log.w(TAG, "Unable to get all shortcuts", e);
