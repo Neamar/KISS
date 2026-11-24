@@ -25,15 +25,24 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assume.assumeTrue;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.os.Build;
 
+import androidx.preference.PreferenceManager;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.filters.LargeTest;
 
 import org.junit.Test;
 
+import java.util.Collections;
+
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.dataprovider.ProviderName;
 import fr.neamar.kiss.db.DBHelper;
 
 @LargeTest
@@ -92,17 +101,31 @@ public class MainActivityTest extends AbstractMainActivityTest {
 
     @Test
     public void testShortcutsInAppMenu() {
-        // Relies on the Google app shortcuts, missing on plain emulator images (e.g. CI)
+        assumeTrue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O);
+        // Publish a shortcut on KISS itself, so the test doesn't depend on the apps of the image
+        Context context = ApplicationProvider.getApplicationContext();
+        ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
+        shortcutManager.setDynamicShortcuts(Collections.singletonList(new ShortcutInfo.Builder(context, "test")
+                .setShortLabel("Test shortcut")
+                .setIntent(new Intent(Intent.ACTION_MAIN, null, context, MainActivity.class))
+                .build()));
+        // KISS excludes itself by default
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", Collections.emptySet()).commit();
         try {
-            ApplicationProvider.getApplicationContext().getPackageManager().getPackageInfo("com.google.android.googlequicksearchbox", 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            assumeTrue("Google app not installed", false);
+            // Don't wait for the system callback, the idling resource then waits for this reload
+            scenario.onActivity(activity -> KissApplication.getApplication(activity).getDataHandler().reload(ProviderName.APPS, ProviderName.SHORTCUTS));
+            String appName = context.getString(R.string.app_name);
+            search(appName);
+            // Unpinned shortcuts are not searchable, they are listed in the menu of their app
+            onView(withText(appName + ": Test shortcut")).check(doesNotExist());
+            onView(allOf(withId(R.id.item_app_action_shortcuts), hasSibling(hasDescendant(allOf(withId(R.id.item_app_name), withText(appName)))))).perform(click());
+            onView(withText("Test shortcut")).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
+        } finally {
+            // Providers outlive the test: don't leave KISS and its shortcut in them
+            shortcutManager.removeAllDynamicShortcuts();
+            PreferenceManager.getDefaultSharedPreferences(context).edit().remove("excluded-apps").commit();
+            scenario.onActivity(activity -> KissApplication.getApplication(activity).getDataHandler().reload(ProviderName.APPS, ProviderName.SHORTCUTS));
         }
-        search("Google");
-        // Unpinned shortcuts are not searchable, they are listed in the menu of their app
-        onView(allOf(withId(R.id.item_app_name), withText("Google: Voice search"))).check(doesNotExist());
-        onView(allOf(withId(R.id.item_app_action_shortcuts), hasSibling(hasDescendant(allOf(withId(R.id.item_app_name), withText("Google")))))).perform(click());
-        onView(withText("Voice search")).inRoot(isPlatformPopup()).check(matches(isDisplayed()));
     }
 
     @Test
