@@ -205,6 +205,13 @@ class Widgets extends Forwarder {
         }
     }
 
+    void toggleWidgetVisibility() {
+        if (widgetArea.getChildCount() == 0) {
+            return;
+        }
+        widgetScroll.setVisibility(widgetScroll.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+    }
+
     private void serializeState() {
         List<String> builder = new ArrayList<>(widgetArea.getChildCount());
         for (int i = 0; i < widgetArea.getChildCount(); i++) {

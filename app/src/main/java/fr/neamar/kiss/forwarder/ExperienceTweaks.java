@@ -64,9 +64,11 @@ public class ExperienceTweaks extends Forwarder {
     private View mainEmptyView;
     private final GestureDetector gd;
     private final KeyboardManager keyboardManager;
+    private final Runnable toggleWidgets;
 
-    ExperienceTweaks(final MainActivity mainActivity) {
+    ExperienceTweaks(final MainActivity mainActivity, Runnable toggleWidgets) {
         super(mainActivity);
+        this.toggleWidgets = toggleWidgets;
 
         // Lock launcher into portrait mode
         // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible
@@ -202,6 +204,9 @@ public class ExperienceTweaks extends Forwarder {
                         break;
                     case "display-menu":
                         mainActivity.openContextMenu(mainActivity.menuButton);
+                        break;
+                    case "toggle-widgets":
+                        toggleWidgets.run();
                         break;
                     case "go-to-homescreen":
                         // Opens the default launcher; when that's KISS, onNewIntent() resets the search

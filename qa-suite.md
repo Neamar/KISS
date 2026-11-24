@@ -195,6 +195,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ##### Widgets
 
+- [ ] In Minimalistic UI, assign a gesture to "Show/Hide widgets"; repeat the gesture to hide and restore widgets
 - [ ] When using minimalistic mode, the three dot menu has an option to Add a widget
 - [ ] Selecting the option displays a list of all available widgets
 - [ ] Selecting a widget displays the widget when history is empty

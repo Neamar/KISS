@@ -29,7 +29,7 @@ public class ForwarderManager extends Forwarder {
         this.widgetsForwarder = new Widgets(mainActivity);
         this.interfaceTweaks = new InterfaceTweaks(mainActivity);
         this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
-        this.experienceTweaks = new ExperienceTweaks(mainActivity);
+        this.experienceTweaks = new ExperienceTweaks(mainActivity, widgetsForwarder::toggleWidgetVisibility);
         this.favoritesForwarder = new Favorites(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
