@@ -70,16 +70,21 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.executorService.shutdown();
+        if (this.executorService != null) {
+            this.executorService.shutdown();
+            this.executorService = null;
+        }
         cancelInitialize(null);
     }
 
     void initialize(LoadPojos<T> loader) {
         cancelInitialize(loader);
 
-        loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
-        this.runningLoaders.add((LoadPojos<T>) loader.executeOnExecutor(executorService));
+        if (executorService != null) {
+            loader.setProvider(this);
+            this.runningLoaders.add((LoadPojos<T>) loader.executeOnExecutor(executorService));
+        }
     }
 
     /**

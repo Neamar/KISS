@@ -131,7 +131,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         if (!isCancelled() && !newLabelCache.equals(labelCache.getAll())) {
             SharedPreferences.Editor editor = labelCache.edit();
-            if (packageName == null) {
+            if (packageName == null || !isLabelCacheValid) {
                 editor.clear();
             }
             for (Map.Entry<String, String> entry : newLabelCache.entrySet()) {
