@@ -127,7 +127,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         List<ShortcutRecord> recordsToHandle = filter
                 .map(packageNameFilter -> packageNameFilter
                         .execute(packageName -> records.stream()
-                                .filter(record -> record.packageName.equals(packageName))
+                                .filter(record -> Objects.equals(record.packageName, packageName))
                                 .collect(Collectors.toList())))
                 .orElse(records);
 
