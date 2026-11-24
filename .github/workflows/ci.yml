@@ -21,7 +21,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
-          cache: gradle
+      # Caches per job, so the instrumented job keeps the test runner dependencies only it downloads
+      - name: set up Gradle
+        uses: gradle/actions/setup-gradle@v6
       - name: Lint code
         run: bash ./gradlew lint --stacktrace
       - name: Unit tests
@@ -36,7 +38,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
-          cache: gradle
+      # Caches per job, so the instrumented job keeps the test runner dependencies only it downloads
+      - name: set up Gradle
+        uses: gradle/actions/setup-gradle@v6
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -70,7 +74,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
-          cache: gradle
+      # Caches per job, so the instrumented job keeps the test runner dependencies only it downloads
+      - name: set up Gradle
+        uses: gradle/actions/setup-gradle@v6
       - name: Build APKs
         run: bash ./gradlew assembleDebug assembleRelease assembleDebugAndroidTest --stacktrace
       - name: Upload debug APK
