@@ -73,7 +73,6 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             Map<android.os.UserHandle, Boolean> hiddenProfiles = new HashMap<>();
             Map<android.os.UserHandle, Boolean> quietProfiles = new HashMap<>();
             Map<String, ApplicationInfo> appInfos = new HashMap<>();
-            Map<String, String> appNames = new HashMap<>();
 
             for (ShortcutInfo shortcutInfo : shortcutInfos) {
                 if (isCancelled()) {
@@ -86,15 +85,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                     UserHandle user = new UserHandle(context, profile);
                     String appKey = user.addUserSuffixToString(shortcutInfo.getPackage(), '#');
                     ApplicationInfo appInfo = appInfos.computeIfAbsent(appKey, k -> PackageManagerUtils.getApplicationInfo(context, shortcutInfo.getPackage(), user));
-                    // Reading a label loads the app's resources, only do it when the name is displayed and apps did not load it yet
-                    String appName = null;
-                    if (!shortcutInfo.isPinned() && appInfo != null) {
-                        appName = appNames.computeIfAbsent(appKey, k -> {
-                            String cachedAppName = LoadAppPojos.getCachedAppName(context, appInfo, user);
-                            return cachedAppName != null ? cachedAppName : context.getPackageManager().getApplicationLabel(appInfo).toString();
-                        });
-                    }
-                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, appName);
+                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, false);
 
                     if (shortcutRecord != null) {
                         boolean isSuspended = appInfo != null && PackageManagerUtils.isAppSuspended(appInfo);

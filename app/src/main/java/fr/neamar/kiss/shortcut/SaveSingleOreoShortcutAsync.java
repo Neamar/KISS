@@ -60,7 +60,7 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Shortc
         final DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
 
         // Add shortcut to the DataHandler
-        if (!dataHandler.updateShortcut(shortcutInfo, false)) {
+        if (!dataHandler.updateShortcut(shortcutInfo)) {
             return null;
         }
         return shortcutInfo;

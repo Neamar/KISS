@@ -495,7 +495,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
                     pinnedShortcutIds.add(shortcutToPin.getId());
 
                     launcherApps.pinShortcuts(shortcut.packageName, pinnedShortcutIds, shortcutToPin.getUserHandle());
-                    updateShortcut(shortcutToPin, false);
+                    updateShortcut(shortcutToPin);
                     return true;
                 }
             }
@@ -541,17 +541,16 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     /**
      * Update DB with given {@link ShortcutRecord}.
      *
-     * @param shortcutInfo       the shortcut to update.
-     * @param includePackageName include package name in shortcut name
+     * @param shortcutInfo the shortcut to update.
      * @return true if update was successful
      */
-    public boolean updateShortcut(ShortcutInfo shortcutInfo, boolean includePackageName) {
+    public boolean updateShortcut(ShortcutInfo shortcutInfo) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return false;
         }
 
         // Create Pojo
-        ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, includePackageName);
+        ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, false);
 
         if (shortcutRecord == null) {
             return false;

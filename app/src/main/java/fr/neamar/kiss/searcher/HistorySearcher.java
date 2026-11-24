@@ -73,7 +73,7 @@ public class HistorySearcher extends Searcher {
                 if (pojo instanceof AppPojo) {
                     List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(activity, ((AppPojo) pojo).packageName);
                     for (ShortcutInfo shortcutInfo : shortcutInfos) {
-                        ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(activity, shortcutInfo, !shortcutInfo.isPinned());
+                        ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(activity, shortcutInfo, false);
                         if (shortcutRecord != null) {
                             excludedPojoById.add(ShortcutUtil.generateShortcutId(new UserHandle(activity, shortcutInfo.getUserHandle()), shortcutRecord));
                         }

@@ -135,9 +135,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         boolean canPin = !PackageManagerUtils.isPrivateProfile(context, pojo.userHandle);
 
-        // Unpinned shortcuts are named "App: Shortcut", the app is redundant here
-        String prefix = PackageManagerUtils.getLabel(context, pojo.packageName, pojo.userHandle) + ": ";
-
         ArrayAdapter<ShortcutsResult> adapter = new ArrayAdapter<ShortcutsResult>(context, R.layout.popup_shortcut_item, android.R.id.text1, items) {
             @NonNull
             @Override
@@ -147,8 +144,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
                     return LayoutInflater.from(context).inflate(R.layout.popup_divider, parent, false);
                 }
                 View view = LayoutInflater.from(context).inflate(R.layout.popup_shortcut_item, parent, false);
-                String name = item.pojo.getName();
-                String label = name.startsWith(prefix) ? name.substring(prefix.length()) : name;
+                String label = item.pojo.getName();
                 ((TextView) view.findViewById(android.R.id.text1)).setText(label);
                 item.setAsyncDrawable(view.findViewById(android.R.id.icon));
 
