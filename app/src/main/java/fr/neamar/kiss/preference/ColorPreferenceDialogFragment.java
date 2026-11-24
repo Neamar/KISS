@@ -1,12 +1,10 @@
 package fr.neamar.kiss.preference;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +20,7 @@ import androidx.preference.PreferenceDialogFragmentCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.colorpicker.ColorStateDrawable;
+import com.google.android.material.color.MaterialColors;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
@@ -56,13 +55,9 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
     }
 
     private void selectButton(Button button) {
-        Context context = requireContext();
-        TypedValue tv = new TypedValue();
-        boolean found = context.getTheme().resolveAttribute(android.R.attr.textColor, tv, true);
-        @ColorInt int primaryColor = found ? tv.data : Color.BLACK;
-
+        // textColorPrimary is a ColorStateList, so it can't be read from TypedValue.data
         button.setTypeface(null, Typeface.BOLD);
-        button.setTextColor(primaryColor);
+        button.setTextColor(MaterialColors.getColor(button, android.R.attr.textColorPrimary));
     }
 
     @Nullable
