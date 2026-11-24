@@ -5,10 +5,12 @@ import android.os.AsyncTask;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Optional;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.dataprovider.Provider;
+import fr.neamar.kiss.dataprovider.ReloadFilter;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.utils.Log;
@@ -19,13 +21,15 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
 
     protected final WeakReference<Context> context;
     protected final String pojoScheme;
+    private final ReloadFilter filter;
     private WeakReference<Provider<T>> providerReference;
     private long start;
 
-    LoadPojos(Context context, String pojoScheme) {
+    LoadPojos(Context context, String pojoScheme, ReloadFilter filter) {
         super();
         this.context = new WeakReference<>(context);
         this.pojoScheme = pojoScheme;
+        this.filter = filter;
     }
 
     public void setProvider(Provider<T> provider) {
@@ -40,7 +44,7 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
     protected void onPreExecute() {
         super.onPreExecute();
         start = System.currentTimeMillis();
-        Log.i(TAG, "Starting " + this.getClass().getSimpleName());
+        Log.i(TAG, "Starting " + this.getClass().getSimpleName() + " (filter=" + filter+ ")");
     }
 
     @Override
@@ -56,18 +60,37 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
                         ((PojoWithTags) pojo).setTags(tagsHandler.getTags(pojo.id));
                     }
                 }
-                provider.loadOver(result);
+                provider.loadOver(this, result, this.filter);
             }
         }
+
         long time = System.currentTimeMillis() - start;
-        Log.d(TAG, "Time to run " + this.getClass().getSimpleName() + ": " + time + "ms");
+        Log.d(TAG, "Time to run " + this.getClass().getSimpleName() + ": " + time + "ms (filter=" + filter+ ")");
     }
 
     @Override
     protected void onCancelled() {
         super.onCancelled();
         long time = System.currentTimeMillis() - start;
-        Log.d(TAG, "Cancelled " + this.getClass().getSimpleName() + " after " + time + "ms");
+        Log.d(TAG, "Cancelled " + this.getClass().getSimpleName() + " after " + time + "ms (filter=" + filter+ ")");
     }
 
+    @SuppressWarnings("unchecked")
+    protected <T extends ReloadFilter> Optional<T> getFilter(Class<T> clazz) {
+        if (clazz.isInstance(filter)) {
+            return Optional.of((T) filter);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * @param loader another loader
+     * @return true, if other loader fetches same objects as this one
+     */
+    public final boolean isCancellableBy(LoadPojos<T> loader) {
+        return loader == null ||
+                loader.filter == null ||
+                loader.filter.contains(this.filter);
+    }
 }

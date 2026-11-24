@@ -8,15 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.dataprovider.ReloadFilter;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SearchPojoType;
@@ -57,7 +52,7 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
     }
 
     @Override
-    public void reload() {
+    public void reload(ReloadFilter filter) {
         searchProviders.clear();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

@@ -12,14 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.os.ConfigurationCompat;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.dataprovider.ReloadFilter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.Log;
@@ -31,8 +28,8 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     private static final String TAG = LoadAppPojos.class.getSimpleName();
     private static final String LABEL_CACHE = "app-labels";
 
-    public LoadAppPojos(Context context) {
-        super(context, "app://");
+    public LoadAppPojos(Context context, ReloadFilter filter) {
+        super(context, "app://", filter);
     }
 
     @Override
@@ -62,12 +59,25 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     protected List<AppPojo> doInBackground(Void... params) {
         long start = System.currentTimeMillis();
 
-        List<AppPojo> apps = new ArrayList<>();
-
         Context ctx = context.get();
         if (ctx == null) {
-            return apps;
+            return Collections.emptyList();
         }
+
+        Optional<PackageNameFilter> filter = getFilter(PackageNameFilter.class);
+        List<AppPojo> apps = filter
+                .map(packageNameFilter -> packageNameFilter
+                        .execute(packageName -> getApps(ctx, packageName)))
+                .orElseGet(() -> getApps(ctx, null));
+
+        long end = System.currentTimeMillis();
+        Log.i(TAG, (end - start) + " milliseconds to list apps");
+
+        return apps;
+    }
+
+    private List<AppPojo> getApps(Context ctx, String packageName) {
+        List<AppPojo> result = new ArrayList<>();
 
         // Reading a label loads the app's resources: slow, and it blocks the main thread on Android 10-11 (#2715).
         // Only do it for new or updated apps, or when the system or its languages changed.
@@ -85,7 +95,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         for (android.os.UserHandle profile : manager.getUserProfiles()) {
             boolean isPrivateProfile = PackageManagerUtils.isPrivateProfile(launcherApps, profile);
             UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
-            for (LauncherActivityInfo activityInfo : PackageManagerUtils.getActivityList(launcherApps, null, profile)) {
+            for (LauncherActivityInfo activityInfo : PackageManagerUtils.getActivityList(launcherApps, packageName, profile)) {
                 if (isCancelled()) {
                     break;
                 }
@@ -114,23 +124,23 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                         }
                     }
                     final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), label, disabled);
-                    apps.add(app);
+                    result.add(app);
                 }
             }
         }
 
         if (!isCancelled() && !newLabelCache.equals(labelCache.getAll())) {
-            SharedPreferences.Editor editor = labelCache.edit().clear();
+            SharedPreferences.Editor editor = labelCache.edit();
+            if (packageName == null || !isLabelCacheValid) {
+                editor.clear();
+            }
             for (Map.Entry<String, String> entry : newLabelCache.entrySet()) {
                 editor.putString(entry.getKey(), entry.getValue());
             }
             editor.apply();
         }
 
-        long end = System.currentTimeMillis();
-        Log.i(TAG, (end - start) + " milliseconds to list apps");
-
-        return apps;
+        return result;
     }
 
     private static String getLabelCacheStamp(Context ctx) {

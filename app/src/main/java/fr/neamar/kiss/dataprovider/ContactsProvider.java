@@ -55,9 +55,9 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     };
 
     @Override
-    public void reload() {
-        super.reload();
-        this.initialize(new LoadContactsPojos(this));
+    public void reload(ReloadFilter filter) {
+        super.reload(filter);
+        this.initialize(new LoadContactsPojos(this, filter));
     }
 
     @Override

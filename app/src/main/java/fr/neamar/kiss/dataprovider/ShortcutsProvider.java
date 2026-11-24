@@ -18,6 +18,7 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
+import fr.neamar.kiss.loader.PackageNameFilter;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -41,7 +42,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                 public void onShortcutsChanged(@NonNull String packageName, @NonNull List<ShortcutInfo> shortcuts, @NonNull android.os.UserHandle user) {
                     if (isAnyShortcutVisible(shortcuts)) {
                         Log.d(TAG, "Shortcuts changed for " + packageName);
-                        KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reload(SHORTCUTS);
+                        KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reload(new PackageNameFilter(packageName), SHORTCUTS);
                     }
                 }
 
@@ -64,14 +65,14 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
     }
 
     @Override
-    public void reload() {
-        super.reload();
+    public void reload(ReloadFilter filter) {
+        super.reload(filter);
         // If the user tries to add a new shortcut, but KISS isn't the default launcher
         // AND the services are not running (low memory), then we won't be able to
         // spawn a new service on Android 8.1+.
 
         try {
-            this.initialize(new LoadShortcutsPojos(this, getPojos()));
+            this.initialize(new LoadShortcutsPojos(this, filter));
         } catch (IllegalStateException e) {
             if (!notifiedKissNotDefaultLauncher) {
                 // Only display this message once per process

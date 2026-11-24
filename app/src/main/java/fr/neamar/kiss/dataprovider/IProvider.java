@@ -26,7 +26,11 @@ public interface IProvider<T extends Pojo> {
      * MainActivity will be notified with LOAD_OVER once the reload is complete. The data provider
      * will stay usable (using it's old data) during the reload.
      */
-    void reload();
+    void reload(ReloadFilter filter);
+
+    default void reload() {
+        reload(null);
+    }
 
     /**
      * Indicate whether this provider has already loaded it's data

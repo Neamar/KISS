@@ -18,6 +18,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.dataprovider.ReloadFilter;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -38,7 +39,7 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
     }
 
     @Override
-    public void reload() {
+    public void reload(ReloadFilter filter) {
         pojos.clear();
 
         Context context = contextReference.get();
