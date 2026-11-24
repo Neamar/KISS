@@ -22,6 +22,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,6 +54,8 @@ public class MimeTypeCache {
     private final Map<String, String> labels = new ConcurrentHashMap<>();
     // Cached detail columns
     private volatile Map<String, String> detailColumns;
+    // Package of the sync adapter declaring each mime type, published before detailColumns and never reset
+    private volatile Map<String, String> ownerPackages = Collections.emptyMap();
 
     public void clearCache() {
         synchronized (this) {
@@ -72,7 +75,7 @@ public class MimeTypeCache {
         if (!labels.containsKey(mimeType)) {
             synchronized (this) {
                 if (!labels.containsKey(mimeType)) {
-                    final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
+                    final Intent intent = MimeTypeUtils.getIntentByMimeType(context, mimeType, -1, "");
                     String label = PackageManagerUtils.getLabel(context, intent);
                     if (label != null) {
                         labels.put(mimeType, label);
@@ -88,7 +91,7 @@ public class MimeTypeCache {
         if (!componentNames.containsKey(mimeType)) {
             synchronized (this) {
                 if (!componentNames.containsKey(mimeType)) {
-                    final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
+                    final Intent intent = MimeTypeUtils.getIntentByMimeType(context, mimeType, -1, "");
                     ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
                     if (componentName != null) {
                         this.componentNames.put(mimeType, componentName);
@@ -113,6 +116,7 @@ public class MimeTypeCache {
                     long start = System.currentTimeMillis();
 
                     result = new HashMap<>();
+                    Map<String, String> owners = new HashMap<>();
 
                     final Set<String> contactSyncableTypes = new HashSet<>();
 
@@ -144,6 +148,7 @@ public class MimeTypeCache {
                                             }
                                             if (foundMimeType != null) {
                                                 result.put(foundMimeType, foundDetailColumn);
+                                                owners.put(foundMimeType, auth.packageName);
                                             }
                                         }
                                     }
@@ -158,6 +163,7 @@ public class MimeTypeCache {
                     result.put(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Email.ADDRESS);
                     result.put(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Phone.NUMBER);
 
+                    ownerPackages = owners;
                     detailColumns = result;
 
                     long end = System.currentTimeMillis();
@@ -207,6 +213,20 @@ public class MimeTypeCache {
     public String getDetailColumn(Context context, String mimeType) {
         Map<String, String> detailColumns = fetchDetailColumns(context);
         return detailColumns.get(mimeType);
+    }
+
+    /**
+     * Apps registering any mime type (file managers, editors) also match contact data intents,
+     * so contact actions must be resolved within the app whose sync adapter declares the mime type.
+     *
+     * @param context
+     * @param mimeType
+     * @return package of the sync adapter declaring given mime type, null if none
+     */
+    @Nullable
+    public String getOwnerPackage(Context context, String mimeType) {
+        fetchDetailColumns(context);
+        return ownerPackages.get(mimeType);
     }
 
     private static String greatestCommonPrefix(String a, String b) {
