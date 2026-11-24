@@ -513,6 +513,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     public boolean unpinShortcut(ShortcutPojo shortcut) {
         if (!shortcut.isOreoShortcut()) {
             removeShortcut(shortcut);
+            return true;
         } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
             if (shortcut.isOreoShortcut() &&

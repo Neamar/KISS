@@ -135,7 +135,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         boolean canPin = !PackageManagerUtils.isPrivateProfile(context, pojo.userHandle);
 
-        // Shortcuts are named "App: Shortcut" for search, the app is redundant here
+        // Unpinned shortcuts are named "App: Shortcut", the app is redundant here
         String prefix = PackageManagerUtils.getLabel(context, pojo.packageName, pojo.userHandle) + ": ";
 
         ArrayAdapter<ShortcutsResult> adapter = new ArrayAdapter<ShortcutsResult>(context, R.layout.popup_shortcut_item, android.R.id.text1, items) {
@@ -148,7 +148,8 @@ public class AppResult extends ResultWithTags<AppPojo> {
                 }
                 View view = LayoutInflater.from(context).inflate(R.layout.popup_shortcut_item, parent, false);
                 String name = item.pojo.getName();
-                ((TextView) view.findViewById(android.R.id.text1)).setText(name.startsWith(prefix) ? name.substring(prefix.length()) : name);
+                String label = name.startsWith(prefix) ? name.substring(prefix.length()) : name;
+                ((TextView) view.findViewById(android.R.id.text1)).setText(label);
                 item.setAsyncDrawable(view.findViewById(android.R.id.icon));
 
                 ImageButton pinButton = view.findViewById(R.id.popup_shortcut_pin);
@@ -157,10 +158,10 @@ public class AppResult extends ResultWithTags<AppPojo> {
                     pinButton.setImageResource(pinned ? R.drawable.ic_shortcut_unpin : R.drawable.ic_shortcut_pin);
                     pinButton.setContentDescription(context.getString(pinned ? R.string.menu_shortcut_remove : R.string.menu_shortcut_pin));
                     pinButton.setOnClickListener(v -> {
-                        if (pinned) {
-                            dataHandler.unpinShortcut(item.pojo);
-                        } else {
-                            dataHandler.pinShortcut(item.pojo);
+                        boolean done = pinned ? dataHandler.unpinShortcut(item.pojo) : dataHandler.pinShortcut(item.pojo);
+                        if (done) {
+                            // Pinning is what makes a shortcut searchable, say so
+                            Toast.makeText(context, context.getString(pinned ? R.string.shortcut_unpinned : R.string.shortcut_pinned, label), Toast.LENGTH_SHORT).show();
                         }
                         menu.dismiss();
                     });
