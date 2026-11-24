@@ -109,6 +109,11 @@ public class MimeTypeUtils {
         if (UNSUPPORTED_MIME_TYPES.contains(mimeType)) {
             return false;
         }
+        // custom mime types must come from a contacts sync adapter, others are internal data (e.g. Google's contact_misc)
+        if (!ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE.equals(mimeType)
+                && KissApplication.getMimeTypeCache(context).getOwnerPackage(context, mimeType) == null) {
+            return false;
+        }
         // check if intent for custom mime type is registered
         Intent intent = getRegisteredIntentByMimeType(context, mimeType, -1, "");
         return intent != null;
@@ -277,7 +282,7 @@ public class MimeTypeUtils {
      * @return intent to view contact by mime type and id, null if no activity is registered for intent
      */
     public static Intent getRegisteredIntentByMimeType(Context context, String mimeType, long id, String schemeSpecificPart) {
-        final Intent intent = getIntentByMimeType(mimeType, id, schemeSpecificPart);
+        final Intent intent = getIntentByMimeType(context, mimeType, id, schemeSpecificPart);
 
         if (isIntentRegistered(context, intent)) {
             return intent;
@@ -292,9 +297,9 @@ public class MimeTypeUtils {
      * @param mimeType           mime type of contact data row
      * @param id                 id of contact data row
      * @param schemeSpecificPart
-     * @return intent to view contact by mime type and id
+     * @return intent to view contact by mime type and id, restricted to the app declaring the mime type
      */
-    public static Intent getIntentByMimeType(String mimeType, long id, String schemeSpecificPart) {
+    public static Intent getIntentByMimeType(Context context, String mimeType, long id, String schemeSpecificPart) {
         Intent intent;
         if (ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
             final Uri phoneUri = Uri.fromParts("tel", Uri.encode(schemeSpecificPart), null);
@@ -306,7 +311,7 @@ public class MimeTypeUtils {
             intent = new Intent(Intent.ACTION_VIEW);
             final Uri uri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, id);
             intent.setDataAndType(uri, mimeType);
-
+            intent.setPackage(KissApplication.getMimeTypeCache(context).getOwnerPackage(context, mimeType));
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
