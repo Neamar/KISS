@@ -36,7 +36,8 @@ public class GoogleCalendarIcon {
                 Drawable drawable = ResourcesCompat.getDrawable(resourcesForApplication, dayResId, context.getTheme());
                 return DrawableUtils.getThemedDrawable(context, drawable);
             }
-        } catch (PackageManager.NameNotFoundException ignored) {
+        } catch (PackageManager.NameNotFoundException | Resources.NotFoundException ignored) {
+            // day icon may not be loadable on this device (e.g. only in mipmap-anydpi-v26), fall back to the regular icon
         }
 
         return null;
