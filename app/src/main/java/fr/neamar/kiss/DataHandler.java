@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     @Nullable
     private MainActivity mainActivity;
-    private final Map<ProviderName, ProviderEntry> providers = new HashMap<>();
+    private final Map<ProviderName, ProviderEntry> providers = new ConcurrentHashMap<>();
 
     /**
      * Initialize all providers
