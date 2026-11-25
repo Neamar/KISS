@@ -1,5 +1,13 @@
 # KISS
 
+## Fork functionality
+
+This fork extends widget support in Minimalistic UI:
+
+- Configure a gesture to show or hide widgets.
+- Add a transparent Spacer widget that passes gestures through to KISS.
+- Arrange widgets side by side with left/right movement, as well as up/down.
+
 An Android launcher not spending time and memory on stuff you'd rather do.
 
 Libre software, licensed [GPLv3+](https://github.com/Neamar/KISS/blob/master/LICENSE): use, see, [change](CONTRIBUTING.md) and share at will.
