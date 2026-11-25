@@ -1,9 +1,11 @@
 package fr.neamar.kiss.settings;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -59,7 +61,12 @@ public class SettingsFragment extends BaseSettingsFragment {
                 rateApp.setOnPreferenceClickListener(preference -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse("market://details?id=" + requireContext().getApplicationContext().getPackageName()));
-                    startActivity(intent);
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        // No store app installed or enabled
+                        Toast.makeText(requireContext(), R.string.application_not_found, Toast.LENGTH_LONG).show();
+                    }
 
                     return true;
                 });

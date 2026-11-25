@@ -264,7 +264,12 @@ public class AppResult extends ResultWithTags<AppPojo> {
         try {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pojo.packageName)));
         } catch (ActivityNotFoundException anfe) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + pojo.packageName)));
+            try {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + pojo.packageName)));
+            } catch (ActivityNotFoundException e) {
+                // Neither a store nor a browser is installed or enabled
+                Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
