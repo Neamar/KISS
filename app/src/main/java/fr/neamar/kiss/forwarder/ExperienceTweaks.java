@@ -63,6 +63,7 @@ public class ExperienceTweaks extends Forwarder {
 
     private View mainEmptyView;
     private final GestureDetector gd;
+    private final GestureDetector spacerGestureDetector;
     private final KeyboardManager keyboardManager;
 
     ExperienceTweaks(final MainActivity mainActivity) {
@@ -72,7 +73,12 @@ public class ExperienceTweaks extends Forwarder {
         // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible
         setRequestedOrientation(mainActivity, prefs);
 
-        gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
+        GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(@NonNull MotionEvent e) {
+                return true;
+            }
+
             @Override
             public boolean onSingleTapUp(@NonNull MotionEvent e) {
                 // Double tap disabled: display history directly
@@ -241,7 +247,10 @@ public class ExperienceTweaks extends Forwarder {
 
                 return false;
             }
-        });
+        };
+        gd = new GestureDetector(mainActivity, gestureListener);
+        spacerGestureDetector = new GestureDetector(mainActivity, gestureListener);
+        spacerGestureDetector.setIsLongpressEnabled(false);
 
         keyboardManager = new KeyboardManager();
     }
@@ -288,6 +297,10 @@ public class ExperienceTweaks extends Forwarder {
     void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
+    }
+
+    void onSpacerTouch(MotionEvent event) {
+        spacerGestureDetector.onTouchEvent(event);
     }
 
     void onDisplayKissBar(boolean display) {

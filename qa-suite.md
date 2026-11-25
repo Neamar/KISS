@@ -198,6 +198,8 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] When using minimalistic mode, the three dot menu has an option to Add a widget
 - [ ] Selecting the option displays a list of all available widgets
 - [ ] Selecting a widget displays the widget when history is empty
+- [ ] The built-in Spacer widget is available in the picker and can be added, resized, and removed
+- [ ] Swipes on the spacer trigger the configured launcher gesture; long-press still opens its widget menu
 - [ ] Widget is hidden when displaying app list
 - [ ] Widget is hidden when searching
 - [ ] When opening a search result and pressing back, Widget is displayed

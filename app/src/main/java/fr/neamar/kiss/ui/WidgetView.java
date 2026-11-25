@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.util.SizeF;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.util.Collections;
@@ -23,6 +25,9 @@ import java.util.concurrent.TimeUnit;
 
 public class WidgetView extends AppWidgetHostView {
     private boolean mHasPerformedLongPress;
+    @Nullable
+    private View.OnTouchListener spacerTouchListener;
+    private boolean mLongPressConsumed;
     // Watch for long press events at this level to make sure
     // users can always pick up this widget, whatever its content does with touches
     private final GestureDetector longPressDetector;
@@ -61,11 +66,28 @@ public class WidgetView extends AppWidgetHostView {
         }
     }
 
+    public void setSpacerTouchListener(@Nullable View.OnTouchListener listener) {
+        spacerTouchListener = listener;
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         longPressDetector.onTouchEvent(ev);
         boolean handled = super.dispatchTouchEvent(ev);
-        if (ev.getActionMasked() == MotionEvent.ACTION_UP || ev.getActionMasked() == MotionEvent.ACTION_CANCEL) {
+        int action = ev.getActionMasked();
+        if (spacerTouchListener != null) {
+            if (action == MotionEvent.ACTION_CANCEL) {
+                mLongPressConsumed = false;
+                spacerTouchListener.onTouch(this, ev);
+            } else if (!mLongPressConsumed) {
+                spacerTouchListener.onTouch(this, ev);
+            }
+            if (action == MotionEvent.ACTION_UP) {
+                mLongPressConsumed = false;
+            }
+            handled = true;
+        }
+        if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
             mHasPerformedLongPress = false;
         }
         return handled;
@@ -82,6 +104,12 @@ public class WidgetView extends AppWidgetHostView {
         // View also detects long presses itself when no child handles the touch: only perform one per gesture
         if (!mHasPerformedLongPress) {
             mHasPerformedLongPress = super.performLongClick();
+            if (mHasPerformedLongPress && spacerTouchListener != null) {
+                mLongPressConsumed = true;
+                MotionEvent cancel = MotionEvent.obtain(0, 0, MotionEvent.ACTION_CANCEL, 0f, 0f, 0);
+                spacerTouchListener.onTouch(this, cancel);
+                cancel.recycle();
+            }
         }
         return mHasPerformedLongPress;
     }

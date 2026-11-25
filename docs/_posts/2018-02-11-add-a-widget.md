@@ -41,5 +41,9 @@ Long-press on a widget to display its menu:
 
 If you want some room between your widgets, use `Space between widgets` in `⋮, KISS settings, Home screen`.
 
+You can also add the built-in `Spacer` widget and resize it to leave larger gaps. Gestures on the spacer, like swipes on an empty area, still run their configured launcher action.
+
+![Spacer widget in Android's widget picker](/screenshots/spacer-widget-picker.png)
+
 ## Scroll through your widgets
 When your widgets don't fit on the screen, scroll through them with a two-finger swipe. Touching a widget with one finger still interacts with the widget itself.

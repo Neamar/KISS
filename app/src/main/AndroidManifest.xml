@@ -120,6 +120,18 @@
             android:grantUriPermissions="true" />
 
         <receiver
+            android:name=".broadcast.SpacerWidgetProvider"
+            android:exported="true"
+            android:label="@string/spacer_widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_spacer_info" />
+        </receiver>
+
+        <receiver
             android:name=".broadcast.LocaleChangedReceiver"
             android:enabled="true"
             android:exported="true">
