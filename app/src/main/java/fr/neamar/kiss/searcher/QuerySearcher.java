@@ -12,7 +12,9 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.HistoryMode;
+import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.SearchPojo;
 
 /**
  * AsyncTask retrieving data from the providers and updating the view
@@ -92,6 +94,28 @@ public class QuerySearcher extends Searcher {
         // Request results via "addResult"
         KissApplication.getApplication(activity).getDataHandler().requestResults(query, this);
         return null;
+    }
+
+    @Override
+    protected void afterResultsDisplayed(MainActivity activity) {
+        if (!prefs.getBoolean("auto-launch-single-result", false)) {
+            return;
+        }
+        // Web searches show up for any query; phone results would place a call while typing digits
+        int candidate = -1;
+        for (int i = 0; i < activity.adapter.getCount(); i++) {
+            Pojo pojo = activity.adapter.getItem(i).getPojo();
+            if (pojo instanceof SearchPojo || pojo instanceof PhonePojo) {
+                continue;
+            }
+            if (candidate != -1) {
+                return;
+            }
+            candidate = i;
+        }
+        if (candidate != -1) {
+            activity.adapter.onClick(candidate, activity.searchEditText);
+        }
     }
 
     public static void clearMaxResultCountCache() {

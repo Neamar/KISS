@@ -112,4 +112,11 @@
             app:key="search-web"
             app:title="@string/search_name" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="@string/search_launch">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="auto-launch-single-result"
+            app:summary="@string/auto_launch_single_result_desc"
+            app:title="@string/auto_launch_single_result" />
+    </PreferenceCategory>
 </PreferenceScreen>

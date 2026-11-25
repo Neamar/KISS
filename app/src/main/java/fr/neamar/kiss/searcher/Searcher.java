@@ -157,6 +157,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         } else {
             activity.list.cancelRunWhenNotTouched();
             displayResults.run();
+            afterResultsDisplayed(activity);
         }
 
         searchDone(false);
@@ -165,6 +166,12 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
 
         long time = System.currentTimeMillis() - start;
         Log.d(TAG, "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms (isRefresh=" + isRefresh + ")");
+    }
+
+    /**
+     * Called on the UI thread once results of a new (non refresh) query are in the adapter
+     */
+    protected void afterResultsDisplayed(MainActivity activity) {
     }
 
     private void searchDone(boolean isCancelled) {
