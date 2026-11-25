@@ -6,6 +6,7 @@ import static fr.neamar.kiss.dataprovider.ProviderName.SEARCH;
 import static fr.neamar.kiss.dataprovider.ProviderName.SETTINGS;
 import static fr.neamar.kiss.dataprovider.ProviderName.TAGS;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -173,7 +175,12 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         if (item.getItemId() == R.id.help) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("http://help.kisslauncher.com"));
-            startActivity(intent);
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                // No browser installed or enabled
+                Toast.makeText(this, R.string.application_not_found, Toast.LENGTH_LONG).show();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
