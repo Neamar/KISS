@@ -91,14 +91,14 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 #### Favorites on several rows
 
-- [ ] With 6 favorites or less, favorites are displayed on one row
-- [ ] Adding a 7th favorite splits the bar in two rows (4 on the bottom row, 3 on the top row)
-- [ ] With 13 favorites, favorites are displayed on three rows (5 + 5 + 3)
+- [ ] With 10 favorites or less (default "Favorites per row"), favorites are displayed on one row
+- [ ] Adding an 11th favorite splits the bar in two rows (6 on the bottom row, 5 on the top row)
+- [ ] With 23 favorites, favorites are displayed on three rows (8 + 8 + 7)
 - [ ] A favorite can be dragged from one row to another, and the new order is kept after restarting KISS
 - [ ] In settings, Favorites & tags, changing "Favorites per row" changes the number of rows
 - [ ] With "Bigger favorites bar" enabled, each row is bigger
 - [ ] Rows are displayed correctly in landscape, and the result list remains usable
-- [ ] Tag favorites (with and without "Display tags as icons") are displayed correctly on several rows
+- [ ] Tag favorites are displayed correctly on several rows
 - [ ] Notification dots are displayed on favorites of every row
 
 #### Minimalistic mode on for favorites
@@ -213,7 +213,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] A single tap anywhere on a widget reaches the widget (including the center of the screen; config-taps work)
 - [ ] A widget containing its own vertical list (e.g. agenda/calendar) scrolls its inner list normally with one finger
 - [ ] Gestures on empty areas behave exactly as in non-minimalistic KISS: tap reveals history/favorites as configured, double tap locks (or shows the accessibility prompt), long press and swipes trigger their configured actions (e.g. swipe down opens notifications)
-- [ ] Visible spacing is present between stacked widgets
+- [ ] By default ("Space between widgets" = 0), stacked widgets touch with no gap; a non-zero value adds visible spacing
 - [ ] Home screen setting "Space between widgets": changing it updates existing widget spacing immediately after leaving settings; the row is disabled (not clickable) while "Minimalistic UI" is off
 - [ ] After scrolling, long-press menu actions (resize, move up/down, reconfigure, remove) apply to the correct widget
 - [ ] Widget order is preserved after rotation and after process death
