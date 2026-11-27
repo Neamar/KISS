@@ -9,6 +9,8 @@ Results clicked more often are promoted.
 
 _No more idle app browsing_.
 
+In Minimalistic UI, assign a gesture to show or hide your home-screen widgets.
+
 That's it. Fast and efficient.
 
 [<img src="https://img.shields.io/f-droid/v/fr.neamar.kiss.svg?logo=f-droid&label=F-Droid&style=flat-square"
