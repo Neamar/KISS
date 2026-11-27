@@ -32,12 +32,15 @@ The widget will then appear at the top of the screen, above the empty search bar
 ## Customize your widgets
 Long-press on a widget to display its menu:
 
-![Widget menu](/screenshots/widget-long-press-menu.png)
+![Widget menu with horizontal movement options](/screenshots/widget-move-menu.png)
 
 * `Settings` reopens the widget's configuration screen (only displayed for widgets that can be reconfigured);
 * `Enlarge` and `Reduce` change the height of the widget, within the limits allowed by the widget;
-* `Move up` and `Move down` change the order of your widgets;
+* `Move up` and `Move down` change the order of widget rows. A widget in a shared row moves into its own row;
+* `Move left` and `Move right` place a widget beside the widget above it, or reorder widgets already sharing a row;
 * `Remove widget` removes the widget.
+
+![Widgets arranged side by side](/screenshots/widgets-side-by-side.png)
 
 If you want some room between your widgets, use `Space between widgets` in `⋮, KISS settings, Home screen`.
 

@@ -215,8 +215,9 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 - [ ] Gestures on empty areas behave exactly as in non-minimalistic KISS: tap reveals history/favorites as configured, double tap locks (or shows the accessibility prompt), long press and swipes trigger their configured actions (e.g. swipe down opens notifications)
 - [ ] By default ("Space between widgets" = 0), stacked widgets touch with no gap; a non-zero value adds visible spacing
 - [ ] Home screen setting "Space between widgets": changing it updates existing widget spacing immediately after leaving settings; the row is disabled (not clickable) while "Minimalistic UI" is off
-- [ ] After scrolling, long-press menu actions (resize, move up/down, reconfigure, remove) apply to the correct widget
-- [ ] Widget order is preserved after rotation and after process death
+- [ ] After scrolling, long-press menu actions (resize, move up/down/left/right, reconfigure, remove) apply to the correct widget
+- [ ] Move left/right arranges widgets side by side, and moving within a shared row changes their order
+- [ ] Widget row order is preserved after rotation and after process death
 
 #### Portrait / landscape
 

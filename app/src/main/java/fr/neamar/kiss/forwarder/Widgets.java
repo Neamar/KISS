@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
-import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -172,9 +171,20 @@ class Widgets extends Forwarder {
      * Delete the widget currently being added, and its view if it was already displayed
      */
     private void removePendingWidget() {
+        boolean removed = false;
         for (int i = 0; i < widgetArea.getChildCount(); i++) {
-            if (((AppWidgetHostView) widgetArea.getChildAt(i)).getAppWidgetId() == pendingAppWidgetId) {
-                widgetArea.removeViewAt(i);
+            ViewGroup row = (ViewGroup) widgetArea.getChildAt(i);
+            for (int j = 0; j < row.getChildCount(); j++) {
+                if (((AppWidgetHostView) row.getChildAt(j)).getAppWidgetId() == pendingAppWidgetId) {
+                    row.removeViewAt(j);
+                    if (row.getChildCount() == 0) {
+                        widgetArea.removeViewAt(i);
+                    }
+                    removed = true;
+                    break;
+                }
+            }
+            if (removed) {
                 break;
             }
         }
@@ -206,21 +216,24 @@ class Widgets extends Forwarder {
     }
 
     private void serializeState() {
-        List<String> builder = new ArrayList<>(widgetArea.getChildCount());
-        for (int i = 0; i < widgetArea.getChildCount(); i++) {
-            AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
-            int appWidgetId = view.getAppWidgetId();
-            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
-            if (appWidgetInfo != null) {
-                int lineSize = getLineSize(view.getLayoutParams().height);
-                builder.add(appWidgetId + "-" + lineSize);
-            } else {
-                Log.w(TAG, "Unable to retrieve widget by id " + appWidgetId);
+        List<List<WidgetUtils.WidgetConf>> layout = new ArrayList<>();
+        for (List<AppWidgetHostView> row : getWidgetRows()) {
+            List<WidgetUtils.WidgetConf> rowConfig = new ArrayList<>(row.size());
+            for (AppWidgetHostView view : row) {
+                int appWidgetId = view.getAppWidgetId();
+                AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+                if (appWidgetInfo != null) {
+                    rowConfig.add(new WidgetUtils.WidgetConf(appWidgetId, getLineSize(view.getLayoutParams().height)));
+                } else {
+                    Log.w(TAG, "Unable to retrieve widget by id " + appWidgetId);
+                }
+            }
+            if (!rowConfig.isEmpty()) {
+                layout.add(rowConfig);
             }
         }
 
-        String pref = TextUtils.join(";", builder);
-        prefs.edit().putString(WIDGET_PREF_KEY, pref).apply();
+        prefs.edit().putString(WIDGET_PREF_KEY, WidgetUtils.serializeLayout(layout)).apply();
     }
 
     /**
@@ -237,19 +250,23 @@ class Widgets extends Forwarder {
         // remove empty list view when using widgets, this would block touches on the widget
         mainActivity.emptyListView.setVisibility(View.GONE);
         widgetArea.removeAllViews();
-        String widgetsConfString = prefs.getString(WIDGET_PREF_KEY, "");
-        String[] widgetsConf = widgetsConfString.split(";");
+        List<List<WidgetUtils.WidgetConf>> layout = WidgetUtils.parseLayout(prefs.getString(WIDGET_PREF_KEY, ""));
+        List<List<AppWidgetHostView>> rows = new ArrayList<>(layout.size());
         Set<Integer> idsUsed = new HashSet<>();
-        for (String widgetConf : widgetsConf) {
-            if (widgetConf.isEmpty()) {
-                continue;
+        for (List<WidgetUtils.WidgetConf> rowConfig : layout) {
+            List<AppWidgetHostView> row = new ArrayList<>(rowConfig.size());
+            for (WidgetUtils.WidgetConf widgetConf : rowConfig) {
+                idsUsed.add(widgetConf.appWidgetId);
+                AppWidgetHostView hostView = createWidgetView(widgetConf.appWidgetId, widgetConf.lineSize);
+                if (hostView != null) {
+                    row.add(hostView);
+                }
             }
-            String[] conf = widgetConf.split("-");
-            int id = Integer.parseInt(conf[0]);
-            int lineSize = Integer.parseInt(conf[1]);
-            idsUsed.add(id);
-            addWidget(id, lineSize);
+            if (!row.isEmpty()) {
+                rows.add(row);
+            }
         }
+        applyRows(rows);
 
         // kill zombie widgets
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -266,6 +283,49 @@ class Widgets extends Forwarder {
         listeningInstance = new WeakReference<>(this);
     }
 
+    private List<List<AppWidgetHostView>> getWidgetRows() {
+        List<List<AppWidgetHostView>> rows = new ArrayList<>(widgetArea.getChildCount());
+        for (int i = 0; i < widgetArea.getChildCount(); i++) {
+            ViewGroup rowView = (ViewGroup) widgetArea.getChildAt(i);
+            List<AppWidgetHostView> row = new ArrayList<>(rowView.getChildCount());
+            for (int j = 0; j < rowView.getChildCount(); j++) {
+                row.add((AppWidgetHostView) rowView.getChildAt(j));
+            }
+            if (!row.isEmpty()) {
+                rows.add(row);
+            }
+        }
+        return rows;
+    }
+
+    private void applyRows(List<List<AppWidgetHostView>> rows) {
+        for (int i = 0; i < widgetArea.getChildCount(); i++) {
+            ((ViewGroup) widgetArea.getChildAt(i)).removeAllViews();
+        }
+        widgetArea.removeAllViews();
+
+        for (List<AppWidgetHostView> row : rows) {
+            if (row.isEmpty()) {
+                continue;
+            }
+            LinearLayout rowView = createWidgetRow();
+            for (AppWidgetHostView widgetView : row) {
+                rowView.addView(widgetView);
+            }
+            widgetArea.addView(rowView);
+        }
+    }
+
+    private LinearLayout createWidgetRow() {
+        LinearLayout row = new LinearLayout(mainActivity);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.bottomMargin = getWidgetSpacingPx();
+        row.setLayoutParams(params);
+        return row;
+    }
+
     /**
      * Retrieve a view for specified widget,
      * add context menu to it
@@ -273,11 +333,12 @@ class Widgets extends Forwarder {
      * @param appWidgetId id of widget to add
      * @param lineSize    height of widget given in lines
      */
-    private void addWidget(int appWidgetId, int lineSize) {
+    @Nullable
+    private AppWidgetHostView createWidgetView(int appWidgetId, int lineSize) {
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
         if (appWidgetInfo == null) {
             Log.i(TAG, "Unable to retrieve widget by id " + appWidgetId);
-            return;
+            return null;
         }
 
         AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity.getApplicationContext(), appWidgetId, appWidgetInfo);
@@ -303,11 +364,11 @@ class Widgets extends Forwarder {
             return true;
         });
 
-        widgetArea.addView(hostView);
+        return hostView;
     }
 
     private void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, AppWidgetProviderInfo currentAppWidgetInfo, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
-        final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+        List<List<AppWidgetHostView>> rows = getWidgetRows();
 
         if (isReconfigurable(currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_widget_settings));
@@ -319,11 +380,18 @@ class Widgets extends Forwarder {
         if (canShrinkTo(lineSize - 1, currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_size_down));
         }
-        if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != 0) {
+        if (WidgetUtils.canMoveUp(rows, widgetWithMenuCurrentlyDisplayed)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_up));
         }
-        if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != parent.getChildCount() - 1) {
+        if (WidgetUtils.canMoveDown(rows, widgetWithMenuCurrentlyDisplayed)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_down));
+        }
+        boolean rtl = isRtl();
+        if (rtl ? WidgetUtils.canMoveRight(rows, widgetWithMenuCurrentlyDisplayed) : WidgetUtils.canMoveLeft(rows, widgetWithMenuCurrentlyDisplayed)) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_left));
+        }
+        if (rtl ? WidgetUtils.canMoveLeft(rows, widgetWithMenuCurrentlyDisplayed) : WidgetUtils.canMoveRight(rows, widgetWithMenuCurrentlyDisplayed)) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_right));
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_widget_remove));
     }
@@ -338,6 +406,9 @@ class Widgets extends Forwarder {
             reConfigureAppWidget(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
         } else if (stringId == R.string.menu_widget_remove) {
             parent.removeView(widgetWithMenuCurrentlyDisplayed);
+            if (parent.getChildCount() == 0) {
+                widgetArea.removeView(parent);
+            }
             mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
             serializeState();
         } else if (stringId == R.string.menu_size_up || stringId == R.string.menu_size_down) {
@@ -345,20 +416,31 @@ class Widgets extends Forwarder {
             setWidgetSize(widgetWithMenuCurrentlyDisplayed, stringId == R.string.menu_size_up ? lineSize + 1 : lineSize - 1);
             serializeState();
         } else if (stringId == R.string.menu_widget_move_up) {
-            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-            if (currentIndex >= 1) {
-                parent.removeViewAt(currentIndex);
-                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
-                serializeState();
-            }
+            moveWidget(widgetWithMenuCurrentlyDisplayed, WidgetUtils::moveUp);
         } else if (stringId == R.string.menu_widget_move_down) {
-            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-            if (currentIndex < parent.getChildCount() - 1) {
-                parent.removeViewAt(currentIndex);
-                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
-                serializeState();
-            }
+            moveWidget(widgetWithMenuCurrentlyDisplayed, WidgetUtils::moveDown);
+        } else if (stringId == R.string.menu_widget_move_left) {
+            moveWidget(widgetWithMenuCurrentlyDisplayed, isRtl() ? WidgetUtils::moveRight : WidgetUtils::moveLeft);
+        } else if (stringId == R.string.menu_widget_move_right) {
+            moveWidget(widgetWithMenuCurrentlyDisplayed, isRtl() ? WidgetUtils::moveLeft : WidgetUtils::moveRight);
         }
+    }
+
+    private void moveWidget(AppWidgetHostView widget, WidgetMover mover) {
+        List<List<AppWidgetHostView>> rows = getWidgetRows();
+        if (mover.move(rows, widget)) {
+            applyRows(rows);
+            serializeState();
+        }
+    }
+
+    private boolean isRtl() {
+        return mainActivity.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+    }
+
+    @FunctionalInterface
+    private interface WidgetMover {
+        boolean move(List<List<AppWidgetHostView>> rows, AppWidgetHostView widget);
     }
 
     /**
@@ -370,8 +452,7 @@ class Widgets extends Forwarder {
     private void setWidgetSize(AppWidgetHostView hostView, int lineSize) {
         int height = (int) (lineSize * getLineHeight());
         hostView.setMinimumHeight(height);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        params.bottomMargin = getWidgetSpacingPx();
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, height, 1f);
         hostView.setLayoutParams(params);
     }
 
@@ -444,7 +525,16 @@ class Widgets extends Forwarder {
             return;
         }
 
-        addWidget(appWidgetId, Math.max(INITIAL_WIDGET_LINE_SIZE, getLineSize(getMinHeight(appWidgetInfo))));
+        AppWidgetHostView hostView = createWidgetView(appWidgetId, Math.max(INITIAL_WIDGET_LINE_SIZE, getLineSize(getMinHeight(appWidgetInfo))));
+        if (hostView == null) {
+            removePendingWidget();
+            return;
+        }
+        List<List<AppWidgetHostView>> rows = getWidgetRows();
+        List<AppWidgetHostView> row = new ArrayList<>();
+        row.add(hostView);
+        rows.add(row);
+        applyRows(rows);
         serializeState();
 
         // Scroll the new widget into view.  When content fits the viewport
