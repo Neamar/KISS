@@ -12,8 +12,12 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assume.assumeTrue;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.text.format.DateUtils;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -21,10 +25,13 @@ import androidx.test.filters.LargeTest;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.ProviderName;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.pojo.SettingPojo;
 
 @LargeTest
 public class SearchSourcesTest extends AbstractMainActivityTest {
@@ -108,6 +115,29 @@ public class SearchSourcesTest extends AbstractMainActivityTest {
             // The provider outlives the activity, restore it for the next tests
             setSettingsEnabled(true);
         }
+    }
+
+    @Test
+    public void testEverySettingOpensAScreen() {
+        PackageManager pm = context.getPackageManager();
+        List<?> pojos = KissApplication.getApplication(context).getDataHandler().getProvider(ProviderName.SETTINGS).getPojos();
+        assertFalse(pojos.isEmpty());
+        for (Object o : pojos) {
+            SettingPojo pojo = (SettingPojo) o;
+            // Same intent as SettingsResult.doLaunch
+            Intent intent = new Intent(pojo.settingName);
+            if (!pojo.packageName.isEmpty()) {
+                intent.setClassName(pojo.packageName, pojo.settingName);
+            }
+            assertNotNull(pojo.getName() + " has no screen", intent.resolveActivity(pm));
+        }
+    }
+
+    @Test
+    public void testBluetoothSettingAppears() {
+        assumeTrue(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH));
+        search("bluet");
+        onView(allOf(withId(R.id.item_setting_name), withText(R.string.settings_bluetooth))).check(matches(isDisplayed()));
     }
 
     private void setSettingsEnabled(boolean enabled) {
