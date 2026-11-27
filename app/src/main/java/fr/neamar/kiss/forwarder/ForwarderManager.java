@@ -34,6 +34,16 @@ public class ForwarderManager extends Forwarder {
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
+
+        widgetsForwarder.setSpacerTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                experienceTweaks.onSpacerTouch(event);
+                liveWallpaperForwarder.onTouch(view, event);
+                return true;
+            }
+        });
     }
 
     public void onCreate() {

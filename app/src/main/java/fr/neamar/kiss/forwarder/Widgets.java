@@ -42,9 +42,11 @@ import java.util.Set;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.PickAppWidgetActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.broadcast.SpacerWidgetProvider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.WidgetHost;
 import fr.neamar.kiss.ui.WidgetScrollView;
+import fr.neamar.kiss.ui.WidgetView;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.WidgetUtils;
@@ -79,6 +81,7 @@ class Widgets extends Forwarder {
      * Scrollable container around {@link #widgetArea}
      */
     private WidgetScrollView widgetScroll;
+    private View.OnTouchListener spacerTouchListener;
     /**
      * Id of the widget currently being added, to delete it if the user cancels:
      * a cancelled bind request or configuration may not return the id.
@@ -115,6 +118,10 @@ class Widgets extends Forwarder {
      */
     void setEmptyAreaTouchListener(View.OnTouchListener listener) {
         widgetScroll.setEmptyAreaTouchListener(listener);
+    }
+
+    void setSpacerTouchListener(View.OnTouchListener listener) {
+        spacerTouchListener = listener;
     }
 
     /**
@@ -303,7 +310,16 @@ class Widgets extends Forwarder {
             return true;
         });
 
+        if (isSpacerWidget(appWidgetInfo) && hostView instanceof WidgetView) {
+            ((WidgetView) hostView).setSpacerTouchListener(spacerTouchListener);
+        }
+
         widgetArea.addView(hostView);
+    }
+
+    private boolean isSpacerWidget(AppWidgetProviderInfo appWidgetInfo) {
+        return appWidgetInfo != null && appWidgetInfo.provider != null
+                && SpacerWidgetProvider.class.getName().equals(appWidgetInfo.provider.getClassName());
     }
 
     private void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, AppWidgetProviderInfo currentAppWidgetInfo, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
