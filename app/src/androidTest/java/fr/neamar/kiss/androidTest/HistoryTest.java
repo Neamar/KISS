@@ -51,7 +51,8 @@ public class HistoryTest extends AbstractMainActivityTest {
         scenario.onActivity(activity -> activity.prefs.edit().putBoolean("freeze-history", true).commit());
         launchBatterySetting();
         // The list is hidden, not emptied, when there is no history
-        onView(withId(R.id.item_setting_name)).check(matches(not(isDisplayed())));
+        // The hidden list still holds the "batter" results, Battery saver included
+        onView(allOf(withId(R.id.item_setting_name), withText("Battery"))).check(matches(not(isDisplayed())));
 
         scenario.onActivity(activity -> activity.prefs.edit().putBoolean("freeze-history", false).commit());
         launchBatterySetting();
