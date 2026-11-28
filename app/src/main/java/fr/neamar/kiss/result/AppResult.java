@@ -112,43 +112,65 @@ public class AppResult extends ResultWithTags<AppPojo> {
         }
 
         button.setVisibility(View.VISIBLE);
-        button.setOnClickListener(v -> showShortcutsPopup(context, v, shortcuts));
+        button.setOnClickListener(v -> {
+            ListPopup menu = buildShortcutsPopup(context, shortcuts, null);
+            queryInterface.registerPopup(menu);
+            menu.show(v);
+        });
     }
 
-    private void showShortcutsPopup(Context context, View anchor, List<ShortcutPojo> shortcuts) {
+    /**
+     * @param appOptions when not null, adds an "App options" entry last, which runs it
+     */
+    private ListPopup buildShortcutsPopup(Context context, List<ShortcutPojo> shortcuts, @Nullable Runnable appOptions) {
         Map<String, Integer> ranks = getShortcutRanks(context);
         List<ShortcutPojo> sorted = new ArrayList<>(shortcuts);
         // Dynamic, then static, then pinned shortcuts, and best rank last within each group: the menu opens upward, so the bottom is closest to the finger
         sorted.sort(Comparator.comparing(AppResult::getShortcutGroup)
                 .thenComparing(shortcut -> ranks.getOrDefault(shortcut.getOreoId(), 0), Comparator.reverseOrder()));
 
-        // null entry is the divider between groups
-        List<ShortcutsResult> items = new ArrayList<>();
+        // Items are ShortcutsResult, null for the divider between groups, or the appOptions Runnable
+        List<Object> items = new ArrayList<>();
+        ShortcutPojo previous = null;
         for (ShortcutPojo shortcut : sorted) {
-            if (!items.isEmpty() && getShortcutGroup(items.get(items.size() - 1).pojo) != getShortcutGroup(shortcut)) {
+            if (previous != null && getShortcutGroup(previous) != getShortcutGroup(shortcut)) {
                 items.add(null);
             }
             items.add(new ShortcutsResult(shortcut, pojo));
+            previous = shortcut;
+        }
+        if (appOptions != null) {
+            items.add(null);
+            items.add(appOptions);
         }
 
         ListPopup menu = new ListPopup(context);
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         boolean canPin = !PackageManagerUtils.isPrivateProfile(context, pojo.userHandle);
 
-        ArrayAdapter<ShortcutsResult> adapter = new ArrayAdapter<ShortcutsResult>(context, R.layout.popup_shortcut_item, android.R.id.text1, items) {
+        ArrayAdapter<Object> adapter = new ArrayAdapter<Object>(context, R.layout.popup_shortcut_item, android.R.id.text1, items) {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                ShortcutsResult item = getItem(position);
-                if (item == null) {
+                Object entry = getItem(position);
+                if (entry == null) {
                     return LayoutInflater.from(context).inflate(R.layout.popup_divider, parent, false);
                 }
                 View view = LayoutInflater.from(context).inflate(R.layout.popup_shortcut_item, parent, false);
+                ImageButton pinButton = view.findViewById(R.id.popup_shortcut_pin);
+                if (entry == appOptions) {
+                    ((TextView) view.findViewById(android.R.id.text1)).setText(R.string.menu_app_options);
+                    pinButton.setImageResource(R.drawable.ic_chevron_right);
+                    // Only an indicator, the row handles the click
+                    pinButton.setClickable(false);
+                    pinButton.setBackground(null);
+                    return view;
+                }
+                ShortcutsResult item = (ShortcutsResult) entry;
                 String label = item.pojo.getName();
                 ((TextView) view.findViewById(android.R.id.text1)).setText(label);
                 item.setAsyncDrawable(view.findViewById(android.R.id.icon));
 
-                ImageButton pinButton = view.findViewById(R.id.popup_shortcut_pin);
                 boolean pinned = item.pojo.isPinned();
                 if (canPin && (pinned || item.pojo.isOreoShortcut())) {
                     pinButton.setImageResource(pinned ? R.drawable.ic_shortcut_unpin : R.drawable.ic_shortcut_pin);
@@ -175,11 +197,17 @@ public class AppResult extends ResultWithTags<AppPojo> {
 
         menu.setAdapter(adapter);
         // Launching through the shortcut's own Result keeps history consistent with shortcuts found via search
-        menu.setOnItemClickListener((a, itemView, position) -> items.get(position).launch(context, itemView, queryInterface));
-        queryInterface.registerPopup(menu);
-        menu.show(anchor);
+        menu.setOnItemClickListener((a, itemView, position) -> {
+            Object entry = items.get(position);
+            if (entry == appOptions) {
+                appOptions.run();
+            } else {
+                ((ShortcutsResult) entry).launch(context, itemView, queryInterface);
+            }
+        });
         // Long menus scroll: start from the bottom, where the best shortcuts are
         menu.getContentView().post(() -> ((ScrollView) menu.getContentView()).fullScroll(View.FOCUS_DOWN));
+        return menu;
     }
 
     private static int getShortcutGroup(ShortcutPojo shortcut) {
@@ -239,6 +267,20 @@ public class AppResult extends ResultWithTags<AppPojo> {
 
     private String getPackageKey() {
         return pojo.getPackageKey();
+    }
+
+    @Override
+    public ListPopup getPopupMenu(final Context context, final RecordAdapter parent, final View parentView) {
+        List<ShortcutPojo> shortcuts = getShortcuts(context);
+        if (shortcuts.isEmpty()) {
+            return super.getPopupMenu(context, parent, parentView);
+        }
+        // Long press shows shortcuts first, the usual app menu is one tap away
+        return buildShortcutsPopup(context, shortcuts, () -> {
+            ListPopup options = super.getPopupMenu(context, parent, parentView);
+            queryInterface.registerPopup(options);
+            options.show(parentView);
+        });
     }
 
     @Override

@@ -15,7 +15,6 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ReversedNameComparator;
-import fr.neamar.kiss.pojo.ShortcutPojo;
 
 /**
  * Returns the list of all applications on the system
@@ -51,12 +50,6 @@ public class ApplicationsSearcher extends Searcher {
         List<AppPojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplicationsWithoutExcluded();
         if (pojos != null) {
             this.addResults(getPojosWithoutFavorites(pojos, excludedFavoriteIds));
-        }
-
-        // add pinned shortcuts (PWA, ...)
-        List<ShortcutPojo> shortcuts = KissApplication.getApplication(activity).getDataHandler().getPinnedShortcuts();
-        if (shortcuts != null) {
-            this.addResults(getPojosWithoutFavorites(shortcuts, excludedFavoriteIds));
         }
 
         return null;
