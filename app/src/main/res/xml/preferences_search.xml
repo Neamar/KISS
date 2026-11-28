@@ -9,15 +9,6 @@
             app:title="@string/contacts_name" />
         <SwitchPreference
             app:defaultValue="true"
-            app:key="enable-shortcuts"
-            app:summary="@string/shortcuts_summary"
-            app:title="@string/shortcuts_name">
-            <extra
-                android:name="minSdk"
-                android:value="26" />
-        </SwitchPreference>
-        <SwitchPreference
-            app:defaultValue="true"
             app:key="enable-search"
             app:summary="@string/search_provider_summary"
             app:title="@string/search_provider_toggle" />
@@ -97,15 +88,6 @@
             app:fragment="fr.neamar.kiss.settings.ContactsSettingsFragment"
             app:key="search-contacts"
             app:title="@string/contacts_name" />
-        <Preference
-            app:dependency="enable-shortcuts"
-            app:fragment="fr.neamar.kiss.settings.ShortcutsSettingsFragment"
-            app:key="search-shortcuts"
-            app:title="@string/shortcuts_name">
-            <extra
-                android:name="minSdk"
-                android:value="26" />
-        </Preference>
         <Preference
             app:dependency="enable-search"
             app:fragment="fr.neamar.kiss.settings.WebSearchSettingsFragment"

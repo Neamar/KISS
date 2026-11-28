@@ -450,12 +450,6 @@ public class DBHelper {
         db.delete("shortcuts", "package LIKE ?", new String[]{"%" + packageName + "%"});
     }
 
-    public static void removeAllShortcuts(Context context) {
-        SQLiteDatabase db = getDatabase(context);
-        // delete whole table
-        db.delete("shortcuts", null, null);
-    }
-
     /**
      * Insert new tags for given id
      *

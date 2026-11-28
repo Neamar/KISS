@@ -38,7 +38,6 @@ public class SettingsFragment extends BaseSettingsFragment {
         PREFERENCES_XML.put(R.xml.preferences_search, SearchSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_search_apps, AppsSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_search_contacts, ContactsSettingsFragment.class);
-        PREFERENCES_XML.put(R.xml.preferences_search_shortcuts, ShortcutsSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_search_web, WebSearchSettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_history, HistorySettingsFragment.class);
         PREFERENCES_XML.put(R.xml.preferences_favorites, FavoritesSettingsFragment.class);

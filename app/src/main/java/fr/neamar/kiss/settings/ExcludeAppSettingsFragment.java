@@ -48,10 +48,6 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
                     getPreferenceScreen().setTitle(R.string.ui_excluded_from_history_apps);
                     addExcludedFromHistoryAppSettings();
                     break;
-                case "edit-excluded-app-shortcuts":
-                    getPreferenceScreen().setTitle(R.string.ui_excluded_from_shortcuts_apps);
-                    addExcludedShortcutAppSettings();
-                    break;
             }
         }
     }
@@ -75,17 +71,6 @@ public class ExcludeAppSettingsFragment extends BaseSettingsFragment {
                 "excluded-apps-from-history",
                 app -> getDataHandler().getExcludedFromHistory().contains(app.id),
                 AppPojo::setExcludedFromHistory
-        );
-    }
-
-    private void addExcludedShortcutAppSettings() {
-        addExcludedApps(
-                app -> getDataHandler().addToExcludedShortcutApps(app),
-                app -> getDataHandler().removeFromExcludedShortcutApps(app),
-                AppPojo::isExcludedShortcuts,
-                DataHandler.PREF_KEY_EXCLUDED_SHORTCUT_APPS,
-                app -> getDataHandler().getExcludedShortcutApps().contains(app.packageName),
-                AppPojo::setExcludedShortcuts
         );
     }
 

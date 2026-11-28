@@ -39,7 +39,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             DataHandler dataHandler = KissApplication.getApplication(ctx).getDataHandler();
             Set<String> excludedAppList = dataHandler.getExcluded();
             Set<String> excludedFromHistoryAppList = dataHandler.getExcludedFromHistory();
-            Set<String> excludedShortcutsAppList = dataHandler.getExcludedShortcutApps();
             Map<String, String> customNames = DBHelper.getCustomAppNames(ctx);
             for (AppPojo app : apps) {
                 String customName = customNames.get(app.getComponentName());
@@ -48,7 +47,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 }
                 app.setExcluded(excludedAppList.contains(app.getComponentName()));
                 app.setExcludedFromHistory(excludedFromHistoryAppList.contains(app.id));
-                app.setExcludedShortcuts(excludedShortcutsAppList.contains(app.packageName));
             }
         }
         super.onPostExecute(apps);
