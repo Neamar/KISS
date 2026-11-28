@@ -17,6 +17,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.matcher.ViewMatchers.hasSibling;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.not;
@@ -103,8 +104,9 @@ public class MainActivityTest extends AbstractMainActivityTest {
     @Test
     public void testBatterySettingAppears() {
         search("batter");
-        onView(withId(R.id.item_setting_icon)).check(matches(isDisplayed()));
-        onView(withId(R.id.item_setting_name)).check(matches(withText("Battery")));
+        // "Battery saver" matches too, pick the Battery row
+        onView(allOf(withId(R.id.item_setting_icon), hasSibling(withText("Battery")))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.item_setting_name), withText("Battery"))).check(matches(isDisplayed()));
     }
 
     @Test

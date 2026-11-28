@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.provider.Settings;
 
 import androidx.annotation.DrawableRes;
@@ -60,7 +61,26 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
         pojos.add(createPojo(context.getString(R.string.settings_applications),
                 Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, R.drawable.setting_apps));
         pojos.add(createPojo(context.getString(R.string.settings_connectivity),
-                Settings.ACTION_WIRELESS_SETTINGS, R.drawable.setting_wifi));
+                Settings.ACTION_WIRELESS_SETTINGS, R.drawable.setting_connectivity));
+        // Many ROMs don't ship these screens, only list them when something can open them
+        if (pm.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
+            addIfResolvable(pm, context.getString(R.string.settings_wifi),
+                    Settings.ACTION_WIFI_SETTINGS, R.drawable.setting_wifi);
+        }
+        if (pm.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
+            addIfResolvable(pm, context.getString(R.string.settings_bluetooth),
+                    Settings.ACTION_BLUETOOTH_SETTINGS, R.drawable.setting_bluetooth);
+        }
+        addIfResolvable(pm, context.getString(R.string.settings_cast),
+                Settings.ACTION_CAST_SETTINGS, R.drawable.setting_cast);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            addIfResolvable(pm, context.getString(R.string.settings_battery_saver),
+                    Settings.ACTION_BATTERY_SAVER_SETTINGS, R.drawable.setting_battery_saver);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            addIfResolvable(pm, context.getString(R.string.settings_vpn),
+                    Settings.ACTION_VPN_SETTINGS, R.drawable.setting_vpn);
+        }
         pojos.add(createPojo(context.getString(R.string.settings_storage),
                 Settings.ACTION_INTERNAL_STORAGE_SETTINGS, R.drawable.setting_storage));
         pojos.add(createPojo(context.getString(R.string.settings_accessibility),
@@ -79,6 +99,12 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
         }
         pojos.add(createPojo(context.getString(R.string.settings_dev),
                 Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS, R.drawable.setting_dev));
+    }
+
+    private void addIfResolvable(PackageManager pm, String name, String settingName, @DrawableRes int resId) {
+        if (new Intent(settingName).resolveActivity(pm) != null) {
+            pojos.add(createPojo(name, settingName, resId));
+        }
     }
 
     private void assignName(SettingPojo pojo, String name) {
