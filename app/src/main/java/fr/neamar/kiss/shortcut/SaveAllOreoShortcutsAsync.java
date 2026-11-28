@@ -65,7 +65,7 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // add pinned shortcuts, remove disabled shortcuts
             if (shortcutInfo.isPinned() || !shortcutInfo.isEnabled()) {
-                shortcutsUpdated |= dataHandler.updateShortcut(shortcutInfo, !shortcutInfo.isPinned());
+                shortcutsUpdated |= dataHandler.updateShortcut(shortcutInfo);
             }
         }
 

@@ -8,7 +8,6 @@ import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.UserManager;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.os.ConfigurationCompat;
 
@@ -113,15 +112,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     }
                     if (lastUpdateTime != Long.MAX_VALUE) {
                         newLabelCache.put(labelKey, label);
-                        // Also keep the name of the app, displayed on its shortcuts
-                        String appNameKey = getAppNameKey(appInfo.packageName, user, lastUpdateTime);
-                        if (!newLabelCache.containsKey(appNameKey)) {
-                            String appName = isLabelCacheValid ? labelCache.getString(appNameKey, null) : null;
-                            if (appName == null) {
-                                appName = ctx.getPackageManager().getApplicationLabel(appInfo).toString();
-                            }
-                            newLabelCache.put(appNameKey, appName);
-                        }
                     }
                     final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), label, disabled);
                     result.add(app);
@@ -147,21 +137,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         return Build.FINGERPRINT + "|" + ConfigurationCompat.getLocales(ctx.getResources().getConfiguration()).toLanguageTags();
     }
 
-    private static String getAppNameKey(String packageName, UserHandle user, long lastUpdateTime) {
-        return user.addUserSuffixToString(packageName, '#') + "@" + lastUpdateTime;
-    }
 
-    /**
-     * @return name of given app as read by the last load of apps, null if unknown
-     */
-    @Nullable
-    public static String getCachedAppName(Context ctx, ApplicationInfo appInfo, UserHandle user) {
-        SharedPreferences labelCache = ctx.getSharedPreferences(LABEL_CACHE, Context.MODE_PRIVATE);
-        if (!getLabelCacheStamp(ctx).equals(labelCache.getString("stamp", null))) {
-            return null;
-        }
-        return labelCache.getString(getAppNameKey(appInfo.packageName, user, PackageManagerUtils.getLastUpdateTime(appInfo)), null);
-    }
 
     private boolean isQuietModeEnabled(UserManager manager, android.os.UserHandle profile) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
