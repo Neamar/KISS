@@ -75,7 +75,7 @@ public abstract class Result<T extends Pojo> {
 
     public static Result<?> fromPojo(QueryInterface parent, @NonNull Pojo pojo) {
         if (pojo instanceof AppPojo)
-            return new AppResult((AppPojo) pojo);
+            return new AppResult(parent, (AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
             return new ContactsResult(parent, (ContactsPojo) pojo);
         else if (pojo instanceof SearchPojo)
